@@ -1,0 +1,27 @@
+.container {
+  margin: 4rem auto;
+  width: 80%;
+  display: flex;
+
+  @media only screen and (max-width: 768px) {
+    width: 96%;
+  }
+}
+
+.posts {
+  width: 70%;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.right-side-bar {
+  width: 28%;
+  margin-left: 2%;
+
+  @media only screen and (max-width: 768px) {
+    width: 0;
+    display: none;
+  }
+}
