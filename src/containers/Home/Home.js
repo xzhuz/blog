@@ -10,7 +10,6 @@ class Home extends React.PureComponent {
 
     showPostContent(postId) {
         this.props.history.push(`/post/${postId}`);
-        // this.props.dispatch(showPost(postId));
     }
 
     componentDidMount() {
@@ -58,11 +57,6 @@ class Home extends React.PureComponent {
         );
     }
 }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//     };
-// };
 
 const mapStateToProps = state => {
     return {posts: state.loadPost};

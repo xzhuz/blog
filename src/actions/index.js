@@ -1,16 +1,16 @@
 export const SHOW_POST = 'SHOW_POST';
 export const LOAD_POST = 'LOAD_POST';
 
-export const showPost = (id) => {
+export const postList = (posts) => {
     return {
-        type: SHOW_POST,
-        id
+        type: LOAD_POST,
+        payload: posts
     };
 };
 
-export const postList = (post) => {
+export const showPost = (post) => {
     return {
-        type: LOAD_POST,
+        type: SHOW_POST,
         payload: post
     };
 };
