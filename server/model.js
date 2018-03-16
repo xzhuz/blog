@@ -9,8 +9,7 @@ mongoose.connection.on('connected', function () {
 
 
 const models = {
-    post: {
-        'postid': {'type': String, require: true},
+    blog: {
         //头像
         'avatar': {'type': String},
         // 标题
@@ -19,8 +18,8 @@ const models = {
         'content': {'type': String},
         // 类型
         'type': {'type': String, require: true},
-        'label': {'type': String, require: true},
-        'date': {'type': String, require: true},
+        'tags': {'type': Array, require: true},
+        'date': {'type': Date, require: true},
     }
 };
 

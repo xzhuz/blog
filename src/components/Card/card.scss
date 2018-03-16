@@ -31,19 +31,16 @@
 .card .card-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   @media only screen and (max-width: 767px) {
     width: 100%;
   }
 }
 
 .card-title{
-  height: 2.5rem;
-  line-height: 2.5rem;
-
   span {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #0f88eb;
 
     &:hover {
@@ -53,11 +50,10 @@
 
 }
 
-.card-content{
-  font-size: 13px;
-
+.card-summary{
+  font-size: 12px;
   span {
-    color: #989898;
+    color: #a8a8a8;
   }
 }
 

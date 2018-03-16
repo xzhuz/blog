@@ -16,20 +16,18 @@ class Home extends React.PureComponent {
     render() {
         const cards = [
             {
-                postId: '1',
-                avatar: 'avatar',
-                title: 'IText生成PDF',
-                summary: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
-                label: 'Java;IText;PDF',
-                date: '2018-02-02'
+                'avatar': 'avatar',
+                'title': 'Something about URI & URL & Refer',
+                'summary': 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
+                'tags': ['URI','Servlet'],
+                'date': '2018-02-02'
             },
             {
-                postId: '2',
                 avatar: 'avatar',
                 title: 'IText生成PDF',
                 summary: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
-                label: 'Java',
-                date: '2017-01-01'
+                tags: ['Java'],
+                date: '2017-12-01'
             },
         ];
         return (
@@ -38,7 +36,7 @@ class Home extends React.PureComponent {
                     {
                         cards.map(v => (
                             <Card key={v.postId} postId={v.postId} title={v.title} avatar={v.avatar}
-                                  summary={v.summary} label={v.label} date={v.date} showPost={(id) => this.showPostContent(id)} />
+                                  summary={v.summary} tags={v.tags} date={v.date} showPost={(id) => this.showPostContent(id)} />
                         ))
                     }
                 </div>

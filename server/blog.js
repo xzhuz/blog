@@ -1,15 +1,18 @@
 const express = require('express');
-const utils = require('utility');
 
 const Router = express.Router();
 const model = require('./model');
 
-const Post = model.getModel('post');
+const Blog = model.getModel('blog');
 
 Router.get('/list', function (req, res) {
-    Post.find({}, function (err, doc) {
+    // const { postId } = req.query;
+    Blog.find({}, function (err, doc) {
+        console.log(err);
+        console.log(doc);
         return res.json({code:0, data: doc});
     })
 });
+
 
 module.exports = Router;
