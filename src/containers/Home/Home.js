@@ -1,31 +1,40 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import Card from '../../components/Card/Card';
-import {showPost} from "../../actions";
+import Card from '../Card/Card';
 import './home.scss';
-import SideBar from "../../components/SideBar/SideBar";
+import SideBar from "../SideBar/SideBar";
+import {getPostList} from "../../reducers/blog.redux";
 
 class Home extends React.PureComponent {
 
     showPostContent(postId) {
         this.props.history.push(`/post/${postId}`);
-        this.props.dispatch(showPost(postId));
+        // this.props.dispatch(showPost(postId));
+    }
+
+    componentDidMount() {
+        this.props.getPostList();
     }
 
     render() {
+        const {posts} = this.props;
         const cards = [
             {
+                'postId': '1',
                 'avatar': 'avatar',
                 'title': 'Something about URI & URL & Refer',
                 'summary': 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
-                'tags': ['URI','Servlet'],
+                'content': 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
+                'tags': ['URI', 'Servlet'],
                 'date': '2018-02-02'
             },
             {
+                postId: '2',
                 avatar: 'avatar',
                 title: 'IText生成PDF',
                 summary: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
+                content: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
                 tags: ['Java'],
                 date: '2017-12-01'
             },
@@ -34,14 +43,15 @@ class Home extends React.PureComponent {
             <div className='container'>
                 <div className={'posts'}>
                     {
-                        cards.map(v => (
-                            <Card key={v.postId} postId={v.postId} title={v.title} avatar={v.avatar}
-                                  summary={v.summary} tags={v.tags} date={v.date} showPost={(id) => this.showPostContent(id)} />
+                        posts.map((v, index) => (
+                            <Card key={index} postId={v._id} title={v.title} avatar={v.avatar}
+                                  content={v.content} tags={v.tags} date={v.date}
+                                  showPost={(id) => this.showPostContent(id)}/>
                         ))
                     }
                 </div>
                 <div className={'right-side-bar'}>
-                    <SideBar />
+                    <SideBar/>
                 </div>
 
             </div>
@@ -49,4 +59,13 @@ class Home extends React.PureComponent {
     }
 }
 
-export default withRouter(connect()(Home));
+// const mapDispatchToProps = dispatch => {
+//     return {
+//     };
+// };
+
+const mapStateToProps = state => {
+    return {posts: state.loadPost};
+};
+
+export default withRouter(connect(mapStateToProps, {getPostList})(Home));

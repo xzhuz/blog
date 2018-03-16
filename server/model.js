@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//链接mongo,
+// 链接mongo,
 const DB_URL = 'mongodb://localhost:27017/blog';
 mongoose.connect(DB_URL);
 mongoose.connection.on('connected', function () {
@@ -10,14 +10,13 @@ mongoose.connection.on('connected', function () {
 
 const models = {
     blog: {
-        //头像
+        // 头像
         'avatar': {'type': String},
         // 标题
         'title': {'type': String, require: true},
+        "summary": {'type': String},
         // 内容
         'content': {'type': String},
-        // 类型
-        'type': {'type': String, require: true},
         'tags': {'type': Array, require: true},
         'date': {'type': Date, require: true},
     }

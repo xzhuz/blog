@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Label from '../Tag/Tag';
+import Label from '../../components/Tag/Tag';
 
 import './card.scss';
 
@@ -17,7 +17,7 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {avatar, postId, title, summary, tags, date} = this.props;
+        const {avatar, postId, title, content, tags, date} = this.props;
         const cardAvatar = require(`../img/${avatar}.png`);
         return (
             <div className={'card'} id={postId}>
@@ -28,14 +28,14 @@ class Card extends React.PureComponent {
                     <div className={'card-title'} onClick={this.showPost} >
                         <span>{title}</span>
                     </div>
-                    <div className={'card-summary'} onClick={this.showPost} >
-                        <span>{summary}</span>
+                    <div className={'card-content'} onClick={this.showPost} >
+                        <span>{content}</span>
                     </div>
                     <div className={'card-info'}>
                         <div className={'card-tags'}>
                             {
-                                tags.map(v => (
-                                    <Label label={v} key={v.index} />
+                                tags.map((v, index) => (
+                                    <Label label={v} key={index} />
                                 ))
                             }
                         </div>
@@ -54,7 +54,7 @@ Card.propTypes = {
     showPost: PropTypes.func,
     postId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,
     date: PropTypes.string.isRequired,
 };
