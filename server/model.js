@@ -18,7 +18,7 @@ const models = {
         // 内容
         'content': {'type': String},
         'tags': {'type': Array, require: true},
-        'date': {'type': Date, require: true},
+        'date': {'type': String, require: true},
     }
 };
 

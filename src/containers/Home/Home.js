@@ -26,7 +26,6 @@ class Home extends React.PureComponent {
                 'summary': 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
                 'content': 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
                 'tags': ['URI', 'Servlet'],
-                'date': '2018-02-02'
             },
             {
                 postId: '2',
@@ -35,7 +34,6 @@ class Home extends React.PureComponent {
                 summary: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
                 content: 'spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.',
                 tags: ['Java'],
-                date: '2017-12-01'
             },
         ];
         return (
@@ -58,8 +56,12 @@ class Home extends React.PureComponent {
     }
 }
 
+Home.defaultProps = {
+    posts: []
+};
+
 const mapStateToProps = state => {
-    return {posts: state.loadPost};
+    return {posts: state.listPost};
 };
 
 export default withRouter(connect(mapStateToProps, {getPostList})(Home));

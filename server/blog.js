@@ -6,7 +6,6 @@ const model = require('./model');
 const Blog = model.getModel('blog');
 
 Router.get('/list', function (req, res) {
-    console.log("/blog/list");
     Blog.find({}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
@@ -14,7 +13,7 @@ Router.get('/list', function (req, res) {
 
 Router.post('/write', function (req, res) {
     const {avatar, content, summary, title, tags} = req.body;
-    const blogModel = new Blog({avatar, content, summary, title, tags, date: new Date().toDateString()});
+    const blogModel = new Blog({avatar, content, summary, title, tags, date: new Date().toLocaleDateString()});
     blogModel.save(function (err, doc) {
         return res.json({code: 0, data: doc});
     });

@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 
 import './post.scss';
 import {getPost} from "../../reducers/blog.redux";
+import Title from "../../components/Title/Title";
 
 class Post extends React.PureComponent {
 
@@ -15,10 +16,17 @@ class Post extends React.PureComponent {
     }
 
     render () {
-        const {content} = this.props.post;
+        const {title, summary, content, date} = this.props.post;
         return (
             <div className='container'>
-                <ReactMarkdown source={content} />
+                <div className={'blog'}>
+                    <Title title={title}/>
+                    <p className={'blog-date'}>{date}</p>
+                    <ReactMarkdown source={content} />
+                </div>
+                <div className={'right-menu'}>
+
+                </div>
             </div>
         );
     }
