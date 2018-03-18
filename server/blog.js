@@ -12,8 +12,8 @@ Router.get('/list', function (req, res) {
 });
 
 Router.post('/write', function (req, res) {
-    const {avatar, content, summary, title, tags} = req.body;
-    const blogModel = new Blog({avatar, content, summary, title, tags, date: new Date().toLocaleDateString()});
+    const {icon, content, summary, title, tags} = req.body;
+    const blogModel = new Blog({icon, content, summary, title, tags, date: new Date().toLocaleDateString()});
     blogModel.save(function (err, doc) {
         return res.json({code: 0, data: doc});
     });

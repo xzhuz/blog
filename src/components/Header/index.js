@@ -5,8 +5,8 @@ import './header.scss';
 class Header extends React.PureComponent {
 
     render() {
-        const github = require(`../../containers/img/github.svg`);
-        const weibo = require(`../../containers/img/sinaweibo.svg`);
+        const github = require(`../../img/github.svg`);
+        const weibo = require(`../../img/sinaweibo.svg`);
         return (
             <header className={'header'}>
                 <nav className={'header-content'}>

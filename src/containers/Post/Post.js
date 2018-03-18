@@ -16,7 +16,7 @@ class Post extends React.PureComponent {
     }
 
     render () {
-        const {title, summary, content, date} = this.props.post;
+        const {title, content, date} = this.props.post;
         return (
             <div className='container'>
                 <div className={'blog'}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Label from '../../components/Tag/Tag';
+import Label from '../../components/Tag';
 
 import './card.scss';
 
@@ -17,12 +17,14 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {avatar, postId, title, content, tags, date} = this.props;
-        const cardAvatar = require(`../img/${avatar}.png`);
+        const {icon, postId, title, content, tags, date} = this.props;
+
+        const cardIcon = require(`../../img/${icon}.png`);
         return (
             <div className={'card'} id={postId}>
-                <div className={'card-avatar'}>
-                    <img src={cardAvatar} alt='card-avatar' style={{width: 120}}/>
+                <div className={'card-icon'}>
+                    <div style={{backgroundImage: `url(${cardIcon})`}} />
+                    <img src={cardIcon} alt='card-icon' style={{width: 120}}/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -50,7 +52,7 @@ class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-    avatar: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
     showPost: PropTypes.func,
     postId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
