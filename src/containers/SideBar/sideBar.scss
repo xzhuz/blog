@@ -4,7 +4,6 @@
   display: -moz-flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  min-height: 200px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
   box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
@@ -12,7 +11,7 @@
 
 }
 
-.side-bar .introduction {
+.side-bar .name, .side-bar .sign{
   width: 100%;
   display: flex;
   display: -webkit-flex;
@@ -20,9 +19,21 @@
   justify-content: center;
   align-self: center;
   line-height: 3rem;
+}
 
-  span{
-    font-size: 1.6rem;
-    font-weight: 500;
+.side-bar .name{
+  span {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.side-bar .sign {
+  border-left: 2px solid #b8b8b8;
+  line-height: 1rem;
+  span {
+    padding: 0 .3rem;
+    font-size: .9rem;
+    color: #b8b8b8;
   }
 }

@@ -8,11 +8,11 @@ class SideBar extends React.PureComponent {
         return (
             <div className={'side-bar'}>
                 <Avatar avatar={'avatar'}/>
-                <div className={'introduction'}>
+                <div className={'name'}>
                     <span>Mei Sen</span>
                 </div>
-                <div className={'skill'}>
-
+                <div className={'sign'}>
+                    <span>人生得意需尽欢 莫使金樽空对月</span>
                 </div>
             </div>
         );
