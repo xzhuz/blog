@@ -21,6 +21,10 @@
   width: 20%;
   max-width: 120px;
 
+  img {
+    width: 120px;
+  }
+
   img:hover {
     width: calc(100% - 20px);
     height: auto;

@@ -1,22 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './sideBar.scss';
-import Avatar from "../../components/Avatar";
 
 class SideBar extends React.PureComponent {
     render() {
+        const {barTitle, children} = this.props;
         return (
             <div className={'side-bar'}>
-                <Avatar avatar={'avatar'}/>
-                <div className={'name'}>
-                    <span>Mei Sen</span>
+                <div className={'bar-title'}>
+                    {barTitle}
                 </div>
-                <div className={'sign'}>
-                    <span>人生得意需尽欢 莫使金樽空对月</span>
+                <div className={'bar-child'}>
+                    {children}
                 </div>
             </div>
         );
     }
 }
+
+SideBar.propTypes = {
+    barTitle: PropTypes.string.isRequired,
+};
 
 export default SideBar;

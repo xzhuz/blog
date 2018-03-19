@@ -25,3 +25,59 @@
     display: none;
   }
 }
+
+.right-side-bar{
+  .about-me {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    width: 100%;
+    .avatar {
+      width: 35%;
+    }
+
+
+  }
+}
+
+.right-side-bar .about-me .me {
+  .me-name, .me-major, .me-skill, .me-mail, .me-location {
+    font-size: .8rem;
+    line-height: 1.5rem;
+    width: 100%;
+
+    .tag{
+      padding: 1px 3px;
+      font-size: .3rem;
+      border-radius: 16px;
+      margin-bottom: 2px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    .me-menu {
+      font-size: .6rem;
+      color: #9e9e9e;
+    }
+  }
+}
+
+.right-side-bar .bar-child{
+
+  .card {
+
+    height: auto;
+    padding: 0;
+    .card-title span{
+      font-size: .5rem;
+    }
+    .card-icon {
+      width:70px;
+      max-width: 70px;
+    }
+    img {
+      max-width: 70px
+    }
+  }
+}

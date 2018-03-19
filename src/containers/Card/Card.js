@@ -17,14 +17,14 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {icon, postId, title, content, tags, date} = this.props;
+        const {icon, postId, title, content, tags, date, showCardInfo} = this.props;
 
         const cardIcon = require(`../../img/${icon}.png`);
         return (
             <div className={'card'} id={postId}>
                 <div className={'card-icon'}>
                     <div style={{backgroundImage: `url(${cardIcon})`}} />
-                    <img src={cardIcon} alt='card-icon' style={{width: 120}}/>
+                    <img src={cardIcon} alt='card-icon'/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -33,7 +33,7 @@ class Card extends React.PureComponent {
                     <div className={'card-content'} onClick={this.showPost} >
                         <span>{content}</span>
                     </div>
-                    <div className={'card-info'}>
+                    <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
                         <div className={'card-tags'}>
                             {
                                 tags.map((v, index) => (
@@ -59,6 +59,7 @@ Card.propTypes = {
     content: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,
     date: PropTypes.string.isRequired,
+    showCardInfo: PropTypes.bool.isRequired
 };
 
 export default Card;
