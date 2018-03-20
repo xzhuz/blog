@@ -18,7 +18,6 @@ class Card extends React.PureComponent {
 
     render() {
         const {icon, postId, title, summary, tags, date, showCardInfo} = this.props;
-        console.log(date);
         const cardIcon = require(`../../img/${icon}.png`);
         return (
             <div className={'card'} id={postId}>
