@@ -25,13 +25,6 @@
     width: 120px;
   }
 
-  img:hover {
-    width: calc(100% - 20px);
-    height: auto;
-    -webkit-transition: all .15s ease-out;
-    transition: all .15s ease-out;
-  }
-
   @media only screen and (max-width: 767px) {
     width: 0;
     display: none;

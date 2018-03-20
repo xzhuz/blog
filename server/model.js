@@ -17,6 +17,7 @@ const models = {
         // 内容
         'content': {'type': String},
         'tags': {'type': Array, require: true},
+        'visit': {'type': Number, require: true, default: 0},
         'date': {'type': String, require: true},
     }
 };

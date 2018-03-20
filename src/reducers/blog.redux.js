@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {LOAD_POST, postList, LIST_POST, postLoad} from "../actions";
+import {LOAD_POST, postList, LIST_POST, postLoad, LIST_TAG, postPopular, LOAD_POPULAR} from "../actions";
 
 const initState = [];
 
@@ -9,6 +9,11 @@ export function listPost(state = initState, action) {
 
 export function loadPost(state = initState, action) {
     return LOAD_POST === action.type ? action.payload : state;
+}
+
+export function loadPopular(state = initState, action) {
+    console.log(action.payload);
+    return LOAD_POPULAR === action.type ? action.payload : state;
 }
 
 
@@ -27,6 +32,17 @@ export function getPost(id) {
         axios.get('/blog/post?postId=' + id).then(res => {
             if (res.data.code === 0) {
                 dispatch(postLoad(res.data.data));
+            }
+        });
+    };
+}
+
+export function getPopularPost() {
+    console.log(123);
+    return dispatch => {
+        axios.get('/blog/popular').then(res => {
+            if (res.data.code === 0) {
+                dispatch(postPopular(res.data.data));
             }
         });
     };
