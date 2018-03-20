@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {LOAD_POST, postList, LIST_POST, postLoad} from "../actions";
 
+import {fakePosts} from '../mock/posts';
+
 const initState = [];
 
 export function listPost(state = initState, action) {
@@ -18,6 +20,8 @@ export function getPostList() {
             if (res.data.code === 0) {
                 dispatch(postList(res.data.data));
             }
+        }).catch(res => {
+            dispatch(postList(fakePosts));
         });
     };
 }
@@ -28,6 +32,8 @@ export function getPost(id) {
             if (res.data.code === 0) {
                 dispatch(postLoad(res.data.data));
             }
+        }).catch(res => {
+            dispatch(postLoad(fakePosts));
         });
     };
 }
