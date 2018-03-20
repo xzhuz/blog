@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Home from '../containers/Home';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Post from "../containers/Post/Post";
+import Post from "../containers/Post/index";
 
 class App extends React.PureComponent {
     render() {

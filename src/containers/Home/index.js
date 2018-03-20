@@ -33,7 +33,7 @@ class Home extends React.PureComponent {
                     {
                         posts.map((v, index) => (
                             <Card key={index} postId={v._id} title={v.title} icon={v.icon}
-                                  content={v.content} tags={v.tags} date={v.date}
+                                  summary={v.summary} tags={v.tags} date={v.date}
                                   showPost={(id) => this.showPostContent(id)} showCardInfo={true}/>
                         ))
                     }
@@ -72,7 +72,7 @@ class Home extends React.PureComponent {
                         {
                             popularPosts.map((v, index) => (
                                 <Card key={index} postId={v._id} title={v.title} icon={v.icon}
-                                      content={''} tags={[]} date={''}
+                                      summary={''} tags={v.tags} date={v.date}
                                       showPost={(id) => this.showPostContent(id)} showCardInfo={false} />
                             ))
                         }

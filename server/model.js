@@ -18,7 +18,11 @@ const models = {
         'content': {'type': String},
         'tags': {'type': Array, require: true},
         'visit': {'type': Number, require: true, default: 0},
-        'date': {'type': String, require: true},
+        'date': {'type': Date, require: true, default: new Date()},
+    },
+    user: {
+        'user': {'type': String, require: true},
+        'pwd': {'type': String, require: true}
     }
 };
 

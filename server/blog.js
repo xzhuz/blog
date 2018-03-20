@@ -13,7 +13,7 @@ Router.get('/list', function (req, res) {
 
 Router.post('/write', function (req, res) {
     const {icon, content, summary, title, tags, visit} = req.body;
-    const blogModel = new Blog({icon, content, summary, title, tags, date: new Date().toLocaleDateString(), visit});
+    const blogModel = new Blog({icon, content, summary, title, tags, visit});
     blogModel.save(function (err, doc) {
         return res.json({code: 0, data: doc});
     });

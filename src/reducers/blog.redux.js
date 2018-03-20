@@ -12,7 +12,6 @@ export function loadPost(state = initState, action) {
 }
 
 export function loadPopular(state = initState, action) {
-    console.log(action.payload);
     return LOAD_POPULAR === action.type ? action.payload : state;
 }
 
@@ -38,7 +37,6 @@ export function getPost(id) {
 }
 
 export function getPopularPost() {
-    console.log(123);
     return dispatch => {
         axios.get('/blog/popular').then(res => {
             if (res.data.code === 0) {
