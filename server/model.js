@@ -17,7 +17,12 @@ const models = {
         // 内容
         'content': {'type': String},
         'tags': {'type': Array, require: true},
-        'date': {'type': String, require: true},
+        'visit': {'type': Number, require: true, default: 0},
+        'date': {'type': Date, require: true, default: new Date()},
+    },
+    user: {
+        'user': {'type': String, require: true},
+        'pwd': {'type': String, require: true}
     }
 };
 

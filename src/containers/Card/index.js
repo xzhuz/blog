@@ -17,8 +17,7 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {icon, postId, title, content, tags, date, showCardInfo} = this.props;
-
+        const {icon, postId, title, summary, tags, date, showCardInfo} = this.props;
         const cardIcon = require(`../../img/${icon}.png`);
         return (
             <div className={'card'} id={postId}>
@@ -31,7 +30,7 @@ class Card extends React.PureComponent {
                         <span>{title}</span>
                     </div>
                     <div className={'card-content'} onClick={this.showPost} >
-                        <span>{content}</span>
+                        <span>{summary}</span>
                     </div>
                     <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
                         <div className={'card-tags'}>
@@ -42,7 +41,7 @@ class Card extends React.PureComponent {
                             }
                         </div>
                         <div className={'card-date'}>
-                            {date}
+                            {new Date(date).toDateString()}
                         </div>
                     </div>
                 </div>
@@ -56,7 +55,7 @@ Card.propTypes = {
     showPost: PropTypes.func,
     postId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,
     date: PropTypes.string.isRequired,
     showCardInfo: PropTypes.bool.isRequired

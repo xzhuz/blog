@@ -1,18 +1,20 @@
 import React from 'react';
-import Header from './Header';
-import Home from '../containers/Home/Home';
+import Header from '../components/Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Post from "../containers/Post/Post";
+import Home from './Home';
+import Post from "./Post";
+import Login from './Login';
 
 class App extends React.PureComponent {
     render() {
         return (
             <BrowserRouter>
                 <div>
-                    <Header />
+                    <Header/>
                     <Switch>
-                        <Route path='/post/:postId' component={Post} />
-                        <Route component={Home} />
+                        <Route path='/post/:postId' component={Post}/>
+                        <Route path='/login' component={Login}/>
+                        <Route component={Home}/>
                     </Switch>
                 </div>
             </BrowserRouter>

@@ -21,7 +21,7 @@ class Post extends React.PureComponent {
             <div className='container'>
                 <div className={'blog'}>
                     <Title title={title}/>
-                    <p className={'blog-date'}>{date}</p>
+                    <p className={'blog-date'}>{new Date(date).toDateString()}</p>
                     <ReactMarkdown source={content} />
                 </div>
                 <div className={'right-menu'}>
