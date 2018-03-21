@@ -20,15 +20,16 @@ export function loadPopular(state = initState, action) {
 }
 
 const publishInitState = {
-    msg: ''
+    errorMsg: '',
+    successMsg: ''
 };
 
 export function publishBlogs(state = publishInitState, action) {
     switch (action.type) {
         case PUBLISH_BLOG:
-            return {...state, msg: action.msg};
+            return {...state, successMsg: action.msg};
         case ERROR_MSG:
-            return {...state, msg: action.msg};
+            return {...state, errorMsg: action.msg};
         default:
             return state;
     }

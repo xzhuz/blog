@@ -1,15 +1,16 @@
 .publish {
-  margin: 1rem auto !important;
+  width: 100% !important;
+  padding: 0 5rem 0 5rem !important;
   flex-flow: column;
   justify-content: space-around;
 
-  .input-item{
-    padding: 6px;
+  .input-item {
     background-color: white;
   }
 
   input {
     width: 100%;
+    padding: 0;
     background-color: white;
   }
 }
@@ -22,7 +23,7 @@ textarea{
 
 .publish .publish-content{
   textarea{
-    min-height: 50vh;
+    height: 40vh;
   }
 }
 
@@ -32,8 +33,21 @@ textarea{
   }
 }
 
+.publish-button {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: space-between;
+  align-items: self-start;
+  line-height: 30px;
+}
 .error-msg{
   height: 20px;
   color: red;
+  font-size: .8rem;
+}
+.success-msg{
+  height: 20px;
+  color: green;
   font-size: .8rem;
 }

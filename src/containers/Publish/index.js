@@ -58,7 +58,8 @@ class Publish extends React.PureComponent {
                 </div>
                 <div className={'publish-button'}>
                     <Button describe={'发布博客'} btnClick={this.publish} className={''}/>
-                    <span className={'error-msg'}>{this.props.msg}</span>
+                    <span className={'success-msg'}>{this.props.successMsg}</span>
+                    <span className={'error-msg'}>{this.props.errorMsg}</span>
                 </div>
             </div>
         );
