@@ -1,6 +1,7 @@
 export const LIST_POST = 'LIST_POST';
 export const LOAD_POST = 'LOAD_POST';
 export const LOAD_POPULAR = 'LOAD_POPULAR';
+export const PUBLISH_BLOG = 'PUBLISH_BLOG';
 
 export const postLoad = (post) => {
     return {
@@ -22,3 +23,11 @@ export const postPopular = (post) => {
         payload: post
     };
 };
+
+export const blogPublish = (msg) => {
+    return {
+        type: PUBLISH_BLOG,
+        msg
+    };
+};
+

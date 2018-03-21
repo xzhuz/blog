@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AUTH_SUCCESS, authSuccess, ERROR_MSG, errorMsg} from "../actions/user.index";
+import {AUTH_SUCCESS, authSuccess, ERROR_MSG, errorMsg, LOAD_USER} from "../actions/user.index";
 
 const initState = {
     redirectTo: '',
@@ -12,6 +12,8 @@ export function user(state = initState, action) {
     switch (action.type) {
         case AUTH_SUCCESS:
             return {...state, redirectTo: '/dashboard', msg: '', ...action.payload};
+        case LOAD_USER:
+            return {...state, ...action.payload};
         case ERROR_MSG:
             return {...state, msg: action.msg};
         default:

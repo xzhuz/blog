@@ -15,7 +15,7 @@
   -webkit-box-shadow: 12px 12px 24px 12px rgba(0, 32, 66, 0.05);
   -moz-box-shadow: 12px 12px 24px 12px rgba(0, 32, 66, 0.05);
   box-shadow: 12px 12px 24px 12px rgba(0, 32, 66, 0.05);
-  padding:2rem 8rem 5rem 8rem;
+  padding:2rem 6rem 3rem 6rem;
   border-radius: 6px;
   height: 240px;
 
@@ -31,18 +31,9 @@
 }
 
 .login-panel .login-button  {
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  justify-content: center;
   button {
-    align-items: center;
-    border: none;
-    border-radius: 4px;
-    height: 42px;
+    height: 35px;
     width: 100%;
-    background-color: #0f88eb;
-    color: #ffffff;
     font-size: 1.2rem;
   }
 }

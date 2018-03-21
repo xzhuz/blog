@@ -4,6 +4,7 @@ import {Redirect, withRouter} from 'react-router-dom';
 import {login} from "../../reducers/user.redux";
 import './login.scss';
 import InputItem from "../../components/InputItem";
+import Button from "../../components/Button";
 
 class Login extends React.PureComponent {
 
@@ -32,11 +33,11 @@ class Login extends React.PureComponent {
             <div className={'container login-container'}>
                 {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
                 <div className={'login-panel'}>
-                    <p>Login Board</p>
+                    <p>后台登录</p>
                     <InputItem inputType={'text'} handleChange={(v) => this.handleChange('user', v)} holder={'Username'}/>
                     <InputItem inputType={'password'} handleChange={(v) => this.handleChange('pwd', v)} holder={'Password'}/>
                     <div className={'login-button'}>
-                        <button type={'button'} onClick={this.login} >登录</button>
+                        <Button describe={'登录'} btnClick={this.login}/>
                     </div>
                     <span className={'error-msg'}>{this.props.msg}</span>
                 </div>

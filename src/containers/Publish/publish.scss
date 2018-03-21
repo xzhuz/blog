@@ -1,0 +1,39 @@
+.publish {
+  margin: 1rem auto !important;
+  flex-flow: column;
+  justify-content: space-around;
+
+  .input-item{
+    padding: 6px;
+    background-color: white;
+  }
+
+  input {
+    width: 100%;
+    background-color: white;
+  }
+}
+textarea{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  width: 99%;
+}
+
+.publish .publish-content{
+  textarea{
+    min-height: 50vh;
+  }
+}
+
+.publish .publish-summary{
+  textarea {
+    height: 40px;
+  }
+}
+
+.error-msg{
+  height: 20px;
+  color: red;
+  font-size: .8rem;
+}

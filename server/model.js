@@ -23,6 +23,10 @@ const models = {
     user: {
         'user': {'type': String, require: true},
         'pwd': {'type': String, require: true}
+    },
+    menu: {
+        'path': {'type': String, require: true},
+        'describe': {'type': String, require: true}
     }
 };
 
