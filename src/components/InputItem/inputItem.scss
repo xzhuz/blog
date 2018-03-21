@@ -1,8 +1,22 @@
-input {
-  height: 30px;
-  width: 200px;
+.input-item{
   border: 1px solid #cccccc;
   border-radius: 4px;
-  padding: 3px;
-  font-size: 1.2rem;
+  padding: 2px;
+
+  &:hover{
+    border: 1px solid #bfbfbf;
+  }
+
+  input {
+    height: 30px;
+    width: 200px;
+    padding: 3px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1.2rem;
+  }
 }
+
+

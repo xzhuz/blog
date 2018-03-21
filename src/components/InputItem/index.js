@@ -16,9 +16,12 @@ class InputItem extends React.PureComponent {
     render() {
         const {inputType, holder} = this.props;
         return (
-            <input type={inputType} placeholder={holder}
-                   onChange={(v) => this.handleChange(v)}
-            />
+            <div className={'input-item'}>
+                <input type={inputType} placeholder={holder}
+                       onChange={(v) => this.handleChange(v)}
+                />
+            </div>
+
         );
     }
 }

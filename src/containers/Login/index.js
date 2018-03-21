@@ -29,7 +29,7 @@ class Login extends React.PureComponent {
 
     render() {
         return (
-            <div className={'container'}>
+            <div className={'container login-container'}>
                 {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
                 <div className={'login-panel'}>
                     <p>Login Board</p>
@@ -38,6 +38,7 @@ class Login extends React.PureComponent {
                     <div className={'login-button'}>
                         <button type={'button'} onClick={this.login} >登录</button>
                     </div>
+                    <span className={'error-msg'}>{this.props.msg}</span>
                 </div>
 
             </div>

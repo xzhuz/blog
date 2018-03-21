@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {LOAD_POST, postList, LIST_POST, postLoad, LIST_TAG, postPopular, LOAD_POPULAR} from "../actions/blog.index";
+import {LOAD_POST, postList, LIST_POST, postLoad, postPopular, LOAD_POPULAR} from "../actions/blog.index";
 
 const initState = [];
 

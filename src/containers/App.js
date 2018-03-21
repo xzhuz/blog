@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './Home';
 import Post from "./Post";
 import Login from './Login';
+import Dashboard from './Dashboard';
 
 class App extends React.PureComponent {
     render() {
@@ -14,6 +15,7 @@ class App extends React.PureComponent {
                     <Switch>
                         <Route path='/post/:postId' component={Post}/>
                         <Route path='/login' component={Login}/>
+                        <Route path='/dashboard' component={Dashboard}/>
                         <Route component={Home}/>
                     </Switch>
                 </div>
