@@ -4,25 +4,35 @@ import './inputItem.scss';
 
 class InputItem extends React.PureComponent {
 
+    constructor(props){
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
     handleChange(v) {
-        if (this.props.handleChange) {
-            this.props.handleChange(v);
+        const {handleChange} = this.props;
+        if (handleChange) {
+           handleChange(v);
         }
     }
 
     handleKeyUp(v){
-        if (v.keyCode === 13 && this.props.onEnter){
-            this.props.onEnter(v);
+        const {onEnter} = this.props;
+        if (v.keyCode === 13 && onEnter){
+            onEnter(v);
         }
+    }
+
+    handleClick() {
+        this.textInput.focus();
     }
 
     render() {
         const {inputType, holder} = this.props;
         return (
-            <div className={'input-item'}>
+            <div className={'input-item'} onClick={this.handleClick}>
                 {this.props.children}
-                <input type={inputType} placeholder={holder}
+                <input type={inputType} placeholder={holder} ref={(input) => {this.textInput = input;}}
                        onChange={(v) => this.handleChange(v)}
                        onKeyUp={(v) => this.handleKeyUp(v)}
                 />

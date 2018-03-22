@@ -18,7 +18,7 @@ class TopicTag extends React.PureComponent {
         return (
             <div className={'topic-tag'}>
                 <span className={'topic-tag-name'}>{topicName}</span>
-                <button onClick={() => this.closeTag(id)} className={'topic-button'}>x</button>
+                <button onClick={() => this.closeTag(id)} className={'topic-button'}>X</button>
             </div>
         );
     }

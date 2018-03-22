@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 import {publishBlog} from "../../reducers/blog.redux";
 import TopicTag from "../../components/TopicTag";
 import './publish.scss';
+import Modal from "../../components/Modal";
 
 class Publish extends React.PureComponent {
 
@@ -22,6 +23,7 @@ class Publish extends React.PureComponent {
             content: '',
             title: '',
             summary: '',
+            show: false
         };
     }
 
@@ -41,27 +43,28 @@ class Publish extends React.PureComponent {
     handleEnter(v) {
         const {tags} = this.state;
         const tag = v.target.value.trim();
-
-        this.setState({
-            tags: [...tags, tag]
-        });
-        v.target.value = '';
+        if (tag) {
+            this.setState({
+                tags: [...tags, tag]
+            });
+            v.target.value = '';
+        }
     }
 
     publish() {
         this.props.publishBlog(this.state);
     }
 
-    preview(v) {
-        console.log(v);
+    preview() {
+        this.setState({show: true});
     }
 
     closeTag(id) {
-        const tag= this.state.tags;
+        const {tags} = this.state;
         // 删除制定元素
-        tag.splice(id, 1);
+        tags.splice(id, 1);
         this.setState({
-            tags: tag
+            tags: [...tags]
         });
     }
 
@@ -94,6 +97,7 @@ class Publish extends React.PureComponent {
                     <span className={'success-msg'}>{this.props.successMsg}</span>
                     <span className={'error-msg'}>{this.props.errorMsg}</span>
                 </div>
+                <Modal show={this.state.show} close={() => {this.setState({show: false});}} title={'预览'} contents={this.state.content} />
             </div>
         );
     }
