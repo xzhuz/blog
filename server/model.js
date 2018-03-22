@@ -26,7 +26,8 @@ const models = {
     },
     menu: {
         'path': {'type': String, require: true},
-        'describe': {'type': String, require: true}
+        'describe': {'type': String, require: true},
+        'active': {'type': Boolean, require: true, default: false},
     }
 };
 

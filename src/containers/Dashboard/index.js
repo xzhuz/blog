@@ -10,6 +10,13 @@ import {loadMenuData} from "../../reducers/menu.redux";
 
 class Dashboard extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            dashMenu: []
+        };
+    }
+
     componentDidMount() {
         // 获取用户信息
         axios.get('/user/info').then(res => {
@@ -27,10 +34,13 @@ class Dashboard extends React.PureComponent {
         this.props.loadMenuData();
     }
 
-    handleClick(v){
-        const { location: {pathname} } = this.props;
+    handleClick(v, index) {
+        this.setState(
+            {dashMenu: this.props.menu.map((v, i) => {
+                return {...v, active: i === index};
+            })}
+            );
     }
-
     render() {
         const {menu} = this.props;
         return (
@@ -39,9 +49,11 @@ class Dashboard extends React.PureComponent {
                     <div className={'board-router'}>
                         <ul>
                             {
-                                menu.map((v, index) => (
-                                    <li key={index}>
-                                        <BoardRouter toPath={v.path} describe={v.describe} linkClick={(v) => this.handleClick(v)}/>
+                                menu.map((val, index) => (
+                                    <li key={index} className={`${this.state.dashMenu[index]
+                                        ? (this.state.dashMenu[index].active ? 'active-link': '')
+                                        : (val.path === '/dashboard/publish' ? 'active-link' : '')}`}>
+                                        <BoardRouter toPath={val.path} describe={val.describe} linkClick={v => this.handleClick(v, index)}/>
                                     </li>
                                 ))
                             }

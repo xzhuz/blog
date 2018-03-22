@@ -12,9 +12,15 @@ Router.get('/list', function (req, res) {
 });
 
 Router.post('/add', function (req, res) {
-    const {path, describe} = req.body;
-    const menuModel = new Menu({path, describe});
+    const {path, describe, active} = req.body;
+    const menuModel = new Menu({path, describe, active});
     menuModel.save(function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
+
+Router.get('/delete', function (req, res) {
+    Menu.remove({}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });

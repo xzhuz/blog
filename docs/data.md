@@ -35,10 +35,12 @@
 menu: [
     {
     	"path": "/dashboard/update",
-    	"describe": "博客更新"
+    	"describe": "博客更新",
+    	"active": false
     },
     {
         "path": "/dashboard/publish",
-        "describe": "博客发布"
+        "describe": "博客发布",
+        "active": false
     }
 ]

@@ -5,11 +5,6 @@ import './boardRouter.scss';
 
 class BoardRouter extends React.PureComponent {
 
-    constructor(props){
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
     handleClick(v){
         this.props.linkClick(v);
     }

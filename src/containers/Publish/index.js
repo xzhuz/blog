@@ -61,7 +61,7 @@ class Publish extends React.PureComponent {
 
     closeTag(id) {
         const {tags} = this.state;
-        // 删除制定元素
+        // 删除指定元素
         tags.splice(id, 1);
         this.setState({
             tags: [...tags]
