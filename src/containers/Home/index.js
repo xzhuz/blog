@@ -7,8 +7,17 @@ import SideBar from "../SideBar";
 import {getPopularPost, getPostList} from "../../reducers/blog.redux";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
+import Pagination from "../../components/Pagination";
 
 class Home extends React.PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.goPage = this.goPage.bind(this);
+        this.state = {
+            current: 1
+        };
+    }
 
     showPostContent(postId) {
         this.props.history.push(`/post/${postId}`);
@@ -19,6 +28,20 @@ class Home extends React.PureComponent {
         this.props.getPopularPost();
     }
 
+    renderCards(v, index) {
+        return <Card key={index} postId={v._id} title={v.title} icon={v.icon}
+                      summary={v.summary} tags={v.tags} date={v.date}
+                      showPost={(id) => this.showPostContent(id)} showCardInfo={true}/>;
+    }
+
+    renderPagination(size) {
+        return <Pagination initPage={1} pageSize={size} goPage={this.goPage} />;
+    }
+
+    goPage(page){
+        this.setState({current: page});
+    }
+
     render() {
         const {posts, popularPosts} = this.props;
         let tag = [];
@@ -27,15 +50,25 @@ class Home extends React.PureComponent {
         });
         tag = Array.from(new Set(tag));
         const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
+        const pageSize = Math.ceil(posts.length / 6 );
+        const {current} = this.state;
+        const begin = 6 * (current - 1);
+        const end = (begin + 6) > pageSize ? pageSize : begin + 6;
+        const postsData = [];
+        for(let i = begin; i < end; i++){
+            console.log(posts);
+            postsData.push(posts[i]);
+        }
         return (
             <div className='container'>
                 <div className={'posts'}>
                     {
-                        posts.map((v, index) => (
-                            <Card key={index} postId={v._id} title={v.title} icon={v.icon}
-                                  summary={v.summary} tags={v.tags} date={v.date}
-                                  showPost={(id) => this.showPostContent(id)} showCardInfo={true}/>
+                        postsData.map((v, index) => (
+                            this.renderCards(v, index)
                         ))
+                    }
+                    {
+                        this.renderPagination(pageSize)
                     }
                 </div>
                 <div className={'right-side-bar'}>
