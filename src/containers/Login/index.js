@@ -34,8 +34,8 @@ class Login extends React.PureComponent {
                 {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
                 <div className={'login-panel'}>
                     <p>后台登录</p>
-                    <InputItem inputType={'text'} handleChange={(v) => this.handleChange('user', v)} holder={'Username'}/>
-                    <InputItem inputType={'password'} handleChange={(v) => this.handleChange('pwd', v)} holder={'Password'}/>
+                    <InputItem inputType={'text'} handleChange={(v) => this.handleChange('user', v)} holder={'Username'} onEnter={this.login}/>
+                    <InputItem inputType={'password'} handleChange={(v) => this.handleChange('pwd', v)} holder={'Password'} onEnter={this.login}/>
                     <div className={'login-button'}>
                         <Button describe={'登录'} btnClick={this.login}/>
                     </div>

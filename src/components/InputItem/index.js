@@ -4,21 +4,27 @@ import './inputItem.scss';
 
 class InputItem extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
 
     handleChange(v) {
-        this.props.handleChange(v);
+        if (this.props.handleChange) {
+            this.props.handleChange(v);
+        }
+    }
+
+    handleKeyUp(v){
+        if (v.keyCode === 13 && this.props.onEnter){
+            this.props.onEnter(v);
+        }
     }
 
     render() {
         const {inputType, holder} = this.props;
         return (
             <div className={'input-item'}>
+                {this.props.children}
                 <input type={inputType} placeholder={holder}
                        onChange={(v) => this.handleChange(v)}
+                       onKeyUp={(v) => this.handleKeyUp(v)}
                 />
             </div>
 
@@ -29,7 +35,8 @@ class InputItem extends React.PureComponent {
 InputItem.propTypes = {
     inputType: PropTypes.string.isRequired,
     holder: PropTypes.string,
-    handleChange: PropTypes.func
+    handleChange: PropTypes.func,
+    onEnter: PropTypes.func
 };
 
 export default InputItem;

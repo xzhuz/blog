@@ -30,3 +30,15 @@
 "summary": "日常使用Git的一些总结",
 "title": "Git学习"
 }
+
+
+menu: [
+    {
+    	"path": "/dashboard/update",
+    	"describe": "博客更新"
+    },
+    {
+        "path": "/dashboard/publish",
+        "describe": "博客发布"
+    }
+]

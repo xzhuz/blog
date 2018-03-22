@@ -1,0 +1,26 @@
+.topic-tag {
+  display: inline-flex;
+  display: -webkit-inline-flex;
+  display: -moz-flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  margin-left: .2rem;
+  background-color: #f1f8ff;
+  border-radius: 3px;
+  height: 30px;
+}
+
+.topic-button {
+  display: inline-block;
+  width: 26px;
+  color: #6a737d;
+  background-color: #f1f8ff;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid #b4d9ff;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-left: .2rem;
+  height: 30px;
+}

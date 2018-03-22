@@ -3,7 +3,7 @@ import {
     LOAD_POST, postList, LIST_POST, postLoad, postPopular, LOAD_POPULAR, blogPublish,
     PUBLISH_BLOG
 } from "../actions/blog.index";
-import {ERROR_MSG, errorMsg,} from "../actions/user.index";
+import {CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,} from "../actions/user.index";
 
 const initState = [];
 
@@ -30,6 +30,8 @@ export function publishBlogs(state = publishInitState, action) {
             return {...state, successMsg: action.msg};
         case ERROR_MSG:
             return {...state, errorMsg: action.msg};
+        case CLEAR_ERROR_MSG:
+            return {...state, errorMsg: ''};
         default:
             return state;
     }
@@ -71,6 +73,7 @@ export function publishBlog({icon, content, summary, title, tags, visit}) {
         axios.post('/blog/publish', {icon, content, summary, title, tags, visit}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(blogPublish('发布成功!'));
+                dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
             }

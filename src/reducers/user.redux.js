@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {AUTH_SUCCESS, authSuccess, ERROR_MSG, errorMsg, LOAD_USER} from "../actions/user.index";
+import {
+    AUTH_SUCCESS, authSuccess, CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,
+    LOAD_USER
+} from "../actions/user.index";
 
 const initState = {
     redirectTo: '',
@@ -16,6 +19,8 @@ export function user(state = initState, action) {
             return {...state, ...action.payload};
         case ERROR_MSG:
             return {...state, msg: action.msg};
+        case CLEAR_ERROR_MSG:
+            return {...state, msg: ''};
         default:
             return state;
     }
@@ -29,6 +34,8 @@ export function login({user, pwd}) {
         axios.post('/user/login', {user, pwd}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(authSuccess(res.data.data));
+                // 同时，清空错误信息
+                dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
             }

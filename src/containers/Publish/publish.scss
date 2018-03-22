@@ -1,4 +1,5 @@
 .publish {
+  margin: 1rem auto !important;
   width: 100% !important;
   padding: 0 5rem 0 5rem !important;
   flex-flow: column;
@@ -6,19 +7,23 @@
 
   .input-item {
     background-color: white;
+    width: 100%;
   }
 
   input {
-    width: 100%;
-    padding: 0;
-    background-color: white;
+    width: 98%;
+  }
+
+  .publish-tags {
+    display: inline-flex;
+    flex-flow: column;
   }
 }
 textarea{
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
-  width: 99%;
+  width: 100%;
 }
 
 .publish .publish-content{
@@ -30,6 +35,10 @@ textarea{
 .publish .publish-summary{
   textarea {
     height: 40px;
+  }
+
+  .summary-text  {
+    font-size: 1.2rem;
   }
 }
 
