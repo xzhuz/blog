@@ -37,6 +37,16 @@ class Dashboard extends React.PureComponent {
             <div className={'dashboard-container'}>
                 <div className={'dashboard-side-bar'}>
                     <div className={'board-router'}>
+                        <ul>
+                            {
+                                menu.map((v, index) => (
+                                    <li key={index}>
+                                        <BoardRouter toPath={v.path} describe={v.describe} linkClick={(v) => this.handleClick(v)}/>
+                                    </li>
+                                ))
+                            }
+
+                        </ul>
                     </div>
                 </div>
                 <div className={'dashboard-board'}>
