@@ -35,7 +35,7 @@ class Card extends React.PureComponent {
                     <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
                         <div className={'card-tags'}>
                             {
-                                tags.map((v, index) => (
+                                tags.sort().map((v, index) => (
                                     <Label label={v} key={index} />
                                 ))
                             }

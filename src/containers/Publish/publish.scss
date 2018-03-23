@@ -19,6 +19,13 @@
     flex-flow: column;
   }
 }
+
+.publish .publish-title {
+  input{
+    width: 98%;
+  }
+}
+
 textarea{
   display: flex;
   display: -webkit-flex;

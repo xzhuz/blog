@@ -40,6 +40,7 @@ class Home extends React.PureComponent {
 
     goPage(page){
         this.setState({current: page});
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -50,15 +51,14 @@ class Home extends React.PureComponent {
         });
         tag = Array.from(new Set(tag));
         const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
+        // 实现分页逻辑
         const pageSize = Math.ceil(posts.length / 6 );
         const {current} = this.state;
         const begin = 6 * (current - 1);
-        const end = (begin + 6) > pageSize ? pageSize : begin + 6;
-        const postsData = [];
-        for(let i = begin; i < end; i++){
-            console.log(posts);
-            postsData.push(posts[i]);
-        }
+        const end = (begin + 6) > posts.length ? posts.length : begin + 6;
+        const postsData = posts.filter((v, index) => {
+            return index >= begin && index < end;
+        });
         return (
             <div className='container'>
                 <div className={'posts'}>

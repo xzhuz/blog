@@ -2,7 +2,7 @@
   display: flex;
   display: -webkit-flex;
   justify-content: flex-start;
-  height: 120px;
+  min-height: 120px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
@@ -67,12 +67,12 @@
 .card .card-info {
   display: flex;
   justify-content: space-between;
-  height: 1.6rem;
 
   .card-date {
     line-height: 1.8rem;
     font-size: 14px;
     color: #cccccc;
+    width: 7.5rem;
   }
 
 }
