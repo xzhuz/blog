@@ -97,7 +97,7 @@ class Publish extends React.PureComponent {
                     <span className={'success-msg'}>{this.props.successMsg}</span>
                     <span className={'error-msg'}>{this.props.errorMsg}</span>
                 </div>
-                <Modal show={this.state.show} close={() => {this.setState({show: false});}} title={'预览'} contents={this.state.content} />
+                <Modal show={this.state.show} close={() => {this.setState({show: false});}} title={'预览'} content={this.state.content} />
             </div>
         );
     }

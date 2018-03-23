@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import ReactMarkdown from 'react-markdown';
-
 import './post.scss';
 import {getPost} from "../../reducers/blog.redux";
 import Title from "../../components/Title/Title";
+import reactRenderer from "remark-react";
+import remark from "remark";
 
 class Post extends React.PureComponent {
 
@@ -22,7 +22,7 @@ class Post extends React.PureComponent {
                 <div className={'blog'}>
                     <Title title={title}/>
                     <p className={'blog-date'}>{new Date(date).toDateString()}</p>
-                    <ReactMarkdown source={content} />
+                    {remark().use(reactRenderer).processSync(content).contents}
                 </div>
                 <div className={'right-menu'}>
 

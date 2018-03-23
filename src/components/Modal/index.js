@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import './modal.scss';
 import Button from "../Button";
-import ReactMarkdown from 'react-markdown';
+import remark from 'remark';
+import reactRenderer from 'remark-react';
 
 class Modal extends React.PureComponent {
 
@@ -12,12 +13,12 @@ class Modal extends React.PureComponent {
         this.close = this.close.bind(this);
     }
 
-    close(){
+    close() {
         this.props.close();
     }
 
     render() {
-        const {show, title, contents} = this.props;
+        const {show, title, content} = this.props;
         return (
             <div style={{display: show ? 'block' : 'none'}}>
                 <div className={'modal-mask'}/>
@@ -32,7 +33,7 @@ class Modal extends React.PureComponent {
                                 <div className={'modal-title'}>{title}</div>
                             </div>
                             <div className={'modal-body'}>
-                                <ReactMarkdown source={contents} />
+                                {remark().use(reactRenderer).processSync(content).contents}
                             </div>
                             <div className={'modal-footer'}>
                                 <Button describe={'关闭'} btnClick={this.close}/>
@@ -49,7 +50,7 @@ Modal.propTypes = {
     show: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    contents: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired
 };
 
 export default Modal;
