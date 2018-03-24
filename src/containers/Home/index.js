@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import Card from '../Card';
 import './home.scss';
 import SideBar from "../SideBar";
-import {getPopularPost, getPostList} from "../../reducers/blog.redux";
+import {getPopularPost, getPostList, reduceVisit} from "../../reducers/blog.redux";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
 import Pagination from "../../components/Pagination";
@@ -19,8 +19,9 @@ class Home extends React.PureComponent {
         };
     }
 
-    showPostContent(postId) {
+    showPostContent(postId, visit) {
         this.props.history.push(`/post/${postId}`);
+        this.props.reduceVisit({id: postId, visit: visit + 1});
     }
 
     componentDidMount() {
@@ -31,7 +32,7 @@ class Home extends React.PureComponent {
     renderCards(v, index) {
         return <Card key={index} postId={v._id} title={v.title} icon={v.icon}
                       summary={v.summary} tags={v.tags} date={v.date}
-                      showPost={(id) => this.showPostContent(id)} showCardInfo={true}/>;
+                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
 
     renderPagination(size) {
@@ -131,4 +132,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getPostList, getPopularPost})(Home));
+export default withRouter(connect(mapStateToProps, {getPostList, getPopularPost, reduceVisit})(Home));

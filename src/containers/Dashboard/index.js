@@ -6,7 +6,9 @@ import {loadUser} from "../../actions/user.index";
 import './dashboard.scss';
 import BoardRouter from "../BoardRouter";
 import Publish from "../Publish";
+import BlogList from '../BlogList';
 import {loadMenuData} from "../../reducers/menu.redux";
+import NotFound from "../../components/NotFound";
 
 class Dashboard extends React.PureComponent {
 
@@ -64,6 +66,8 @@ class Dashboard extends React.PureComponent {
                 <div className={'dashboard-board'}>
                     <Switch>
                         <Route path='/dashboard/publish' component={Publish}/>
+                        <Route path='/dashboard/list' component={BlogList}/>
+                        <Route componet={NotFound}/>
                     </Switch>
                 </div>
             </div>

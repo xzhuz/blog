@@ -7,6 +7,7 @@ import {getPost} from "../../reducers/blog.redux";
 import Title from "../../components/Title/Title";
 import reactRenderer from "remark-react";
 import remark from "remark";
+import Menu from "../../components/Menu";
 
 class Post extends React.PureComponent {
 
@@ -17,6 +18,10 @@ class Post extends React.PureComponent {
 
     render () {
         const {title, content, date} = this.props.post;
+        let menu = [];
+        if (content) {
+           menu = content.split('\n').filter(v => { return v.trim().startsWith('#'); });
+        }
         return (
             <div className='container'>
                 <div className={'blog'}>
@@ -25,7 +30,6 @@ class Post extends React.PureComponent {
                     {remark().use(reactRenderer).processSync(content).contents}
                 </div>
                 <div className={'right-menu'}>
-
                 </div>
             </div>
         );

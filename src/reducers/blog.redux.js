@@ -80,3 +80,23 @@ export function publishBlog({icon, content, summary, title, tags, visit}) {
         });
     };
 }
+
+export function reduceVisit({id, visit}) {
+    return () => {
+        axios.post('/blog/visit', {id, visit}).then(res => {
+            if (res.data.code === 0) {
+                getPopularPost();
+            }
+        });
+    };
+}
+
+export function deleteBlog(id) {
+    return dispatch => {
+        axios.get('/blog/delete?id=' + id).then(res => {
+            if (res.data.code !== 0) {
+                dispatch(errorMsg(res.data.msg));
+            }
+        });
+    };
+}

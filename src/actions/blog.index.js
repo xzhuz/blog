@@ -30,4 +30,3 @@ export const blogPublish = (msg) => {
         msg
     };
 };
-
