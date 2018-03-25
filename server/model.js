@@ -28,6 +28,7 @@ const models = {
         'path': {'type': String, require: true},
         'describe': {'type': String, require: true},
         'active': {'type': Boolean, require: true, default: false},
+        'click': {'type': Boolean, require: true, default: true},
     }
 };
 

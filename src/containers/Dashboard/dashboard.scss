@@ -35,11 +35,12 @@
     display: -moz-flex;
     justify-content: center;
     margin: .1rem auto;
-    a{
+    a, span{
       color: white;
       font-size: 1.2rem;
       padding: .5rem 0;
       &:hover {
+        cursor: pointer;
         color: #efefef;
       }
     }

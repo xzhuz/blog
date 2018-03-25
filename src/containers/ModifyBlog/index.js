@@ -1,19 +1,16 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-
-import {blogs, publishBlog} from "../../reducers/blog.redux";
+import {connect} from "react-redux";
+import {updateBlog} from "../../reducers/blog.redux";
+import {withRouter} from "react-router-dom";
 import AddBlog from "../../components/AddBlog";
 
-class Publish extends React.PureComponent {
-
+class ModifyBlog extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.publish = this.publish.bind(this);
         this.preview = this.preview.bind(this);
+        this.modify = this.modify.bind(this);
         this.state = {
-            icon: 'cardicon',
-            visit: 0,
+            id: '',
             tags: [],
             content: '',
             title: '',
@@ -21,17 +18,20 @@ class Publish extends React.PureComponent {
             show: false
         };
     }
+    componentDidMount() {
+        const {id, title, content, summary, tags} = this.props.location.state;
+        this.setState({
+            tags: [...tags],
+            id: id,
+            title: title,
+            content: content,
+            summary: summary
+        });
+    }
 
     handleChange(key, val) {
         this.setState({
             [key]: val.target.value
-        });
-    }
-
-    handleTagChange(v) {
-        const tag = v.target.value;
-        this.setState({
-            tags: tag.split(';')
         });
     }
 
@@ -46,8 +46,8 @@ class Publish extends React.PureComponent {
         }
     }
 
-    publish() {
-        this.props.publishBlog(this.state);
+    modify() {
+        this.props.updateBlog(this.state);
     }
 
     preview() {
@@ -64,26 +64,36 @@ class Publish extends React.PureComponent {
     }
 
     render() {
-        const {tags} = this.state;
+        const {tags, title, content, summary, show} = this.state;
+        const {errorMsg, successMsg} = this.props.msg;
         return (
             <AddBlog tags={tags}
-                     show={this.state.show}
+                     show={show}
                      btnContent={'发布'}
                      modalContent={this.state.content}
                      preview={this.preview}
-                     publish={this.publish}
+                     publish={this.modify}
                      titleChange={(v) => this.handleChange('title', v)}
                      summaryChange={(v) => this.handleChange('summary', v)}
                      contentChange={(v) => this.handleChange('content', v)}
                      tagEnter={(v) => this.handleEnter(v)}
                      closeTag={(v) => this.closeTag(v)}
                      modalClose={() => this.setState({show: false})}
-                     errorMsg={this.props.errorMsg}
-                     successMsg={this.props.successMsg}
+                     errorMsg={errorMsg}
+                     successMsg={successMsg}
+                     defaultTitle={title}
+                     defaultSummary={summary}
+                     defaultContent={content}
             />
 
         );
     }
 }
 
-export default withRouter(connect(state => state.blogs, {publishBlog})(Publish));
+const mapStateToProps = state => {
+    return {
+        msg: state.blogs
+    };
+};
+
+export default withRouter(connect(mapStateToProps, {updateBlog})(ModifyBlog));

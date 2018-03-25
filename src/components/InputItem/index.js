@@ -28,13 +28,14 @@ class InputItem extends React.PureComponent {
     }
 
     render() {
-        const {inputType, holder} = this.props;
+        const {inputType, holder, defaultVal} = this.props;
         return (
             <div className={'input-item'} onClick={this.handleClick}>
                 {this.props.children}
                 <input type={inputType} placeholder={holder} ref={(input) => {this.textInput = input;}}
                        onChange={(v) => this.handleChange(v)}
                        onKeyUp={(v) => this.handleKeyUp(v)}
+                       defaultValue={defaultVal}
                 />
             </div>
 
@@ -46,7 +47,8 @@ InputItem.propTypes = {
     inputType: PropTypes.string.isRequired,
     holder: PropTypes.string,
     handleChange: PropTypes.func,
-    onEnter: PropTypes.func
+    onEnter: PropTypes.func,
+    defaultVal: PropTypes.string
 };
 
 export default InputItem;

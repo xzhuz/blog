@@ -46,11 +46,12 @@ class Modal extends React.PureComponent {
     }
 }
 
+
 Modal.propTypes = {
     show: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string
 };
 
 export default Modal;

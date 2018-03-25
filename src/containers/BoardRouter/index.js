@@ -6,21 +6,36 @@ import './boardRouter.scss';
 class BoardRouter extends React.PureComponent {
 
     handleClick(v){
-        this.props.linkClick(v);
+        if (this.props.linkClick) {
+            this.props.linkClick(v);
+        }
     }
 
-    render() {
-        const {toPath, describe} = this.props;
+    renderBoardRouter({toPath, describe}) {
+        if (toPath) {
+            return (<Link to={toPath} className={'self-router'} onClick={(v) => this.handleClick(v)}>{describe}</Link>);
+        }
         return (
-            <Link to={toPath} className={'self-router'} onClick={(v) => this.handleClick(v)}>{describe}</Link>
+            <span className={'self-router'}>{describe}</span>
+        );
+    }
+
+
+    render() {
+        return (
+            <div>
+                {
+                    this.renderBoardRouter(this.props)
+                }
+            </div>
         );
     }
 }
 
 BoardRouter.propTypes = {
-    toPath: PropTypes.string.isRequired,
+    toPath: PropTypes.string,
     describe: PropTypes.string.isRequired,
-    linkClick: PropTypes.func
+    linkClick: PropTypes.func,
 };
 
 export default BoardRouter;

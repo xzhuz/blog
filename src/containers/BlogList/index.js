@@ -20,8 +20,10 @@ class BlogList extends React.PureComponent {
         this.props.getPostList();
     }
 
-    clickUpdatePost(id) {
-
+    clickUpdatePost({_id, title, content, summary, tags}) {
+        this.props.history.push({
+            pathname: `/dashboard/modify`,
+            state: {id: _id, title: title, content: content, summary: summary, tags: tags}});
     }
 
     render () {

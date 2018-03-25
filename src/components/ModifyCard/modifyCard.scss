@@ -2,8 +2,7 @@
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
   background-color: white;
   margin: .2rem;
   padding: .5rem;
@@ -15,8 +14,14 @@
   display: -moz-flex;
   display: -webkit-flex;
   flex-flow: column;
+  justify-content: space-around;
   span{
     font-size: 1rem;
+  }
+
+  .modify-card-info {
+    font-size: .8rem;
+    color: #cccccc;
   }
 }
 
@@ -26,9 +31,12 @@
   display: -moz-flex;
   display: -webkit-flex;
   justify-content: space-between;
+  align-items: center;
   width: 30%;
+  line-height: 60px;
   button {
     width: 80px;
+    max-height: 40px;
     min-width: 80px;
   }
 }

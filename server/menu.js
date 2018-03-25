@@ -12,29 +12,33 @@ Router.get('/list', function (req, res) {
 });
 
 Router.post('/add', function (req, res) {
-    const {path, describe, active} = req.body;
-    const menuModel = new Menu({path, describe, active});
+    const {path, describe, active, click} = req.body;
+    const menuModel = new Menu({path, describe, active, click});
     menuModel.save(function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });
 
-Router.get('/delete', function (req, res) {
+Router.get('/remove', function (req, res) {
     Menu.remove({}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });
 
+Router.get('/delete', function (req, res) {
+    const {id} = req.query;
+    Menu.remove({_id: id}, function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
 
-// Router.post('/update', function (req, res) {
-//     const {id, path, describe} = req.body;
-//     Menu.findByIdAndUpdate({_id: id}, {path, describe}, function (err, doc) {
-//         const data = Object.assign({}, {
-//             user: doc.user,
-//         }, body);
-//         return res.json({code: 0, data});
-//     });
-// });
+
+Router.post('/update', function (req, res) {
+    const {id, active} = req.body;
+    Menu.findByIdAndUpdate({_id: id}, {active}, function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
 
 module.exports = Router;
 

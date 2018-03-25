@@ -1,4 +1,4 @@
-.publish {
+.add-blog {
   margin: 1rem auto !important;
   width: 100% !important;
   padding: 0 5rem 0 5rem !important;
@@ -14,13 +14,13 @@
     width: auto;
   }
 
-  .publish-tags {
+  .add-blog-tags {
     display: inline-flex;
     flex-flow: column;
   }
 }
 
-.publish .publish-title {
+.add-blog .add-blog-title {
   input{
     width: 98%;
   }
@@ -33,15 +33,15 @@ textarea{
   width: 100%;
 }
 
-.publish .publish-content{
+.add-blog .add-blog-content{
   textarea{
     height: 40vh;
   }
 }
 
-.publish .publish-summary{
+.add-blog .add-blog-summary{
   textarea {
-    height: 40px;
+    min-height: 40px;
   }
 
   .summary-text  {
@@ -49,7 +49,7 @@ textarea{
   }
 }
 
-.publish-button {
+.add-blog-button {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;

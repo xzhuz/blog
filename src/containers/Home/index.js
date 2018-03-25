@@ -47,6 +47,7 @@ class Home extends React.PureComponent {
     render() {
         const {posts, popularPosts} = this.props;
         let tag = [];
+        console.log(posts);
         posts.map(v=> {
            tag = [...tag, ...v.tags];
         });

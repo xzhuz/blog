@@ -9,6 +9,7 @@ import Publish from "../Publish";
 import BlogList from '../BlogList';
 import {loadMenuData} from "../../reducers/menu.redux";
 import NotFound from "../../components/NotFound";
+import ModifyBlog from "../ModifyBlog";
 
 class Dashboard extends React.PureComponent {
 
@@ -43,6 +44,18 @@ class Dashboard extends React.PureComponent {
             })}
             );
     }
+
+    renderBoardRouter({path, describe, click, index}) {
+
+        if (click) {
+            return (<BoardRouter toPath={path} describe={describe}
+                         linkClick={v => this.handleClick(v, index)}
+            />);
+        }
+        return (<BoardRouter toPath={''} describe={describe}
+                             linkClick={v => this.handleClick(v, index)}
+        />);
+    }
     render() {
         const {menu} = this.props;
         return (
@@ -55,7 +68,9 @@ class Dashboard extends React.PureComponent {
                                     <li key={index} className={`${this.state.dashMenu[index]
                                         ? (this.state.dashMenu[index].active ? 'active-link': '')
                                         : (val.path === '/dashboard/publish' ? 'active-link' : '')}`}>
-                                        <BoardRouter toPath={val.path} describe={val.describe} linkClick={v => this.handleClick(v, index)}/>
+                                        {
+                                            this.renderBoardRouter({path: val.path, describe:val.describe, click: val.click, index})
+                                        }
                                     </li>
                                 ))
                             }
@@ -66,6 +81,7 @@ class Dashboard extends React.PureComponent {
                 <div className={'dashboard-board'}>
                     <Switch>
                         <Route path='/dashboard/publish' component={Publish}/>
+                        <Route path='/dashboard/modify' component={ModifyBlog}/>
                         <Route path='/dashboard/list' component={BlogList}/>
                         <Route componet={NotFound}/>
                     </Switch>

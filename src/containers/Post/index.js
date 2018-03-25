@@ -11,7 +11,7 @@ import Menu from "../../components/Menu";
 
 class Post extends React.PureComponent {
 
-    componentDidMount() {
+    componentWillMount() {
         const {postId} = this.props.match.params;
         this.props.getPost(postId);
     }

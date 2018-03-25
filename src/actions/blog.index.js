@@ -2,6 +2,7 @@ export const LIST_POST = 'LIST_POST';
 export const LOAD_POST = 'LOAD_POST';
 export const LOAD_POPULAR = 'LOAD_POPULAR';
 export const PUBLISH_BLOG = 'PUBLISH_BLOG';
+export const BLOG_UPDATED = 'BLOG_UPDATED';
 
 export const postLoad = (post) => {
     return {
@@ -30,3 +31,11 @@ export const blogPublish = (msg) => {
         msg
     };
 };
+
+export const blogUpdated = (msg) => {
+    return {
+        type: BLOG_UPDATED,
+        msg
+    };
+};
+
