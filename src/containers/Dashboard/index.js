@@ -46,15 +46,9 @@ class Dashboard extends React.PureComponent {
     }
 
     renderBoardRouter({path, describe, click, index}) {
-
-        if (click) {
-            return (<BoardRouter toPath={path} describe={describe}
-                         linkClick={v => this.handleClick(v, index)}
-            />);
-        }
-        return (<BoardRouter toPath={''} describe={describe}
-                             linkClick={v => this.handleClick(v, index)}
-        />);
+        return click
+            ? <BoardRouter toPath={path} describe={describe} linkClick={v => this.handleClick(v, index)} />
+            : <span className={'self-router'}>{describe}</span>;
     }
     render() {
         const {menu} = this.props;
@@ -67,7 +61,7 @@ class Dashboard extends React.PureComponent {
                                 menu.map((val, index) => (
                                     <li key={index} className={`${this.state.dashMenu[index]
                                         ? (this.state.dashMenu[index].active ? 'active-link': '')
-                                        : (val.path === '/dashboard/publish' ? 'active-link' : '')}`}>
+                                        : (val.path === '/dashboard/list' ? 'active-link' : '')}`}>
                                         {
                                             this.renderBoardRouter({path: val.path, describe:val.describe, click: val.click, index})
                                         }

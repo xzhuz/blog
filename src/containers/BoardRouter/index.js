@@ -11,29 +11,16 @@ class BoardRouter extends React.PureComponent {
         }
     }
 
-    renderBoardRouter({toPath, describe}) {
-        if (toPath) {
-            return (<Link to={toPath} className={'self-router'} onClick={(v) => this.handleClick(v)}>{describe}</Link>);
-        }
-        return (
-            <span className={'self-router'}>{describe}</span>
-        );
-    }
-
-
     render() {
+        const {toPath, describe} = this.props;
         return (
-            <div>
-                {
-                    this.renderBoardRouter(this.props)
-                }
-            </div>
+            <Link to={toPath} className={'self-router'} onClick={(v) => this.handleClick(v)}>{describe}</Link>
         );
     }
 }
 
 BoardRouter.propTypes = {
-    toPath: PropTypes.string,
+    toPath: PropTypes.string.isRequired,
     describe: PropTypes.string.isRequired,
     linkClick: PropTypes.func,
 };
