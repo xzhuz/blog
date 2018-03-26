@@ -13,15 +13,20 @@ class AddBlog extends React.PureComponent {
         super(props);
         this.publish = this.publish.bind(this);
         this.preview = this.preview.bind(this);
+        this.save = this.save.bind(this);
         this.modalClose = this.modalClose.bind(this);
     }
 
     publish() {
-        this.props.publish();
+        this.props.handlePublish();
     }
 
     preview() {
         this.props.preview();
+    }
+
+    save() {
+        this.props.handleSave();
     }
 
     titleChange(v) {
@@ -66,13 +71,14 @@ class AddBlog extends React.PureComponent {
                     </InputItem>
                 </div>
                 <div className={'add-blog-summary add-blog-item'}>
-                    <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} defaultValue={defaultSummary} className={'summary-text'} />
+                    <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} value={defaultSummary} className={'summary-text'} />
                 </div>
                 <div className={'add-blog-content add-blog-item'}>
-                    <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} defaultValue={defaultContent} />
+                    <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} value={defaultContent} />
                 </div>
                 <div className={'add-blog-button'}>
                     <Button describe={btnContent} btnClick={this.publish} className={''}/>
+                    <Button describe={'保存'} btnClick={this.save} className={''}/>
                     <Button describe={'预览'} btnClick={this.preview} className={''}/>
                     <span className={'success-msg'}>{successMsg}</span>
                     <span className={'error-msg'}>{errorMsg}</span>
@@ -94,7 +100,8 @@ AddBlog.propTypes = {
     btnContent: PropTypes.string.isRequired,
     modalContent: PropTypes.string,
     preview: PropTypes.func.isRequired,
-    publish: PropTypes.func.isRequired,
+    handlePublish: PropTypes.func.isRequired,
+    handleSave: PropTypes.func.isRequired,
     titleChange: PropTypes.func.isRequired,
     summaryChange: PropTypes.func.isRequired,
     contentChange: PropTypes.func.isRequired,

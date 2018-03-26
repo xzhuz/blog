@@ -15,10 +15,22 @@
   display: -webkit-flex;
   flex-flow: column;
   justify-content: space-around;
+  width: 40%;
   span{
     font-size: 1rem;
   }
 
+  .modify-card-info {
+    font-size: .8rem;
+    color: #cccccc;
+  }
+}
+
+.modify-card-status-wrap {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  align-items: center;
   .modify-card-info {
     font-size: .8rem;
     color: #cccccc;

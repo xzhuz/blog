@@ -11,6 +11,7 @@ class Publish extends React.PureComponent {
         super(props);
         this.publish = this.publish.bind(this);
         this.preview = this.preview.bind(this);
+        this.save = this.save.bind(this);
         this.state = {
             icon: 'cardicon',
             visit: 0,
@@ -18,6 +19,7 @@ class Publish extends React.PureComponent {
             content: '',
             title: '',
             summary: '',
+            publish: false,
             show: false
         };
     }
@@ -47,9 +49,16 @@ class Publish extends React.PureComponent {
     }
 
     publish() {
-        this.props.publishBlog(this.state);
+        this.setState({publish: true}, () => {
+            this.props.publishBlog(this.state);
+        });
     }
 
+    save() {
+        this.setState({publish: false}, () => {
+            this.props.publishBlog(this.state);
+        });
+    }
     preview() {
         this.setState({show: true});
     }
@@ -71,7 +80,8 @@ class Publish extends React.PureComponent {
                      btnContent={'发布'}
                      modalContent={this.state.content}
                      preview={this.preview}
-                     publish={this.publish}
+                     handlePublish={this.publish}
+                     handleSave={this.save}
                      titleChange={(v) => this.handleChange('title', v)}
                      summaryChange={(v) => this.handleChange('summary', v)}
                      contentChange={(v) => this.handleChange('content', v)}

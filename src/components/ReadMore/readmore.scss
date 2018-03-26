@@ -1,0 +1,21 @@
+.read-more{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.read-more-text{
+  font-size: 1rem;
+  padding: .5rem;
+  border: 1px solid #0f88eb;
+  border-radius: 4px;
+  width: 106px;
+  color: #0f88eb;
+  &:hover {
+    border: 1px solid #d32f2f;
+    cursor: pointer;
+    color: #d32f2f;
+  }
+}

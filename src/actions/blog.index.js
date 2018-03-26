@@ -1,4 +1,4 @@
-export const LIST_POST = 'LIST_POST';
+export const LIST_ALL_POST = 'LIST_ALL_POST';
 export const LOAD_POST = 'LOAD_POST';
 export const LOAD_POPULAR = 'LOAD_POPULAR';
 export const PUBLISH_BLOG = 'PUBLISH_BLOG';
@@ -13,7 +13,7 @@ export const postLoad = (post) => {
 
 export const postList = (post) => {
     return {
-        type: LIST_POST,
+        type: LIST_ALL_POST,
         payload: post
     };
 };

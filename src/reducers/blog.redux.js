@@ -1,14 +1,14 @@
 import axios from 'axios';
 import {
-    LOAD_POST, postList, LIST_POST, postLoad, postPopular, LOAD_POPULAR, blogPublish,
+    LOAD_POST, postList, LIST_ALL_POST, postLoad, postPopular, LOAD_POPULAR, blogPublish,
     PUBLISH_BLOG, blogUpdated, BLOG_UPDATED
 } from "../actions/blog.index";
 import {CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,} from "../actions/user.index";
 
 const initState = [];
 
-export function listPost(state = initState, action) {
-    return LIST_POST === action.type ? action.payload : state;
+export function listAllPost(state = initState, action) {
+    return LIST_ALL_POST === action.type ? action.payload : state;
 }
 
 export function loadPost(state = initState, action) {
@@ -87,11 +87,12 @@ export function getPopularPost() {
  * @param title
  * @param tags
  * @param visit
+ * @param publish
  * @returns {function(*)}
  */
-export function publishBlog({icon, content, summary, title, tags, visit}) {
+export function publishBlog({icon, content, summary, title, tags, visit, publish}) {
     return dispatch => {
-        axios.post('/blog/publish', {icon, content, summary, title, tags, visit}).then(res => {
+        axios.post('/blog/publish', {icon, content, summary, title, tags, visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(blogPublish('发布成功!'));
                 dispatch(clearErrorMsg());
@@ -141,9 +142,9 @@ export function deleteBlog(id) {
  * @param title
  * @param tags
  */
-export function updateBlog({id, content, summary, title, tags}) {
+export function updateBlog({id, content, summary, title, tags, publish}) {
     return dispatch => {
-        axios.post('/blog/update', {id, content, summary, title, tags}).then(res => {
+        axios.post('/blog/update', {id, content, summary, title, tags, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getPost(id);
                 dispatch(blogUpdated('更新成功'));

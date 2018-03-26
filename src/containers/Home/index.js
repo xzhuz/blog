@@ -4,17 +4,18 @@ import {withRouter} from 'react-router-dom';
 import Card from '../Card';
 import './home.scss';
 import SideBar from "../SideBar";
-import {getPopularPost, getPostList, reduceVisit} from "../../reducers/blog.redux";
+import {getPopularPost, getPostList, listAllPost, reduceVisit} from "../../reducers/blog.redux";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
-import Pagination from "../../components/Pagination";
+import ReadMore from '../../components/ReadMore';
+import BottomOut from "../../components/BottomOut";
 
 class Home extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.goPage = this.goPage.bind(this);
         this.state = {
+            clicked: false,
             current: 1
         };
     }
@@ -35,42 +36,40 @@ class Home extends React.PureComponent {
                       showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
 
-    renderPagination(size) {
-        return <Pagination initPage={1} pageSize={size} goPage={this.goPage} />;
+    readMore(v) {
+        this.setState(state => ({
+            clicked: true,
+            current: state.current + 1
+        }));
     }
 
-    goPage(page){
-        this.setState({current: page});
-        window.scrollTo(0, 0);
+    renderReadMore(filled) {
+        if (filled) {
+            return <BottomOut/>;
+        }
+        return <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
     }
 
     render() {
         const {posts, popularPosts} = this.props;
+        const {current, clicked} = this.state;
         let tag = [];
-        console.log(posts);
         posts.map(v=> {
            tag = [...tag, ...v.tags];
         });
         tag = Array.from(new Set(tag));
         const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
-        // 实现分页逻辑
-        const pageSize = Math.ceil(posts.length / 6 );
-        const {current} = this.state;
-        const begin = 6 * (current - 1);
-        const end = (begin + 6) > posts.length ? posts.length : begin + 6;
-        const postsData = posts.filter((v, index) => {
-            return index >= begin && index < end;
-        });
+        const pageCapacity = clicked ? 3 : 6;
         return (
             <div className='container'>
                 <div className={'posts'}>
                     {
-                        postsData.map((v, index) => (
+                        posts.slice(0, current * pageCapacity).filter(v => v.publish).map((v, index) => (
                             this.renderCards(v, index)
                         ))
                     }
                     {
-                        this.renderPagination(pageSize)
+                        this. renderReadMore(current * pageCapacity >= posts.length)
                     }
                 </div>
                 <div className={'right-side-bar'}>
@@ -128,7 +127,7 @@ class Home extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        posts: state.listPost,
+        posts: state.listAllPost,
         popularPosts: state.loadPopular
     };
 };

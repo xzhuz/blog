@@ -9,6 +9,7 @@ class ModifyBlog extends React.PureComponent {
         super(props);
         this.preview = this.preview.bind(this);
         this.modify = this.modify.bind(this);
+        this.save = this.save.bind(this);
         this.state = {
             id: '',
             tags: [],
@@ -18,6 +19,7 @@ class ModifyBlog extends React.PureComponent {
             show: false
         };
     }
+
     componentDidMount() {
         const {id, title, content, summary, tags} = this.props.location.state;
         this.setState({
@@ -25,7 +27,8 @@ class ModifyBlog extends React.PureComponent {
             id: id,
             title: title,
             content: content,
-            summary: summary
+            summary: summary,
+            publish: false
         });
     }
 
@@ -47,11 +50,20 @@ class ModifyBlog extends React.PureComponent {
     }
 
     modify() {
-        this.props.updateBlog(this.state);
+        this.setState({publish: true}, () => {
+            this.props.updateBlog(this.state);
+        });
     }
 
     preview() {
         this.setState({show: true});
+    }
+
+    save() {
+        this.setState({publish: false}, () => {
+            this.props.updateBlog(this.state);
+        });
+
     }
 
     closeTag(id) {
@@ -72,7 +84,8 @@ class ModifyBlog extends React.PureComponent {
                      btnContent={'发布'}
                      modalContent={this.state.content}
                      preview={this.preview}
-                     publish={this.modify}
+                     handlePublish={this.modify}
+                     handleSave={this.save}
                      titleChange={(v) => this.handleChange('title', v)}
                      summaryChange={(v) => this.handleChange('summary', v)}
                      contentChange={(v) => this.handleChange('content', v)}

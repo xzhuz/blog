@@ -35,7 +35,7 @@ class InputItem extends React.PureComponent {
                 <input type={inputType} placeholder={holder} ref={(input) => {this.textInput = input;}}
                        onChange={(v) => this.handleChange(v)}
                        onKeyUp={(v) => this.handleKeyUp(v)}
-                       defaultValue={defaultVal}
+                       value={defaultVal}
                 />
             </div>
 

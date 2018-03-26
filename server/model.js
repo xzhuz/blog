@@ -18,6 +18,7 @@ const models = {
         'content': {'type': String},
         'tags': {'type': Array, require: true},
         'visit': {'type': Number, require: true, default: 0},
+        'publish': {'type': Boolean, require: true, default: false},
         'date': {'type': Date, require: true, default: new Date()},
     },
     user: {
@@ -25,6 +26,7 @@ const models = {
         'pwd': {'type': String, require: true}
     },
     menu: {
+        'index': {'type': Number, require: true},
         'path': {'type': String, require: true},
         'describe': {'type': String, require: true},
         'active': {'type': Boolean, require: true, default: false},

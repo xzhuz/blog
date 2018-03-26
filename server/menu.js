@@ -6,14 +6,14 @@ const model = require('./model');
 const Menu = model.getModel('menu');
 
 Router.get('/list', function (req, res) {
-    Menu.find({}, function (err, doc) {
+    Menu.find({}, {}, {sort: {"index": 1}}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });
 
 Router.post('/add', function (req, res) {
-    const {path, describe, active, click} = req.body;
-    const menuModel = new Menu({path, describe, active, click});
+    const {index, path, describe, active, click} = req.body;
+    const menuModel = new Menu({index, path, describe, active, click});
     menuModel.save(function (err, doc) {
         return res.json({code: 0, data: doc});
     });
