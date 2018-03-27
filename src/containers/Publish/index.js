@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {blogs, publishBlog} from "../../reducers/blog.redux";
 import AddBlog from "../../components/AddBlog";
+import {uploadImg} from "../../reducers/file.redux";
 
 class Publish extends React.PureComponent {
 
@@ -72,6 +73,12 @@ class Publish extends React.PureComponent {
         });
     }
 
+    uploadImg(file) {
+        const formData = new FormData();
+        formData.append('file',file, file.name);
+        this.props.uploadImg(formData);
+    }
+
     render() {
         const {tags} = this.state;
         return (
@@ -90,10 +97,11 @@ class Publish extends React.PureComponent {
                      modalClose={() => this.setState({show: false})}
                      errorMsg={this.props.errorMsg}
                      successMsg={this.props.successMsg}
+                     upload={(v) => this.uploadImg(v)}
             />
 
         );
     }
 }
 
-export default withRouter(connect(state => state.blogs, {publishBlog})(Publish));
+export default withRouter(connect(state => state.blogs, {publishBlog, uploadImg})(Publish));

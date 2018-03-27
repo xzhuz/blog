@@ -15,6 +15,7 @@ class AddBlog extends React.PureComponent {
         this.preview = this.preview.bind(this);
         this.save = this.save.bind(this);
         this.modalClose = this.modalClose.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
     }
 
     publish() {
@@ -53,6 +54,13 @@ class AddBlog extends React.PureComponent {
         this.props.modalClose();
     }
 
+    handleUpload() {
+        const file = this.fileInput.files[0];
+        if (file) {
+            this.props.upload(file);
+        }
+    }
+
     render() {
         const {tags, errorMsg, successMsg, show, modalContent, btnContent, defaultSummary, defaultContent, defaultTitle} = this.props;
         return (
@@ -76,6 +84,11 @@ class AddBlog extends React.PureComponent {
                 <div className={'add-blog-content add-blog-item'}>
                     <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} value={defaultContent} />
                 </div>
+                <div>
+                    <input type='file' name='file' ref={(input)=>{this.fileInput = input;}}/>
+                    <input type='button' value={'上传图片'} onClick={this.handleUpload} />
+                </div>
+
                 <div className={'add-blog-button'}>
                     <Button describe={btnContent} btnClick={this.publish} className={''}/>
                     <Button describe={'保存'} btnClick={this.save} className={''}/>
@@ -100,6 +113,7 @@ AddBlog.propTypes = {
     btnContent: PropTypes.string.isRequired,
     modalContent: PropTypes.string,
     preview: PropTypes.func.isRequired,
+    upload: PropTypes.func.isRequired,
     handlePublish: PropTypes.func.isRequired,
     handleSave: PropTypes.func.isRequired,
     titleChange: PropTypes.func.isRequired,
