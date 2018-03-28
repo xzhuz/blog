@@ -34,7 +34,8 @@ const upload = multer({
 }).single('file');
 
 Router.post('/upload', upload, function(req, res) {
-    const filePath = 'http://localhost:9093/file/load/' + req.file.filename;
+    const {host} = req.headers;
+    const filePath = 'http://' + host + '/file/load/' + req.file.filename;
     const doc = {filename: req.file.filename, filePath: filePath};
     // 文件路径
     return res.json({code:0, data: doc});

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import './modal.scss';
 import Button from "../Button";
-import remark from 'remark';
-import reactRenderer from 'remark-react';
-
+import ReactMarkDown from 'react-markdown';
 class Modal extends React.PureComponent {
 
     constructor(props) {
@@ -33,7 +31,7 @@ class Modal extends React.PureComponent {
                                 <div className={'modal-title'}>{title}</div>
                             </div>
                             <div className={'modal-body'}>
-                                {remark().use(reactRenderer).processSync(content).contents}
+                                <ReactMarkDown source={content} escapeHtml={false}/>
                             </div>
                             <div className={'modal-footer'}>
                                 <Button describe={'关闭'} btnClick={this.close}/>

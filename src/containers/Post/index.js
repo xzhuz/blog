@@ -5,9 +5,7 @@ import {withRouter} from 'react-router-dom';
 import './post.scss';
 import {getPost} from "../../reducers/blog.redux";
 import Title from "../../components/Title/Title";
-import reactRenderer from "remark-react";
-import remark from "remark";
-import Menu from "../../components/Menu";
+import ReactMarkDown from 'react-markdown';
 
 class Post extends React.PureComponent {
 
@@ -18,16 +16,12 @@ class Post extends React.PureComponent {
 
     render () {
         const {title, content, date} = this.props.post;
-        let menu = [];
-        if (content) {
-           menu = content.split('\n').filter(v => { return v.trim().startsWith('#'); });
-        }
         return (
             <div className='container'>
                 <div className={'blog'}>
                     <Title title={title}/>
                     <p className={'blog-date'}>{new Date(date).toDateString()}</p>
-                    {remark().use(reactRenderer).processSync(content).contents}
+                    <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
                 <div className={'right-menu'}>
                 </div>
