@@ -2,9 +2,9 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {blogs, publishBlog} from "../../reducers/blog.redux";
+import {publishBlog} from "../../reducers/blog.redux";
 import AddBlog from "../../components/AddBlog";
-import {uploadImg} from "../../reducers/file.redux";
+import {uploadCoverImg, uploadImg} from "../../reducers/file.redux";
 
 class Publish extends React.PureComponent {
 
@@ -14,7 +14,7 @@ class Publish extends React.PureComponent {
         this.preview = this.preview.bind(this);
         this.save = this.save.bind(this);
         this.state = {
-            icon: 'cardicon',
+            coverImg: '',
             visit: 0,
             tags: [],
             content: '',
@@ -22,7 +22,7 @@ class Publish extends React.PureComponent {
             summary: '',
             publish: false,
             show: false,
-            path: ''
+            clickUpload: false,
         };
     }
 
@@ -51,13 +51,15 @@ class Publish extends React.PureComponent {
     }
 
     publish() {
-        this.setState({publish: true}, () => {
+        const {filePath} = this.props.coverFile;
+        this.setState({publish: true, coverImg: filePath}, () => {
             this.props.publishBlog(this.state);
         });
     }
 
     save() {
-        this.setState({publish: false}, () => {
+        const {filePath} = this.props.coverFile;
+        this.setState({publish: false, coverImg: filePath}, () => {
             this.props.publishBlog(this.state);
         });
     }
@@ -80,9 +82,18 @@ class Publish extends React.PureComponent {
         this.props.uploadImg(formData);
     }
 
+    uploadCoverImg(file) {
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        this.props.uploadCoverImg(formData);
+        this.setState({clickUpload: true});
+    }
+
     render() {
-        const {tags, path} = this.state;
-        const serverUri = 'http://localhost:9093/file/load/';
+        const {tags} = this.state;
+        const {filePath} = this.props.file;
+        const coverImg = (this.state.clickUpload && this.props.coverFile.filePath) ? this.props.coverFile.filePath : '';
+        const {errorMsg, successMsg} = this.props.msg;
         return (
             <AddBlog tags={tags}
                      show={this.state.show}
@@ -97,17 +108,23 @@ class Publish extends React.PureComponent {
                      tagEnter={(v) => this.handleEnter(v)}
                      closeTag={(v) => this.closeTag(v)}
                      modalClose={() => this.setState({show: false})}
-                     errorMsg={this.props.errorMsg}
-                     successMsg={this.props.successMsg}
+                     errorMsg={errorMsg}
+                     successMsg={successMsg}
                      upload={(v) => this.uploadImg(v)}
-                     filePath={serverUri + path}
+                     filePath={filePath}
+                     changeCoverImg={(v) => this.uploadCoverImg( v)}
+                     defaultCoverImg={coverImg}
             />
 
         );
     }
 }
 const mapStateToProps = state => {
-    return {post: state.loadPost};
+    return {
+        msg: state.blogs,
+        file: state.imgFile,
+        coverFile: state.coverImgFile
+    };
 };
 
-export default withRouter(connect(state => state.blogs, {publishBlog, uploadImg})(Publish));
+export default withRouter(connect(mapStateToProps, {publishBlog, uploadImg, uploadCoverImg})(Publish));

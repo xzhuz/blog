@@ -21,8 +21,43 @@
 }
 
 .add-blog .add-blog-title {
-  input{
-    width: 98%;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: space-around;
+  span{
+    width: 50px;
+  }
+
+  .input-item{
+    height: 37%;
+    width: 90%;
+  }
+
+  .add-blog-cover-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .blog-cover-img, .cover-img-change, .blog-title{
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: space-around;
+  }
+
+  .blog-title{
+    width: 60%;
+    justify-content: flex-start;
+  }
+
+  .blog-cover-img {
+    width: 40%;
+  }
+  .blog-cover-img .cover-img-change{
+    flex-flow: column;
+    justify-content: space-around;
+    width: 40%;
   }
 }
 
@@ -48,6 +83,18 @@ textarea{
   .summary-text  {
     font-size: .9rem;
   }
+}
+.blog-img-file{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: space-between;
+}
+
+.blog-file-path{
+  font-size: .8rem;
+  color: red;
+  width: 50%;
 }
 
 .add-blog-button {

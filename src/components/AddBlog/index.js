@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './addBlog.scss';
 import InputItem from "../InputItem";
 import Button from "../Button";
 import TopicTag from "../TopicTag";
 import Modal from "../Modal";
+import './addBlog.scss';
 
 class AddBlog extends React.PureComponent {
 
@@ -16,6 +16,7 @@ class AddBlog extends React.PureComponent {
         this.save = this.save.bind(this);
         this.modalClose = this.modalClose.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
+        this.coverImgChange = this.coverImgChange.bind(this);
     }
 
     publish() {
@@ -61,12 +62,30 @@ class AddBlog extends React.PureComponent {
         }
     }
 
+    coverImgChange() {
+        const file = this.coverInput.files[0];
+        if (file) {
+            this.props.changeCoverImg(file);
+        }
+    }
+
     render() {
-        const {tags, errorMsg, successMsg, show, modalContent, btnContent, defaultSummary, defaultContent, defaultTitle, filePath} = this.props;
+        const {tags, errorMsg, successMsg, show, modalContent, btnContent,
+            defaultSummary, defaultContent, defaultTitle, filePath, defaultCoverImg} = this.props;
         return (
             <div className={'container add-blog'}>
-                <div className={'add-blog-title add-blog-item'}>
-                    <div>标题</div> <InputItem inputType={'text'} handleChange={(v) => this.titleChange(v)} defaultVal={defaultTitle}/>
+                <div className={'add-blog-title'}>
+                    <div className={'blog-title'}>
+                        <span>标题</span> <InputItem inputType={'text'} handleChange={(v) => this.titleChange(v)} defaultVal={defaultTitle}/>
+                    </div>
+                    <div className={'blog-cover-img'}>
+                        <span>卡片图像</span>
+                        <img src={defaultCoverImg} className={'add-blog-cover-img'} />
+                        <div className={'cover-img-change'}>
+                            <input type='file' name='file' ref={(input)=>{this.coverInput = input;}}/>
+                            <input type='button' value={'上传图像'} onClick={this.coverImgChange} />
+                        </div>
+                    </div>
                 </div>
                 <div className={'add-blog-tags add-blog-item'}>
                     <span>标签</span>
@@ -84,10 +103,10 @@ class AddBlog extends React.PureComponent {
                 <div className={'add-blog-content add-blog-item'}>
                     <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} value={defaultContent} />
                 </div>
-                <div>
+                <div className={'blog-img-file'}>
                     <input type='file' name='file' ref={(input)=>{this.fileInput = input;}}/>
                     <input type='button' value={'上传图片'} onClick={this.handleUpload} />
-                    <span>{filePath}</span>
+                    <span className={'blog-file-path'}>{filePath}</span>
                 </div>
 
                 <div className={'add-blog-button'}>
@@ -110,6 +129,7 @@ AddBlog.propTypes = {
     defaultTitle: PropTypes.string,
     defaultSummary: PropTypes.string,
     defaultContent: PropTypes.string,
+    defaultCoverImg: PropTypes.string,
     show: PropTypes.bool.isRequired,
     btnContent: PropTypes.string.isRequired,
     modalContent: PropTypes.string,
@@ -119,6 +139,7 @@ AddBlog.propTypes = {
     handlePublish: PropTypes.func.isRequired,
     handleSave: PropTypes.func.isRequired,
     titleChange: PropTypes.func.isRequired,
+    changeCoverImg: PropTypes.func.isRequired,
     summaryChange: PropTypes.func.isRequired,
     contentChange: PropTypes.func.isRequired,
     tagEnter: PropTypes.func.isRequired,

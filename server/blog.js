@@ -12,8 +12,8 @@ Router.get('/list', function (req, res) {
 });
 
 Router.post('/publish', function (req, res) {
-    const {icon, content, summary, title, tags, visit, publish} = req.body;
-    const blogModel = new Blog({icon, content, summary, title, tags, visit, publish});
+    const {coverImg, content, summary, title, tags, visit, publish} = req.body;
+    const blogModel = new Blog({coverImg, content, summary, title, tags, visit, publish});
     blogModel.save(function (err, doc) {
         if (err) {
             return res.json({code: 1, msg: '发布失败!' + err});
@@ -36,11 +36,11 @@ Router.get('/post', function (req, res) {
     });
 });
 
-// Router.get('/clear', function (req, res) {
-//     Blog.remove({}, function (err, doc) {
-//         return res.json({code: 0, data: doc});
-//     });
-// });
+Router.get('/clear', function (req, res) {
+    Blog.remove({}, function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
 
 Router.get('/delete', function (req, res) {
     const {id} = req.query;
@@ -51,8 +51,9 @@ Router.get('/delete', function (req, res) {
 
 // 更新
 Router.post('/update', function (req, res) {
-    const {id, content, summary, title, tags, publish} = req.body;
-    Blog.findByIdAndUpdate({_id: id}, {content, summary, title, tags, publish}, function (err, doc) {
+    const {id, coverImg, content, summary, title, tags, publish} = req.body;
+    console.log(coverImg);
+    Blog.findByIdAndUpdate({_id: id}, {coverImg, content, summary, title, tags, publish}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });

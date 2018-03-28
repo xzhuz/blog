@@ -17,13 +17,11 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {icon, postId, title, summary, tags, date, showCardInfo} = this.props;
-        const cardIcon = require(`../../img/${icon}.png`);
+        const {coverImg, postId, title, summary, tags, date, showCardInfo} = this.props;
         return (
             <div className={'card'} id={postId}>
-                <div className={'card-icon'}>
-                    <div style={{backgroundImage: `url(${cardIcon})`}} />
-                    <img src={cardIcon} alt='card-icon'/>
+                <div className={'card-coverImg'}>
+                    <img src={coverImg} alt='card-coverImg'/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -51,7 +49,7 @@ class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-    icon: PropTypes.string.isRequired,
+    coverImg: PropTypes.string.isRequired,
     showPost: PropTypes.func,
     postId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

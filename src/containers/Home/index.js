@@ -31,7 +31,7 @@ class Home extends React.PureComponent {
     }
 
     renderCards(v, index) {
-        return <Card key={index} postId={v._id} title={v.title} icon={v.icon}
+        return <Card key={index} postId={v._id} title={v.title} coverImg={v.coverImg}
                       summary={v.summary} tags={v.tags} date={v.date}
                       showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
@@ -105,7 +105,7 @@ class Home extends React.PureComponent {
                     <SideBar barTitle={'热门博客'}>
                         {
                             popularPosts.map((v, index) => (
-                                <Card key={index} postId={v._id} title={v.title} icon={v.icon}
+                                <Card key={index} postId={v._id} title={v.title} coverImg={v.coverImg}
                                       summary={''} tags={v.tags} date={v.date}
                                       showPost={(id) => this.showPostContent(id)} showCardInfo={false} />
                             ))

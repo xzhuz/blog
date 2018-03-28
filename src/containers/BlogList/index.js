@@ -29,10 +29,10 @@ class BlogList extends React.PureComponent {
         this.props.getPostList();
     }
 
-    clickUpdatePost({_id, title, content, summary, tags}) {
+    clickUpdatePost({_id, title, content, summary, tags, coverImg}) {
         this.props.history.push({
             pathname: `/dashboard/modify`,
-            state: {id: _id, title: title, content: content, summary: summary, tags: tags}});
+            state: {id: _id, title: title, content: content, summary: summary, tags: tags, coverImg: coverImg}});
     }
 
     renderPagination(size) {

@@ -81,7 +81,7 @@ export function getPopularPost() {
 
 /**
  * 发布博客
- * @param icon
+ * @param coverImg
  * @param content
  * @param summary
  * @param title
@@ -90,9 +90,9 @@ export function getPopularPost() {
  * @param publish
  * @returns {function(*)}
  */
-export function publishBlog({icon, content, summary, title, tags, visit, publish}) {
+export function publishBlog({coverImg, content, summary, title, tags, visit, publish}) {
     return dispatch => {
-        axios.post('/blog/publish', {icon, content, summary, title, tags, visit, publish}).then(res => {
+        axios.post('/blog/publish', {coverImg, content, summary, title, tags, visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(blogPublish('发布成功!'));
                 dispatch(clearErrorMsg());
@@ -136,15 +136,17 @@ export function deleteBlog(id) {
 
 /**
  * 更新博客
- * @param icon
+ * @param id
  * @param content
  * @param summary
  * @param title
  * @param tags
+ * @param publish
+ * @param coverImg
  */
-export function updateBlog({id, content, summary, title, tags, publish}) {
+export function updateBlog({id, content, summary, title, tags, publish, coverImg}) {
     return dispatch => {
-        axios.post('/blog/update', {id, content, summary, title, tags, publish}).then(res => {
+        axios.post('/blog/update', {id, content, summary, title, tags, publish, coverImg}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getPost(id);
                 dispatch(blogUpdated('更新成功'));

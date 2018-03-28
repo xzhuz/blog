@@ -17,12 +17,13 @@
 
 }
 
-.card .card-icon {
+.card .card-coverImg {
   width: 20%;
   max-width: 120px;
 
   img {
     width: 120px;
+    max-height: 120px;
   }
 
   @media only screen and (max-width: 767px) {

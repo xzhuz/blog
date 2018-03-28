@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {updateBlog} from "../../reducers/blog.redux";
 import {withRouter} from "react-router-dom";
 import AddBlog from "../../components/AddBlog";
+import {uploadCoverImg, uploadImg} from "../../reducers/file.redux";
 
 class ModifyBlog extends React.PureComponent {
     constructor(props) {
@@ -16,18 +17,21 @@ class ModifyBlog extends React.PureComponent {
             content: '',
             title: '',
             summary: '',
-            show: false
+            coverImg: '',
+            show: false,
+            clickUpload: false
         };
     }
 
     componentDidMount() {
-        const {id, title, content, summary, tags} = this.props.location.state;
+        const {id, title, content, summary, tags, coverImg} = this.props.location.state;
         this.setState({
             tags: [...tags],
             id: id,
             title: title,
             content: content,
             summary: summary,
+            coverImg: coverImg,
             publish: false
         });
     }
@@ -50,7 +54,8 @@ class ModifyBlog extends React.PureComponent {
     }
 
     modify() {
-        this.setState({publish: true}, () => {
+        const {filePath} = this.props.coverFile;
+        this.setState({publish: true, coverImg: filePath}, () => {
             this.props.updateBlog(this.state);
         });
     }
@@ -60,7 +65,8 @@ class ModifyBlog extends React.PureComponent {
     }
 
     save() {
-        this.setState({publish: false}, () => {
+        const {filePath} = this.props.coverFile;
+        this.setState({publish: false, coverImg: filePath}, () => {
             this.props.updateBlog(this.state);
         });
 
@@ -75,9 +81,26 @@ class ModifyBlog extends React.PureComponent {
         });
     }
 
+    uploadImg(file) {
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        this.props.uploadImg(formData);
+    }
+
+    uploadCoverImg(file) {
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        this.props.uploadCoverImg(formData);
+        this.setState({
+            clickUpload: true
+        });
+
+    }
     render() {
-        const {tags, title, content, summary, show} = this.state;
+        const {tags, title, content, summary, show, coverImg} = this.state;
         const {errorMsg, successMsg} = this.props.msg;
+        const {filePath} = this.props.file;
+        const coverImgPath = (this.state.clickUpload && this.props.coverFile.filePath) ? this.props.coverFile.filePath : coverImg;
         return (
             <AddBlog tags={tags}
                      show={show}
@@ -97,6 +120,10 @@ class ModifyBlog extends React.PureComponent {
                      defaultTitle={title}
                      defaultSummary={summary}
                      defaultContent={content}
+                     upload={(v) => this.uploadImg(v)}
+                     filePath={filePath}
+                     changeCoverImg={(v) => this.uploadCoverImg( v)}
+                     defaultCoverImg={coverImgPath}
             />
 
         );
@@ -105,8 +132,10 @@ class ModifyBlog extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        msg: state.blogs
+        msg: state.blogs,
+        file: state.imgFile,
+        coverFile: state.coverImgFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {updateBlog})(ModifyBlog));
+export default withRouter(connect(mapStateToProps, {updateBlog, uploadImg, uploadCoverImg})(ModifyBlog));

@@ -3,12 +3,11 @@ const utils = require('utility');
 const Router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     // 目的地
     destination(req, file, cb) {
-        console.log(__dirname);
-        console.log(path.resolve(__dirname, './static'));
         cb(null, path.resolve(__dirname, './static'));
     },
     // 文件名
@@ -32,13 +31,11 @@ const upload = multer({
         // cb第一个参数为错误对象，若传入则会报错，第二个参数布尔值，表明是否可接受该文件
         cb(null, true);
     }
-});
+}).single('file');
 
-// 设置保存路径
-// const upload = multer({ dest: 'static/' }).single('file');
-
-Router.post('/upload', upload.single('file'), function(req, res) {
-    const doc = {filename: req.file.filename, path: req.file.path};
+Router.post('/upload', upload, function(req, res) {
+    const filePath = 'http://localhost:9093/file/load/' + req.file.filename;
+    const doc = {filename: req.file.filename, filePath: filePath};
     // 文件路径
     return res.json({code:0, data: doc});
 });

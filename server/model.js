@@ -10,7 +10,7 @@ mongoose.connection.on('connected', function () {
 
 const models = {
     blog: {
-        'icon': {'type': String},
+        'coverImg': {'type': String},
         // 标题
         'title': {'type': String, require: true},
         "summary": {'type': String},
