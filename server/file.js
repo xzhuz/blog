@@ -8,8 +8,8 @@ const storage = multer.diskStorage({
     // 目的地
     destination(req, file, cb) {
         console.log(__dirname);
-        console.log(path.resolve(__dirname, '../static'));
-        cb(null, path.resolve(__dirname, '../static'));
+        console.log(path.resolve(__dirname, './static'));
+        cb(null, path.resolve(__dirname, './static'));
     },
     // 文件名
     filename(req, file, cb) {
@@ -37,9 +37,21 @@ const upload = multer({
 // 设置保存路径
 // const upload = multer({ dest: 'static/' }).single('file');
 
-Router.post('/upload', upload.single('file'), function(req, res, next) {
+Router.post('/upload', upload.single('file'), function(req, res) {
+    const doc = {filename: req.file.filename, path: req.file.path};
     // 文件路径
-    return res.json({code:0, filename: req.file.filename, path: req.file.path});
+    return res.json({code:0, data: doc});
+});
+
+Router.get('/load/:name', function (req, res) {
+    const {name} = req.params;
+    const url = path.resolve(__dirname, `./static/${name}`);
+    // res.setHeader('Content-Type', 'image/png');
+    const content =  fs.readFileSync(url,"binary");
+    res.writeHead(200, "Ok");
+    // 格式必须为 binary，否则会出错
+    res.write(content,"binary");
+    res.end();
 });
 
 module.exports = Router;

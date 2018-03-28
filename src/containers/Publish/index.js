@@ -21,7 +21,8 @@ class Publish extends React.PureComponent {
             title: '',
             summary: '',
             publish: false,
-            show: false
+            show: false,
+            path: ''
         };
     }
 
@@ -80,7 +81,8 @@ class Publish extends React.PureComponent {
     }
 
     render() {
-        const {tags} = this.state;
+        const {tags, path} = this.state;
+        const serverUri = 'http://localhost:9093/file/load/';
         return (
             <AddBlog tags={tags}
                      show={this.state.show}
@@ -98,10 +100,14 @@ class Publish extends React.PureComponent {
                      errorMsg={this.props.errorMsg}
                      successMsg={this.props.successMsg}
                      upload={(v) => this.uploadImg(v)}
+                     filePath={serverUri + path}
             />
 
         );
     }
 }
+const mapStateToProps = state => {
+    return {post: state.loadPost};
+};
 
 export default withRouter(connect(state => state.blogs, {publishBlog, uploadImg})(Publish));

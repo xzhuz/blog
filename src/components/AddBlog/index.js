@@ -62,7 +62,7 @@ class AddBlog extends React.PureComponent {
     }
 
     render() {
-        const {tags, errorMsg, successMsg, show, modalContent, btnContent, defaultSummary, defaultContent, defaultTitle} = this.props;
+        const {tags, errorMsg, successMsg, show, modalContent, btnContent, defaultSummary, defaultContent, defaultTitle, filePath} = this.props;
         return (
             <div className={'container add-blog'}>
                 <div className={'add-blog-title add-blog-item'}>
@@ -87,6 +87,7 @@ class AddBlog extends React.PureComponent {
                 <div>
                     <input type='file' name='file' ref={(input)=>{this.fileInput = input;}}/>
                     <input type='button' value={'上传图片'} onClick={this.handleUpload} />
+                    <span>{filePath}</span>
                 </div>
 
                 <div className={'add-blog-button'}>
@@ -112,6 +113,7 @@ AddBlog.propTypes = {
     show: PropTypes.bool.isRequired,
     btnContent: PropTypes.string.isRequired,
     modalContent: PropTypes.string,
+    filePath: PropTypes.string,
     preview: PropTypes.func.isRequired,
     upload: PropTypes.func.isRequired,
     handlePublish: PropTypes.func.isRequired,
