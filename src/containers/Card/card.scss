@@ -10,9 +10,16 @@
   margin-bottom: 2%;
 
   &:hover {
+    //transition-delay: .2s;
+    //-webkit-transition-delay: .2s;
+    //-moz-transition-delay: .2s;
+    transition-duration: .4s;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
     cursor: pointer;
-    -webkit-box-shadow: 4px 4px 8px 4px rgba(0, 34, 77, .05);
-    box-shadow: 4px 4px 8px 4px rgba(0, 34, 77, .05);
+    -webkit-box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
+    -moz-box-shadow: 6px 6px 10px 6px rgba(0, 24, 54, 0.05);
+    box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
   }
 
 }
@@ -52,6 +59,9 @@
     color: $baseColor;
 
     &:hover {
+      transition-duration: .6s;
+      -moz-transition-duration: .6s;
+      -webkit-transition-duration: .6s;
       color: $baseStressColor;;
     }
   }

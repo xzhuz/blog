@@ -62,7 +62,7 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {posts, popularPosts, articleTag} = this.props;
+        const {article, popularArticle, articleTag} = this.props;
         const {current, clicked} = this.state;
         let tag = [];
         articleTag.map(v=> {
@@ -73,14 +73,14 @@ class Home extends React.PureComponent {
         const pageCapacity = clicked ? 3 : 6;
         return (
             <div className='container'>
-                <div className={'posts'}>
+                <div className={'articles'}>
                     {
-                        posts.slice(0, current * pageCapacity).filter(v => v.publish).map((v, index) => (
+                        article.slice(0, current * pageCapacity).filter(v => v.publish).map((v, index) => (
                             this.renderCards(v, index)
                         ))
                     }
                     {
-                        this. renderReadMore(current * pageCapacity >= posts.length)
+                        this. renderReadMore(current * pageCapacity >= article.length)
                     }
                 </div>
                 <div className={'right-side-bar'}>
@@ -99,7 +99,7 @@ class Home extends React.PureComponent {
                                     <div>
                                     {
                                         skills.map((value,index) => (
-                                           <Tag key={index} label={value}/>
+                                           <Tag key={index} label={value} clickTag={(v) => console.log(v)}/>
                                         ))
                                     }
                                     </div>
@@ -115,7 +115,7 @@ class Home extends React.PureComponent {
                     </SideBar>
                     <SideBar barTitle={'热门博客'}>
                         {
-                            popularPosts.map((v, index) => (
+                            popularArticle.map((v, index) => (
                                 <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
                                       summary={''} tags={v.tags} date={v.date}
                                       showPost={(id) => this.showPostContent(id)} showCardInfo={false} />
@@ -138,8 +138,8 @@ class Home extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        posts: state.listAllArticle,
-        popularPosts: state.loadPopular,
+        article: state.listAllArticle,
+        popularArticle: state.loadPopular,
         articleTag: state.articleTags
     };
 };
