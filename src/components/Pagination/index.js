@@ -101,7 +101,8 @@ class Pagination extends React.Component {
         let next = 'next';
         if (this.state.current <= 1) {
             prev = 'disabled prev';
-        } else if (this.state.current >= this.props.pageSize) {
+        }
+        if (this.state.current >= this.props.pageSize || this.props.pageSize === 1) {
             next = 'disabled next';
         }
 

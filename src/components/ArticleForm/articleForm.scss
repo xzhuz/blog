@@ -1,4 +1,4 @@
-.add-blog {
+.article-form {
   margin: 1rem auto !important;
   width: 100% !important;
   padding: 0 5rem 0 5rem !important;
@@ -11,16 +11,20 @@
   }
 
   input {
-    width: auto;
+    width: 100%;
   }
 
-  .add-blog-tags {
+  .article-form-tags {
     display: inline-flex;
     flex-flow: column;
+
+    input{
+      width: auto;
+    }
   }
 }
 
-.add-blog .add-blog-title {
+.article-form .article-form-title {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -34,7 +38,7 @@
     width: 90%;
   }
 
-  .add-blog-cover-img {
+  .article-form-cover-img {
     width: 100px;
     height: 100px;
   }
@@ -68,14 +72,14 @@ textarea{
   width: 100%;
 }
 
-.add-blog .add-blog-content{
+.article-form .article-form-content{
   textarea{
     height: 40vh;
     font-size: 1rem;
   }
 }
 
-.add-blog .add-blog-summary{
+.article-form .article-form-summary{
   textarea {
     min-height: 40px;
   }
@@ -93,11 +97,11 @@ textarea{
 
 .blog-file-path{
   font-size: .8rem;
-  color: red;
+  color: $baseStressColor;
   width: 50%;
 }
 
-.add-blog-button {
+.article-form-button {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -107,7 +111,7 @@ textarea{
 }
 .error-msg{
   height: 20px;
-  color: red;
+  color: $baseStressColor;
   font-size: .8rem;
 }
 .success-msg{

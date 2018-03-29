@@ -2,8 +2,8 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {publishBlog} from "../../reducers/blog.redux";
-import AddBlog from "../../components/AddBlog";
+import {publishArticle} from "../../reducers/article.redux";
+import ArticleForm from "../../components/ArticleForm";
 import {uploadCoverImg, uploadImg} from "../../reducers/file.redux";
 
 class Publish extends React.PureComponent {
@@ -89,31 +89,38 @@ class Publish extends React.PureComponent {
         this.setState({clickUpload: true});
     }
 
+    componentWillReceiveProps() {
+        if (this.state.clickUpload) {
+            const {filePath} = this.props.coverFile;
+            this.setState({
+                coverImg:filePath
+            });
+        }
+    }
     render() {
-        const {tags} = this.state;
+        const {tags, coverImg} = this.state;
         const {filePath} = this.props.file;
-        const coverImg = (this.state.clickUpload && this.props.coverFile.filePath) ? this.props.coverFile.filePath : '';
         const {errorMsg, successMsg} = this.props.msg;
         return (
-            <AddBlog tags={tags}
-                     show={this.state.show}
-                     btnContent={'发布'}
-                     modalContent={this.state.content}
-                     preview={this.preview}
-                     handlePublish={this.publish}
-                     handleSave={this.save}
-                     titleChange={(v) => this.handleChange('title', v)}
-                     summaryChange={(v) => this.handleChange('summary', v)}
-                     contentChange={(v) => this.handleChange('content', v)}
-                     tagEnter={(v) => this.handleEnter(v)}
-                     closeTag={(v) => this.closeTag(v)}
-                     modalClose={() => this.setState({show: false})}
-                     errorMsg={errorMsg}
-                     successMsg={successMsg}
-                     upload={(v) => this.uploadImg(v)}
-                     filePath={filePath}
-                     changeCoverImg={(v) => this.uploadCoverImg( v)}
-                     defaultCoverImg={coverImg}
+            <ArticleForm tags={tags}
+                         show={this.state.show}
+                         btnContent={'发布'}
+                         modalContent={this.state.content}
+                         preview={this.preview}
+                         handlePublish={this.publish}
+                         handleSave={this.save}
+                         titleChange={(v) => this.handleChange('title', v)}
+                         summaryChange={(v) => this.handleChange('summary', v)}
+                         contentChange={(v) => this.handleChange('content', v)}
+                         tagEnter={(v) => this.handleEnter(v)}
+                         closeTag={(v) => this.closeTag(v)}
+                         modalClose={() => this.setState({show: false})}
+                         errorMsg={errorMsg}
+                         successMsg={successMsg}
+                         upload={(v) => this.uploadImg(v)}
+                         filePath={filePath}
+                         changeCoverImg={(v) => this.uploadCoverImg( v)}
+                         defaultCoverImg={coverImg}
             />
 
         );
@@ -121,10 +128,10 @@ class Publish extends React.PureComponent {
 }
 const mapStateToProps = state => {
     return {
-        msg: state.blogs,
+        msg: state.articles,
         file: state.imgFile,
         coverFile: state.coverImgFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {publishBlog, uploadImg, uploadCoverImg})(Publish));
+export default withRouter(connect(mapStateToProps, {publishBlog: publishArticle, uploadImg, uploadCoverImg})(Publish));

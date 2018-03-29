@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Label from '../../components/Tag';
+import Tag from '../../components/Tag';
 
 import './card.scss';
 
@@ -12,14 +12,18 @@ class Card extends React.PureComponent {
     }
 
     showPost() {
-        const {postId} = this.props;
-        this.props.showPost(postId);
+        const {articleId} = this.props;
+        this.props.showPost(articleId);
+    }
+
+    handleClickTag(v) {
+        this.props.clickTag(v);
     }
 
     render() {
-        const {coverImg, postId, title, summary, tags, date, showCardInfo} = this.props;
+        const {coverImg, articleId, title, summary, tags, date, showCardInfo} = this.props;
         return (
-            <div className={'card'} id={postId}>
+            <div className={'card'} id={articleId}>
                 <div className={'card-coverImg'}>
                     <img src={coverImg} alt='card-coverImg'/>
                 </div>
@@ -34,7 +38,7 @@ class Card extends React.PureComponent {
                         <div className={'card-tags'}>
                             {
                                 tags.sort().map((v, index) => (
-                                    <Label label={v} key={index} />
+                                    <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
                                 ))
                             }
                         </div>
@@ -51,7 +55,8 @@ class Card extends React.PureComponent {
 Card.propTypes = {
     coverImg: PropTypes.string.isRequired,
     showPost: PropTypes.func,
-    postId: PropTypes.string.isRequired,
+    clickTag: PropTypes.func,
+    articleId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,

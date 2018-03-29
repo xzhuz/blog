@@ -24,12 +24,12 @@
 
 .signature{
   a {
-    color: #0f88eb;
+    color: $baseColor;
     text-decoration: none;
 
     &:hover{
       cursor: pointer;
-      color: #0f95ff;
+      color: $baseStressColor;
     }
   }
 

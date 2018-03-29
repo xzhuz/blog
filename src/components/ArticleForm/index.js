@@ -5,9 +5,9 @@ import InputItem from "../InputItem";
 import Button from "../Button";
 import TopicTag from "../TopicTag";
 import Modal from "../Modal";
-import './addBlog.scss';
+import './articleForm.scss';
 
-class AddBlog extends React.PureComponent {
+class ArticleForm extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -73,21 +73,21 @@ class AddBlog extends React.PureComponent {
         const {tags, errorMsg, successMsg, show, modalContent, btnContent,
             defaultSummary, defaultContent, defaultTitle, filePath, defaultCoverImg} = this.props;
         return (
-            <div className={'container add-blog'}>
-                <div className={'add-blog-title'}>
+            <div className={'container article-form'}>
+                <div className={'article-form-title'}>
                     <div className={'blog-title'}>
                         <span>标题</span> <InputItem inputType={'text'} handleChange={(v) => this.titleChange(v)} defaultVal={defaultTitle}/>
                     </div>
                     <div className={'blog-cover-img'}>
                         <span>卡片图像</span>
-                        <img src={defaultCoverImg} className={'add-blog-cover-img'} />
+                        <img src={defaultCoverImg} className={'article-form-cover-img'} />
                         <div className={'cover-img-change'}>
                             <input type='file' name='file' ref={(input)=>{this.coverInput = input;}}/>
                             <input type='button' value={'上传图像'} onClick={this.coverImgChange} />
                         </div>
                     </div>
                 </div>
-                <div className={'add-blog-tags add-blog-item'}>
+                <div className={'article-form-tags article-form-item'}>
                     <span>标签</span>
                     <InputItem inputType={'text'}  onEnter={(v) => this.tagEnter(v)}>
                         {
@@ -97,10 +97,10 @@ class AddBlog extends React.PureComponent {
                         }
                     </InputItem>
                 </div>
-                <div className={'add-blog-summary add-blog-item'}>
+                <div className={'article-form-summary article-form-item'}>
                     <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} value={defaultSummary} className={'summary-text'} />
                 </div>
-                <div className={'add-blog-content add-blog-item'}>
+                <div className={'article-form-content article-form-item'}>
                     <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} value={defaultContent} />
                 </div>
                 <div className={'blog-img-file'}>
@@ -109,7 +109,7 @@ class AddBlog extends React.PureComponent {
                     <span className={'blog-file-path'}>{filePath}</span>
                 </div>
 
-                <div className={'add-blog-button'}>
+                <div className={'article-form-button'}>
                     <Button describe={btnContent} btnClick={this.publish} className={''}/>
                     <Button describe={'保存'} btnClick={this.save} className={''}/>
                     <Button describe={'预览'} btnClick={this.preview} className={''}/>
@@ -122,7 +122,7 @@ class AddBlog extends React.PureComponent {
     }
 }
 
-AddBlog.propTypes = {
+ArticleForm.propTypes = {
     tags: PropTypes.array.isRequired,
     errorMsg: PropTypes.string,
     successMsg: PropTypes.string,
@@ -147,4 +147,4 @@ AddBlog.propTypes = {
     modalClose: PropTypes.func.isRequired,
 };
 
-export default AddBlog;
+export default ArticleForm;

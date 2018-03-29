@@ -6,10 +6,10 @@ import {loadUser} from "../../actions/user.index";
 import './dashboard.scss';
 import BoardRouter from "../BoardRouter";
 import Publish from "../Publish";
-import BlogList from '../BlogList';
+import ArticleList from '../ArticleList';
 import {loadMenuData} from "../../reducers/menu.redux";
 import NotFound from "../../components/NotFound";
-import ModifyBlog from "../ModifyBlog";
+import ModifyBlog from "../ModifyArticle";
 
 class Dashboard extends React.PureComponent {
 
@@ -76,7 +76,7 @@ class Dashboard extends React.PureComponent {
                     <Switch>
                         <Route path='/dashboard/publish' component={Publish}/>
                         <Route path='/dashboard/modify' component={ModifyBlog}/>
-                        <Route path='/dashboard/list' component={BlogList}/>
+                        <Route path='/dashboard/list' component={ArticleList}/>
                         <Route componet={NotFound}/>
                     </Switch>
                 </div>

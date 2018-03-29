@@ -1,38 +1,37 @@
+﻿﻿{
+    "_id" : ObjectId("5abd08bb6952db07a6de2d5f"),
+    "coverImg" : "http://localhost:9093/file/load/a35ba5761b6c30d8b9230ed3c54bb436.jpg",
+    "content" : "# 使用技术栈\n\nExpress/Axios/React\n\nExpress主要用于处理后台请求，Axios用于发起异步请求，react用于前端展示\n\n\n",
+    "summary" : "一个完整的博客必须要有相应的图片，笔者将在本篇文章中说明自己在搭建博客系统的时候，对于图片的处理。",
+    "title" : "express+axios实现异步上传图片实例",
+    "tags" : [
+        "express",
+        "axios",
+        "react",
+        "markdown"
+    ],
+    "visit" : 0,
+    "publish" : false,
+    "date" : ISODate("2018-03-29T15:17:40.574Z"),
+    "__v" : 0
+}
+
 {
-"tags": ["Linux", "Ubuntu"],
-"visit": 0,
-"icon": "cardicon",
-"content": "\n # 1. Albert Access EverythingAlbert是我最久才开始使用的工具，虽然没有用多久，但是现在已经用得非常顺心. \n # 2. CopyQ: Advanced Clipboard Manager \n #3. Stacer: Linux System Optimizer and Monitoring ",
-"summary": "经过前面的Ubuntu美化篇的折腾，基本上日常使用。但是，作为一个喜欢折腾的人，我总是会找一些有用且方便有趣的软件来简化日常的操作。",
-"title": "Ubuntu 安装软件",
-"publish": true
-},
-{
-"tags": ["Java", "IText"],
-"visit": 5,
-"icon": "cardicon",
-"content": "spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.",
-"summary": "spring项目使用Itext将HTML转为PDF,支持中文字体以及亚洲字体转换.亚洲字体需要IText-Asasin.jar包的支持,使用包中提供的字体可以完美支持亚洲字体.",
-"title": "Java利用Itext生成pdf",
-"publish": true
-},
-{
-"tags": ["Ubuntu", "UI"],
-"visit": 2,
-"icon": "cardicon",
-"content": "有其他软件也可以来管理主题，这里只讲Unity Tweak Tool\n桌面版通过Ubuntu自带软件管理工具的安装",
-"summary": "主题美化篇",
-"title": "Ubuntu 主题美化及开发环境配置",
-"publish": true
-},
-{
-"tags": ["Git"],
-"visit": 3,
-"icon": "cardicon",
-"content": "在日常使用中对Git的使用做出一些总结和记录，希望后面不会忘了。",
-"summary": "日常使用Git的一些总结",
-"title": "Git学习",
-"publish": true
+    "_id" : ObjectId("5abd08bc6952db07a6de2d60"),
+    "coverImg" : "http://localhost:9093/file/load/a35ba5761b6c30d8b9230ed3c54bb436.jpg",
+    "content" : "# 使用技术栈\n\nExpress/Axios/React\n\nExpress主要用于处理后台请求，Axios用于发起异步请求，react用于前端展示\n\n\n",
+    "summary" : "一个完整的博客必须要有相应的图片，笔者将在本篇文章中说明自己在搭建博客系统的时候，对于图片的处理。",
+    "title" : "express+axios实现异步上传图片实例",
+    "tags" : [
+        "express",
+        "axios",
+        "react",
+        "markdown"
+    ],
+    "visit" : 1,
+    "publish" : true,
+    "date" : ISODate("2018-03-29T15:17:40.574Z"),
+    "__v" : 0
 }
 
 

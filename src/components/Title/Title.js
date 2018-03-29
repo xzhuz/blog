@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import reactRenderer from "remark-react";
-import remark from "remark";
+import ReactMarkDown from 'react-markdown';
 
 class Title extends React.PureComponent {
     render () {
@@ -10,7 +9,7 @@ class Title extends React.PureComponent {
         const formatTitle = '## ' + title;
         return (
             <div>
-                {remark().use(reactRenderer).processSync(formatTitle).contents}
+                <ReactMarkDown source={formatTitle}/>
             </div>
         );
     }

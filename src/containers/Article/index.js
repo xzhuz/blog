@@ -2,25 +2,25 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import './post.scss';
-import {getPost} from "../../reducers/blog.redux";
+import './article.scss';
+import {getSpecifiedArticle} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
 import ReactMarkDown from 'react-markdown';
 
-class Post extends React.PureComponent {
+class Article extends React.PureComponent {
 
     componentWillMount() {
-        const {postId} = this.props.match.params;
-        this.props.getPost(postId);
+        const {articleId} = this.props.match.params;
+        this.props.getSpecifiedArticle(articleId);
     }
 
     render () {
-        const {title, content, date} = this.props.post;
+        const {title, content, date} = this.props.article;
         return (
             <div className='container'>
-                <div className={'blog'}>
+                <div className={'article'}>
                     <Title title={title}/>
-                    <p className={'blog-date'}>{new Date(date).toDateString()}</p>
+                    <p className={'article-date'}>{new Date(date).toDateString()}</p>
                     <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
                 <div className={'right-menu'}>
@@ -31,7 +31,7 @@ class Post extends React.PureComponent {
 }
 
 const mapStateToProps = state => {
-    return {post: state.loadPost};
+    return {article: state.loadArticle};
 };
 
-export default withRouter(connect(mapStateToProps, {getPost})(Post));
+export default withRouter(connect(mapStateToProps, {getSpecifiedArticle})(Article));

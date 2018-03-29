@@ -1,10 +1,15 @@
+$baseColor: #30A9DE;
+$baseStressColor: #E53A40;
+$baseFontColor: #090707;
+//#EFDC05 #E53A40 #090707
+
 body {
   margin: 0;
   padding: 0;
   font-size: 12px;
   font-size: 1.2rem;
   font-family: sans-serif;
-  background-color: #fafafa;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 .container {

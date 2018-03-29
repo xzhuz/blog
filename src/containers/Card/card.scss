@@ -49,10 +49,10 @@
   span {
     font-weight: bold;
     font-size: 1.2rem;
-    color: #0f88eb;
+    color: $baseColor;
 
     &:hover {
-      color: #d32f2f;;
+      color: $baseStressColor;;
     }
   }
 

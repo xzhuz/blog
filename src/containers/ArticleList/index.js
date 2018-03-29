@@ -1,12 +1,12 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
-import {deleteBlog, getPostList} from "../../reducers/blog.redux";
+import {deleteArticle, getArticleList} from "../../reducers/article.redux";
 import {connect} from "react-redux";
 import ModifyCard from "../../components/ModifyCard";
-import './blogList.scss';
+import './articleList.scss';
 import Pagination from "../../components/Pagination";
 
-class BlogList extends React.PureComponent {
+class ArticleList extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -17,7 +17,7 @@ class BlogList extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.getPostList();
+        this.props.getArticleList();
     }
 
     clickShowPost(id) {
@@ -25,8 +25,8 @@ class BlogList extends React.PureComponent {
     }
 
     clickRemovePost(id) {
-        this.props.deleteBlog(id);
-        this.props.getPostList();
+        this.props.deleteArticle(id);
+        this.props.getArticleList();
     }
 
     clickUpdatePost({_id, title, content, summary, tags, coverImg}) {
@@ -45,19 +45,20 @@ class BlogList extends React.PureComponent {
     }
 
     render () {
-        const {posts} = this.props;
+        const {articles} = this.props;
         // 实现分页逻辑
-        const pageSize = Math.ceil(posts.length / 6 );
+        const pageSize = Math.ceil(articles.length / 6 );
         const {current} = this.state;
         const begin = 6 * (current - 1);
-        const end = (begin + 6) > posts.length ? posts.length : begin + 6;
-        const postsData = posts.filter((v, index) => {
+        const end = (begin + 6) > articles.length ? articles.length : begin + 6;
+        const articleData = articles.filter((v, index) => {
             return index >= begin && index < end;
         });
         return (
-            <div className={'container blog-list'}>
+            <div className={'container article-list'}>
+                <div className={'article-list-items'}>
                 {
-                    postsData.map((v, index) => (
+                    articleData.map((v, index) => (
                         <ModifyCard key={index} items={v}
                                     handleClickUpdatePost={(v) => this.clickUpdatePost(v)}
                                     handleClickShowPost={(v) => this.clickShowPost(v)}
@@ -65,9 +66,12 @@ class BlogList extends React.PureComponent {
                         />
                     ))
                 }
+                </div>
+                <div className={'article-list-pagination'}>
                 {
                     this.renderPagination(pageSize)
                 }
+                </div>
             </div>
         );
     }
@@ -75,9 +79,9 @@ class BlogList extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        posts: state.listAllPost
+        articles: state.listAllArticle
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getPostList, deleteBlog})(BlogList));
+export default withRouter(connect(mapStateToProps, {getArticleList, deleteArticle})(ArticleList));
 

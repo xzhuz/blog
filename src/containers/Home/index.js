@@ -4,7 +4,13 @@ import {withRouter} from 'react-router-dom';
 import Card from '../Card';
 import './home.scss';
 import SideBar from "../SideBar";
-import {getPopularPost, getPostList, listAllPost, reduceVisit} from "../../reducers/blog.redux";
+import {
+    findMatchTagsArticle,
+    getPopularArticle,
+    getArticleList,
+    reduceVisit,
+    getAllArticleTags
+} from "../../reducers/article.redux";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
 import ReadMore from '../../components/ReadMore';
@@ -20,19 +26,24 @@ class Home extends React.PureComponent {
         };
     }
 
-    showPostContent(postId, visit) {
-        this.props.history.push(`/post/${postId}`);
-        this.props.reduceVisit({id: postId, visit: visit + 1});
+    showPostContent(articleId, visit) {
+        this.props.history.push(`/post/${articleId}`);
+        this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
 
     componentDidMount() {
-        this.props.getPostList();
-        this.props.getPopularPost();
+        this.props.getArticleList();
+        this.props.getPopularArticle();
+        this.props.getAllArticleTags();
+    }
+
+    tagClick(v) {
+        this.props.findMatchTagsArticle({tag: v.target.innerHTML});
     }
 
     renderCards(v, index) {
-        return <Card key={index} postId={v._id} title={v.title} coverImg={v.coverImg}
-                      summary={v.summary} tags={v.tags} date={v.date}
+        return <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
+                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                       showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
 
@@ -51,11 +62,11 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {posts, popularPosts} = this.props;
+        const {posts, popularPosts, articleTag} = this.props;
         const {current, clicked} = this.state;
         let tag = [];
-        posts.map(v=> {
-           tag = [...tag, ...v.tags];
+        articleTag.map(v=> {
+            tag = [...tag, ...v];
         });
         tag = Array.from(new Set(tag));
         const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
@@ -105,7 +116,7 @@ class Home extends React.PureComponent {
                     <SideBar barTitle={'热门博客'}>
                         {
                             popularPosts.map((v, index) => (
-                                <Card key={index} postId={v._id} title={v.title} coverImg={v.coverImg}
+                                <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
                                       summary={''} tags={v.tags} date={v.date}
                                       showPost={(id) => this.showPostContent(id)} showCardInfo={false} />
                             ))
@@ -114,7 +125,7 @@ class Home extends React.PureComponent {
                     <SideBar barTitle={'标签'}>
                         {
                             tag.map((v, index) => (
-                               <Tag label={v} key={index}/>
+                               <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
                             ))
                         }
                     </SideBar>
@@ -127,9 +138,10 @@ class Home extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        posts: state.listAllPost,
-        popularPosts: state.loadPopular
+        posts: state.listAllArticle,
+        popularPosts: state.loadPopular,
+        articleTag: state.articleTags
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getPostList, getPopularPost, reduceVisit})(Home));
+export default withRouter(connect(mapStateToProps, {getArticleList, getPopularArticle, reduceVisit, findMatchTagsArticle, getAllArticleTags})(Home));

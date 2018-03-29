@@ -9,7 +9,7 @@ mongoose.connection.on('connected', function () {
 
 
 const models = {
-    blog: {
+    article: {
         'coverImg': {'type': String},
         // 标题
         'title': {'type': String, require: true},

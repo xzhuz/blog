@@ -1,0 +1,13 @@
+.article-list{
+  display: flex;
+  display: -webkit-flex;
+  display:  -moz-flex;
+  flex-flow: column;
+
+
+  .article-list-items {
+    min-height: 550px;
+  }
+
+}
+

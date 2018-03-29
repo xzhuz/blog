@@ -4,9 +4,10 @@
   display: -webkit-flex;
   height: 60px;
   background-color: white;
-  margin: .2rem;
+  margin: .5rem;
   padding: .5rem;
   justify-content: space-between;
+  border-radius: 4px;
 }
 
 .modify-card-info-wrap{
@@ -50,5 +51,10 @@
     width: 80px;
     max-height: 40px;
     min-width: 80px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $baseStressColor;
+    }
   }
 }

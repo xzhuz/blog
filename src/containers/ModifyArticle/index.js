@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {updateBlog} from "../../reducers/blog.redux";
+import {updateArticle} from "../../reducers/article.redux";
 import {withRouter} from "react-router-dom";
-import AddBlog from "../../components/AddBlog";
+import ArticleForm from "../../components/ArticleForm";
 import {uploadCoverImg, uploadImg} from "../../reducers/file.redux";
 
 class ModifyBlog extends React.PureComponent {
@@ -87,6 +87,15 @@ class ModifyBlog extends React.PureComponent {
         this.props.uploadImg(formData);
     }
 
+    componentWillReceiveProps() {
+        if (this.state.clickUpload) {
+            const {filePath} = this.props.coverFile;
+            this.setState({
+                coverImg:filePath
+            });
+        }
+    }
+
     uploadCoverImg(file) {
         const formData = new FormData();
         formData.append('file', file, file.name);
@@ -100,30 +109,29 @@ class ModifyBlog extends React.PureComponent {
         const {tags, title, content, summary, show, coverImg} = this.state;
         const {errorMsg, successMsg} = this.props.msg;
         const {filePath} = this.props.file;
-        const coverImgPath = (this.state.clickUpload && this.props.coverFile.filePath) ? this.props.coverFile.filePath : coverImg;
         return (
-            <AddBlog tags={tags}
-                     show={show}
-                     btnContent={'发布'}
-                     modalContent={this.state.content}
-                     preview={this.preview}
-                     handlePublish={this.modify}
-                     handleSave={this.save}
-                     titleChange={(v) => this.handleChange('title', v)}
-                     summaryChange={(v) => this.handleChange('summary', v)}
-                     contentChange={(v) => this.handleChange('content', v)}
-                     tagEnter={(v) => this.handleEnter(v)}
-                     closeTag={(v) => this.closeTag(v)}
-                     modalClose={() => this.setState({show: false})}
-                     errorMsg={errorMsg}
-                     successMsg={successMsg}
-                     defaultTitle={title}
-                     defaultSummary={summary}
-                     defaultContent={content}
-                     upload={(v) => this.uploadImg(v)}
-                     filePath={filePath}
-                     changeCoverImg={(v) => this.uploadCoverImg( v)}
-                     defaultCoverImg={coverImgPath}
+            <ArticleForm tags={tags}
+                         show={show}
+                         btnContent={'发布'}
+                         modalContent={this.state.content}
+                         preview={this.preview}
+                         handlePublish={this.modify}
+                         handleSave={this.save}
+                         titleChange={(v) => this.handleChange('title', v)}
+                         summaryChange={(v) => this.handleChange('summary', v)}
+                         contentChange={(v) => this.handleChange('content', v)}
+                         tagEnter={(v) => this.handleEnter(v)}
+                         closeTag={(v) => this.closeTag(v)}
+                         modalClose={() => this.setState({show: false})}
+                         errorMsg={errorMsg}
+                         successMsg={successMsg}
+                         defaultTitle={title}
+                         defaultSummary={summary}
+                         defaultContent={content}
+                         upload={(v) => this.uploadImg(v)}
+                         filePath={filePath}
+                         changeCoverImg={(v) => this.uploadCoverImg( v)}
+                         defaultCoverImg={coverImg}
             />
 
         );
@@ -132,10 +140,10 @@ class ModifyBlog extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        msg: state.blogs,
+        msg: state.articles,
         file: state.imgFile,
         coverFile: state.coverImgFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {updateBlog, uploadImg, uploadCoverImg})(ModifyBlog));
+export default withRouter(connect(mapStateToProps, {updateBlog: updateArticle, uploadImg, uploadCoverImg})(ModifyBlog));

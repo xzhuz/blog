@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './Home';
-import Post from "./Post";
+import Post from "./Article";
 import Login from './Login';
 import Dashboard from './Dashboard';
 
@@ -13,7 +13,7 @@ class App extends React.PureComponent {
                 <div>
                     <Header/>
                     <Switch>
-                        <Route path='/post/:postId' component={Post}/>
+                        <Route path='/post/:articleId' component={Post}/>
                         <Route path='/login' component={Login}/>
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route component={Home}/>

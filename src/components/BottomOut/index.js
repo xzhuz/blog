@@ -5,7 +5,7 @@ class BottomOut extends React.PureComponent{
     render() {
         return (
             <div className={'bottom-out'}>
-               <span className={'bottom-out-text'}>~触底啦，快回去吧!~</span>
+               <span className={'bottom-out-text'}>~~~触底啦~~~</span>
             </div>
         );
     }

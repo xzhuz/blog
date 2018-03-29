@@ -8,7 +8,8 @@
   margin-right: 5px;
 
   &:hover {
-    color: #0f88eb;
-    border: 1px solid #0f88eb;
+    color: $baseColor;
+    cursor: pointer;
+    border: 1px solid $baseColor;
   }
 }
