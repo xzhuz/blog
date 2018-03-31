@@ -32,9 +32,29 @@ Router.get('/popular', function (req, res) {
 });
 
 /**
+ * 部分博客
+ */
+Router.get('/part', function(req, res) {
+    const {start, end} = req.query;
+    Article.find({}, {}, {sort: {"date": -1}, skip: Number.parseInt(start), limit: Number.parseInt(end)}, function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
+
+/**
+ * 统计
+ */
+
+Router.get('/count', function (req, res) {
+    Article.count({}, function (err, doc) {
+        return res.json({code: 0, data: doc});
+    });
+});
+
+/**
  * 获取文章
  */
-Router.get('/post', function (req, res) {
+Router.get('/article', function (req, res) {
     const {articleId} = req.query;
     Article.findOne({_id: articleId}, function (err, doc) {
         return res.json({code: 0, data: doc});

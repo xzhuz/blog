@@ -7,9 +7,10 @@ import SideBar from "../SideBar";
 import {
     findMatchTagsArticle,
     getPopularArticle,
-    getArticleList,
     reduceVisit,
-    getAllArticleTags
+    getAllArticleTags,
+    getPartArticles,
+    doCountArticles
 } from "../../reducers/article.redux";
 import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
@@ -21,8 +22,8 @@ class Home extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            clicked: false,
-            current: 1
+            skip: 0,
+            limit: 6
         };
     }
 
@@ -32,9 +33,10 @@ class Home extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.getArticleList();
+        this.props.getPartArticles(this.state);
         this.props.getPopularArticle();
         this.props.getAllArticleTags();
+        this.props.doCountArticles();
     }
 
     tagClick(v) {
@@ -43,15 +45,14 @@ class Home extends React.PureComponent {
 
     renderCards(v, index) {
         return <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
-                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
+                     summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                     showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
 
     readMore(v) {
         this.setState(state => ({
-            clicked: true,
-            current: state.current + 1
-        }));
+            limit: state.limit + 3
+        }), () => this.props.getPartArticles(this.state));
     }
 
     renderReadMore(filled) {
@@ -62,25 +63,23 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {article, popularArticle, articleTag} = this.props;
-        const {current, clicked} = this.state;
+        const {article, popularArticle, articleTag, articleSize} = this.props;
         let tag = [];
-        articleTag.map(v=> {
+        articleTag.map(v => {
             tag = [...tag, ...v];
         });
         tag = Array.from(new Set(tag));
         const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
-        const pageCapacity = clicked ? 3 : 6;
         return (
             <div className='container'>
                 <div className={'articles'}>
                     {
-                        article.slice(0, current * pageCapacity).filter(v => v.publish).map((v, index) => (
+                        article.filter(v => v.publish).map((v, index) => (
                             this.renderCards(v, index)
                         ))
                     }
                     {
-                        this. renderReadMore(current * pageCapacity >= article.length)
+                        this.renderReadMore(this.state.limit >= articleSize)
                     }
                 </div>
                 <div className={'right-side-bar'}>
@@ -97,11 +96,11 @@ class Home extends React.PureComponent {
                                 <div className={'me-skill'}>
                                     <span className={'me-menu'}>Skills</span>
                                     <div>
-                                    {
-                                        skills.map((value,index) => (
-                                           <Tag key={index} label={value} clickTag={(v) => console.log(v)}/>
-                                        ))
-                                    }
+                                        {
+                                            skills.map((value, index) => (
+                                                <Tag key={index} label={value} clickTag={(v) => console.log(v)}/>
+                                            ))
+                                        }
                                     </div>
                                 </div>
                                 <div className={'me-mail'}>
@@ -118,14 +117,14 @@ class Home extends React.PureComponent {
                             popularArticle.map((v, index) => (
                                 <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
                                       summary={''} tags={v.tags} date={v.date}
-                                      showPost={(id) => this.showPostContent(id)} showCardInfo={false} />
+                                      showPost={(id) => this.showPostContent(id)} showCardInfo={false}/>
                             ))
                         }
                     </SideBar>
                     <SideBar barTitle={'标签'}>
                         {
                             tag.map((v, index) => (
-                               <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
                             ))
                         }
                     </SideBar>
@@ -138,10 +137,18 @@ class Home extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        article: state.listAllArticle,
-        popularArticle: state.loadPopular,
-        articleTag: state.articleTags
+        article: state.articlesList,
+        popularArticle: state.popularArticlesLoad,
+        articleTag: state.articleTags,
+        articleSize: state.articleCount
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getArticleList, getPopularArticle, reduceVisit, findMatchTagsArticle, getAllArticleTags})(Home));
+export default withRouter(connect(mapStateToProps, {
+    getPartArticles,
+    getPopularArticle,
+    reduceVisit,
+    findMatchTagsArticle,
+    getAllArticleTags,
+    doCountArticles
+})(Home));

@@ -31,7 +31,7 @@ class Article extends React.PureComponent {
 }
 
 const mapStateToProps = state => {
-    return {article: state.loadArticle};
+    return {article: state.articleLoad};
 };
 
 export default withRouter(connect(mapStateToProps, {getSpecifiedArticle})(Article));

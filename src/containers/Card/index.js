@@ -53,7 +53,7 @@ class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-    coverImg: PropTypes.string.isRequired,
+    coverImg: PropTypes.string,
     showPost: PropTypes.func,
     clickTag: PropTypes.func,
     articleId: PropTypes.string.isRequired,

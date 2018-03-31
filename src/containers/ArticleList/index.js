@@ -79,7 +79,7 @@ class ArticleList extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        articles: state.listAllArticle
+        articles: state.articlesList
     };
 };
 

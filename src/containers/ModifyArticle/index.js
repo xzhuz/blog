@@ -56,7 +56,7 @@ class ModifyBlog extends React.PureComponent {
     modify() {
         const {filePath} = this.props.coverFile;
         this.setState({publish: true, coverImg: filePath}, () => {
-            this.props.updateBlog(this.state);
+            this.props.updateArticle(this.state);
         });
     }
 
@@ -67,7 +67,7 @@ class ModifyBlog extends React.PureComponent {
     save() {
         const {filePath} = this.props.coverFile;
         this.setState({publish: false, coverImg: filePath}, () => {
-            this.props.updateBlog(this.state);
+            this.props.updateArticle(this.state);
         });
 
     }
@@ -140,10 +140,10 @@ class ModifyBlog extends React.PureComponent {
 
 const mapStateToProps = state => {
     return {
-        msg: state.articles,
+        msg: state.articlesMsg,
         file: state.imgFile,
         coverFile: state.coverImgFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {updateBlog: updateArticle, uploadImg, uploadCoverImg})(ModifyBlog));
+export default withRouter(connect(mapStateToProps, {updateArticle, uploadImg, uploadCoverImg})(ModifyBlog));

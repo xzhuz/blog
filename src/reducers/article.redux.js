@@ -3,38 +3,40 @@ import {
     LOAD_ARTICLE,
     LIST_ALL_ARTICLE,
     LOAD_POPULAR,
-    PUBLISH_ARTICLE,
-    ARTICLE_UPDATED,
+    PUBLISH_ARTICLE_MSG,
+    ARTICLE_UPDATED_MSG,
     ALL_ARTICLE_TAGS,
     MATCH_TAG_ARTICLE,
-    articleLoad,
-    articlePopular,
-    articlePublish,
-    articleUpdated,
+    loadArticle,
+    loadPopularArticles,
+    publishArticleMsg,
+    updateArticleMsg,
     matchTagArticle,
     articleList,
-    allArticleTags
+    allArticleTags, listPartArticles, LIST_PART_ARTICLE, countArticles, COUNT_ARTICLE
 } from "../actions/article.index";
 import {CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,} from "../actions/user.index";
 
 const initState = [];
 
-export function listAllArticle(state = initState, action) {
+export function articlesList(state = initState, action) {
     switch (action.type) {
         case LIST_ALL_ARTICLE:
             return action.payload;
         case MATCH_TAG_ARTICLE:
+            return action.payload;
+        case LIST_PART_ARTICLE:
             return action.payload;
         default:
             return state;
     }
 }
 
-export function loadArticle(state = initState, action) {
+export function articleLoad(state = initState, action) {
     return LOAD_ARTICLE === action.type ? action.payload : state;
 }
 
-export function loadPopular(state = initState, action) {
+export function popularArticlesLoad(state = initState, action) {
     return LOAD_POPULAR === action.type ? action.payload : state;
 }
 
@@ -45,16 +47,20 @@ export function articleTags(state = initState, action) {
         }) : state;
 }
 
-const publishInitState = {
+export function articleCount(state = 0, action) {
+    return COUNT_ARTICLE === action.type ? action.payload : state;
+}
+
+const msgInitState = {
     errorMsg: '',
     successMsg: ''
 };
 
-export function articles(state = publishInitState, action) {
+export function articlesMsg(state = msgInitState, action) {
     switch (action.type) {
-        case PUBLISH_ARTICLE:
+        case PUBLISH_ARTICLE_MSG:
             return {...state, successMsg: action.msg};
-        case ARTICLE_UPDATED:
+        case ARTICLE_UPDATED_MSG:
             return {...state, successMsg: action.msg};
         case ERROR_MSG:
             return {...state, errorMsg: action.msg};
@@ -84,9 +90,9 @@ export function getArticleList() {
  */
 export function getSpecifiedArticle(id) {
     return dispatch => {
-        axios.get('/article/post?articleId=' + id).then(res => {
+        axios.get('/article/article?articleId=' + id).then(res => {
             if (res.data.code === 0) {
-                dispatch(articleLoad(res.data.data));
+                dispatch(loadArticle(res.data.data));
             }
         });
     };
@@ -99,10 +105,28 @@ export function getPopularArticle() {
     return dispatch => {
         axios.get('/article/popular').then(res => {
             if (res.data.code === 0) {
-                dispatch(articlePopular(res.data.data));
+                dispatch(loadPopularArticles(res.data.data));
             }
         });
     };
+}
+
+/**
+ * 获取部分博客文章
+ * @param skip 开始
+ * @param limit 结束
+ * @returns {Function}
+ */
+export function getPartArticles({skip, limit}) {
+    return dispatch => {
+        axios.get('/article/part?start=' + skip + '&end=' + limit).then(res => {
+            if (res.data.code === 0) {
+                dispatch(listPartArticles(res.data.data));
+            } else {
+                dispatch(listPartArticles([]));
+            }
+        });
+    } ;
 }
 
 /**
@@ -120,7 +144,7 @@ export function publishArticle({coverImg, content, summary, title, tags, visit, 
     return dispatch => {
         axios.post('/article/publish', {coverImg, content, summary, title, tags, visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
-                dispatch(articlePublish('发布成功!'));
+                dispatch(publishArticleMsg('发布成功!'));
                 dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
@@ -128,6 +152,7 @@ export function publishArticle({coverImg, content, summary, title, tags, visit, 
         });
     };
 }
+
 
 /**
  * 累加博客访问
@@ -175,7 +200,7 @@ export function updateArticle({id, content, summary, title, tags, publish, cover
         axios.post('/article/update', {id, content, summary, title, tags, publish, coverImg}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getSpecifiedArticle(id);
-                dispatch(articleUpdated('更新成功'));
+                dispatch(updateArticleMsg('更新成功'));
                 dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
@@ -204,6 +229,19 @@ export function getAllArticleTags() {
         axios.get('/article/list').then(res => {
             if (res.data.code === 0) {
                 dispatch(allArticleTags(res.data.data));
+            }
+        });
+    };
+}
+
+/**
+ * 统计
+ */
+export function doCountArticles() {
+    return dispatch => {
+        axios.get('/article/count').then(res => {
+            if (res.data.code === 0) {
+                dispatch(countArticles(res.data.data));
             }
         });
     };

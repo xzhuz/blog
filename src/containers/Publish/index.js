@@ -128,7 +128,7 @@ class Publish extends React.PureComponent {
 }
 const mapStateToProps = state => {
     return {
-        msg: state.articles,
+        msg: state.articlesMsg,
         file: state.imgFile,
         coverFile: state.coverImgFile
     };
