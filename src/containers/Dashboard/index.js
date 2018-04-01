@@ -10,7 +10,7 @@ import ArticleList from '../ArticleList';
 import {loadMenuData} from "../../reducers/menu.redux";
 import NotFound from "../../components/NotFound";
 import ModifyBlog from "../ModifyArticle";
-
+import ModifyAboutMe from '../ModifyAboutMe';
 class Dashboard extends React.PureComponent {
 
     constructor(props) {
@@ -77,6 +77,7 @@ class Dashboard extends React.PureComponent {
                         <Route path='/dashboard/publish' component={Publish}/>
                         <Route path='/dashboard/modify' component={ModifyBlog}/>
                         <Route path='/dashboard/list' component={ArticleList}/>
+                        <Route path='/dashboard/aboutme' compnent={ModifyAboutMe}/>
                         <Route componet={NotFound}/>
                     </Switch>
                 </div>

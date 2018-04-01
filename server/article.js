@@ -88,7 +88,6 @@ Router.get('/delete', function (req, res) {
 // 更新
 Router.post('/update', function (req, res) {
     const {id, coverImg, content, summary, title, tags, publish} = req.body;
-    console.log(coverImg);
     Article.findByIdAndUpdate({_id: id}, {coverImg, content, summary, title, tags, publish}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });

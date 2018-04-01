@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Card from '../Card';
 import './home.scss';
-import SideBar from "../SideBar";
+import SideBar from "../../components/SideBar";
 import {
     findMatchTagsArticle,
     getPopularArticle,
@@ -16,6 +16,8 @@ import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
+import AboutMeCard from "../../components/AboutMeCard";
+import {getAboutMe} from "../../reducers/about.redux";
 
 class Home extends React.PureComponent {
 
@@ -37,6 +39,7 @@ class Home extends React.PureComponent {
         this.props.getPopularArticle();
         this.props.getAllArticleTags();
         this.props.doCountArticles();
+        this.props.getAboutMe();
     }
 
     tagClick(v) {
@@ -63,13 +66,12 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {article, popularArticle, articleTag, articleSize} = this.props;
+        const {article, popularArticle, articleTag, articleSize, aboutMe} = this.props;
         let tag = [];
         articleTag.map(v => {
             tag = [...tag, ...v];
         });
         tag = Array.from(new Set(tag));
-        const skills = ['Java', 'JavaScript', 'JQuery', 'Tomcat', 'Spring', 'React'];
         return (
             <div className='container'>
                 <div className={'articles'}>
@@ -83,35 +85,7 @@ class Home extends React.PureComponent {
                     }
                 </div>
                 <div className={'right-side-bar'}>
-                    <SideBar barTitle={'关于我'}>
-                        <div className={'about-me'}>
-                            <Avatar avatar={'avatar'}/>
-                            <div className={'me'}>
-                                <div className={'me-name'}>
-                                    <span className={'me-menu'}>Name</span> <span>Mei Sen</span>
-                                </div>
-                                <div className={'me-major'}>
-                                    <span className={'me-menu'}>Major</span> <span>Java程序员</span>
-                                </div>
-                                <div className={'me-skill'}>
-                                    <span className={'me-menu'}>Skills</span>
-                                    <div>
-                                        {
-                                            skills.map((value, index) => (
-                                                <Tag key={index} label={value} clickTag={(v) => console.log(v)}/>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-                                <div className={'me-mail'}>
-                                    <span className={'me-menu'}>Mail</span> <span>ms915818993@163.com</span>
-                                </div>
-                                <div className={'me-location'}>
-                                    <span className={'me-menu'}>Location</span> <span>重庆</span>
-                                </div>
-                            </div>
-                        </div>
-                    </SideBar>
+                    <AboutMeCard aboutMe={aboutMe}/>
                     <SideBar barTitle={'热门博客'}>
                         {
                             popularArticle.map((v, index) => (
@@ -140,7 +114,8 @@ const mapStateToProps = state => {
         article: state.articlesList,
         popularArticle: state.popularArticlesLoad,
         articleTag: state.articleTags,
-        articleSize: state.articleCount
+        articleSize: state.articleCount,
+        aboutMe: state.aboutMe
     };
 };
 
@@ -150,5 +125,6 @@ export default withRouter(connect(mapStateToProps, {
     reduceVisit,
     findMatchTagsArticle,
     getAllArticleTags,
-    doCountArticles
+    doCountArticles,
+    getAboutMe
 })(Home));

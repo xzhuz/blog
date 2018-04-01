@@ -7,10 +7,9 @@ class Avatar extends React.PureComponent {
 
     render() {
         const {avatar} = this.props;
-        const userAvatar = require(`../../img/${avatar}.jpg`);
         return (
             <div className={'avatar'}>
-                <img src={userAvatar} alt="avatar"/>
+                <img src={avatar} alt="avatar"/>
             </div>
         );
     }

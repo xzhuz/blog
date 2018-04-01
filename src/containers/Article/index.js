@@ -6,6 +6,7 @@ import './article.scss';
 import {getSpecifiedArticle} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
 import ReactMarkDown from 'react-markdown';
+import Menu from "../../components/Menu";
 
 class Article extends React.PureComponent {
 
@@ -16,6 +17,12 @@ class Article extends React.PureComponent {
 
     render () {
         const {title, content, date} = this.props.article;
+        let menu = [];
+        if (content) {
+            menu = content.split('\n').filter((v) => {
+                return v.trim().startsWith('#');
+            });
+        }
         return (
             <div className='container'>
                 <div className={'article'}>
@@ -24,6 +31,7 @@ class Article extends React.PureComponent {
                     <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
                 <div className={'right-menu'}>
+                    <Menu menu={menu}/>
                 </div>
             </div>
         );

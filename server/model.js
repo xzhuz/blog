@@ -23,7 +23,7 @@ const models = {
     },
     user: {
         'user': {'type': String, require: true},
-        'pwd': {'type': String, require: true}
+        'pwd': {'type': String, require: true},
     },
     menu: {
         'index': {'type': Number, require: true},
@@ -31,6 +31,15 @@ const models = {
         'describe': {'type': String, require: true},
         'active': {'type': Boolean, require: true, default: false},
         'click': {'type': Boolean, require: true, default: true},
+    },
+    about: {
+        'avatar' :{'type': String, require: true},
+        'name': {'type': String, require: true},
+        'mail': {'type': String, require: true},
+        'major': {'type': String},
+        'skill': {'type': Array},
+        'location': {'type': String},
+        'about': {'type': String}
     }
 };
 

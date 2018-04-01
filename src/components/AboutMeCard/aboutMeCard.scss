@@ -1,0 +1,28 @@
+.about-me {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  flex-flow: column;
+  width: 100%;
+
+  .avatar {
+    border-bottom: 2px solid $baseColor;
+  }
+}
+
+.about-me .me-info {
+  margin: 10px;
+  .me-name, .me-major, .me-mail {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    font-size: .8rem;
+    line-height: 1.5rem;
+    width: 100%;
+
+    .me-menu {
+      color: $baseColor;
+      width: 30%;
+    }
+  }
+}
