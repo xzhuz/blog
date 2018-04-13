@@ -16,7 +16,6 @@ import {
 import Tag from "../../components/Tag";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
-import AboutMeCard from "../../components/AboutMeCard";
 import {getAboutMe} from "../../reducers/about.redux";
 
 class Home extends React.PureComponent {
@@ -85,7 +84,6 @@ class Home extends React.PureComponent {
                     }
                 </div>
                 <div className={'right-side-bar'}>
-                    <AboutMeCard aboutMe={aboutMe}/>
                     <SideBar barTitle={'热门博客'}>
                         {
                             popularArticle.filter(v => v.publish).map((v, index) => (

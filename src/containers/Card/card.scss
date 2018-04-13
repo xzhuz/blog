@@ -67,15 +67,16 @@
     font-weight: bold;
     font-size: 1.2rem;
     color: $baseColor;
-
-    &:hover {
+  }
+  &:hover {
+    span {
       transition-duration: .6s;
       -moz-transition-duration: .6s;
       -webkit-transition-duration: .6s;
-      color: $baseStressColor;;
+      color: $baseStressColor;
     }
-  }
 
+  }
 }
 
 .card-content{
