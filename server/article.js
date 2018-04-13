@@ -12,8 +12,8 @@ Router.get('/list', function (req, res) {
 });
 
 Router.post('/publish', function (req, res) {
-    const {coverImg, content, summary, title, tags, visit, publish} = req.body;
-    const articleModel = new Article({coverImg, content, summary, title, tags, visit, publish});
+    const {thumb, content, summary, title, tags, visit, publish} = req.body;
+    const articleModel = new Article({thumb, content, summary, title, tags, visit, publish});
     articleModel.save(function (err, doc) {
         if (err) {
             return res.json({code: 1, msg: '发布失败!' + err});
@@ -87,8 +87,8 @@ Router.get('/delete', function (req, res) {
 
 // 更新
 Router.post('/update', function (req, res) {
-    const {id, coverImg, content, summary, title, tags, publish} = req.body;
-    Article.findByIdAndUpdate({_id: id}, {coverImg, content, summary, title, tags, publish}, function (err, doc) {
+    const {id, thumb, content, summary, title, tags, publish} = req.body;
+    Article.findByIdAndUpdate({_id: id}, {thumb, content, summary, title, tags, publish}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });

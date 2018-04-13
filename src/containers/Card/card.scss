@@ -20,17 +20,27 @@
     -webkit-box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
     -moz-box-shadow: 6px 6px 10px 6px rgba(0, 24, 54, 0.05);
     box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
+
+    .thumb img{
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1);
+    }
   }
 
 }
 
-.card .card-coverImg {
+.card .thumb {
   width: 20%;
   max-width: 120px;
+  overflow: hidden;
 
   img {
     width: 120px;
     max-height: 120px;
+    transition: transform .3s linear;
   }
 
   @media only screen and (max-width: 767px) {

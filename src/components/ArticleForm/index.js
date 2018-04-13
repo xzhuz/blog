@@ -16,7 +16,7 @@ class ArticleForm extends React.PureComponent {
         this.save = this.save.bind(this);
         this.modalClose = this.modalClose.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
-        this.coverImgChange = this.coverImgChange.bind(this);
+        this.thumbChange = this.thumbChange.bind(this);
     }
 
     publish() {
@@ -62,16 +62,16 @@ class ArticleForm extends React.PureComponent {
         }
     }
 
-    coverImgChange() {
+    thumbChange() {
         const file = this.coverInput.files[0];
         if (file) {
-            this.props.changeCoverImg(file);
+            this.props.changeThumb(file);
         }
     }
 
     render() {
         const {tags, errorMsg, successMsg, show, modalContent, btnContent,
-            defaultSummary, defaultContent, defaultTitle, filePath, defaultCoverImg} = this.props;
+            defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
         return (
             <div className={'container article-form'}>
                 <div className={'article-form-title'}>
@@ -80,10 +80,10 @@ class ArticleForm extends React.PureComponent {
                     </div>
                     <div className={'blog-cover-img'}>
                         <span>卡片图像</span>
-                        <img src={defaultCoverImg} className={'article-form-cover-img'} />
+                        <img src={defaultThumb} className={'article-form-cover-img'} />
                         <div className={'cover-img-change'}>
                             <input type='file' name='file' ref={(input)=>{this.coverInput = input;}}/>
-                            <input type='button' value={'上传图像'} onClick={this.coverImgChange} />
+                            <input type='button' value={'上传图像'} onClick={this.thumbChange} />
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ ArticleForm.propTypes = {
     defaultTitle: PropTypes.string,
     defaultSummary: PropTypes.string,
     defaultContent: PropTypes.string,
-    defaultCoverImg: PropTypes.string,
+    defaultThumb: PropTypes.string,
     show: PropTypes.bool.isRequired,
     btnContent: PropTypes.string.isRequired,
     modalContent: PropTypes.string,
@@ -139,7 +139,7 @@ ArticleForm.propTypes = {
     handlePublish: PropTypes.func.isRequired,
     handleSave: PropTypes.func.isRequired,
     titleChange: PropTypes.func.isRequired,
-    changeCoverImg: PropTypes.func.isRequired,
+    changeThumb: PropTypes.func.isRequired,
     summaryChange: PropTypes.func.isRequired,
     contentChange: PropTypes.func.isRequired,
     tagEnter: PropTypes.func.isRequired,

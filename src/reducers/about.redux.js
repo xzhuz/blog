@@ -19,9 +19,10 @@ export function aboutMe(state = initState, action) {
 export function getAboutMe() {
     return dispatch => {
         axios.get('/about/me').then(res => {
-            if (res.data.code === 0) {
-                console.log(res.data.data);
+            if (res.data.code === 0 && res.data.data) {
                 dispatch(loadAbout(res.data.data));
+            } else {
+                dispatch(loadAbout([]));
             }
         });
     };

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Card from '../Card';
@@ -12,7 +13,6 @@ import {
     getPartArticles,
     doCountArticles
 } from "../../reducers/article.redux";
-import Avatar from "../../components/Avatar";
 import Tag from "../../components/Tag";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
@@ -47,7 +47,7 @@ class Home extends React.PureComponent {
     }
 
     renderCards(v, index) {
-        return <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
+        return <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb}
                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
@@ -88,8 +88,8 @@ class Home extends React.PureComponent {
                     <AboutMeCard aboutMe={aboutMe}/>
                     <SideBar barTitle={'热门博客'}>
                         {
-                            popularArticle.map((v, index) => (
-                                <Card key={index} articleId={v._id} title={v.title} coverImg={v.coverImg}
+                            popularArticle.filter(v => v.publish).map((v, index) => (
+                                <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb}
                                       summary={''} tags={v.tags} date={v.date}
                                       showPost={(id) => this.showPostContent(id)} showCardInfo={false}/>
                             ))

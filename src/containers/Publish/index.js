@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {publishArticle} from "../../reducers/article.redux";
 import ArticleForm from "../../components/ArticleForm";
-import {uploadCoverImg, uploadImg} from "../../reducers/file.redux";
+import {uploadThumb, uploadImg} from "../../reducers/file.redux";
 
 class Publish extends React.PureComponent {
 
@@ -14,7 +14,7 @@ class Publish extends React.PureComponent {
         this.preview = this.preview.bind(this);
         this.save = this.save.bind(this);
         this.state = {
-            coverImg: '',
+            thumb: '',
             visit: 0,
             tags: [],
             content: '',
@@ -52,14 +52,14 @@ class Publish extends React.PureComponent {
 
     publish() {
         const {filePath} = this.props.coverFile;
-        this.setState({publish: true, coverImg: filePath}, () => {
+        this.setState({publish: true, thumb: filePath}, () => {
             this.props.publishBlog(this.state);
         });
     }
 
     save() {
         const {filePath} = this.props.coverFile;
-        this.setState({publish: false, coverImg: filePath}, () => {
+        this.setState({publish: false, thumb: filePath}, () => {
             this.props.publishBlog(this.state);
         });
     }
@@ -82,10 +82,10 @@ class Publish extends React.PureComponent {
         this.props.uploadImg(formData);
     }
 
-    uploadCoverImg(file) {
+    uploadThumb(file) {
         const formData = new FormData();
         formData.append('file', file, file.name);
-        this.props.uploadCoverImg(formData);
+        this.props.uploadThumb(formData);
         this.setState({clickUpload: true});
     }
 
@@ -93,12 +93,12 @@ class Publish extends React.PureComponent {
         if (this.state.clickUpload) {
             const {filePath} = this.props.coverFile;
             this.setState({
-                coverImg:filePath
+                thumb:filePath
             });
         }
     }
     render() {
-        const {tags, coverImg} = this.state;
+        const {tags, thumb} = this.state;
         const {filePath} = this.props.file;
         const {errorMsg, successMsg} = this.props.msg;
         return (
@@ -119,8 +119,8 @@ class Publish extends React.PureComponent {
                          successMsg={successMsg}
                          upload={(v) => this.uploadImg(v)}
                          filePath={filePath}
-                         changeCoverImg={(v) => this.uploadCoverImg( v)}
-                         defaultCoverImg={coverImg}
+                         changeThumb={(v) => this.uploadThumb( v)}
+                         defaultThumb={thumb}
             />
 
         );
@@ -130,8 +130,8 @@ const mapStateToProps = state => {
     return {
         msg: state.articlesMsg,
         file: state.imgFile,
-        coverFile: state.coverImgFile
+        coverFile: state.thumbFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {publishBlog: publishArticle, uploadImg, uploadCoverImg})(Publish));
+export default withRouter(connect(mapStateToProps, {publishBlog: publishArticle, uploadImg, uploadThumb})(Publish));

@@ -8,7 +8,7 @@ export const getImgPath = (path) => {
     };
 };
 
-export const getCoverImg = (path) => {
+export const getThumb = (path) => {
     return {
         type: RETURN_COVER_IMG,
         payload: path

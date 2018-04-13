@@ -21,11 +21,11 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {coverImg, articleId, title, summary, tags, date, showCardInfo} = this.props;
+        const {thumb, articleId, title, summary, tags, date, showCardInfo} = this.props;
         return (
             <div className={'card'} id={articleId}>
-                <div className={'card-coverImg'}>
-                    <img src={coverImg} alt='card-coverImg'/>
+                <div className={'thumb'}>
+                    <img src={thumb} alt={'这是一张美图'}/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -53,7 +53,7 @@ class Card extends React.PureComponent {
 }
 
 Card.propTypes = {
-    coverImg: PropTypes.string,
+    thumb: PropTypes.string,
     showPost: PropTypes.func,
     clickTag: PropTypes.func,
     articleId: PropTypes.string.isRequired,

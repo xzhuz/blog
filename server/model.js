@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // 链接mongo,
-const DB_URL = 'mongodb://localhost:27017/blog';
+const DB_URL = 'mongodb://meisen:123456@47.106.96.58:27017/blog';
 mongoose.connect(DB_URL);
 mongoose.connection.on('connected', function () {
     console.log('mongo connect success');
@@ -10,7 +10,7 @@ mongoose.connection.on('connected', function () {
 
 const models = {
     article: {
-        'coverImg': {'type': String},
+        'thumb': {'type': String},
         // 标题
         'title': {'type': String, require: true},
         "summary": {'type': String},

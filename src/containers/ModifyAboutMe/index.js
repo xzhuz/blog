@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {uploadCoverImg} from "../../reducers/file.redux";
+import {uploadThumb} from "../../reducers/file.redux";
 import {withRouter} from "react-router-dom";
 import {getAboutMe} from "../../reducers/about.redux";
 
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getAboutMe, uploadCoverImg})(ModifyAboutMe));
+export default withRouter(connect(mapStateToProps, {getAboutMe, uploadThumb})(ModifyAboutMe));

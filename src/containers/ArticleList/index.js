@@ -29,10 +29,14 @@ class ArticleList extends React.PureComponent {
         this.props.getArticleList();
     }
 
-    clickUpdatePost({_id, title, content, summary, tags, coverImg}) {
+    componentWillReceiveProps() {
+        console.log(123);
+    }
+
+    clickUpdatePost({_id, title, content, summary, tags, thumb}) {
         this.props.history.push({
             pathname: `/dashboard/modify`,
-            state: {id: _id, title: title, content: content, summary: summary, tags: tags, coverImg: coverImg}});
+            state: {id: _id, title: title, content: content, summary: summary, tags: tags, thumb: thumb}});
     }
 
     renderPagination(size) {

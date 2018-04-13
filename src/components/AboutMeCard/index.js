@@ -14,15 +14,15 @@ class AboutMeCard extends React.PureComponent {
                     <Avatar avatar={aboutMe.avatar}/>
                     <div className={'me-info'}>
                         <div className={'me-name'}>
-                            <span className={'me-menu'}>Name</span>
+                            <span className={'me-menu'}>我</span>
                             <span className={'info-name'}>{aboutMe.name}</span>
                         </div>
                         <div className={'me-major'}>
-                            <span className={'me-menu'}>Major</span>
+                            <span className={'me-menu'}>职业</span>
                             <span className={'info-major'}>{aboutMe.major}</span>
                         </div>
                         <div className={'me-mail'}>
-                            <span className={'me-menu'}>Mail</span>
+                            <span className={'me-menu'}>邮箱</span>
                             <span className={'info-mail'}>{aboutMe.mail}</span>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ class AboutMeCard extends React.PureComponent {
 }
 
 AboutMeCard.propTypes = {
-    aboutMe: PropTypes.array,
+    aboutMe: PropTypes.object,
 };
 
 export default AboutMeCard;
