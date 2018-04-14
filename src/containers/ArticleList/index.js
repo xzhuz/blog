@@ -21,7 +21,7 @@ class ArticleList extends React.PureComponent {
     }
 
     clickShowPost(id) {
-        this.props.history.push(`/post/${id}`);
+        this.props.history.push(`/article/${id}`);
     }
 
     clickRemovePost(id) {
@@ -30,7 +30,6 @@ class ArticleList extends React.PureComponent {
     }
 
     componentWillReceiveProps() {
-        console.log(123);
     }
 
     clickUpdatePost({_id, title, content, summary, tags, thumb}) {

@@ -3,9 +3,11 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 import './article.scss';
+import ReactMarkDown from 'react-markdown';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import {getSpecifiedArticle} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
-import ReactMarkDown from 'react-markdown';
 import Menu from "../../components/Menu";
 
 class Article extends React.PureComponent {
@@ -24,16 +26,24 @@ class Article extends React.PureComponent {
             });
         }
         return (
-            <div className='container'>
+            <ReactCSSTransitionGroup
+                component={'div'}
+                className='container'
+                transitionName='article'
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+            >
                 <div className={'article'}>
                     <Title title={title}/>
                     <p className={'article-date'}>{new Date(date).toDateString()}</p>
                     <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
-                <div className={'right-menu'}>
-                    <Menu menu={menu}/>
+                <div className={'right-side-bar'}>
+
                 </div>
-            </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

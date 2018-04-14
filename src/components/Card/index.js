@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import Tag from '../../components/Tag';
+import Tag from '../Tag/index';
 
 import './card.scss';
 
@@ -21,11 +22,19 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {thumb, articleId, title, summary, tags, date, showCardInfo} = this.props;
+        const {thumb, title, summary, tags, date, showCardInfo} = this.props;
         return (
-            <div className={'card'} id={articleId}>
-                <div className={'thumb'}>
-                    <img src={thumb} alt={'这是一张美图'}/>
+            <ReactCSSTransitionGroup
+                component={'div'}
+                className={'card'}
+                transitionName='card'
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+            >
+                <div className={'thumb'} onClick={this.showPost}>
+                        <img src={thumb} alt={'这是一张美图'}/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -47,7 +56,7 @@ class Card extends React.PureComponent {
                         </div>
                     </div>
                 </div>
-            </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

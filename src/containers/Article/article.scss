@@ -8,7 +8,7 @@
   }
 }
 
-.menu {
+.right-side-bar {
   width: 28%;
   margin-left: 2%;
 
@@ -21,4 +21,15 @@
 .article-date{
   color: #b8b8b8;
   font-size: .8rem;
+}
+
+.article-appear {
+  opacity: 0;
+}
+
+.article-appear.article-appear-active {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
 }

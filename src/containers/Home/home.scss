@@ -16,33 +16,3 @@
   }
 }
 
-.right-side-bar {
-  width: 28%;
-  margin-left: 2%;
-
-  @media only screen and (max-width: 768px) {
-    width: 0;
-    display: none;
-  }
-}
-
-
-.right-side-bar .bar-child{
-
-  .card {
-    height: auto;
-    min-height: auto;
-    padding: 0;
-    .card-title span{
-      font-size: .5rem;
-    }
-    .card-icon {
-      width:60px;
-      max-width: 60px;
-    }
-    img {
-      max-width: 60px;
-      max-height: 60px;
-    }
-  }
-}

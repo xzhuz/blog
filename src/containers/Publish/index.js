@@ -97,6 +97,9 @@ class Publish extends React.PureComponent {
             });
         }
     }
+    contentChange(v) {
+        this.setState({content: v});
+    }
     render() {
         const {tags, thumb} = this.state;
         const {filePath} = this.props.file;
@@ -111,7 +114,7 @@ class Publish extends React.PureComponent {
                          handleSave={this.save}
                          titleChange={(v) => this.handleChange('title', v)}
                          summaryChange={(v) => this.handleChange('summary', v)}
-                         contentChange={(v) => this.handleChange('content', v)}
+                         contentChange={(v) => this.contentChange(v)}
                          tagEnter={(v) => this.handleEnter(v)}
                          closeTag={(v) => this.closeTag(v)}
                          modalClose={() => this.setState({show: false})}

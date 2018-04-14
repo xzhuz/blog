@@ -11,13 +11,13 @@
   box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
   display: flex;
   justify-content: space-between;
+  z-index: 101;
 }
 
 .header-content{
   display: flex;
   display: -webkit-flex;
   width: 80%;
-  //max-width: 60rem;
   margin: 0 auto;
   justify-content: space-between;
 }

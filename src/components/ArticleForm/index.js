@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import LzEditor from 'react-lz-editor';
 import InputItem from "../InputItem";
 import Button from "../Button";
 import TopicTag from "../TopicTag";
@@ -17,6 +17,7 @@ class ArticleForm extends React.PureComponent {
         this.modalClose = this.modalClose.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
         this.thumbChange = this.thumbChange.bind(this);
+        this.contentChange = this.contentChange.bind(this);
     }
 
     publish() {
@@ -101,7 +102,15 @@ class ArticleForm extends React.PureComponent {
                     <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} value={defaultSummary} className={'summary-text'} />
                 </div>
                 <div className={'article-form-content article-form-item'}>
-                    <span>正文</span> <textarea onChange={(v) => this.contentChange( v)} value={defaultContent} />
+                    <span>正文</span>
+                    <LzEditor
+                        active={true}
+                        importContent={defaultContent}
+                        cbReceiver={this.contentChange}
+                        image={false}
+                        video={false}
+                        audio={false}
+                        convertFormat="markdown"/>
                 </div>
                 <div className={'blog-img-file'}>
                     <input type='file' name='file' ref={(input)=>{this.fileInput = input;}}/>

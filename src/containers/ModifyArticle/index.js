@@ -103,7 +103,10 @@ class ModifyBlog extends React.PureComponent {
         this.setState({
             clickUpload: true
         });
+    }
 
+    contentChange(v) {
+        this.setState({content: v});
     }
     render() {
         const {tags, title, content, summary, show, thumb} = this.state;
@@ -119,7 +122,7 @@ class ModifyBlog extends React.PureComponent {
                          handleSave={this.save}
                          titleChange={(v) => this.handleChange('title', v)}
                          summaryChange={(v) => this.handleChange('summary', v)}
-                         contentChange={(v) => this.handleChange('content', v)}
+                         contentChange={(v) => this.contentChange(v)}
                          tagEnter={(v) => this.handleEnter(v)}
                          closeTag={(v) => this.closeTag(v)}
                          modalClose={() => this.setState({show: false})}

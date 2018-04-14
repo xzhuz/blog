@@ -79,6 +79,8 @@ export function getArticleList() {
         axios.get('/article/list').then(res => {
             if (res.data.code === 0) {
                 dispatch(articleList(res.data.data));
+            } else {
+                dispatch(articleList([]));
             }
         });
     };
@@ -91,8 +93,10 @@ export function getArticleList() {
 export function getSpecifiedArticle(id) {
     return dispatch => {
         axios.get('/article/article?articleId=' + id).then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0) {
                 dispatch(loadArticle(res.data.data));
+            } else {
+                dispatch(loadArticle({}));
             }
         });
     };
@@ -104,8 +108,10 @@ export function getSpecifiedArticle(id) {
 export function getPopularArticle() {
     return dispatch => {
         axios.get('/article/popular').then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0) {
                 dispatch(loadPopularArticles(res.data.data));
+            } else {
+                dispatch(loadPopularArticles([]));
             }
         });
     };
@@ -120,7 +126,7 @@ export function getPopularArticle() {
 export function getPartArticles({skip, limit}) {
     return dispatch => {
         axios.get('/article/part?start=' + skip + '&end=' + limit).then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0) {
                 dispatch(listPartArticles(res.data.data));
             } else {
                 dispatch(listPartArticles([]));
@@ -217,7 +223,7 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
 export function findMatchTagsArticle({tag}) {
     return dispatch => {
         axios.get('/article/tag?tag=' + tag).then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0) {
                 dispatch(matchTagArticle(res.data.data));
             }
         });
@@ -227,7 +233,7 @@ export function findMatchTagsArticle({tag}) {
 export function getAllArticleTags() {
     return dispatch => {
         axios.get('/article/list').then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0 ) {
                 dispatch(allArticleTags(res.data.data));
             }
         });
@@ -240,7 +246,7 @@ export function getAllArticleTags() {
 export function doCountArticles() {
     return dispatch => {
         axios.get('/article/count').then(res => {
-            if (res.data.code === 0 && res.data.data) {
+            if (res.data.code === 0) {
                 dispatch(countArticles(res.data.data));
             }
         });

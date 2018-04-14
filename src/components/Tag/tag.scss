@@ -8,8 +8,11 @@
   margin-right: 5px;
 
   &:hover {
-    color: $baseColor;
+    transition-duration: .6s;
+    -moz-transition-duration: .6s;
+    -webkit-transition-duration: .6s;
+    color: $baseStressColor;
     cursor: pointer;
-    border: 1px solid $baseColor;
+    border: 1px solid $baseStressColor;
   }
 }

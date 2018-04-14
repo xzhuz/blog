@@ -7,7 +7,7 @@ const Menu = model.getModel('menu');
 
 Router.get('/list', function (req, res) {
     Menu.find({}, {}, {sort: {"index": 1}}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 

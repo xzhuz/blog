@@ -2,9 +2,11 @@ import React from 'react';
 import Header from '../components/Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './Home';
-import Post from "./Article";
+import Article from "./Article";
 import Login from './Login';
 import Dashboard from './Dashboard';
+import ArchiveArticles from './ArchiveArticles';
+import NotFound from "../components/NotFound";
 
 class App extends React.PureComponent {
     render() {
@@ -13,10 +15,12 @@ class App extends React.PureComponent {
                 <div>
                     <Header/>
                     <Switch>
-                        <Route path='/post/:articleId' component={Post}/>
+                        <Route path='/home' component={Home}/>
+                        <Route path='/tag/:tagName' component={ArchiveArticles}/>
+                        <Route path='/article/:articleId' component={Article}/>
                         <Route path='/login' component={Login}/>
                         <Route path='/dashboard' component={Dashboard}/>
-                        <Route component={Home}/>
+                        <Route component={NotFound}/>
                     </Switch>
                 </div>
             </BrowserRouter>

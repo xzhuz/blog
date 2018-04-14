@@ -10,7 +10,7 @@ class Header extends React.PureComponent {
         return (
             <header className={'header'}>
                 <nav className={'header-content'}>
-                    <span className={'signature'}><Link to={{ pathname: '/'}}>Mei Sen</Link></span>
+                    <span className={'signature'}><Link to={{ pathname: '/home'}}>Mei Sen</Link></span>
                     <div className={'header-img'}>
                         <a href='https://github.com/mrmeisen' target='_blank'>
                             <img src={github} alt='github' style={{width: 20}} />

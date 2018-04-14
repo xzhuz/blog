@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Card from '../../components/Card';
-import './home.scss';
+import '../Home/home.scss';
 import {
     findMatchTagsArticle,
     getPopularArticle,
@@ -15,7 +15,7 @@ import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
 import RightSideBar from "../../components/RightSideBar";
 
-class Home extends React.PureComponent {
+class ArchiveArticles extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -31,16 +31,15 @@ class Home extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.getPartArticles(this.state);
+        const {tagName}  = this.props.match.params;
+        this.props.findMatchTagsArticle({tag: tagName});
         this.props.getPopularArticle();
         this.props.getAllArticleTags();
-        this.props.doCountArticles();
     }
 
     tagClick(v) {
-        console.log(v);
         this.props.history.push(`/tag/${v}`);
-        // this.props.findMatchTagsArticle({tag: v});
+        this.props.findMatchTagsArticle({tag: v});
     }
 
     renderCards(v, index) {
@@ -52,7 +51,7 @@ class Home extends React.PureComponent {
     readMore(v) {
         this.setState(state => ({
             limit: state.limit + 3
-        }), () => this.props.getPartArticles(this.state));
+        }));
     }
 
     renderReadMore(filled) {
@@ -60,7 +59,9 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {article, popularArticle, articleTag, articleSize} = this.props;
+        const {article, popularArticle, articleTag} = this.props;
+        const pageSize = article.length;
+        const partArticle = article.slice(0, this.state.limit);
         let tag = [];
         articleTag.map(v => {
             tag = [...tag, ...v];
@@ -70,12 +71,12 @@ class Home extends React.PureComponent {
             <div className='container'>
                 <div className={'articles'}>
                     {
-                        article.filter(v => v.publish).map((v, index) => (
+                        partArticle.filter(v => v.publish).map((v, index) => (
                             this.renderCards(v, index)
                         ))
                     }
                     {
-                        this.renderReadMore(this.state.limit >= articleSize)
+                        this.renderReadMore(this.state.limit >= pageSize)
                     }
                 </div>
                 <RightSideBar articles={popularArticle} tags={tag} onClickTag={(v) => this.tagClick(v)}/>
@@ -89,7 +90,6 @@ const mapStateToProps = state => {
         article: state.articlesList,
         popularArticle: state.popularArticlesLoad,
         articleTag: state.articleTags,
-        articleSize: state.articleCount,
     };
 };
 
@@ -100,4 +100,4 @@ export default withRouter(connect(mapStateToProps, {
     findMatchTagsArticle,
     getAllArticleTags,
     doCountArticles,
-})(Home));
+})(ArchiveArticles));

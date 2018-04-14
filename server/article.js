@@ -7,7 +7,7 @@ const Article = model.getModel('article');
 
 Router.get('/list', function (req, res) {
     Article.find({}, {}, {sort: {"date": -1}}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -18,7 +18,7 @@ Router.post('/publish', function (req, res) {
         if (err) {
             return res.json({code: 1, msg: '发布失败!' + err});
         }
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -27,7 +27,7 @@ Router.post('/publish', function (req, res) {
  */
 Router.get('/popular', function (req, res) {
     Article.find({}, {}, {sort: {"visit": -1}, limit: 3}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -37,7 +37,7 @@ Router.get('/popular', function (req, res) {
 Router.get('/part', function(req, res) {
     const {start, end} = req.query;
     Article.find({}, {}, {sort: {"date": -1}, skip: Number.parseInt(start), limit: Number.parseInt(end)}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -47,7 +47,7 @@ Router.get('/part', function(req, res) {
 
 Router.get('/count', function (req, res) {
     Article.count({}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -57,7 +57,7 @@ Router.get('/count', function (req, res) {
 Router.get('/article', function (req, res) {
     const {articleId} = req.query;
     Article.findOne({_id: articleId}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
@@ -67,13 +67,13 @@ Router.get('/article', function (req, res) {
 Router.get('/tag', function (req, res) {
     const {tag} = req.query;
     Article.find({tags: {$in: [tag]}}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
 // Router.get('/clear', function (req, res) {
 //     Article.remove({}, function (err, doc) {
-//         return res.json({code: 0, data: doc});
+// return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
 //     });
 // });
 
@@ -96,7 +96,7 @@ Router.post('/update', function (req, res) {
 Router.post('/visit', function (req, res) {
    const {id, visit}  = req.body;
     Article.findByIdAndUpdate({_id: id}, {visit}, function (err, doc) {
-        return res.json({code: 0, data: doc});
+        return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });
 
