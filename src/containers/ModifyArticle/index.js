@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {updateArticle} from "../../reducers/article.redux";
 import {withRouter} from "react-router-dom";
 import ArticleForm from "../../components/ArticleForm";
-import {uploadThumb, uploadImg} from "../../reducers/file.redux";
+import {uploadImg, uploadThumb} from "../../reducers/file.redux";
 
 class ModifyBlog extends React.PureComponent {
     constructor(props) {
@@ -108,6 +108,7 @@ class ModifyBlog extends React.PureComponent {
     contentChange(v) {
         this.setState({content: v});
     }
+
     render() {
         const {tags, title, content, summary, show, thumb} = this.state;
         const {errorMsg, successMsg} = this.props.msg;
@@ -133,7 +134,7 @@ class ModifyBlog extends React.PureComponent {
                          defaultContent={content}
                          upload={(v) => this.uploadImg(v)}
                          filePath={filePath}
-                         changeThumb={(v) => this.uploadThumb( v)}
+                         changeThumb={(v) => this.uploadThumb(v)}
                          defaultThumb={thumb}
             />
 

@@ -7,7 +7,7 @@ import TopicTag from "../TopicTag";
 import Modal from "../Modal";
 import './articleForm.scss';
 
-class ArticleForm extends React.PureComponent {
+class ArticleForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -68,6 +68,14 @@ class ArticleForm extends React.PureComponent {
         if (file) {
             this.props.changeThumb(file);
         }
+    }
+
+    componentDidMount() {
+        this.forceUpdate();
+    }
+
+    shouldComponentUpdate() {
+        return false;
     }
 
     render() {
