@@ -1,0 +1,17 @@
+.about-appear {
+  opacity: 0;
+}
+
+.about-appear.about-appear-active {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+}
+
+.about-container {
+  background: #ffffff;
+  min-height: 640px;
+  padding: 1.6rem;
+  color: #333333;
+}

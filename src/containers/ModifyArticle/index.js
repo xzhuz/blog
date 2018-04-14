@@ -5,10 +5,9 @@ import {withRouter} from "react-router-dom";
 import ArticleForm from "../../components/ArticleForm";
 import {uploadImg, uploadThumb} from "../../reducers/file.redux";
 
-class ModifyBlog extends React.PureComponent {
+class ModifyBlog extends React.Component {
     constructor(props) {
         super(props);
-        this.preview = this.preview.bind(this);
         this.modify = this.modify.bind(this);
         this.save = this.save.bind(this);
         this.state = {
@@ -18,7 +17,6 @@ class ModifyBlog extends React.PureComponent {
             title: '',
             summary: '',
             thumb: '',
-            show: false,
             clickUpload: false
         };
     }
@@ -34,6 +32,7 @@ class ModifyBlog extends React.PureComponent {
             thumb: thumb,
             publish: false
         });
+        this.forceUpdate();
     }
 
     handleChange(key, val) {
@@ -54,18 +53,15 @@ class ModifyBlog extends React.PureComponent {
     }
 
     modify() {
-        const {filePath} = this.props.coverFile;
+        const {filePath} = this.props.thumbFile;
         this.setState({publish: true, thumb: filePath ? filePath : this.state.thumb}, () => {
             this.props.updateArticle(this.state);
         });
     }
 
-    preview() {
-        this.setState({show: true});
-    }
 
     save() {
-        const {filePath} = this.props.coverFile;
+        const {filePath} = this.props.thumbFile;
         this.setState({publish: false, thumb: filePath}, () => {
             this.props.updateArticle(this.state);
         });
@@ -88,8 +84,9 @@ class ModifyBlog extends React.PureComponent {
     }
 
     componentWillReceiveProps() {
+        console.log(123);
         if (this.state.clickUpload) {
-            const {filePath} = this.props.coverFile;
+            const {filePath} = this.props.thumbFile;
             this.setState({
                 thumb: filePath
             });
@@ -110,15 +107,12 @@ class ModifyBlog extends React.PureComponent {
     }
 
     render() {
-        const {tags, title, content, summary, show, thumb} = this.state;
+        const {tags, title, content, summary, thumb} = this.state;
         const {errorMsg, successMsg} = this.props.msg;
         const {filePath} = this.props.file;
         return (
             <ArticleForm tags={tags}
-                         show={show}
                          btnContent={'发布'}
-                         modalContent={this.state.content}
-                         preview={this.preview}
                          handlePublish={this.modify}
                          handleSave={this.save}
                          titleChange={(v) => this.handleChange('title', v)}
@@ -146,7 +140,7 @@ const mapStateToProps = state => {
     return {
         msg: state.articlesMsg,
         file: state.imgFile,
-        coverFile: state.thumbFile
+        thumbFile: state.thumbFile
     };
 };
 

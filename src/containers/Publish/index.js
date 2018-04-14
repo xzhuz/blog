@@ -11,7 +11,6 @@ class Publish extends React.PureComponent {
     constructor(props) {
         super(props);
         this.publish = this.publish.bind(this);
-        this.preview = this.preview.bind(this);
         this.save = this.save.bind(this);
         this.state = {
             thumb: '',
@@ -21,7 +20,6 @@ class Publish extends React.PureComponent {
             title: '',
             summary: '',
             publish: false,
-            show: false,
             clickUpload: false,
         };
     }
@@ -51,20 +49,17 @@ class Publish extends React.PureComponent {
     }
 
     publish() {
-        const {filePath} = this.props.coverFile;
+        const {filePath} = this.props.thumbFile;
         this.setState({publish: true, thumb: filePath}, () => {
-            this.props.publishBlog(this.state);
+            this.props.publishArticle(this.state);
         });
     }
 
     save() {
-        const {filePath} = this.props.coverFile;
+        const {filePath} = this.props.thumbFile;
         this.setState({publish: false, thumb: filePath}, () => {
-            this.props.publishBlog(this.state);
+            this.props.publishArticle(this.state);
         });
-    }
-    preview() {
-        this.setState({show: true});
     }
 
     closeTag(id) {
@@ -91,7 +86,7 @@ class Publish extends React.PureComponent {
 
     componentWillReceiveProps() {
         if (this.state.clickUpload) {
-            const {filePath} = this.props.coverFile;
+            const {filePath} = this.props.thumbFile;
             this.setState({
                 thumb:filePath
             });
@@ -100,16 +95,14 @@ class Publish extends React.PureComponent {
     contentChange(v) {
         this.setState({content: v});
     }
+
     render() {
         const {tags, thumb} = this.state;
         const {filePath} = this.props.file;
         const {errorMsg, successMsg} = this.props.msg;
         return (
             <ArticleForm tags={tags}
-                         show={this.state.show}
                          btnContent={'发布'}
-                         modalContent={this.state.content}
-                         preview={this.preview}
                          handlePublish={this.publish}
                          handleSave={this.save}
                          titleChange={(v) => this.handleChange('title', v)}
@@ -133,8 +126,8 @@ const mapStateToProps = state => {
     return {
         msg: state.articlesMsg,
         file: state.imgFile,
-        coverFile: state.thumbFile
+        thumbFile: state.thumbFile
     };
 };
 
-export default withRouter(connect(mapStateToProps, {publishBlog: publishArticle, uploadImg, uploadThumb})(Publish));
+export default withRouter(connect(mapStateToProps, {publishArticle, uploadImg, uploadThumb})(Publish));

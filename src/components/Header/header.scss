@@ -22,8 +22,36 @@
   justify-content: space-between;
 }
 
-.signature{
+.header-content .header-link {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  width: 30%;
+  height: 36px;
+  justify-content: center;
+
+  .header-path-link:first-child {
+    margin-right: 4%;
+  }
+
   a {
+    text-decoration: none;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  .active {
+    border-bottom: 3px solid $baseStressColor;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+
+.signature{
+    a {
     color: $baseColor;
     text-decoration: none;
 
@@ -33,16 +61,27 @@
     }
   }
 
+  @media only screen and (max-width: 767px) {
+    width: 0;
+    display: none;
+  }
+
 }
 
-.header-img{
+.header-contact{
   display: flex;
   display: -webkit-flex;
   width: 70px;
   justify-content: space-between;
 
+
   a{
     display: inherit;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 0;
+    display: none;
   }
 }
 

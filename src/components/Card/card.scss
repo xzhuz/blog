@@ -18,7 +18,7 @@
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
-  padding: 10px;
+  padding: .6rem;
   margin-bottom: 2%;
 
   &:hover {
@@ -67,7 +67,6 @@
   flex-direction: column;
   justify-content: space-between;
   padding-left: 2%;
-  padding-bottom: 5px;
   padding-top: 5px;
   width: 100%;
   @media only screen and (max-width: 767px) {
@@ -101,9 +100,33 @@
 
 .card .card-info {
   display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
   justify-content: space-between;
+  border-top: 1px solid #cccccc;
+  padding-top: .2rem;
 
-  .card-date {
+  .card-tail {
+    width: 30%;
+
+    @media only screen and (max-width: 767px) {
+      width: 0;
+      display: none;
+    }
+  }
+
+  .card-tail .card-visit {
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    color: #cccccc;
+    span {
+      font-size: .6rem;
+    }
+  }
+
+  .card-tail .card-date {
+    display: inline-block;
     line-height: 1.8rem;
     font-size: 14px;
     color: #cccccc;

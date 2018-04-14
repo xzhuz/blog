@@ -1,15 +1,12 @@
-import axios from "axios/index";
-import {LOAD_ABOUT_ME, loadAbout} from "../actions/about.index";
-import {clearErrorMsg, errorMsg} from "../actions/user.index";
+import axios from 'axios/index';
+import {LOAD_ABOUT_ME, loadAbout} from '../actions/about.index';
+import {clearErrorMsg, errorMsg} from '../actions/user.index';
 
 const initState = {
-    "avatar" : "",
-    "name": "",
-    "mail": "",
-    "major": "",
-    "skill": "",
-    "location": "",
-    "about": ""
+    'name': '',
+    'mail': '',
+    'location': '',
+    'about': ''
 };
 
 export function aboutMe(state = initState, action) {
@@ -28,9 +25,9 @@ export function getAboutMe() {
     };
 }
 
-export function updateAboutMe({id, avatar, name, mail, major, skill, location, about}) {
+export function updateAboutMe({id, name, mail, location, about}) {
     return dispatch => {
-        axios.post('/about/update', {id, avatar, name, mail, major, skill, location, about}).then(res => {
+        axios.post('/about/update', {id,name, mail, location, about}).then(res => {
             if (res.data.code === 0) {
                 dispatch(loadAbout(res.data.data));
                 dispatch(clearErrorMsg());

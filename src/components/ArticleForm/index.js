@@ -4,7 +4,7 @@ import LzEditor from 'react-lz-editor';
 import InputItem from "../InputItem";
 import Button from "../Button";
 import TopicTag from "../TopicTag";
-import Modal from "../Modal";
+import DefaultImg from '../../img/default-img.png';
 import './articleForm.scss';
 
 class ArticleForm extends React.Component {
@@ -12,7 +12,6 @@ class ArticleForm extends React.Component {
     constructor(props) {
         super(props);
         this.publish = this.publish.bind(this);
-        this.preview = this.preview.bind(this);
         this.save = this.save.bind(this);
         this.modalClose = this.modalClose.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
@@ -22,10 +21,6 @@ class ArticleForm extends React.Component {
 
     publish() {
         this.props.handlePublish();
-    }
-
-    preview() {
-        this.props.preview();
     }
 
     save() {
@@ -70,27 +65,20 @@ class ArticleForm extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.forceUpdate();
-    }
-
-    shouldComponentUpdate() {
-        return false;
-    }
-
     render() {
-        const {tags, errorMsg, successMsg, show, modalContent, btnContent,
+        const {tags, errorMsg, successMsg, btnContent,
             defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
+        console.log(defaultThumb);
         return (
             <div className={'container article-form'}>
                 <div className={'article-form-title'}>
                     <div className={'blog-title'}>
                         <span>标题</span> <InputItem inputType={'text'} handleChange={(v) => this.titleChange(v)} defaultVal={defaultTitle}/>
                     </div>
-                    <div className={'blog-cover-img'}>
+                    <div className={'blog-thumb'}>
                         <span>卡片图像</span>
-                        <img src={defaultThumb} className={'article-form-cover-img'} />
-                        <div className={'cover-img-change'}>
+                        <img src={defaultThumb ? defaultThumb : DefaultImg} className={'article-form-thumb'} />
+                        <div className={'thumb-change'}>
                             <input type='file' name='file' ref={(input)=>{this.coverInput = input;}}/>
                             <input type='button' value={'上传图像'} onClick={this.thumbChange} />
                         </div>
@@ -121,19 +109,17 @@ class ArticleForm extends React.Component {
                         convertFormat="markdown"/>
                 </div>
                 <div className={'blog-img-file'}>
-                    <input type='file' name='file' ref={(input)=>{this.fileInput = input;}}/>
+                    <input type='file' name='file' ref={(input)=>{this.fileInput = input;}} />
                     <input type='button' value={'上传图片'} onClick={this.handleUpload} />
-                    <span className={'blog-file-path'}>{filePath}</span>
+                    <input type='text' readOnly={true} value={filePath}/>
                 </div>
 
                 <div className={'article-form-button'}>
                     <Button describe={btnContent} btnClick={this.publish} className={''}/>
                     <Button describe={'保存'} btnClick={this.save} className={''}/>
-                    <Button describe={'预览'} btnClick={this.preview} className={''}/>
                     <span className={'success-msg'}>{successMsg}</span>
                     <span className={'error-msg'}>{errorMsg}</span>
                 </div>
-                <Modal show={show} close={this.modalClose} title={'预览'} content={modalContent} />
             </div>
         );
     }
@@ -147,11 +133,8 @@ ArticleForm.propTypes = {
     defaultSummary: PropTypes.string,
     defaultContent: PropTypes.string,
     defaultThumb: PropTypes.string,
-    show: PropTypes.bool.isRequired,
     btnContent: PropTypes.string.isRequired,
-    modalContent: PropTypes.string,
     filePath: PropTypes.string,
-    preview: PropTypes.func.isRequired,
     upload: PropTypes.func.isRequired,
     handlePublish: PropTypes.func.isRequired,
     handleSave: PropTypes.func.isRequired,

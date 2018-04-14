@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
+import classNames from 'classnames';
 import './header.scss';
 
 class Header extends React.PureComponent {
@@ -7,11 +8,19 @@ class Header extends React.PureComponent {
     render() {
         const github = require(`../../img/github.svg`);
         const weibo = require(`../../img/sinaweibo.svg`);
+        const {pathname} = this.props.history.location;
         return (
             <header className={'header'}>
                 <nav className={'header-content'}>
                     <span className={'signature'}><Link to={{ pathname: '/home'}}>Mei Sen</Link></span>
-                    <div className={'header-img'}>
+                    <div className={'header-link'}>
+                        <span className={classNames('header-path-link')}><Link to={{ pathname: '/home'}}>首页</Link></span>
+                        <span className={classNames('header-path-link', {
+                            [`active`]: pathname === '/about',
+                        })}><Link to={{ pathname: '/about'}}>关于我</Link></span>
+
+                    </div>
+                    <div className={'header-contact'}>
                         <a href='https://github.com/mrmeisen' target='_blank'>
                             <img src={github} alt='github' style={{width: 20}} />
                         </a>
@@ -25,4 +34,4 @@ class Header extends React.PureComponent {
     }
 }
 
-export default Header;
+export default withRouter(Header);

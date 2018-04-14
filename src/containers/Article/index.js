@@ -8,7 +8,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {getSpecifiedArticle} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
-import Menu from "../../components/Menu";
 
 class Article extends React.PureComponent {
 

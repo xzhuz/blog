@@ -44,7 +44,7 @@ class Home extends React.PureComponent {
     }
 
     renderCards(v, index) {
-        return <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb}
+        return <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb} visit={v.visit}
                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }

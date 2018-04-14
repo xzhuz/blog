@@ -33,11 +33,8 @@ const models = {
         'click': {'type': Boolean, require: true, default: true},
     },
     about: {
-        'avatar' :{'type': String, require: true},
         'name': {'type': String, require: true},
         'mail': {'type': String, require: true},
-        'major': {'type': String},
-        'skill': {'type': Array},
         'location': {'type': String},
         'about': {'type': String}
     }

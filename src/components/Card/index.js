@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 import Tag from '../Tag/index';
 
@@ -22,7 +23,7 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {thumb, title, summary, tags, date, showCardInfo} = this.props;
+        const {thumb, title, summary, tags, date, showCardInfo, visit} = this.props;
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
@@ -51,8 +52,12 @@ class Card extends React.PureComponent {
                                 ))
                             }
                         </div>
-                        <div className={'card-date'}>
-                            {new Date(date).toDateString()}
+
+                        <div className={'card-tail'}>
+                            <div className={'card-date'}>{new Date(date).toDateString()}</div>
+                            <div className={'card-visit'}>
+                                <FontAwesome.FaEye/> <span>{visit}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +75,8 @@ Card.propTypes = {
     summary: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,
     date: PropTypes.string.isRequired,
-    showCardInfo: PropTypes.bool.isRequired
+    showCardInfo: PropTypes.bool.isRequired,
+    visit: PropTypes.number.isRequired,
 };
 
 export default Card;
