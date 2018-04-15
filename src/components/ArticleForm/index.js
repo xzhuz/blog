@@ -68,7 +68,6 @@ class ArticleForm extends React.Component {
     render() {
         const {tags, errorMsg, successMsg, btnContent,
             defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
-        console.log(defaultThumb);
         return (
             <div className={'container article-form'}>
                 <div className={'article-form-title'}>

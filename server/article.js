@@ -66,7 +66,8 @@ Router.get('/article', function (req, res) {
  */
 Router.get('/tag', function (req, res) {
     const {tag} = req.query;
-    Article.find({tags: {$in: [tag]}}, function (err, doc) {
+    const tagArr = tag.split(',');
+    Article.find({tags: {$in: [...tagArr]}}, function (err, doc) {
         return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});
     });
 });

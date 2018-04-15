@@ -6,24 +6,42 @@ import './article.scss';
 import ReactMarkDown from 'react-markdown';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import {getSpecifiedArticle} from "../../reducers/article.redux";
+import {findMatchTagsArticle, getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
+import RightSideBar from "../RightSideBar";
 
 class Article extends React.PureComponent {
 
-    componentWillMount() {
+    componentDidMount() {
         const {articleId} = this.props.match.params;
         this.props.getSpecifiedArticle(articleId);
+        this.props.getAllArticleTags();
+    }
+
+    showPostContent(articleId, visit) {
+        this.props.history.push(`/article/${articleId}`);
+        this.props.reduceVisit({id: articleId, visit: visit + 1});
+        this.props.getSpecifiedArticle(articleId);
+    }
+
+    componentWillReceiveProps() {
+        console.log(this.props.article);
+        const {tags} = this.props.article;
+        if (tags && this.props.articles.length === 0) {
+            this.props.findMatchTagsArticle({tag: [...tags]});
+        }
+
     }
 
     render () {
         const {title, content, date} = this.props.article;
-        let menu = [];
-        if (content) {
-            menu = content.split('\n').filter((v) => {
-                return v.trim().startsWith('#');
-            });
-        }
+        const {articleTag, articles} = this.props;
+        const relativeArticles = articles.sort(v => v.visit).reverse().slice(0, 5);
+        let tag = [];
+        articleTag.map(v => {
+            tag = [...tag, ...v];
+        });
+        tag = Array.from(new Set(tag));
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
@@ -39,16 +57,18 @@ class Article extends React.PureComponent {
                     <p className={'article-date'}>{new Date(date).toDateString()}</p>
                     <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
-                <div className={'right-side-bar'}>
-
-                </div>
+                <RightSideBar articles={relativeArticles} showPostContent={(id, visit) => this.showPostContent(id, visit)}/>
             </ReactCSSTransitionGroup>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return {article: state.articleLoad};
+    return {
+        article: state.articleLoad,
+        articles: state.articlesList,
+        articleTag: state.articleTags,
+    };
 };
 
-export default withRouter(connect(mapStateToProps, {getSpecifiedArticle})(Article));
+export default withRouter(connect(mapStateToProps, {getSpecifiedArticle, findMatchTagsArticle, getAllArticleTags, reduceVisit})(Article));

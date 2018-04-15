@@ -32,7 +32,7 @@ export function articlesList(state = initState, action) {
     }
 }
 
-export function articleLoad(state = initState, action) {
+export function articleLoad(state = {}, action) {
     return LOAD_ARTICLE === action.type ? action.payload : state;
 }
 
@@ -216,13 +216,15 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
 }
 
 /**
- * 查询包含M
+ * 查询包含
+ * 这里将tag转换为通过 ',' 连接的字符串 ,然后在后台通过 ','分割获取字符串 查询数据库
  * @param tag
  * @returns {Function}
  */
 export function findMatchTagsArticle({tag}) {
+
     return dispatch => {
-        axios.get('/article/tag?tag=' + tag).then(res => {
+        axios.get('/article/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
                 dispatch(matchTagArticle(res.data.data));
             }

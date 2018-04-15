@@ -13,7 +13,7 @@ import {
 } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
-import RightSideBar from "../../components/RightSideBar";
+import RightSideBar from "../RightSideBar";
 
 class ArchiveArticles extends React.PureComponent {
 
@@ -32,9 +32,8 @@ class ArchiveArticles extends React.PureComponent {
 
     componentDidMount() {
         const {tagName}  = this.props.match.params;
-        this.props.findMatchTagsArticle({tag: tagName});
+        this.props.findMatchTagsArticle({tag: [tagName]});
         this.props.getPopularArticle();
-        this.props.getAllArticleTags();
     }
 
     tagClick(v) {
@@ -59,14 +58,9 @@ class ArchiveArticles extends React.PureComponent {
     }
 
     render() {
-        const {article, popularArticle, articleTag} = this.props;
+        const {article, popularArticle} = this.props;
         const pageSize = article.length;
         const partArticle = article.slice(0, this.state.limit);
-        let tag = [];
-        articleTag.map(v => {
-            tag = [...tag, ...v];
-        });
-        tag = Array.from(new Set(tag));
         return (
             <div className='container'>
                 <div className={'articles'}>
@@ -79,7 +73,7 @@ class ArchiveArticles extends React.PureComponent {
                         this.renderReadMore(this.state.limit >= pageSize)
                     }
                 </div>
-                <RightSideBar articles={popularArticle} tags={tag} onClickTag={(v) => this.tagClick(v)}/>
+                <RightSideBar articles={popularArticle} showPostContent={(id, visit) => this.showPostContent(id, visit)}/>
             </div>
         );
     }
@@ -89,7 +83,6 @@ const mapStateToProps = state => {
     return {
         article: state.articlesList,
         popularArticle: state.popularArticlesLoad,
-        articleTag: state.articleTags,
     };
 };
 
@@ -98,6 +91,4 @@ export default withRouter(connect(mapStateToProps, {
     getPopularArticle,
     reduceVisit,
     findMatchTagsArticle,
-    getAllArticleTags,
-    doCountArticles,
 })(ArchiveArticles));

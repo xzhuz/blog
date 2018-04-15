@@ -51,6 +51,10 @@
   .blog-title{
     width: 60%;
     justify-content: flex-start;
+
+    input {
+      width: 100%;
+    }
   }
 
   .blog-thumb {
