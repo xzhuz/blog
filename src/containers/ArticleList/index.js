@@ -29,9 +29,6 @@ class ArticleList extends React.PureComponent {
         this.props.getArticleList();
     }
 
-    componentWillReceiveProps() {
-    }
-
     clickUpdatePost({_id, title, content, summary, tags, thumb}) {
         this.props.history.push({
             pathname: `/dashboard/modify`,

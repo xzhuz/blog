@@ -33,6 +33,7 @@ const models = {
         'click': {'type': Boolean, require: true, default: true},
     },
     about: {
+        'userId': {'type': String, require: true, unique: true},
         'name': {'type': String, require: true},
         'mail': {'type': String, require: true},
         'location': {'type': String},

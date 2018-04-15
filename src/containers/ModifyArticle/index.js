@@ -84,7 +84,6 @@ class ModifyBlog extends React.Component {
     }
 
     componentWillReceiveProps() {
-        console.log(123);
         if (this.state.clickUpload) {
             const {filePath} = this.props.thumbFile;
             this.setState({
@@ -120,7 +119,6 @@ class ModifyBlog extends React.Component {
                          contentChange={(v) => this.contentChange(v)}
                          tagEnter={(v) => this.handleEnter(v)}
                          closeTag={(v) => this.closeTag(v)}
-                         modalClose={() => this.setState({show: false})}
                          errorMsg={errorMsg}
                          successMsg={successMsg}
                          defaultTitle={title}

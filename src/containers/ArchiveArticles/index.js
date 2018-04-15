@@ -25,8 +25,11 @@ class ArchiveArticles extends React.PureComponent {
         };
     }
 
-    showPostContent(articleId, visit) {
-        this.props.history.push(`/article/${articleId}`);
+    showPostContent(articleId, visit, tags) {
+        this.props.history.push({
+            pathname: `/article/${articleId}`,
+            state: {tag: tags}
+        });
         this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
 
@@ -44,7 +47,7 @@ class ArchiveArticles extends React.PureComponent {
     renderCards(v, index) {
         return <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb} visit={v.visit}
                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                     showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
+                     showPost={(id) => this.showPostContent(id, v.visit, v.tags)} showCardInfo={true}/>;
     }
 
     readMore(v) {
@@ -73,7 +76,10 @@ class ArchiveArticles extends React.PureComponent {
                         this.renderReadMore(this.state.limit >= pageSize)
                     }
                 </div>
-                <RightSideBar articles={popularArticle} showPostContent={(id, visit) => this.showPostContent(id, visit)}/>
+                <RightSideBar articles={popularArticle}
+                              showPostContent={(id, visit) => this.showPostContent(id, visit)}
+                              articleSideBarTitle={'热门文章'}
+                />
             </div>
         );
     }

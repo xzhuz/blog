@@ -110,7 +110,6 @@ class Publish extends React.PureComponent {
                          contentChange={(v) => this.contentChange(v)}
                          tagEnter={(v) => this.handleEnter(v)}
                          closeTag={(v) => this.closeTag(v)}
-                         modalClose={() => this.setState({show: false})}
                          errorMsg={errorMsg}
                          successMsg={successMsg}
                          upload={(v) => this.uploadImg(v)}

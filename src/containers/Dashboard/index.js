@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Route, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import axios from "axios/index";
 import {loadUser} from "../../actions/user.index";
 import './dashboard.scss';
@@ -51,17 +51,16 @@ class Dashboard extends React.PureComponent {
             : <span className={'self-router'}>{describe}</span>;
     }
     render() {
-        const {menu} = this.props;
         return (
             <div className={'dashboard-container'}>
                 <div className={'dashboard-side-bar'}>
                     <div className={'board-router'}>
                         <ul>
                             {
-                                menu.map((val, index) => (
+                                this.props.menu.map((val, index) => (
                                     <li key={index} className={`${this.state.dashMenu[index]
                                         ? (this.state.dashMenu[index].active ? 'active-link': '')
-                                        : (val.path === '/dashboard/list' ? 'active-link' : '')}`}>
+                                        : (val.path === this.props.location.pathname ? 'active-link' : '')}`}>
                                         {
                                             this.renderBoardRouter({path: val.path, describe:val.describe, click: val.click, index})
                                         }
@@ -73,13 +72,13 @@ class Dashboard extends React.PureComponent {
                     </div>
                 </div>
                 <div className={'dashboard-board'}>
-                    <Switch>
-                        <Route path='/dashboard/publish' component={Publish}/>
-                        <Route path='/dashboard/modify' component={ModifyBlog}/>
-                        <Route path='/dashboard/list' component={ArticleList}/>
-                        <Route path='/dashboard/aboutme' compnent={ModifyAboutMe}/>
-                        <Route componet={NotFound}/>
-                    </Switch>
+                        <Switch>
+                            <Route path='/dashboard/publish' component={Publish}/>
+                            <Route path='/dashboard/modify' component={ModifyBlog}/>
+                            <Route path='/dashboard/list' component={ArticleList}/>
+                            <Route path='/dashboard/aboutme' component={ModifyAboutMe}/>
+                            <Route componet={NotFound}/>
+                        </Switch>
                 </div>
             </div>
         );

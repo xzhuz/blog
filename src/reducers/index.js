@@ -3,7 +3,7 @@ import {articleLoad, articlesList, popularArticlesLoad, articlesMsg, articleTags
 import {user} from "./user.redux";
 import {menu} from "./menu.redux";
 import {thumbFile, imgFile} from "./file.redux";
-import {aboutMe} from "./about.redux";
+import {aboutMe, updateAboutMeError} from "./about.redux";
 
 export const reducers = combineReducers({
     articlesList,
@@ -16,5 +16,6 @@ export const reducers = combineReducers({
     imgFile,
     thumbFile,
     articleTags,
-    aboutMe
+    aboutMe,
+    updateAboutMeError
 });

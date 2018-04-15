@@ -101,7 +101,7 @@ class ArticleForm extends React.Component {
                     <LzEditor
                         active={true}
                         importContent={defaultContent}
-                        cbReceiver={this.contentChange}
+                        cbReceiver={(v) => this.contentChange(v)}
                         image={false}
                         video={false}
                         audio={false}
@@ -110,7 +110,7 @@ class ArticleForm extends React.Component {
                 <div className={'blog-img-file'}>
                     <input type='file' name='file' ref={(input)=>{this.fileInput = input;}} />
                     <input type='button' value={'上传图片'} onClick={this.handleUpload} />
-                    <input type='text' readOnly={true} value={filePath}/>
+                    <input type='text' readOnly={true} value={filePath} style={{width: '60%'}}/>
                 </div>
 
                 <div className={'article-form-button'}>
@@ -143,7 +143,6 @@ ArticleForm.propTypes = {
     contentChange: PropTypes.func.isRequired,
     tagEnter: PropTypes.func.isRequired,
     closeTag: PropTypes.func.isRequired,
-    modalClose: PropTypes.func.isRequired,
 };
 
 export default ArticleForm;

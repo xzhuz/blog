@@ -23,15 +23,15 @@ class RightSideBar extends React.PureComponent {
         this.props.findMatchTagsArticle({tag: v});
     }
 
-    showPostContent(id, visit) {
+    showPostContent(id, visit, tags) {
         const {showPostContent} = this.props;
         if (showPostContent) {
-            showPostContent(id, visit);
+            showPostContent(id, visit, tags);
         }
     }
 
     render() {
-        const {articles, articleTag} = this.props;
+        const {articles, articleTag, articleSideBarTitle} = this.props;
         let tag = [];
         articleTag.map(v => {
             tag = [...tag, ...v];
@@ -39,13 +39,13 @@ class RightSideBar extends React.PureComponent {
         tag = Array.from(new Set(tag));
         return (
             <div className={'right-side-bar'}>
-                <SideBar barTitle={'热门文章'}>
+                <SideBar barTitle={articleSideBarTitle}>
                     {
                         articles
                             ? articles.filter(v => v.publish).map((v, index) => (
                                 <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb} visit={v.visit}
                                       summary={''} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={false}/>
+                                      showPost={(id) => this.showPostContent(id, v.visit, v.tags)} showCardInfo={false}/>
                             ))
                             : ''
                     }
@@ -67,6 +67,7 @@ class RightSideBar extends React.PureComponent {
 RightSideBar.propTypes = {
     articles: PropTypes.array,
     showPostContent: PropTypes.func,
+    articleSideBarTitle: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {

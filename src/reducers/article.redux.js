@@ -32,7 +32,17 @@ export function articlesList(state = initState, action) {
     }
 }
 
-export function articleLoad(state = {}, action) {
+const initArticle = {
+    tags: [],
+    content: '',
+    title: '',
+    summary: '',
+    thumb: '',
+    visit: 0,
+    publish: false,
+};
+
+export function articleLoad(state = initArticle, action) {
     return LOAD_ARTICLE === action.type ? action.payload : state;
 }
 

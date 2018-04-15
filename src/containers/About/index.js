@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import ReactMarkDown from 'react-markdown';
 import './about.scss';
 import {getAboutMe} from "../../reducers/about.redux";
 
@@ -11,7 +11,7 @@ class About extends React.PureComponent{
         this.props.getAboutMe();
     }
     render() {
-        const {about} = this.props;
+        const {about} = this.props.aboutMe;
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
@@ -23,7 +23,7 @@ class About extends React.PureComponent{
                 transitionLeaveTimeout={300}
             >
                 <div className='about-title'>
-
+                    <ReactMarkDown source={about} escapeHtml={false}/>
                 </div>
             </ReactCSSTransitionGroup>
         );
@@ -32,7 +32,7 @@ class About extends React.PureComponent{
 
 const mapStateToProps = (state) => {
   return {
-      about: state.aboutMe,
+      aboutMe: state.aboutMe,
   };
 };
 

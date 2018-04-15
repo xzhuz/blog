@@ -14,27 +14,23 @@ class Article extends React.PureComponent {
 
     componentDidMount() {
         const {articleId} = this.props.match.params;
+        const {tag} = this.props.location.state;
+        this.props.findMatchTagsArticle({tag: [...tag]});
         this.props.getSpecifiedArticle(articleId);
         this.props.getAllArticleTags();
     }
 
-    showPostContent(articleId, visit) {
-        this.props.history.push(`/article/${articleId}`);
+    showPostContent(articleId, visit, tags) {
         this.props.reduceVisit({id: articleId, visit: visit + 1});
         this.props.getSpecifiedArticle(articleId);
-    }
-
-    componentWillReceiveProps() {
-        console.log(this.props.article);
-        const {tags} = this.props.article;
-        if (tags && this.props.articles.length === 0) {
-            this.props.findMatchTagsArticle({tag: [...tags]});
-        }
-
+        this.props.history.push({
+            pathname: `/article/${articleId}`,
+            state: {tag: tags}
+        });
     }
 
     render () {
-        const {title, content, date} = this.props.article;
+        const {title, content, date, tags} = this.props.article;
         const {articleTag, articles} = this.props;
         const relativeArticles = articles.sort(v => v.visit).reverse().slice(0, 5);
         let tag = [];
@@ -57,7 +53,10 @@ class Article extends React.PureComponent {
                     <p className={'article-date'}>{new Date(date).toDateString()}</p>
                     <ReactMarkDown source={content} escapeHtml={false}/>
                 </div>
-                <RightSideBar articles={relativeArticles} showPostContent={(id, visit) => this.showPostContent(id, visit)}/>
+                <RightSideBar articles={relativeArticles}
+                              showPostContent={(id, visit) => this.showPostContent(id, visit, tags)}
+                              articleSideBarTitle={'相关文章'}
+                />
             </ReactCSSTransitionGroup>
         );
     }
