@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 
 import {publishArticle} from "../../reducers/article.redux";
 import ArticleForm from "../../components/ArticleForm";
-import {uploadThumb, uploadImg} from "../../reducers/file.redux";
+import {uploadImg, uploadThumb} from "../../reducers/file.redux";
+import {clearMsg} from "../../actions/article.index";
 
 class Publish extends React.PureComponent {
 
@@ -73,7 +74,7 @@ class Publish extends React.PureComponent {
 
     uploadImg(file) {
         const formData = new FormData();
-        formData.append('file',file, file.name);
+        formData.append('file', file, file.name);
         this.props.uploadImg(formData);
     }
 
@@ -88,12 +89,17 @@ class Publish extends React.PureComponent {
         if (this.state.clickUpload) {
             const {filePath} = this.props.thumbFile;
             this.setState({
-                thumb:filePath
+                thumb: filePath
             });
         }
     }
+
     contentChange(v) {
         this.setState({content: v});
+    }
+
+    componentDidMount() {
+        this.props.clearMsg();
     }
 
     render() {
@@ -114,13 +120,14 @@ class Publish extends React.PureComponent {
                          successMsg={successMsg}
                          upload={(v) => this.uploadImg(v)}
                          filePath={filePath}
-                         changeThumb={(v) => this.uploadThumb( v)}
+                         changeThumb={(v) => this.uploadThumb(v)}
                          defaultThumb={thumb}
             />
 
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
         msg: state.articlesMsg,
@@ -129,4 +136,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {publishArticle, uploadImg, uploadThumb})(Publish));
+export default withRouter(connect(mapStateToProps, {publishArticle, uploadImg, uploadThumb, clearMsg})(Publish));

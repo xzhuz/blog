@@ -1,9 +1,8 @@
-export const LOAD_MENU = 'LOAD_MENU';
-export const CHANGE_STATUS = 'CHANGE_STATUS';
+import * as Menu from './constants';
 
 export function loadMenu(menuData) {
     return {
-        type: LOAD_MENU,
+        type: Menu.LOAD_MENU,
         payload: menuData
     };
 }

@@ -1,16 +1,14 @@
-export const RETURN_IMG_PATH = 'RETURN_IMG_PATH';
-export const RETURN_COVER_IMG = 'RETURN_COVER_IMG';
-
+import * as File from './constants';
 export const getImgPath = (path) => {
     return {
-        type: RETURN_IMG_PATH,
+        type: File.RETURN_IMG_PATH,
         payload: path
     };
 };
 
 export const getThumb = (path) => {
     return {
-        type: RETURN_COVER_IMG,
+        type: File.RETURN_COVER_IMG,
         payload: path
     };
 };

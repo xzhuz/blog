@@ -1,31 +1,27 @@
 import axios from 'axios';
 import {
-    LOAD_ARTICLE,
-    LIST_ALL_ARTICLE,
-    LOAD_POPULAR,
-    PUBLISH_ARTICLE_MSG,
-    ARTICLE_UPDATED_MSG,
-    ALL_ARTICLE_TAGS,
-    MATCH_TAG_ARTICLE,
     loadArticle,
     loadPopularArticles,
     publishArticleMsg,
     updateArticleMsg,
     matchTagArticle,
     articleList,
-    allArticleTags, listPartArticles, LIST_PART_ARTICLE, countArticles, COUNT_ARTICLE
+    allArticleTags, listPartArticles, countArticles
 } from "../actions/article.index";
-import {CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,} from "../actions/user.index";
+import { clearErrorMsg, errorMsg,} from "../actions/user.index";
+
+import * as Article from '../actions/constants';
+
 
 const initState = [];
 
 export function articlesList(state = initState, action) {
     switch (action.type) {
-        case LIST_ALL_ARTICLE:
+        case Article.LIST_ALL_ARTICLE:
             return action.payload;
-        case MATCH_TAG_ARTICLE:
+        case Article.MATCH_TAG_ARTICLE:
             return action.payload;
-        case LIST_PART_ARTICLE:
+        case Article.LIST_PART_ARTICLE:
             return action.payload;
         default:
             return state;
@@ -43,22 +39,22 @@ const initArticle = {
 };
 
 export function articleLoad(state = initArticle, action) {
-    return LOAD_ARTICLE === action.type ? action.payload : state;
+    return Article.LOAD_ARTICLE === action.type ? action.payload : state;
 }
 
 export function popularArticlesLoad(state = initState, action) {
-    return LOAD_POPULAR === action.type ? action.payload : state;
+    return Article.LOAD_POPULAR === action.type ? action.payload : state;
 }
 
 export function articleTags(state = initState, action) {
-    return ALL_ARTICLE_TAGS === action.type ?
+    return Article.ALL_ARTICLE_TAGS === action.type ?
         action.payload.map(v => {
             return v.tags;
         }) : state;
 }
 
 export function articleCount(state = 0, action) {
-    return COUNT_ARTICLE === action.type ? action.payload : state;
+    return Article.COUNT_ARTICLE === action.type ? action.payload : state;
 }
 
 const msgInitState = {
@@ -68,14 +64,16 @@ const msgInitState = {
 
 export function articlesMsg(state = msgInitState, action) {
     switch (action.type) {
-        case PUBLISH_ARTICLE_MSG:
+        case Article.PUBLISH_ARTICLE_MSG:
             return {...state, successMsg: action.msg};
-        case ARTICLE_UPDATED_MSG:
+        case Article.ARTICLE_UPDATED_MSG:
             return {...state, successMsg: action.msg};
-        case ERROR_MSG:
+        case Article.ERROR_MSG:
             return {...state, errorMsg: action.msg};
-        case CLEAR_ERROR_MSG:
+        case Article.CLEAR_ERROR_MSG:
             return {...state, errorMsg: ''};
+        case Article.CLEAR_MSG:
+            return {...state, errorMsg: '', successMsg: ''};
         default:
             return state;
     }

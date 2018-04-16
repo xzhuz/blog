@@ -5,6 +5,7 @@ import LzEditor from 'react-lz-editor';
 import {getAboutMe, updateAboutMe} from "../../reducers/about.redux";
 import Button from "../../components/Button";
 import './modifyAboutMe.scss';
+import {clearMsg} from "../../actions/about.index";
 
 class ModifyAboutMe extends React.Component {
 
@@ -19,6 +20,7 @@ class ModifyAboutMe extends React.Component {
 
     componentDidMount() {
         this.props.getAboutMe();
+        this.props.clearMsg();
     }
 
     contentChange(v) {
@@ -34,6 +36,7 @@ class ModifyAboutMe extends React.Component {
 
     render () {
         const aboutMe = this.props.aboutMe;
+        console.log(aboutMe);
         const {errorMsg, successMsg} = this.props.msg;
         return (
             <div className={'container modify-about-container'}>
@@ -71,4 +74,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getAboutMe, updateAboutMe})(ModifyAboutMe));
+export default withRouter(connect(mapStateToProps, {getAboutMe, updateAboutMe, clearMsg})(ModifyAboutMe));

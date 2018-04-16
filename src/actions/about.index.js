@@ -1,16 +1,25 @@
-export const LOAD_ABOUT_ME = 'LOAD_ABOUT_ME';
-export const UPDATE_ABOUT_SUCCESS = 'UPDATE_ABOUT_SUCCESS';
+import * as About from "./constants";
 
 export const loadAbout = (about) => {
     return {
-        type: LOAD_ABOUT_ME,
+        type: About.LOAD_ABOUT_ME,
         payload: about
     };
 };
 
 export const updateAboutSuccess = (msg) => {
     return {
-        type: UPDATE_ABOUT_SUCCESS,
+        type: About.UPDATE_ABOUT_SUCCESS,
         msg
+    };
+};
+
+/**
+ * 清空消息
+ * @returns {{type: string}}
+ */
+export const clearMsg = () => {
+    return {
+        type: About.CLEAR_MSG,
     };
 };

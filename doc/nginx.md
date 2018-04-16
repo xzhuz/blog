@@ -1,3 +1,18 @@
+问题
+
+如果遇到mongo数据库查询不上
+```shell
+    use blog -- 需要连接的数据库
+    db.auth('test', '123')
+    返回1则说明正常
+```
+
+修改用户密码
+```shell
+    db.changeUserPassword('test', 'test')
+```
+
+
 Nginx 启动 重启 关闭
 
 1. 启动
@@ -93,5 +108,7 @@ server {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $host:$server_port;
         }
-
 }
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list

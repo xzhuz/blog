@@ -1,7 +1,7 @@
 import axios from 'axios/index';
-import {LOAD_ABOUT_ME, loadAbout, UPDATE_ABOUT_SUCCESS, updateAboutSuccess} from '../actions/about.index';
-import {CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg} from '../actions/user.index';
-import {ARTICLE_UPDATED_MSG, PUBLISH_ARTICLE_MSG} from "../actions/article.index";
+import {loadAbout, updateAboutSuccess} from '../actions/about.index';
+import {clearErrorMsg, errorMsg} from '../actions/user.index';
+import * as About from "../actions/constants";
 
 const initState = {
     'userId': '',
@@ -12,7 +12,7 @@ const initState = {
 };
 
 export function aboutMe(state = initState, action) {
-    return LOAD_ABOUT_ME === action.type ? action.payload : state;
+    return About.LOAD_ABOUT_ME === action.type ? action.payload : state;
 }
 
 const msgInitState = {
@@ -22,12 +22,14 @@ const msgInitState = {
 
 export function updateAboutMeError(state = msgInitState, action) {
     switch (action.type) {
-        case UPDATE_ABOUT_SUCCESS:
+        case About.UPDATE_ABOUT_SUCCESS:
             return {...state, successMsg: action.msg};
-        case ERROR_MSG:
+        case About.ERROR_MSG:
             return {...state, errorMsg: action.msg};
-        case CLEAR_ERROR_MSG:
+        case About.CLEAR_ERROR_MSG:
             return {...state, errorMsg: ''};
+        case About.CLEAR_MSG:
+            return {...state, errorMsg: '', successMsg: ''};
         default:
             return state;
     }

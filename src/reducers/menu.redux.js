@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {LOAD_MENU, loadMenu} from "../actions/menu.index";
-
+import {loadMenu} from "../actions/menu.index";
+import * as Menu from '../actions/constants';
 const initState = [];
 
 export function menu(state = initState, action) {
-    return LOAD_MENU === action.type ? action.payload : state;
+    return Menu.LOAD_MENU === action.type ? action.payload : state;
 }
 
 

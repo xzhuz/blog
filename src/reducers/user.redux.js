@@ -1,8 +1,6 @@
 import axios from 'axios';
-import {
-    AUTH_SUCCESS, authSuccess, CLEAR_ERROR_MSG, clearErrorMsg, ERROR_MSG, errorMsg,
-    LOAD_USER
-} from "../actions/user.index";
+import * as User from '../actions/constants';
+import {authSuccess, clearErrorMsg, errorMsg} from "../actions/user.index";
 
 const initState = {
     redirectTo: '',
@@ -13,13 +11,13 @@ const initState = {
 
 export function user(state = initState, action) {
     switch (action.type) {
-        case AUTH_SUCCESS:
+        case User.AUTH_SUCCESS:
             return {...state, redirectTo: '/dashboard/list', msg: '', ...action.payload};
-        case LOAD_USER:
+        case User.LOAD_USER:
             return {...state, ...action.payload};
-        case ERROR_MSG:
+        case User.ERROR_MSG:
             return {...state, msg: action.msg};
-        case CLEAR_ERROR_MSG:
+        case User.CLEAR_ERROR_MSG:
             return {...state, msg: ''};
         default:
             return state;

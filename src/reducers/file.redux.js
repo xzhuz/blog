@@ -1,16 +1,19 @@
 import axios from "axios/index";
-import {getThumb, getImgPath, RETURN_COVER_IMG, RETURN_IMG_PATH} from "../actions/file.index";
+import {getThumb, getImgPath} from "../actions/file.index";
 import {clearErrorMsg, errorMsg} from "../actions/user.index";
+
+import * as File from '../actions/constants';
+
 
 const initState = {
 };
 
 export function imgFile(state = initState, action) {
-    return action.type === RETURN_IMG_PATH ? action.payload : state;
+    return action.type === File.RETURN_IMG_PATH ? action.payload : state;
 }
 
 export function thumbFile(state = initState, action) {
-    return action.type === RETURN_COVER_IMG ? action.payload : state;
+    return action.type === File.RETURN_COVER_IMG ? action.payload : state;
 }
 
 export function uploadImg(formData) {

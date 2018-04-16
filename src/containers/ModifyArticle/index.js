@@ -4,6 +4,7 @@ import {updateArticle} from "../../reducers/article.redux";
 import {withRouter} from "react-router-dom";
 import ArticleForm from "../../components/ArticleForm";
 import {uploadImg, uploadThumb} from "../../reducers/file.redux";
+import {clearMsg} from "../../actions/article.index";
 
 class ModifyBlog extends React.Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class ModifyBlog extends React.Component {
             thumb: thumb,
             publish: false
         });
-        // this.forceUpdate();
+        this.props.clearMsg();
     }
 
     handleChange(key, val) {
@@ -145,4 +146,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {updateArticle, uploadImg, uploadThumb})(ModifyBlog));
+export default withRouter(connect(mapStateToProps, {updateArticle, uploadImg, uploadThumb, clearMsg})(ModifyBlog));
