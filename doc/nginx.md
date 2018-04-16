@@ -14,14 +14,13 @@ Nginx 启动 重启 关闭
    ./nginx -s reload
    ```
 
-3. ​
+    reload
+3. ​关闭
 
    ```shell
    cd /usr/local/nginx/sbin
-   ./nginx -t
+   ./nginx -s stop
    ```
-
-4. 关闭
 
      查询nginx主进程号
 
@@ -55,7 +54,7 @@ server {
                     index  index.html;
         	    try_files $uri /index.html;
         }
-        location /article {
+        location /articles {
             proxy_pass http://localhost:9093;
             proxy_set_header X-Forwarded-Host $host;
             proxy_set_header X-Forwarded-Server $host;

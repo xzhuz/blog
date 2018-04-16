@@ -16,8 +16,8 @@ class Header extends React.PureComponent {
                     <div className={'header-link'}>
                         <span className={classNames('header-path-link')}><Link to={{ pathname: '/home'}}>首页</Link></span>
                         <span className={classNames('header-path-link', {
-                            [`active`]: pathname === '/about',
-                        })}><Link to={{ pathname: '/about'}}>关于我</Link></span>
+                            [`active`]: pathname === '/introduction',
+                        })}><Link to={{ pathname: '/introduction'}}>关于我</Link></span>
 
                     </div>
                     <div className={'header-contact'}>

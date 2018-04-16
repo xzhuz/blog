@@ -14,7 +14,7 @@ const server = require('http').Server(app);
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.use('/article', articleRouter);
+app.use('/articles', articleRouter);
 app.use('/user', userRouter);
 app.use('/menu', menuRouter);
 app.use('/file', fileRouter);

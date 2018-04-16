@@ -54,7 +54,7 @@ Router.get('/count', function (req, res) {
 /**
  * 获取文章
  */
-Router.get('/article', function (req, res) {
+Router.get('/content', function (req, res) {
     const {articleId} = req.query;
     Article.findOne({_id: articleId}, function (err, doc) {
         return doc ? res.json({code: 0, data: doc}) : res.json({code: 2});

@@ -86,7 +86,7 @@ export function articlesMsg(state = msgInitState, action) {
  */
 export function getArticleList() {
     return dispatch => {
-        axios.get('/article/list').then(res => {
+        axios.get('/articles/list').then(res => {
             if (res.data.code === 0) {
                 dispatch(articleList(res.data.data));
             } else {
@@ -97,12 +97,12 @@ export function getArticleList() {
 }
 
 /**
- * 根据id 获取blog
+ * 根据id 获取article
  * @param id 博客id
  */
 export function getSpecifiedArticle(id) {
     return dispatch => {
-        axios.get('/article/article?articleId=' + id).then(res => {
+        axios.get('/articles/content?articleId=' + id).then(res => {
             if (res.data.code === 0) {
                 dispatch(loadArticle(res.data.data));
             } else {
@@ -117,7 +117,7 @@ export function getSpecifiedArticle(id) {
  */
 export function getPopularArticle() {
     return dispatch => {
-        axios.get('/article/popular').then(res => {
+        axios.get('/articles/popular').then(res => {
             if (res.data.code === 0) {
                 dispatch(loadPopularArticles(res.data.data));
             } else {
@@ -135,7 +135,7 @@ export function getPopularArticle() {
  */
 export function getPartArticles({skip, limit}) {
     return dispatch => {
-        axios.get('/article/part?start=' + skip + '&end=' + limit).then(res => {
+        axios.get('/articles/part?start=' + skip + '&end=' + limit).then(res => {
             if (res.data.code === 0) {
                 dispatch(listPartArticles(res.data.data));
             } else {
@@ -158,7 +158,7 @@ export function getPartArticles({skip, limit}) {
  */
 export function publishArticle({thumb, content, summary, title, tags, visit, publish}) {
     return dispatch => {
-        axios.post('/article/publish', {thumb, content, summary, title, tags, visit, publish}).then(res => {
+        axios.post('/articles/publish', {thumb, content, summary, title, tags, visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 publish ? dispatch(publishArticleMsg('发布成功!')) : dispatch(publishArticleMsg('保存成功!'));
                 dispatch(clearErrorMsg());
@@ -178,7 +178,7 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
  */
 export function reduceVisit({id, visit}) {
     return () => {
-        axios.post('/article/visit', {id, visit}).then(res => {
+        axios.post('/articles/visit', {id, visit}).then(res => {
             if (res.data.code === 0) {
                 getPopularArticle();
             }
@@ -193,7 +193,7 @@ export function reduceVisit({id, visit}) {
  */
 export function deleteArticle(id) {
     return dispatch => {
-        axios.get('/article/delete?id=' + id).then(res => {
+        axios.get('/articles/delete?id=' + id).then(res => {
             if (res.data.code !== 0) {
                 dispatch(errorMsg(res.data.msg));
             }
@@ -213,7 +213,7 @@ export function deleteArticle(id) {
  */
 export function updateArticle({id, content, summary, title, tags, publish, thumb}) {
     return dispatch => {
-        axios.post('/article/update', {id, content, summary, title, tags, publish, thumb}).then(res => {
+        axios.post('/articles/update', {id, content, summary, title, tags, publish, thumb}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getSpecifiedArticle(id);
                 dispatch(updateArticleMsg('更新成功'));
@@ -233,7 +233,7 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  */
 export function findMatchTagsArticle({tag}) {
     return dispatch => {
-        axios.get('/article/tag?tag=' + new Array(tag).join(',')).then(res => {
+        axios.get('/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
                 dispatch(matchTagArticle(res.data.data));
             }
@@ -247,7 +247,7 @@ export function findMatchTagsArticle({tag}) {
  */
 export function getAllArticleTags() {
     return dispatch => {
-        axios.get('/article/list').then(res => {
+        axios.get('/articles/list').then(res => {
             if (res.data.code === 0 ) {
                 dispatch(allArticleTags(res.data.data));
             }
@@ -260,7 +260,7 @@ export function getAllArticleTags() {
  */
 export function doCountArticles() {
     return dispatch => {
-        axios.get('/article/count').then(res => {
+        axios.get('/articles/count').then(res => {
             if (res.data.code === 0) {
                 dispatch(countArticles(res.data.data));
             }

@@ -19,7 +19,7 @@ class App extends React.PureComponent {
                         <Route path='/home' component={Home}/>
                         <Route path='/tag/:tagName' component={ArchiveArticles}/>
                         <Route path='/article/:articleId' component={Article}/>
-                        <Route path='/about' component={About}/>
+                        <Route path='/introduction' component={About}/>
                         <Route path='/login' component={Login}/>
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route component={NotFound}/>
