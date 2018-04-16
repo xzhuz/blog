@@ -17,7 +17,6 @@ class About extends React.PureComponent{
     }
     render() {
         const {about} = this.props.aboutMe;
-        console.log(this.props.aboutMe);
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
