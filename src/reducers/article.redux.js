@@ -160,7 +160,7 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
     return dispatch => {
         axios.post('/article/publish', {thumb, content, summary, title, tags, visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
-                dispatch(publishArticleMsg('发布成功!'));
+                publish ? dispatch(publishArticleMsg('发布成功!')) : dispatch(publishArticleMsg('保存成功!'));
                 dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
@@ -232,7 +232,6 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  * @returns {Function}
  */
 export function findMatchTagsArticle({tag}) {
-
     return dispatch => {
         axios.get('/article/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
@@ -242,6 +241,10 @@ export function findMatchTagsArticle({tag}) {
     };
 }
 
+/**
+ * 获取所有的tag
+ * @returns {Function}
+ */
 export function getAllArticleTags() {
     return dispatch => {
         axios.get('/article/list').then(res => {

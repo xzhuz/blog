@@ -55,9 +55,6 @@ class Card extends React.PureComponent {
 
                         <div className={'card-tail'}>
                             <div className={'card-date'}>{new Date(date).toDateString()}</div>
-                            <div className={'card-visit'}>
-                                <FontAwesome.FaEye/> <span>{visit}</span>
-                            </div>
                         </div>
                     </div>
                 </div>

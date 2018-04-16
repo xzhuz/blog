@@ -28,7 +28,7 @@ class Home extends React.PureComponent {
     showPostContent(articleId, visit, tags) {
         this.props.history.push({
             pathname: `/article/${articleId}`,
-            state: {tag: tags}
+            state: {tags: tags}
         });
         this.props.reduceVisit({id: articleId, visit: visit + 1});
     }

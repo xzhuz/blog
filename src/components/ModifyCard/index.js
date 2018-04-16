@@ -5,8 +5,8 @@ import Button from "../Button";
 
 class ModifyCard extends React.PureComponent {
 
-    clickShowPost(id) {
-        this.props.handleClickShowPost(id);
+    clickShowPost(id, tags) {
+        this.props.handleClickShowPost(id, tags);
     }
 
     clickRemovePost(id){
@@ -30,7 +30,7 @@ class ModifyCard extends React.PureComponent {
                 </div>
                 <div className={'modify-card-btn-wrap'}>
                     <Button describe={'编辑'} btnClick={() => this.clickUpdatePost({_id, title, content, summary, tags, thumb})} />
-                    <Button describe={'查看'} btnClick={() => this.clickShowPost(_id)} />
+                    <Button describe={'查看'} btnClick={() => this.clickShowPost(_id, tags)} />
                     <Button describe={'删除'} btnClick={() => this.clickRemovePost(_id)} />
                 </div>
             </div>

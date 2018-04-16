@@ -32,7 +32,7 @@ class ModifyBlog extends React.Component {
             thumb: thumb,
             publish: false
         });
-        this.forceUpdate();
+        // this.forceUpdate();
     }
 
     handleChange(key, val) {
@@ -103,6 +103,9 @@ class ModifyBlog extends React.Component {
 
     contentChange(v) {
         this.setState({content: v});
+        this.shouldComponentUpdate = () => {
+            return false;
+        };
     }
 
     render() {

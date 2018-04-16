@@ -28,7 +28,7 @@ class ArchiveArticles extends React.PureComponent {
     showPostContent(articleId, visit, tags) {
         this.props.history.push({
             pathname: `/article/${articleId}`,
-            state: {tag: tags}
+            state: {tags: tags}
         });
         this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
@@ -77,7 +77,7 @@ class ArchiveArticles extends React.PureComponent {
                     }
                 </div>
                 <RightSideBar articles={popularArticle}
-                              showPostContent={(id, visit) => this.showPostContent(id, visit)}
+                              showPostContent={(id, visit, tags) => this.showPostContent(id, visit, tags)}
                               articleSideBarTitle={'热门文章'}
                 />
             </div>

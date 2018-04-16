@@ -30,7 +30,7 @@
     -moz-box-shadow: 6px 6px 10px 6px rgba(0, 24, 54, 0.05);
     box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
 
-    .thumb img{
+    .thumb img {
       -webkit-transform: scale(1.1);
       -moz-transform: scale(1.1);
       -ms-transform: scale(1.1);
@@ -74,7 +74,7 @@
   }
 }
 
-.card-title{
+.card-title {
   span {
     font-weight: bold;
     font-size: 1.2rem;
@@ -91,7 +91,7 @@
   }
 }
 
-.card-content{
+.card-content {
   font-size: 12px;
   span {
     color: #a8a8a8;
@@ -104,26 +104,7 @@
   display: -moz-flex;
   justify-content: space-between;
   border-top: 1px solid #cccccc;
-  padding-top: .2rem;
-
-  .card-tail {
-    width: 30%;
-
-    @media only screen and (max-width: 767px) {
-      width: 0;
-      display: none;
-    }
-  }
-
-  .card-tail .card-visit {
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 1.6rem;
-    color: #cccccc;
-    span {
-      font-size: .6rem;
-    }
-  }
+  padding-top: .4rem;
 
   .card-tail .card-date {
     display: inline-block;

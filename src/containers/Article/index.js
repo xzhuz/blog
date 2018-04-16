@@ -14,8 +14,8 @@ class Article extends React.PureComponent {
 
     componentDidMount() {
         const {articleId} = this.props.match.params;
-        const {tag} = this.props.location.state;
-        this.props.findMatchTagsArticle({tag: [...tag]});
+        const {tags} = this.props.location.state;
+        this.props.findMatchTagsArticle({tag: [...tags]});
         this.props.getSpecifiedArticle(articleId);
         this.props.getAllArticleTags();
     }
@@ -25,7 +25,7 @@ class Article extends React.PureComponent {
         this.props.getSpecifiedArticle(articleId);
         this.props.history.push({
             pathname: `/article/${articleId}`,
-            state: {tag: tags}
+            state: {tags: tags}
         });
     }
 

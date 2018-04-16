@@ -34,8 +34,8 @@ Router.get('/delete', function (req, res) {
 
 
 Router.post('/update', function (req, res) {
-    const {id, active} = req.body;
-    Menu.findByIdAndUpdate({_id: id}, {active}, function (err, doc) {
+    const {id, active, describe, index, click, path} = req.body;
+    Menu.findByIdAndUpdate({_id: id}, {active, describe, index, click, path}, function (err, doc) {
         return res.json({code: 0, data: doc});
     });
 });
