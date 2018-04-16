@@ -4,6 +4,7 @@ Personal Blog
 > 使用React技术栈搭建的个人博客网站😀😀, 目前还处于`Blog1.0`🤗 后续会继续更新版本的😜.
 
 技术栈:
+
 前端: React, Create-React-App, Redux, React-Redux, React-Router v4, React MarkDown
 
 后端: Node, Express Mongoose,
