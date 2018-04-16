@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 
 import {reducers} from "./reducers";
 import App from './containers/App';
-
+import 'nprogress/nprogress.css';
 import './index.scss';
 
 const middleware = [thunk];

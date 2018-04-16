@@ -1,20 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-
-import './article.scss';
 import ReactMarkDown from 'react-markdown';
+import NProgress from 'nprogress';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {findMatchTagsArticle, getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import Title from "../../components/Title/Title";
 import RightSideBar from "../RightSideBar";
+import './article.scss';
 
 class Article extends React.PureComponent {
 
     componentDidMount() {
         const {articleId} = this.props.match.params;
         const {tags} = this.props.location.state;
+        NProgress.start();
         this.props.findMatchTagsArticle({tag: [...tags]});
         this.props.getSpecifiedArticle(articleId);
         this.props.getAllArticleTags();
@@ -27,6 +28,10 @@ class Article extends React.PureComponent {
             pathname: `/article/${articleId}`,
             state: {tags: tags}
         });
+    }
+
+    componentDidUpdate() {
+        NProgress.done();
     }
 
     render () {

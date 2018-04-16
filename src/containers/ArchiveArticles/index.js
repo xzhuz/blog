@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import NProgress from 'nprogress';
 import Card from '../../components/Card';
 import '../Home/home.scss';
 import {
     findMatchTagsArticle,
     getPopularArticle,
     reduceVisit,
-    getAllArticleTags,
     getPartArticles,
-    doCountArticles
 } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
@@ -35,8 +34,13 @@ class ArchiveArticles extends React.PureComponent {
 
     componentDidMount() {
         const {tagName}  = this.props.match.params;
+        NProgress.start();
         this.props.findMatchTagsArticle({tag: [tagName]});
         this.props.getPopularArticle();
+    }
+
+    componentDidUpdate() {
+        NProgress.done();
     }
 
     tagClick(v) {

@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import NProgress from 'nprogress';
 import Card from '../../components/Card';
 import './home.scss';
 import {
     findMatchTagsArticle,
     getPopularArticle,
     reduceVisit,
-    getAllArticleTags,
     getPartArticles,
     doCountArticles
 } from "../../reducers/article.redux";
@@ -37,6 +37,7 @@ class Home extends React.PureComponent {
         this.props.getPartArticles(this.state);
         this.props.getPopularArticle();
         this.props.doCountArticles();
+        NProgress.start();
     }
 
     tagClick(v) {
@@ -57,6 +58,10 @@ class Home extends React.PureComponent {
 
     renderReadMore(filled) {
         return filled ? <BottomOut/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
+    }
+
+    componentDidUpdate() {
+        NProgress.done();
     }
 
     render() {
