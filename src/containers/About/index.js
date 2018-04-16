@@ -22,7 +22,9 @@ class About extends React.PureComponent{
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}
             >
-                <ReactMarkDown source={about} escapeHtml={false}/>
+                <div className={'about-content'}>
+                    <ReactMarkDown source={about} escapeHtml={false}/>
+                </div>
             </ReactCSSTransitionGroup>
         );
     }
