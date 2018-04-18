@@ -36,6 +36,7 @@ class InputItem extends React.PureComponent {
                        onChange={(v) => this.handleChange(v)}
                        onKeyUp={(v) => this.handleKeyUp(v)}
                        value={defaultVal}
+                       autoComplete='false'
                 />
             </div>
 

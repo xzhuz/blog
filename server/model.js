@@ -25,13 +25,6 @@ const models = {
         'user': {'type': String, require: true},
         'pwd': {'type': String, require: true},
     },
-    menu: {
-        'index': {'type': Number, require: true},
-        'path': {'type': String, require: true},
-        'describe': {'type': String, require: true},
-        'active': {'type': Boolean, require: true, default: false},
-        'click': {'type': Boolean, require: true, default: true},
-    },
     about: {
         'userId': {'type': String, require: true, unique: true},
         'name': {'type': String, require: true},

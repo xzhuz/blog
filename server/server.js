@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const articleRouter = require('./article');
 const userRouter = require('./user');
-const menuRouter = require('./menu');
 const fileRouter = require('./file');
 const aboutRouter = require('./about');
 
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 
 app.use('/articles', articleRouter);
 app.use('/user', userRouter);
-app.use('/menu', menuRouter);
 app.use('/file', fileRouter);
 app.use('/about', aboutRouter);
 

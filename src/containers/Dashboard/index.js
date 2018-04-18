@@ -7,7 +7,6 @@ import './dashboard.scss';
 import BoardRouter from "../BoardRouter";
 import Publish from "../Publish";
 import ArticleList from '../ArticleList';
-import {loadMenuData} from "../../reducers/menu.redux";
 import NotFound from "../../components/NotFound";
 import ModifyBlog from "../ModifyArticle";
 import ModifyAboutMe from '../ModifyAboutMe';
@@ -32,9 +31,6 @@ class Dashboard extends React.PureComponent {
                 }
             }
         });
-
-        // 获取目录信息
-        this.props.loadMenuData();
     }
 
     handleClick(v, index) {
@@ -45,29 +41,17 @@ class Dashboard extends React.PureComponent {
             );
     }
 
-    renderBoardRouter({path, describe, click, index}) {
-        return click
-            ? <BoardRouter toPath={path} describe={describe} linkClick={v => this.handleClick(v, index)} />
-            : <span className={'self-router'}>{describe}</span>;
-    }
     render() {
+        const {pathname} = this.props.location;
         return (
             <div className={'dashboard-container'}>
                 <div className={'dashboard-side-bar'}>
                     <div className={'board-router'}>
                         <ul>
-                            {
-                                this.props.menu.map((val, index) => (
-                                    <li key={index} className={`${this.state.dashMenu[index]
-                                        ? (this.state.dashMenu[index].active ? 'active-link': '')
-                                        : (val.path === this.props.location.pathname ? 'active-link' : '')}`}>
-                                        {
-                                            this.renderBoardRouter({path: val.path, describe:val.describe, click: val.click, index})
-                                        }
-                                    </li>
-                                ))
-                            }
-
+                            <li className={pathname === '/dashboard/list' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/list'} describe={'列表'} /></li>
+                            <li className={pathname === '/dashboard/publish' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/publish'} describe={'发布'} /></li>
+                            <li className={pathname === '/dashboard/modify' ? 'active-link' : ''}><span className={'self-router'}>更新</span></li>
+                            <li className={pathname === '/dashboard/aboutme' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/aboutme'} describe={'关于'}/></li>
                         </ul>
                     </div>
                 </div>
@@ -88,9 +72,8 @@ class Dashboard extends React.PureComponent {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        menu: state.menu
     };
 };
 
 
-export default withRouter(connect(mapStateToProps, {loadUser, loadMenuData})(Dashboard));
+export default withRouter(connect(mapStateToProps, {loadUser})(Dashboard));

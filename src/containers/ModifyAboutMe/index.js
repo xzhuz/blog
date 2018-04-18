@@ -36,7 +36,6 @@ class ModifyAboutMe extends React.Component {
 
     render () {
         const aboutMe = this.props.aboutMe;
-        console.log(aboutMe);
         const {errorMsg, successMsg} = this.props.msg;
         return (
             <div className={'container modify-about-container'}>
