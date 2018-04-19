@@ -37,10 +37,10 @@ class ArticleList extends React.PureComponent {
 
     }
 
-    clickUpdatePost({_id, title, content, summary, tags, thumb}) {
+    clickUpdatePost({id, title, content, summary, tags, thumb}) {
         this.props.history.push({
             pathname: `/dashboard/modify`,
-            state: {id: _id, title: title, content: content, summary: summary, tags: tags, thumb: thumb}});
+            state: {id: id, title: title, content: content, summary: summary, tags: tags, thumb: thumb}});
     }
 
     renderPagination(size) {

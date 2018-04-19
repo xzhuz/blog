@@ -217,8 +217,9 @@ export function deleteArticle(id) {
  * @param thumb
  */
 export function updateArticle({id, content, summary, title, tags, publish, thumb}) {
+    console.log({id, content, summary, title, tags, publish, thumb});
     return dispatch => {
-        axios.post('/api/articles/update', {id, content, summary, title, tags, publish, thumb}).then(res => {
+        axios.post('/api/articles/update', {id, content, summary, title, tags: tags.join(','), publish, thumb}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getSpecifiedArticle(id);
                 dispatch(updateArticleMsg('更新成功'));
