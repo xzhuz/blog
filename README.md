@@ -1,4 +1,4 @@
-Personal Blog 
+Personal Blog
 ========
 
 > 使用React技术栈搭建的个人博客网站😀😀, 目前还处于`Blog1.0`🤗 后续会继续更新版本的😜.
@@ -25,10 +25,9 @@ Personal Blog
    - 编辑已有博客
    - 删除博客
    - 上传图片到服务器
-   - 更新关于我内容
-   
+
 ### 项目首页预览
-![首页预览](./doc/example.png)   
+![首页预览](./doc/example.png)
 
 
 ##### 欢迎大家star😋😋😋

@@ -24,13 +24,6 @@ const models = {
     user: {
         'user': {'type': String, require: true},
         'pwd': {'type': String, require: true},
-    },
-    about: {
-        'userId': {'type': String, require: true, unique: true},
-        'name': {'type': String, require: true},
-        'mail': {'type': String, require: true},
-        'location': {'type': String},
-        'about': {'type': String}
     }
 };
 

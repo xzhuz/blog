@@ -1,6 +1,3 @@
-// about
-export const LOAD_ABOUT_ME = 'LOAD_ABOUT_ME';
-export const UPDATE_ABOUT_SUCCESS = 'UPDATE_ABOUT_SUCCESS';
 
 // article
 export const LIST_ALL_ARTICLE = 'LIST_ALL_ARTICLE';
@@ -18,8 +15,6 @@ export const RETURN_IMG_PATH = 'RETURN_IMG_PATH';
 export const RETURN_COVER_IMG = 'RETURN_COVER_IMG';
 
 
-// menu
-export const LOAD_MENU = 'LOAD_MENU';
 
 // user
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

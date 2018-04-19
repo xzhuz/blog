@@ -9,7 +9,6 @@ import Publish from "../Publish";
 import ArticleList from '../ArticleList';
 import NotFound from "../../components/NotFound";
 import ModifyBlog from "../ModifyArticle";
-import ModifyAboutMe from '../ModifyAboutMe';
 class Dashboard extends React.PureComponent {
 
     constructor(props) {
@@ -51,7 +50,6 @@ class Dashboard extends React.PureComponent {
                             <li className={pathname === '/dashboard/list' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/list'} describe={'列表'} /></li>
                             <li className={pathname === '/dashboard/publish' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/publish'} describe={'发布'} /></li>
                             <li className={pathname === '/dashboard/modify' ? 'active-link' : ''}><span className={'self-router'}>更新</span></li>
-                            <li className={pathname === '/dashboard/aboutme' ? 'active-link' : ''}><BoardRouter toPath={'/dashboard/aboutme'} describe={'关于'}/></li>
                         </ul>
                     </div>
                 </div>
@@ -60,7 +58,6 @@ class Dashboard extends React.PureComponent {
                             <Route path='/dashboard/publish' component={Publish}/>
                             <Route path='/dashboard/modify' component={ModifyBlog}/>
                             <Route path='/dashboard/list' component={ArticleList}/>
-                            <Route path='/dashboard/aboutme' component={ModifyAboutMe}/>
                             <Route componet={NotFound}/>
                         </Switch>
                 </div>

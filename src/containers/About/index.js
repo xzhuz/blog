@@ -2,21 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactMarkDown from 'react-markdown';
-import NProgress from 'nprogress';
 import './about.scss';
-import {getAboutMe} from "../../reducers/about.redux";
 
 class About extends React.PureComponent{
 
-    componentDidMount() {
-        NProgress.start();
-        this.props.getAboutMe();
-    }
-    componentDidUpdate() {
-        NProgress.done();
-    }
     render() {
-        const {about} = this.props.aboutMe;
+        const {about} = "";
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
@@ -35,10 +26,5 @@ class About extends React.PureComponent{
     }
 }
 
-const mapStateToProps = (state) => {
-  return {
-      aboutMe: state.aboutMe,
-  };
-};
 
-export default connect(mapStateToProps, {getAboutMe})(About);
+export default About;

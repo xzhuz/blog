@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as User from '../actions/constants';
 import {authSuccess, clearErrorMsg, errorMsg} from "../actions/user.index";
+import utils from 'utility';
+
 
 const initState = {
     redirectTo: '',
@@ -29,7 +31,7 @@ export function login({user, pwd}) {
         return errorMsg('用户名或密码必须输入');
     }
     return dispatch => {
-        axios.post('/user/login', {user, pwd}).then(res => {
+        axios.post('/api/user/login', {user, pwd: md5Pwd(pwd)}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(authSuccess(res.data.data));
                 // 同时，清空错误信息
@@ -39,4 +41,10 @@ export function login({user, pwd}) {
             }
         });
     };
+}
+
+// 加密pwd
+function md5Pwd(pwd) {
+    const salt = 'react_is_good_#$12#$%&';
+    return utils.md5(utils.md5(pwd + salt));
 }

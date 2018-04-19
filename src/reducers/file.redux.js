@@ -18,7 +18,7 @@ export function thumbFile(state = initState, action) {
 
 export function uploadImg(formData) {
     return dispatch => {
-        axios.post('/file/upload', formData, {
+        axios.post('/api/file/upload', formData, {
             headers: {
                 'Content-Type': 'multiple/form-data'
             }
@@ -35,7 +35,7 @@ export function uploadImg(formData) {
 
 export function uploadThumb(formData) {
     return dispatch => {
-        axios.post('/file/upload', formData, {
+        axios.post('/api/file/upload', formData, {
             headers: {
                 'Content-Type': 'multiple/form-data'
             }
