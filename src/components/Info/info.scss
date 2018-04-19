@@ -1,0 +1,45 @@
+.info-appear {
+  opacity: 0;
+}
+
+.info-appear.info-appear-active {
+  opacity: 1;
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+}
+
+.info {
+  display: inline-block;
+  min-width: 250px;
+  background-color: #f6f6f6bf;
+  border: 1px solid #cccccc;
+  color: #555;
+  white-space: nowrap;
+  height: 2rem;
+  line-height: 2rem;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  span {
+    display: inline-block;
+  }
+
+}
+
+.info .icon {
+  width: 15%;
+  font-size: 1.2rem;
+  border-right: 1px solid $baseBorderColor;
+  text-align: center;
+}
+.info .text {
+  width: 82%;
+  font-size: .9rem;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: $baseStressColor;
+    font-size: 1rem;
+  }
+}

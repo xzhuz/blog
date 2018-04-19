@@ -1,13 +1,12 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import classNames from 'classnames';
+import * as FontAwesome from 'react-icons/lib/fa';
 import './header.scss';
 
 class Header extends React.PureComponent {
 
     render() {
-        const github = require(`../../img/github.svg`);
-        const weibo = require(`../../img/sinaweibo.svg`);
         const {pathname} = this.props.history.location;
         return (
             <header className={'header'}>
@@ -22,10 +21,10 @@ class Header extends React.PureComponent {
                     </div>
                     <div className={'header-contact'}>
                         <a href='https://github.com/mrmeisen' target='_blank'>
-                            <img src={github} alt='github' style={{width: 20}} />
+                            <FontAwesome.FaGithub/>
                         </a>
                         <a href='https://weibo.com/3002849234/profile?rightmod=1&wvr=6&mod=personinfo' target='_blank'>
-                            <img src={weibo} alt='weibo' style={{width: 25}} />
+                            <FontAwesome.FaWeibo/>
                         </a>
                     </div>
                 </nav>

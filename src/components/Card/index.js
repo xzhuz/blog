@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import * as FontAwesome from 'react-icons/lib/fa';
 
 import Tag from '../Tag/index';
 

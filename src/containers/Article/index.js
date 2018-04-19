@@ -34,6 +34,10 @@ class Article extends React.PureComponent {
         NProgress.done();
     }
 
+    componentWillUnmount() {
+        NProgress.done();
+    }
+
     render () {
         const {title, content, date, tags} = this.props.article;
         const {articleTag, articles} = this.props;

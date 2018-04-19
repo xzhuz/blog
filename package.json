@@ -118,5 +118,5 @@
   "devDependencies": {
     "semi": "^4.0.5"
   },
-  "proxy": "http://localhost:9093"
+  "proxy": "http://localhost:8000"
 }

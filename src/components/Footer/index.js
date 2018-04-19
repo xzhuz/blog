@@ -6,9 +6,9 @@ class Footer extends React.PureComponent {
 
     render () {
         return (
-            <Footer>
-                <p>© Copyright Mei Sen</p>
-            </Footer>
+            <footer className={'container'}>
+                <p>Copyright © Mei Sen</p>
+            </footer>
         );
     }
 }
