@@ -1,7 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ReactMarkDown from 'react-markdown';
 import './about.scss';
 
 class About extends React.PureComponent{
@@ -19,7 +17,6 @@ class About extends React.PureComponent{
                 transitionLeaveTimeout={300}
             >
                 <div className={'about-content'}>
-                    <ReactMarkDown source={about} escapeHtml={false}/>
                 </div>
             </ReactCSSTransitionGroup>
         );

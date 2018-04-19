@@ -46,7 +46,7 @@ export function login({user, pwd}) {
 
 
 export function register({user, pwd}) {
-    return errorMsg('对不起, 暂时不支持注册功能!');
+    // return errorMsg('对不起, 暂时不支持注册功能!');
 
     // if (!user || !pwd) {
     //     return errorMsg('用户名或密码必须输入');

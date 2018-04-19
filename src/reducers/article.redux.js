@@ -181,9 +181,9 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
  * @param visit
  * @returns {function()}
  */
-export function reduceVisit({id, visit}) {
+export function reduceVisit({id}) {
     return () => {
-        axios.post('/api/articles/visit', {id, visit}).then(res => {
+        axios.get('/api/articles/visit', {params: {id: id}}).then(res => {
             if (res.data.code === 0) {
                 getPopularArticle();
             }

@@ -7,7 +7,7 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import ArchiveArticles from './ArchiveArticles';
 import NotFound from "../components/NotFound";
-import About from "./About";
+import About from "../components/About";
 
 class App extends React.PureComponent {
     render() {
