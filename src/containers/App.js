@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import ArchiveArticles from './ArchiveArticles';
 import NotFound from "../components/NotFound";
 import About from "../components/About";
+import Footer from "../components/Footer";
 
 class App extends React.PureComponent {
     render() {
@@ -24,6 +25,7 @@ class App extends React.PureComponent {
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route component={NotFound}/>
                     </Switch>
+                    <Footer/>
                 </div>
             </BrowserRouter>
         );

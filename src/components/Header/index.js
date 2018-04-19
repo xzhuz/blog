@@ -14,10 +14,10 @@ class Header extends React.PureComponent {
                 <nav className={'header-content'}>
                     <span className={'signature'}><Link to={{ pathname: '/home'}}>Mei Sen</Link></span>
                     <div className={'header-link'}>
-                        <span className={classNames('header-path-link')}><Link to={{ pathname: '/home'}}>首页</Link></span>
+                        <span className={classNames('header-path-link')}><Link to={{ pathname: '/home'}}>Home</Link></span>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/introduction',
-                        })}><Link to={{ pathname: '/introduction'}}>关于我</Link></span>
+                        })}><Link to={{ pathname: '/introduction'}}>About</Link></span>
 
                     </div>
                     <div className={'header-contact'}>
