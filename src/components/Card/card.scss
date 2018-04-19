@@ -107,6 +107,15 @@
   border-top: 1px solid #cccccc;
   padding-top: .2rem;
 
+  .card-tail {
+    width: 30%;
+
+    @media only screen and (max-width: 767px) {
+      width: 0;
+      display: none;
+    }
+  }
+
   .card-tail .card-date {
     display: inline-block;
     line-height: 1.8rem;

@@ -10,9 +10,8 @@
 }
 
 .about-container {
-  background-color: #ffffff;
   color: #333333;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .about-content {
@@ -22,6 +21,26 @@
   display: -webkit-flex;
   display: -moz-flex;
   flex-flow: column;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  overflow: hidden;
+  z-index: 1;
+  box-sizing: border-box;
+
+  &:before {
+    background: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    -o-filter: blur(20px);
+    filter: blur(20px);
+    z-index: -3;
+  }
 
   .avatar, .about-info {
     display: flex;

@@ -47,7 +47,16 @@ class About extends React.PureComponent{
                         <section>
                             <h2><span className={'title'}>Int</span>erests</h2>
                             <p>
-                                <Interest label={'Movie'} icon={'🎬'}/>
+                                <Interest label={'电影'} icon={'🎬'}/>
+                                <Interest label={'音乐'} icon={'🎧'}/>
+                                <Interest label={'小说'} icon={'📚'}/>
+                                <Interest label={'茶'} icon={'🍵'}/>
+                            </p>
+                            <p>
+                                <Interest label={'乒乓'} icon={'🏓'}/>
+                                <Interest label={'Novel'} icon={'📚'}/>
+                                <Interest label={'Music'} icon={'🎧'}/>
+                                <Interest label={'Tea'} icon={'🍵'}/>
                             </p>
                         </section>
                     </div>

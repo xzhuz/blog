@@ -10,8 +10,7 @@ body {
   font-size: 12px;
   font-size: 1.2rem;
   font-family: 'Microsoft Yahei','Helvetica Neue', Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono,monospace;
-  background: #f6f6f6;
-  //background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .container {
@@ -20,6 +19,7 @@ body {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
+  position: relative;
 
   @media only screen and (max-width: 768px) {
     width: 96%;
