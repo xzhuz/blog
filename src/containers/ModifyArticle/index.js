@@ -25,7 +25,7 @@ class ModifyBlog extends React.Component {
     componentDidMount() {
         const {id, title, content, summary, tags, thumb} = this.props.location.state;
         this.setState({
-            tags: [...tags],
+            tags: [...tags.split(',')],
             id: id,
             title: title,
             content: content,

@@ -100,7 +100,9 @@ export function getArticleList() {
  */
 export function getSpecifiedArticle(id) {
     return dispatch => {
-        axios.get('/api/articles/content?articleId=' + id).then(res => {
+        axios.get('/api/articles/info', {
+            params: {id: id}
+        }).then(res => {
             if (res.data.code === 0) {
                 dispatch(loadArticle(res.data.data));
             } else {
@@ -133,7 +135,12 @@ export function getPopularArticle() {
  */
 export function getPartArticles({skip, limit}) {
     return dispatch => {
-        axios.get('/api/articles/part?start=' + skip + '&end=' + limit).then(res => {
+        axios.get('/api/articles/part', {
+            params: {
+                page: skip,
+                size: limit,
+            }
+        }).then(res => {
             if (res.data.code === 0) {
                 dispatch(listPartArticles(res.data.data));
             } else {
@@ -156,9 +163,9 @@ export function getPartArticles({skip, limit}) {
  */
 export function publishArticle({thumb, content, summary, title, tags, visit, publish}) {
     return dispatch => {
-        axios.post('/api/articles/publish', {thumb, content, summary, title, tags, visit, publish}).then(res => {
+        axios.post('/api/articles/publish', {thumb, content, summary, title, tags: tags.join(','), visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
-                publish ? dispatch(publishArticleMsg('发布成功!')) : dispatch(publishArticleMsg('保存成功!'));
+                publish ? dispatch(publishArticleMsg('发布文章成功!')) : dispatch(publishArticleMsg('保存文章成功!'));
                 dispatch(clearErrorMsg());
             } else {
                 dispatch(errorMsg(res.data.msg));
@@ -230,6 +237,7 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  * @returns {Function}
  */
 export function findMatchTagsArticle({tag}) {
+    console.log(tag);
     return dispatch => {
         axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {

@@ -34,7 +34,7 @@ class RightSideBar extends React.PureComponent {
         const {articles, articleTag, articleSideBarTitle} = this.props;
         let tag = [];
         articleTag.map(v => {
-            tag = [...tag, ...v];
+            tag = [...tag, ...v.split(',')];
         });
         tag = Array.from(new Set(tag));
         return (
@@ -43,7 +43,7 @@ class RightSideBar extends React.PureComponent {
                     {
                         articles
                             ? articles.filter(v => v.publish).map((v, index) => (
-                                <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb} visit={v.visit}
+                                <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
                                       summary={''} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                                       showPost={(id) => this.showPostContent(id, v.visit, v.tags)} showCardInfo={false}/>
                             ))

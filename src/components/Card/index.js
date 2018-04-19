@@ -23,7 +23,7 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {thumb, title, summary, tags, date, showCardInfo, visit} = this.props;
+        const {thumb, title, summary, tags, date, showCardInfo} = this.props;
         return (
             <ReactCSSTransitionGroup
                 component={'div'}
@@ -47,7 +47,7 @@ class Card extends React.PureComponent {
                     <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
                         <div className={'card-tags'}>
                             {
-                                tags.sort().map((v, index) => (
+                                tags.split(',').sort().map((v, index) => (
                                     <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
                                 ))
                             }
@@ -70,7 +70,7 @@ Card.propTypes = {
     articleId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
-    tags: PropTypes.array.isRequired,
+    tags: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     showCardInfo: PropTypes.bool.isRequired,
     visit: PropTypes.number.isRequired,

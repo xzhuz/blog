@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
-import {login} from "../../reducers/user.redux";
+import {login, register} from "../../reducers/user.redux";
 import './login.scss';
 import InputItem from "../../components/InputItem";
 import Button from "../../components/Button";
@@ -11,6 +11,7 @@ class Login extends React.PureComponent {
     constructor(props) {
         super(props);
         this.login = this.login.bind(this);
+        this.register = this.register.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             user: '',
@@ -27,6 +28,9 @@ class Login extends React.PureComponent {
     login() {
         this.props.login(this.state);
     }
+    register() {
+        this.props.register(this.state);
+    }
 
     render() {
         return (
@@ -38,6 +42,8 @@ class Login extends React.PureComponent {
                     <InputItem inputType={'password'} handleChange={(v) => this.handleChange('pwd', v)} holder={'Password'} onEnter={this.login}/>
                     <div className={'login-button'}>
                         <Button describe={'登录'} btnClick={this.login}/>
+
+                        <Button describe={'注册'} className={'no-class'} btnClick={this.register}/>
                     </div>
                     <span className={'error-msg'}>{this.props.msg}</span>
                 </div>
@@ -47,4 +53,4 @@ class Login extends React.PureComponent {
     }
 }
 
-export default withRouter(connect(state => state.user, {login})(Login));
+export default withRouter(connect(state => state.user, {login, register})(Login));

@@ -43,3 +43,11 @@
   color: red;
   font-size: .8rem;
 }
+
+.default-btn.no-class{
+  background: none;
+  color: #555555;
+  &:hover {
+    background: none;
+  }
+}

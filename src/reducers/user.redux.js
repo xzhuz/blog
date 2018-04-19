@@ -31,16 +31,37 @@ export function login({user, pwd}) {
         return errorMsg('用户名或密码必须输入');
     }
     return dispatch => {
-        axios.post('/api/user/login', {user, pwd: md5Pwd(pwd)}).then(res => {
+        axios.post('/api/user/login', {username: user, password: md5Pwd(pwd)}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 dispatch(authSuccess(res.data.data));
                 // 同时，清空错误信息
                 dispatch(clearErrorMsg());
             } else {
+                console.log(res.data);
                 dispatch(errorMsg(res.data.msg));
             }
         });
     };
+}
+
+
+export function register({user, pwd}) {
+    return errorMsg('对不起, 暂时不支持注册功能!');
+
+    // if (!user || !pwd) {
+    //     return errorMsg('用户名或密码必须输入');
+    // }
+    // return dispatch => {
+    //     axios.post('/api/user/register', {username: user, password: md5Pwd(pwd)}).then(res => {
+    //         if (res.status === 200 && res.data.code === 0) {
+    //             // dispatch(authSuccess(res.data.data));
+    //             // 同时，清空错误信息
+    //             dispatch(clearErrorMsg());
+    //         } else {
+    //             dispatch(errorMsg(res.data.msg));
+    //         }
+    //     });
+    // };
 }
 
 // 加密pwd

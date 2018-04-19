@@ -13,31 +13,18 @@ class Dashboard extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {
-            dashMenu: []
-        };
     }
 
     componentDidMount() {
         // 获取用户信息
-        axios.get('/user/info').then(res => {
-            if (res.status === 200) {
-                if (res.data.code === 0) {
-                    // 用登录信息
-                    this.props.loadUser(res.data.data);
-                } else {
-                    this.props.history.push('/login');
-                }
+        axios.get('/api/user/info').then(res => {
+            if (res.status === 200 && res.data.code !== 0) {
+                // 目前会出现如果后台报错，这里进入的时候会无限发送请求
+                this.props.history.push(`/login`);
             }
+        }).catch(error => {
+            this.props.history.push(`/login`);
         });
-    }
-
-    handleClick(v, index) {
-        this.setState(
-            {dashMenu: this.props.menu.map((v, i) => {
-                return {...v, active: i === index};
-            })}
-            );
     }
 
     render() {
@@ -66,11 +53,5 @@ class Dashboard extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user,
-    };
-};
 
-
-export default withRouter(connect(mapStateToProps, {loadUser})(Dashboard));
+export default withRouter(Dashboard);

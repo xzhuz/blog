@@ -23,7 +23,7 @@ class ArticleList extends React.PureComponent {
     clickShowPost(id, tags) {
         this.props.history.push({
             pathname: `/article/${id}`,
-            state: {tags: tags}
+            state: {tags: new Array(tags.split(','))}
         });
     }
 

@@ -5,7 +5,6 @@ import NProgress from 'nprogress';
 import Card from '../../components/Card';
 import './home.scss';
 import {
-    findMatchTagsArticle,
     getPopularArticle,
     reduceVisit,
     getPartArticles,
@@ -28,7 +27,7 @@ class Home extends React.PureComponent {
     showPostContent(articleId, visit, tags) {
         this.props.history.push({
             pathname: `/article/${articleId}`,
-            state: {tags: tags}
+            state: {tags: new Array(tags.split(','))}
         });
         this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
@@ -45,7 +44,7 @@ class Home extends React.PureComponent {
     }
 
     renderCards(v, index) {
-        return <Card key={index} articleId={v._id} title={v.title} thumb={v.thumb} visit={v.visit}
+        return <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                      showPost={(id) => this.showPostContent(id, v.visit, v.tags)} showCardInfo={true}/>;
     }
@@ -99,6 +98,5 @@ export default withRouter(connect(mapStateToProps, {
     getPartArticles,
     getPopularArticle,
     reduceVisit,
-    findMatchTagsArticle,
     doCountArticles,
 })(Home));

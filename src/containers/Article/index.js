@@ -26,7 +26,7 @@ class Article extends React.PureComponent {
         this.props.getSpecifiedArticle(articleId);
         this.props.history.push({
             pathname: `/article/${articleId}`,
-            state: {tags: tags}
+            state: {tags: new Array(tags.split(','))}
         });
     }
 

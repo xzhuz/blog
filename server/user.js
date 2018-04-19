@@ -28,8 +28,8 @@ Router.post('/register', function (req, res) {
 });
 
 Router.post('/login', function (req, res) {
-    const {user, pwd} = req.body;
-    User.findOne({user, pwd: md5Pwd(pwd)}, _filter, function (err, doc) {
+    const {username, password} = req.body;
+    User.findOne({user: username, pwd: md5Pwd(password)}, _filter, function (err, doc) {
         if(!doc) {
             return res.json({code: 1, msg: '用户名或密码错误'});
         }

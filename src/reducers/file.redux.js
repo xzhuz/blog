@@ -24,6 +24,7 @@ export function uploadImg(formData) {
             }
         }).then(res => {
             if (res.status === 200 && res.data.code === 0){
+                console.log(res.data.data);
                 dispatch(getImgPath(res.data.data));
                 dispatch(clearErrorMsg());
             } else {

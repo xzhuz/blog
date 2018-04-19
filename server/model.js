@@ -16,7 +16,7 @@ const models = {
         "summary": {'type': String},
         // 内容
         'content': {'type': String},
-        'tags': {'type': Array, require: true},
+        'tags': {'type': String, require: true},
         'visit': {'type': Number, require: true, default: 0},
         'publish': {'type': Boolean, require: true, default: false},
         'date': {'type': Date, require: true, default: new Date()},
