@@ -8,7 +8,7 @@ import BoardRouter from "../BoardRouter";
 import Publish from "../Publish";
 import ArticleList from '../ArticleList';
 import NotFound from "../../components/NotFound";
-import ModifyBlog from "../ModifyArticle";
+import ModifyArticle from "../ModifyArticle";
 class Dashboard extends React.PureComponent {
 
     constructor(props) {
@@ -43,7 +43,7 @@ class Dashboard extends React.PureComponent {
                 <div className={'dashboard-board'}>
                         <Switch>
                             <Route path='/dashboard/publish' component={Publish}/>
-                            <Route path='/dashboard/modify' component={ModifyBlog}/>
+                            <Route path='/dashboard/modify' component={ModifyArticle}/>
                             <Route path='/dashboard/list' component={ArticleList}/>
                             <Route componet={NotFound}/>
                         </Switch>

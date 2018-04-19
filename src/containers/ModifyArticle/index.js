@@ -6,7 +6,7 @@ import ArticleForm from "../../components/ArticleForm";
 import {uploadImg, uploadThumb} from "../../reducers/file.redux";
 import {clearMsg} from "../../actions/article.index";
 
-class ModifyBlog extends React.Component {
+class ModifyArticle extends React.Component {
     constructor(props) {
         super(props);
         this.modify = this.modify.bind(this);
@@ -146,4 +146,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, {updateArticle, uploadImg, uploadThumb, clearMsg})(ModifyBlog));
+export default withRouter(connect(mapStateToProps, {updateArticle, uploadImg, uploadThumb, clearMsg})(ModifyArticle));

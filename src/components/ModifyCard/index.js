@@ -18,7 +18,7 @@ class ModifyCard extends React.PureComponent {
     }
 
     render() {
-        const {_id, title, visit, date, content, summary, tags, publish, thumb} = this.props.items;
+        const {id, title, visit, date, content, summary, tags, publish, thumb} = this.props.items;
         return (
             <div className={'modify-card-wrap'}>
                 <div className={'modify-card-info-wrap'}>
@@ -29,9 +29,9 @@ class ModifyCard extends React.PureComponent {
                     <span className={'modify-card-info'}>{publish ? '已发布' : '草稿'}</span>
                 </div>
                 <div className={'modify-card-btn-wrap'}>
-                    <Button describe={'编辑'} btnClick={() => this.clickUpdatePost({_id, title, content, summary, tags, thumb})} />
-                    <Button describe={'查看'} btnClick={() => this.clickShowPost(_id, tags)} />
-                    <Button describe={'删除'} btnClick={() => this.clickRemovePost(_id)} />
+                    <Button describe={'编辑'} btnClick={() => this.clickUpdatePost({id, title, content, summary, tags, thumb})} />
+                    <Button describe={'查看'} btnClick={() => this.clickShowPost(id, tags)} />
+                    <Button describe={'删除'} btnClick={() => this.clickRemovePost(id)} />
                 </div>
             </div>
         );

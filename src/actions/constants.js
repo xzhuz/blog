@@ -1,4 +1,3 @@
-
 // article
 export const LIST_ALL_ARTICLE = 'LIST_ALL_ARTICLE';
 export const LIST_PART_ARTICLE = 'LIST_PART_ARTICLE';
@@ -12,9 +11,7 @@ export const ALL_ARTICLE_TAGS = 'ALL_ARTICLE_TAGS';
 
 // file
 export const RETURN_IMG_PATH = 'RETURN_IMG_PATH';
-export const RETURN_COVER_IMG = 'RETURN_COVER_IMG';
-
-
+export const RETURN_THUMB_IMG = 'RETURN_THUMB_IMG';
 
 // user
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

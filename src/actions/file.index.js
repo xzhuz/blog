@@ -8,7 +8,7 @@ export const getImgPath = (path) => {
 
 export const getThumb = (path) => {
     return {
-        type: File.RETURN_COVER_IMG,
+        type: File.RETURN_THUMB_IMG,
         payload: path
     };
 };

@@ -237,7 +237,6 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  * @returns {Function}
  */
 export function findMatchTagsArticle({tag}) {
-    console.log(tag);
     return dispatch => {
         axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {

@@ -6,14 +6,15 @@ import * as File from '../actions/constants';
 
 
 const initState = {
+    filePath: ''
 };
 
 export function imgFile(state = initState, action) {
-    return action.type === File.RETURN_IMG_PATH ? action.payload : state;
+    return action.type === File.RETURN_IMG_PATH ? Object.assign({}, {filePath: action.payload}) : state;
 }
 
 export function thumbFile(state = initState, action) {
-    return action.type === File.RETURN_COVER_IMG ? action.payload : state;
+    return action.type === File.RETURN_THUMB_IMG ? Object.assign({}, {filePath: action.payload}) : state;
 }
 
 export function uploadImg(formData) {
@@ -24,7 +25,6 @@ export function uploadImg(formData) {
             }
         }).then(res => {
             if (res.status === 200 && res.data.code === 0){
-                console.log(res.data.data);
                 dispatch(getImgPath(res.data.data));
                 dispatch(clearErrorMsg());
             } else {

@@ -22,8 +22,8 @@ const models = {
         'date': {'type': Date, require: true, default: new Date()},
     },
     user: {
-        'user': {'type': String, require: true},
-        'pwd': {'type': String, require: true},
+        'username': {'type': String, require: true},
+        'password': {'type': String, require: true},
     }
 };
 

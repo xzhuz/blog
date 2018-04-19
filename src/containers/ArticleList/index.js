@@ -12,7 +12,8 @@ class ArticleList extends React.PureComponent {
         super(props);
         this.goPage = this.goPage.bind(this);
         this.state = {
-            current: 1
+            current: 1,
+            count: 0,
         };
     }
 
@@ -30,6 +31,10 @@ class ArticleList extends React.PureComponent {
     clickRemovePost(id) {
         this.props.deleteArticle(id);
         this.props.getArticleList();
+        this.shouldComponentUpdate = () =>  {
+            return true;
+        };
+
     }
 
     clickUpdatePost({_id, title, content, summary, tags, thumb}) {
