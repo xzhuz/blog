@@ -6,7 +6,6 @@ import NProgress from 'nprogress';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {findMatchTagsArticle, getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
-import Title from "../../components/Title/Title";
 import RightSideBar from "../RightSideBar";
 import './article.scss';
 
@@ -58,9 +57,11 @@ class Article extends React.PureComponent {
                 transitionLeaveTimeout={300}
             >
                 <div className={'article'}>
-                    <Title title={title}/>
-                    <p className={'article-date'}>{new Date(date).toDateString()}</p>
-                    <ReactMarkDown source={content} escapeHtml={false}/>
+                    <section>
+                        <h2>{title ? title.trim() : ''}</h2>
+                        <p className='article-date'>{new Date(date).toDateString()}</p>
+                        <ReactMarkDown source={content} escapeHtml={false}/>
+                    </section>
                 </div>
                 <RightSideBar articles={relativeArticles}
                               showPostContent={(id, visit) => this.showPostContent(id, visit, tags)}

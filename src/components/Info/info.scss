@@ -12,8 +12,6 @@
 .info {
   display: inline-block;
   min-width: 250px;
-  background-color: #f6f6f6bf;
-  border: 1px solid #cccccc;
   color: #555;
   white-space: nowrap;
   height: 2rem;
@@ -21,6 +19,7 @@
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  background-image: linear-gradient(120deg, #f8f6f6 0%, #e3e5e6 100%);
   span {
     display: inline-block;
   }
@@ -32,6 +31,7 @@
   font-size: 1.2rem;
   border-right: 1px solid $baseBorderColor;
   text-align: center;
+  color: $baseStressColor;
 }
 .info .text {
   width: 82%;

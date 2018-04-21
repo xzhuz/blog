@@ -21,16 +21,13 @@
   display: -webkit-flex;
   display: -moz-flex;
   flex-flow: column;
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 
   border-radius: 6px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
   overflow: hidden;
   z-index: 1;
   box-sizing: border-box;
-
   &:before {
-    background: inherit;
     position: absolute;
     top: 0;
     left: 0;
@@ -39,6 +36,10 @@
     -ms-filter: blur(20px);
     -o-filter: blur(20px);
     filter: blur(20px);
+    background-size: cover;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+    background-repeat: inherit;
+    background-color: inherit;
     z-index: -3;
   }
 
@@ -51,6 +52,7 @@
   }
 
   .avatar {
+    z-index: -3;
     h1 {
       width: 100%;
       font-weight: 400;
@@ -61,7 +63,6 @@
       margin: .4rem auto 0;
     }
     h2 {
-      font-family: 'Microsoft Yahei','Helvetica Neue',Helvetica,Arial,sans-serif;
       font-size: 14px;
       font-weight: 300;
       font-style: normal;
@@ -86,7 +87,7 @@
   }
   section h2 {
     line-height: 2em;
-    border-bottom: 1px solid #cccccc;
+    border-bottom: 1px solid #e0e0e0;
     font-size: 1.4rem;
     margin: 0 auto;
     .title {
@@ -103,11 +104,61 @@
     flex-wrap: wrap;
     margin: .5rem auto;
 
-
     @media only screen and (max-width: 600px) {
       .info:first-child {
         margin-bottom: .5rem;
       }
     }
+  }
+}
+
+.about-content .about-info {
+  .about-info-statement, .about-info-about, .about-info-blog {
+    p {
+      display: flex;
+      display: -webkit-flex;
+      display: -moz-flex;
+      justify-content: flex-start;
+      -webkit-justify-content: flex-start;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.about-content .about-info .about-info-skill {
+
+  ul {
+    @media only screen and (max-width: 768px)  {
+      padding-left: 0;
+    }
+  }
+
+  ul>li {
+    list-style: none;
+    margin-bottom: 1rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    flex-wrap: nowrap;
+  }
+
+  .skill-name {
+    text-align: right;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 25%;
+    padding-right: 20px;
+    font-weight: 500;
+
+  }
+
+  .skill-intro {
+    text-align: left;
+    font-size: .8em;
+    color: #555;
   }
 }
