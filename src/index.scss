@@ -3,34 +3,46 @@ $baseStressColor: #E53A40;
 $baseFontColor: #090707;
 $baseBorderColor: #cccccc;
 //#EFDC05 #E53A40 #090707
-
-body {
+* {
   margin: 0;
   padding: 0;
+}
+
+html, body{
+  height: 100%;
+}
+
+body {
   font-size: 12px;
   font-size: 1.2rem;
   font-family: 'Arial','Microsoft YaHei','黑体','宋体', 'Helvetica Neue', Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono,monospace;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
-
-}
-
-html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input {
-  margin: 0;
-  padding: 0;
 }
 
 .container {
-  margin: 4rem auto;
+  flex: 1 0 auto;
+  margin: 1rem auto;
   width: 80%;
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
   position: relative;
   background-size: cover;
-  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+  //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 
   @media only screen and (max-width: 768px) {
     width: 96%;
   }
+}
+#root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  height: 100%;
+  flex-direction: column;
 }
 

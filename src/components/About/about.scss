@@ -20,7 +20,7 @@
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
-  flex-flow: column;
+  flex-direction: column;
 
   border-radius: 6px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
@@ -123,42 +123,19 @@
       font-size: 1rem;
       color: #555;
       margin-bottom: 1rem;
+
+      @media only screen and (max-width: 425px) {
+        font-size: .8rem;
+      }
+    }
+
+    .quote-content {
+      color: $baseStressColor;
+    }
+
+    .quote-name {
+      margin-left: 2%;
     }
   }
 }
 
-.about-content .about-info .about-info-skill {
-
-  ul {
-    @media only screen and (max-width: 768px)  {
-      padding-left: 0;
-    }
-  }
-
-  ul>li {
-    list-style: none;
-    margin-bottom: 1rem;
-    display: flex;
-    display: -webkit-flex;
-    display: -moz-flex;
-    flex-wrap: nowrap;
-  }
-
-  .skill-name {
-    text-align: right;
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 25%;
-    padding-right: 20px;
-    font-weight: 500;
-
-  }
-
-  .skill-intro {
-    text-align: left;
-    font-size: .8em;
-    color: #555;
-  }
-}

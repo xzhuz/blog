@@ -32,7 +32,10 @@ class About extends React.PureComponent{
                         <section className='about-info-about'>
                             <h2><span className='title'>Abo</span>ut</h2>
                             <p>大家好👋️, 我叫梅森, 来自重庆的Java程序猿⌨️</p>
-                            <p></p>
+                            <p>目前我正在用代码改变世界🤭🤭🤭,自豪表情☺️</p>
+                            <p>目前正走在成为一个很牛逼(ZhuangBi)的程序猿的道路上. 前途很艰辛, 但是我会坚持!</p>
+                            <p>最后, 生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</p>
+                            <p><i className='quote-content'>“人生得意须尽欢, 莫使金樽空对月.” </i> <i className='quote-name'> - 李白</i></p>
                         </section>
                         <section className='about-info-blog'>
                             <h2><span className='title'>Blo</span>g</h2>
@@ -41,39 +44,6 @@ class About extends React.PureComponent{
                             <p>同时, 也是对于自己生活工作的一个记录😋</p>
                             <p>技术驱动: 前端: React + Redux + React-Router 后端: Spring Boot + MySQL </p>
                             <p>PS. 由于博客才开始搭建, UI和功能都相对简单, 慢慢来...👐👐</p>
-                        </section>
-                        <section className='about-info-skill'>
-                            <h2><span className='title'>Ski</span>lls</h2>
-                            <ul>
-                                <li>
-                                    <span className='skill-name'>Programming</span>
-                                    <span className='skill-intro'>Java，JavaScript，ES6，HTML，CSS，Node.js</span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>DataBase</span>
-                                    <span className='skill-intro'>Oracle，MySQL，MongoDB</span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>Server</span>
-                                    <span className='skill-intro'>Tomcat，Nginx，Jboss</span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>Framework</span>
-                                    <span className='skill-intro'>Spring，Spring Boot，MyBatis，Hibernate</span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>Web</span>
-                                    <span className='skill-intro'>Redux，React-Router，SASS，React</span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>Tools</span>
-                                    <span className='skill-intro'>Maven，Gradle，Git，Svn，Webpack，Express, Linux，macOs，Intellij IDEA，Webstorm </span>
-                                </li>
-                                <li>
-                                    <span className='skill-name'>Others</span>
-                                    <span className='skill-intro'>RESTful，Servlet，Freemarker，JSP，TCP/IP，HTTP，Guice，Jetty </span>
-                                </li>
-                            </ul>
                         </section>
                         <section>
                             <h2><span className={'title'}>Con</span>tact</h2>

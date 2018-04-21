@@ -43,6 +43,10 @@ class ArchiveArticles extends React.PureComponent {
         NProgress.done();
     }
 
+    componentWillUnmount() {
+        NProgress.done();
+    }
+
     tagClick(v) {
         this.props.history.push(`/tag/${v}`);
         this.props.findMatchTagsArticle({tag: v});

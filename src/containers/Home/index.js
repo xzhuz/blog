@@ -42,6 +42,7 @@ class Home extends React.PureComponent {
     componentWillUnmount() {
         NProgress.done();
     }
+
     tagClick(v) {
         this.props.history.push(`/tag/${v}`);
     }
