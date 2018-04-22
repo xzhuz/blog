@@ -7,7 +7,7 @@ Personal Blog
 
 前端: React, Create-React-App, Redux, React-Redux, React-Router v4, React MarkDown
 
-后端: Node, Express Mongoose,
+后端: springboot mysql 
 
 实现功能:
 + 前台页面
