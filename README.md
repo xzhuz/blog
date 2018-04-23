@@ -7,7 +7,11 @@ Personal Blog
 
 前端: React, Create-React-App, Redux, React-Redux, React-Router v4, React MarkDown
 
-后端: Node, Express Mongoose,
+后端: Spring Boot, mysql (后端地址： [Server](https://github.com/mrmeisen/springboot-server) )
+
+> 后端（还在本项目代码中）的最初版本是Node、Express、Mongoose,  但是由于本身也是一个后端开发人员，所以直接就用spring Boot来实现了。
+
+> PS. 之前的Node后端在修改小部分代码之后（需要将id更新为_id)也是可以兼容目前的前端。
 
 实现功能:
 + 前台页面
@@ -17,8 +21,8 @@ Personal Blog
    - 根据某一tag获取所有拥有该tag的所有博客文章
    - 获取相关tag的相关热门博客.
    - 博客内容展示--支持MarkDown格式内容
-   - 关于我内容展示---支持MarkDown格式内容
-   - 首页博客列表分页
+   - 关于我内容
+   - 首页博客列表分页
 + 后台管理
    - 查看所有博客文章 (已发布和未发布)
    - 发布新博客
