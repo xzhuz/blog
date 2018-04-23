@@ -32,7 +32,7 @@ class About extends React.PureComponent{
                         <section className='about-info-about'>
                             <h2><span className='title'>Abo</span>ut</h2>
                             <p>大家好👋️, 我叫梅森, 来自重庆的Java程序猿⌨️</p>
-                            <p>目前我正在用代码改变世界🤭🤭🤭,自豪表情☺️</p>
+                            <p>目前我正在用代码改变世界🤭😬,自豪脸😏</p>
                             <p>目前正走在成为一个很牛逼(ZhuangBi)的程序猿的道路上. 前途很艰辛, 但是我会坚持!</p>
                             <p>最后, 生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</p>
                             <p><i className='quote-content'>“人生得意须尽欢, 莫使金樽空对月.” </i> <i className='quote-name'> - 李白</i></p>

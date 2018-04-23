@@ -12,6 +12,15 @@
   display: -moz-flex;
   justify-content: space-between;
   z-index: 101;
+  position: fixed;
+  top: 0;
+}
+
+.header-scroll{
+  filter:alpha(opacity=60);
+  -moz-opacity:0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
 }
 
 .header-content{

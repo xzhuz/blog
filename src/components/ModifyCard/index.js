@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './modifyCard.scss';
 import Button from "../Button";
+import './modifyCard.scss';
 
 class ModifyCard extends React.PureComponent {
 
@@ -22,7 +22,7 @@ class ModifyCard extends React.PureComponent {
         return (
             <div className={'modify-card-wrap'}>
                 <div className={'modify-card-info-wrap'}>
-                    <span>{title}</span>
+                    <span>{title ? title.trim() : title}</span>
                     <span className={'modify-card-info'}>发布时间: {new Date(date).toLocaleString()} 阅读数: {visit}</span>
                 </div>
                 <div className={'modify-card-status-wrap'}>
