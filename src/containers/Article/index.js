@@ -60,7 +60,7 @@ class Article extends React.PureComponent {
                     <section>
                         <h2>{title ? title.trim() : ''}</h2>
                         <p className='article-date'>{new Date(date).toDateString()}</p>
-                        <ReactMarkDown source={content} escapeHtml={false}/>
+                        <ReactMarkDown source={content} escapeHtml={false} skipHtml={true}/>
                     </section>
                 </div>
                 <RightSideBar articles={relativeArticles}

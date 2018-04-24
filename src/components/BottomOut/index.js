@@ -5,7 +5,7 @@ class BottomOut extends React.PureComponent{
     render() {
         return (
             <div className={'bottom-out'}>
-               <span className={'bottom-out-text'}>~~已经没有内容啦~~</span>
+               <span className={'bottom-out-text'}>没有文章可以加载啦</span>
             </div>
         );
     }

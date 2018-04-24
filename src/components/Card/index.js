@@ -53,7 +53,7 @@ class Card extends React.PureComponent {
                         </div>
 
                         <div className={'card-tail'}>
-                            <div className={'card-date'}>{new Date(date).toDateString()}</div>
+                            <span className={'card-date'}>{new Date(date).toDateString()}</span>
                         </div>
                     </div>
                 </div>

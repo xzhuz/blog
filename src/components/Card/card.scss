@@ -21,6 +21,11 @@
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   padding: .6rem;
   margin-bottom: 2%;
+  border-radius: 2px;
+
+  @media only screen and (max-width: 767px) {
+   border-radius: 4px;
+  }
 
   &:hover {
     transition-duration: .4s;
@@ -109,11 +114,16 @@
 
   .card-tail {
     width: 30%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    justify-content: flex-end;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 400px) {
       width: 0;
       display: none;
     }
+
   }
 
   .card-tail .card-date {
@@ -121,7 +131,14 @@
     line-height: 1.8rem;
     font-size: 14px;
     color: #cccccc;
-    width: 7.5rem;
+
+    @media only screen and (max-width: 767px) {
+      font-size: 12px;
+    }
+
+    @media only screen and (min-width: 768px ) and (max-width: 895px) {
+     font-size: 12px;
+    }
   }
 }
 

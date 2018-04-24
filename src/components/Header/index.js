@@ -8,16 +8,31 @@ class Header extends React.PureComponent {
 
     constructor(props) {
         super(props);
+        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
             scroll: false,
         };
     }
 
+    oldScrollTop = 0;
+
     componentDidMount() {
-        window.addEventListener('scroll', () => {
-           const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-           scrollTop > 20 ? this.setState({scroll: true}) : this.setState({scroll: false});
-        });
+        const {pathname} = this.props.history.location;
+        window.addEventListener('scroll', () => this.handleScroll(pathname));
+    }
+
+    handleScroll() {
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (scrollTop > 20 && this.oldScrollTop < scrollTop) {
+            // 向下滚
+            this.setState({scroll: true});
+        } else if (scrollTop > 20 && this.oldScrollTop > scrollTop) {
+            // 向上滚
+            this.setState({scroll: false});
+        } else {
+            this.setState({scroll: false});
+        }
+        this.oldScrollTop = scrollTop;
     }
 
     render() {
