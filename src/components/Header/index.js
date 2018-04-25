@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import classNames from 'classnames';
 import * as FontAwesome from 'react-icons/lib/fa';
@@ -21,6 +22,9 @@ class Header extends React.PureComponent {
         window.addEventListener('scroll', () => this.handleScroll(pathname));
     }
 
+    isTop = true;
+    timer = 0;
+
     handleScroll() {
         const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         if (scrollTop > 20 && this.oldScrollTop < scrollTop) {
@@ -33,23 +37,60 @@ class Header extends React.PureComponent {
             this.setState({scroll: false});
         }
         this.oldScrollTop = scrollTop;
+
+        if (!this.isTop) {
+            clearInterval(this.timer);
+        }
+        this.isTop = false;
+    }
+
+    handleScrollToTop() {
+        // 设置一个定时器
+        this.timer = setInterval(() => {
+            // 获取滚动条的滚动高度
+            const osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // 用于设置速度差，产生缓动的效果
+            const speed = Math.floor(-osTop / 6);
+            document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+            // 用于阻止滚动事件清除定时器
+            this.isTop = true;
+            if (osTop === 0) {
+                clearInterval(this.timer);
+            }
+        }, 30);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     render() {
         const {pathname} = this.props.history.location;
+        const {title} = this.props.article;
         return (
             <header className={
                 classNames('header', {
-                    [`header-scroll`]: this.state.scroll,
+                    [`header-scroll`]: !pathname.includes('/article') &&this.state.scroll,
             })}>
                 <nav className={'header-content'}>
                     <span className={'signature'}><Link to={{ pathname: '/home'}}>Mei Sen</Link></span>
-                    <div className={'header-link'}>
+                    <div className={
+                        classNames('header-link', {
+                            [`is-hidden`]: pathname.includes('/article') && this.state.scroll
+                        })
+                    }>
                         <span className={classNames('header-path-link')}><Link to={{ pathname: '/home'}}>Home</Link></span>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/introduction',
                         })}><Link to={{ pathname: '/introduction'}}>About</Link></span>
 
+                    </div>
+                    <div className={
+                        classNames('article-header', {
+                            [`is-shown`]: pathname.includes('/article') && this.state.scroll
+                        })
+                    }>
+                        <h1 className='article-header-title' onClick={(e) => this.handleScrollToTop(e)}>{title ? title.trim() : ''}</h1>
                     </div>
                     <div className={'header-contact'}>
                         <a href='https://github.com/mrmeisen' target='_blank'>
@@ -65,4 +106,10 @@ class Header extends React.PureComponent {
     }
 }
 
-export default withRouter(Header);
+const mapStateToProps = state => {
+    return {
+        article: state.articleLoad,
+    };
+};
+
+export default withRouter(connect(mapStateToProps, {})(Header));
