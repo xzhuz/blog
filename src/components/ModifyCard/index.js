@@ -30,7 +30,7 @@ class ModifyCard extends React.PureComponent {
                 </div>
                 <div className={'modify-card-btn-wrap'}>
                     <Button describe={'编辑'} btnClick={() => this.clickUpdatePost({id, title, content, summary, tags, thumb})} />
-                    <Button describe={'查看'} btnClick={() => this.clickShowPost(id, tags)} />
+                    <Button describe={'查看'} btnClick={() => this.clickShowPost(id)} />
                     <Button describe={'删除'} btnClick={() => this.clickRemovePost(id)} />
                 </div>
             </div>
