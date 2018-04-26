@@ -5,7 +5,7 @@ import ReactMarkDown from 'react-markdown';
 import NProgress from 'nprogress';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import {findMatchTagsArticle, getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
+import {getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
 import './article.scss';
 
@@ -13,20 +13,15 @@ class Article extends React.PureComponent {
 
     componentDidMount() {
         const {articleId} = this.props.match.params;
-        const {tags} = this.props.location.state;
         NProgress.start();
-        this.props.findMatchTagsArticle({tag: [...tags]});
         this.props.getSpecifiedArticle(articleId);
         this.props.getAllArticleTags();
     }
 
-    showPostContent(articleId, visit, tags) {
+    showPostContent(articleId, visit) {
         this.props.reduceVisit({id: articleId, visit: visit + 1});
         this.props.getSpecifiedArticle(articleId);
-        this.props.history.push({
-            pathname: `/article/${articleId}`,
-            state: {tags: new Array(tags.split(','))}
-        });
+        this.props.history.push({pathname: `/article/${articleId}`});
     }
 
     componentDidUpdate() {
@@ -39,8 +34,7 @@ class Article extends React.PureComponent {
 
     render () {
         const {title, content, date, tags} = this.props.article;
-        const {articleTag, articles} = this.props;
-        const relativeArticles = articles.sort(v => v.visit).reverse().slice(0, 5);
+        const {articleTag} = this.props;
         let tag = [];
         articleTag.map(v => {
             tag = [...tag, ...v];
@@ -63,10 +57,12 @@ class Article extends React.PureComponent {
                         <ReactMarkDown source={content} escapeHtml={false} skipHtml={true}/>
                     </section>
                 </div>
-                <RightSideBar articles={relativeArticles}
-                              showPostContent={(id, visit) => this.showPostContent(id, visit, tags)}
-                              articleSideBarTitle={'相关文章'}
-                />
+                {
+                    tags && tags.length > 0 ? <RightSideBar tags={tags} showPopular={false}
+                                         showPostContent={(id, visit) => this.showPostContent(id, visit)}
+                                         articleSideBarTitle={'相关文章'}
+                    /> : ''
+                }
             </ReactCSSTransitionGroup>
         );
     }
@@ -75,9 +71,8 @@ class Article extends React.PureComponent {
 const mapStateToProps = state => {
     return {
         article: state.articleLoad,
-        articles: state.articlesList,
         articleTag: state.articleTags,
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getSpecifiedArticle, findMatchTagsArticle, getAllArticleTags, reduceVisit})(Article));
+export default withRouter(connect(mapStateToProps, {getSpecifiedArticle, getAllArticleTags, reduceVisit})(Article));

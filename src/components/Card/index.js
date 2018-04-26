@@ -10,11 +10,19 @@ class Card extends React.PureComponent {
     constructor(props) {
         super(props);
         this.showPost = this.showPost.bind(this);
+        this.handleImgOnLoad = this.handleImgOnLoad.bind(this);
     }
 
     showPost() {
         const {articleId} = this.props;
         this.props.showPost(articleId);
+    }
+
+    handleImgOnLoad(e) {
+        const {imgOnLoad} = this.props;
+        if (imgOnLoad) {
+            imgOnLoad(e);
+        }
     }
 
     handleClickTag(v) {
@@ -34,7 +42,7 @@ class Card extends React.PureComponent {
                 transitionLeaveTimeout={300}
             >
                 <div className={'thumb'} onClick={this.showPost}>
-                        <img src={thumb} alt={'这是一张美图'}/>
+                        <img src={thumb} onLoad={this.handleImgOnLoad}/>
                 </div>
                 <div className={'card-container'}>
                     <div className={'card-title'} onClick={this.showPost} >
@@ -73,6 +81,7 @@ Card.propTypes = {
     date: PropTypes.string.isRequired,
     showCardInfo: PropTypes.bool.isRequired,
     visit: PropTypes.number.isRequired,
+    imgOnLoad: PropTypes.func,
 };
 
 export default Card;

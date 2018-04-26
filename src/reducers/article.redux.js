@@ -19,13 +19,15 @@ export function articlesList(state = initState, action) {
     switch (action.type) {
         case Article.LIST_ALL_ARTICLE:
             return action.payload;
-        case Article.MATCH_TAG_ARTICLE:
-            return action.payload;
         case Article.LIST_PART_ARTICLE:
             return action.payload;
         default:
             return state;
     }
+}
+
+export function matchTagArticles(state = initState, action) {
+    return Article.MATCH_TAG_ARTICLE === action.type ? action.payload : state;
 }
 
 const initArticle = {
@@ -119,9 +121,9 @@ export function getPopularArticle() {
     return dispatch => {
         axios.get('/api/articles/popular').then(res => {
             if (res.data.code === 0) {
-                dispatch(loadPopularArticles(res.data.data));
+               dispatch(loadPopularArticles(res.data.data));
             } else {
-                dispatch(loadPopularArticles([]));
+               dispatch(loadPopularArticles([]));
             }
         });
     };
@@ -217,7 +219,6 @@ export function deleteArticle(id) {
  * @param thumb
  */
 export function updateArticle({id, content, summary, title, tags, publish, thumb}) {
-    console.log({id, content, summary, title, tags, publish, thumb});
     return dispatch => {
         axios.post('/api/articles/update', {id, content, summary, title, tags: tags.join(','), publish, thumb}).then(res => {
             if (res.status === 200 && res.data.code === 0) {

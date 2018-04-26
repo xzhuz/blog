@@ -24,11 +24,8 @@ class Home extends React.PureComponent {
         };
     }
 
-    showPostContent(articleId, visit, tags) {
-        this.props.history.push({
-            pathname: `/article/${articleId}`,
-            state: {tags: new Array(tags.split(','))}
-        });
+    showPostContent(articleId, visit) {
+        this.props.history.push({pathname: `/article/${articleId}`});
         this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
 
@@ -38,6 +35,7 @@ class Home extends React.PureComponent {
         this.props.doCountArticles();
         NProgress.start();
     }
+
 
     componentWillUnmount() {
         NProgress.done();
@@ -50,7 +48,7 @@ class Home extends React.PureComponent {
     renderCards(v, index) {
         return <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                     showPost={(id) => this.showPostContent(id, v.visit, v.tags)} showCardInfo={true}/>;
+                     showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>;
     }
 
     readMore(v) {
@@ -81,8 +79,8 @@ class Home extends React.PureComponent {
                         this.renderReadMore(this.state.limit >= articleSize)
                     }
                 </div>
-                <RightSideBar articles={popularArticle}
-                              showPostContent={(id, visit, tags) => this.showPostContent(id, visit, tags)}
+                <RightSideBar showPopular={true}
+                              showPostContent={(id, visit) => this.showPostContent(id, visit)}
                               articleSideBarTitle={'热门文章'}
                 />
             </div>

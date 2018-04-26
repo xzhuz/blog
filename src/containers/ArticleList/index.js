@@ -21,10 +21,9 @@ class ArticleList extends React.PureComponent {
         this.props.getArticleList();
     }
 
-    clickShowPost(id, tags) {
+    clickShowPost(id) {
         this.props.history.push({
-            pathname: `/article/${id}`,
-            state: {tags: new Array(tags.split(','))}
+            pathname: `/article/${id}`
         });
     }
 
@@ -69,7 +68,7 @@ class ArticleList extends React.PureComponent {
                     articleData.map((val, index) => (
                         <ModifyCard key={index} items={val}
                                     handleClickUpdatePost={(v) => this.clickUpdatePost(v)}
-                                    handleClickShowPost={(v, tags) => this.clickShowPost(v, tags)}
+                                    handleClickShowPost={(v) => this.clickShowPost(v)}
                                     handleClickRemovePost={(v) => this.clickRemovePost(v)}
                         />
                     ))
