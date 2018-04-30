@@ -27,8 +27,6 @@ class RightSideBar extends React.PureComponent {
         this.props.findMatchTagsArticle({tag: v});
     }
 
-
-
     showPostContent(id, visit, tags) {
         const {showPostContent} = this.props;
         if (showPostContent) {

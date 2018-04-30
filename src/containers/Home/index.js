@@ -8,7 +8,8 @@ import {
     getPopularArticle,
     reduceVisit,
     getPartArticles,
-    doCountArticles
+    doCountArticles,
+    getAllArticleTags,
 } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
@@ -33,6 +34,7 @@ class Home extends React.PureComponent {
         this.props.getPartArticles(this.state);
         this.props.getPopularArticle();
         this.props.doCountArticles();
+        this.props.getAllArticleTags();
         NProgress.start();
     }
 
@@ -101,4 +103,5 @@ export default withRouter(connect(mapStateToProps, {
     getPopularArticle,
     reduceVisit,
     doCountArticles,
+    getAllArticleTags,
 })(Home));
