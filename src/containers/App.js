@@ -17,7 +17,7 @@ class App extends React.PureComponent {
                 <div className='app'>
                     <Header/>
                     <Switch>
-                        <Route path='/home' component={Home}/>
+                        <Route exact path='/' component={Home}/>
                         <Route path='/tag/:tagName' component={ArchiveArticles}/>
                         <Route path='/article/:articleId' component={Article}/>
                         <Route path='/introduction' component={About}/>
