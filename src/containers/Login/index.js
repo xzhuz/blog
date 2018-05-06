@@ -21,8 +21,8 @@ class Login extends React.PureComponent {
     }
 
     componentDidMount() {
-        // 获取用户信息
-        axios.get('/api/user/auth').then(res => {
+        // 查询页面权限
+        axios.get('/api/config/auth').then(res => {
             if (res.status === 200 && res.data.code !== 0 && res.data.data.auth !== 1) {
                 this.props.history.push(`/`);
             }
