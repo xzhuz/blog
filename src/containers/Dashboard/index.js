@@ -16,15 +16,26 @@ class Dashboard extends React.PureComponent {
     }
 
     componentDidMount() {
-        // 获取用户信息
-        axios.get('/api/user/info').then(res => {
-            if (res.status === 200 && res.data.code !== 0) {
-                // 目前会出现如果后台报错，这里进入的时候会无限发送请求
-                this.props.history.push(`/login`);
+        // 查询页面权限
+        axios.get('/api/config/auth').then(res => {
+            if (res.status === 200 && res.data.code !== 0 && res.data.data.auth !== 1) {
+                this.props.history.push(`/`);
             }
+
+            // 获取用户信息
+            axios.get('/api/user/info').then(res => {
+                if (res.status === 200 && res.data.code !== 0) {
+                    // 目前会出现如果后台报错，这里进入的时候会无限发送请求
+                    this.props.history.push(`/login`);
+                }
+            }).catch(error => {
+                this.props.history.push(`/login`);
+            });
         }).catch(error => {
-            this.props.history.push(`/login`);
+            this.props.history.push(`/`);
         });
+
+
     }
 
     render() {
