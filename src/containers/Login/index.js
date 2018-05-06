@@ -5,6 +5,7 @@ import {login, register} from "../../reducers/user.redux";
 import './login.scss';
 import InputItem from "../../components/InputItem";
 import Button from "../../components/Button";
+import axios from "axios/index";
 
 class Login extends React.PureComponent {
 
@@ -17,6 +18,17 @@ class Login extends React.PureComponent {
             user: '',
             pwd: ''
         };
+    }
+
+    componentDidMount() {
+        // 获取用户信息
+        axios.get('/api/user/auth').then(res => {
+            if (res.status === 200 && res.data.code !== 0 && res.data.data.auth !== 1) {
+                this.props.history.push(`/`);
+            }
+        }).catch(error => {
+            this.props.history.push(`/`);
+        });
     }
 
     handleChange(key, val) {
