@@ -41,7 +41,6 @@ class RightSideBar extends React.PureComponent {
         articleTag.map(v => {
             tag = [...tag, ...v.split(',')];
         });
-        console.log(articleTag);
         tag = Array.from(new Set(tag));
         return (
             <div className={'right-side-bar'}>

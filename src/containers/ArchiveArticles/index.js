@@ -36,7 +36,6 @@ class ArchiveArticles extends React.PureComponent {
         NProgress.start();
         this.props.findMatchTagsArticle({tag: [tagName]});
         this.props.getAllArticleTags();
-
     }
 
     componentDidUpdate() {
