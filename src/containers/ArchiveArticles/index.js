@@ -29,13 +29,14 @@ class ArchiveArticles extends React.PureComponent {
             pathname: `/article/${articleId}`
         });
         this.props.reduceVisit({id: articleId, visit: visit + 1});
-        this.props.getAllArticleTags();
     }
 
     componentDidMount() {
         const {tagName}  = this.props.match.params;
         NProgress.start();
         this.props.findMatchTagsArticle({tag: [tagName]});
+        this.props.getAllArticleTags();
+
     }
 
     componentDidUpdate() {

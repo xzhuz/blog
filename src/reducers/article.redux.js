@@ -48,11 +48,8 @@ export function popularArticlesLoad(state = initState, action) {
     return Article.LOAD_POPULAR === action.type ? action.payload : state;
 }
 
-export function articleTags(state = initState, action) {
-    return Article.ALL_ARTICLE_TAGS === action.type ?
-        action.payload.map(v => {
-            return v.tags;
-        }) : state;
+export function articleTags(state = [], action) {
+    return Article.ALL_ARTICLE_TAGS === action.type ? action.payload : state;
 }
 
 export function articleCount(state = 0, action) {
@@ -254,7 +251,7 @@ export function findMatchTagsArticle({tag}) {
  */
 export function getAllArticleTags() {
     return dispatch => {
-        axios.get('/api/articles/list').then(res => {
+        axios.get('/api/articles/tags').then(res => {
             if (res.data.code === 0 ) {
                 dispatch(allArticleTags(res.data.data));
             }

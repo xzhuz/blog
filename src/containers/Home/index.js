@@ -25,9 +25,8 @@ class Home extends React.PureComponent {
         };
     }
 
-    showPostContent(articleId, visit) {
+    showPostContent(articleId) {
         this.props.history.push({pathname: `/article/${articleId}`});
-        this.props.reduceVisit({id: articleId, visit: visit + 1});
     }
 
     componentDidMount() {
@@ -82,7 +81,7 @@ class Home extends React.PureComponent {
                     }
                 </div>
                 <RightSideBar showPopular={true}
-                              showPostContent={(id, visit) => this.showPostContent(id, visit)}
+                              showPostContent={(id) => this.showPostContent(id)}
                               articleSideBarTitle={'热门文章'}
                 />
             </div>

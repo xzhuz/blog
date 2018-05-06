@@ -14,12 +14,12 @@ class Article extends React.PureComponent {
     componentDidMount() {
         const {articleId} = this.props.match.params;
         NProgress.start();
+        this.props.reduceVisit({id: articleId});
         this.props.getSpecifiedArticle(articleId);
         this.props.getAllArticleTags();
     }
 
-    showPostContent(articleId, visit) {
-        this.props.reduceVisit({id: articleId, visit: visit + 1});
+    showPostContent(articleId) {
         this.props.getSpecifiedArticle(articleId);
         this.props.history.push({pathname: `/article/${articleId}`});
     }
