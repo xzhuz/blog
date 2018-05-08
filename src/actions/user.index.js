@@ -25,3 +25,7 @@ export function registerSuccess(msg) {
 export function loadUser(userInfo) {
     return {type: User.LOAD_USER, payload: userInfo};
 }
+
+export function clearAuth() {
+    return {type: User.CLEAR_AUTH};
+}

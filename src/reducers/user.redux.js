@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as User from '../actions/constants';
-import {authSuccess, clearErrorMsg, errorMsg, registerSuccess} from "../actions/user.index";
+import {authSuccess, clearAuth, clearErrorMsg, errorMsg, registerSuccess} from "../actions/user.index";
 import utils from 'utility';
 
 
@@ -15,6 +15,8 @@ export function user(state = initState, action) {
     switch (action.type) {
         case User.AUTH_SUCCESS:
             return {...state, redirectTo: '/dashboard/list', msg: '', ...action.payload};
+        case User.CLEAR_AUTH:
+            return {...state, redirectTo: '', msg: ''};
         case User.LOAD_USER:
             return {...state, ...action.payload};
         case User.ERROR_MSG:
@@ -66,6 +68,10 @@ export function register({user, pwd}) {
             alert("系统错误，请稍后重试");
         });
     };
+}
+
+export function clearLoginAuth() {
+    return dispatch => dispatch(clearAuth());
 }
 
 // 加密pwd

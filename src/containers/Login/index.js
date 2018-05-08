@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, withRouter} from 'react-router-dom';
-import {login, register} from "../../reducers/user.redux";
+import {clearLoginAuth, login, register} from "../../reducers/user.redux";
 import InputItem from "../../components/InputItem";
 import Button from "../../components/Button";
 import axios from "axios/index";
@@ -51,7 +51,11 @@ class Login extends React.PureComponent {
         }).catch(error => {
             alert("系统错误，不能注册");
         });
+    }
 
+    componentWillUnmount() {
+        // 解决无线循环的问题
+        this.props.clearLoginAuth();
     }
 
     render() {
@@ -74,4 +78,4 @@ class Login extends React.PureComponent {
     }
 }
 
-export default withRouter(connect(state => state.user, {login, register})(Login));
+export default withRouter(connect(state => state.user, {login, register, clearLoginAuth})(Login));
