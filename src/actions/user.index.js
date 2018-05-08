@@ -15,6 +15,13 @@ export function clearErrorMsg() {
     };
 }
 
+export function registerSuccess(msg) {
+    return {
+        type: User.REGISTER_SUCCESS,
+        msg
+    };
+}
+
 export function loadUser(userInfo) {
     return {type: User.LOAD_USER, payload: userInfo};
 }

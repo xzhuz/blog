@@ -11,10 +11,6 @@ import NotFound from "../../components/NotFound";
 import ModifyArticle from "../ModifyArticle";
 class Dashboard extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         // 查询页面权限
         axios.get('/api/config/auth').then(res => {

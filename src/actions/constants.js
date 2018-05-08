@@ -16,6 +16,7 @@ export const RETURN_THUMB_IMG = 'RETURN_THUMB_IMG';
 // user
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOAD_USER = 'LOAD_USER';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 
 // common
 export const ERROR_MSG = 'ERROR_MSG';

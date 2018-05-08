@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as User from '../actions/constants';
-import {authSuccess, clearErrorMsg, errorMsg} from "../actions/user.index";
+import {authSuccess, clearErrorMsg, errorMsg, registerSuccess} from "../actions/user.index";
 import utils from 'utility';
 
 
@@ -18,6 +18,8 @@ export function user(state = initState, action) {
         case User.LOAD_USER:
             return {...state, ...action.payload};
         case User.ERROR_MSG:
+            return {...state, msg: action.msg};
+        case User.REGISTER_SUCCESS:
             return {...state, msg: action.msg};
         case User.CLEAR_ERROR_MSG:
             return {...state, msg: ''};
@@ -53,9 +55,10 @@ export function register({user, pwd}) {
     return dispatch => {
         axios.post('/api/user/register', {username: user, password: md5Pwd(pwd)}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
-                dispatch(authSuccess(res.data.data));
                 // 同时，清空错误信息
                 dispatch(clearErrorMsg());
+                // 注册成功
+                dispatch(registerSuccess(res.data.msg));
             } else {
                 dispatch(errorMsg(res.data.msg));
             }
