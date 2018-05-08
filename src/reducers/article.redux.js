@@ -89,6 +89,8 @@ export function getArticleList() {
             } else {
                 dispatch(articleList([]));
             }
+        }).catch(err => {
+            alert("系统错误，请刷新后重试");
         });
     };
 }
@@ -107,6 +109,8 @@ export function getSpecifiedArticle(id) {
             } else {
                 dispatch(loadArticle({}));
             }
+        }).catch(err => {
+            alert("系统错误，请刷新后重试");
         });
     };
 }

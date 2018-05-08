@@ -1,17 +1,17 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import './notFound.scss';
 
 class NotFound extends React.PureComponent {
 
+    componentDidMount() {
+        this.props.history.push(`/`);
+    }
+
     render () {
-        return (
-            <div className={'container not-found-container'}>
-                <span className={'not-found'}> 404 </span>
-                <span className={'not-found-text'}> 你来到了没有知识的荒原. </span>
-            </div>
-        );
+        return null;
     }
 }
 
-export default NotFound;
+export default withRouter(NotFound);
