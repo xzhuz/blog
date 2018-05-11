@@ -86,6 +86,8 @@ export function getArticleList() {
         axios.get('/api/articles/list').then(res => {
             if (res.data.code === 0) {
                 dispatch(articleList(res.data.data));
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(articleList([]));
             }
@@ -106,6 +108,8 @@ export function getSpecifiedArticle(id) {
         }).then(res => {
             if (res.data.code === 0) {
                 dispatch(loadArticle(res.data.data));
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(loadArticle({}));
             }
@@ -146,6 +150,8 @@ export function getPartArticles({skip, limit}) {
         }).then(res => {
             if (res.data.code === 0) {
                 dispatch(listPartArticles(res.data.data));
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(listPartArticles([]));
             }
@@ -170,6 +176,8 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
             if (res.status === 200 && res.data.code === 0) {
                 publish ? dispatch(publishArticleMsg('发布文章成功!')) : dispatch(publishArticleMsg('保存文章成功!'));
                 dispatch(clearErrorMsg());
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(errorMsg(res.data.msg));
             }
@@ -189,6 +197,8 @@ export function reduceVisit({id}) {
         axios.get('/api/articles/visit', {params: {id: id}}).then(res => {
             if (res.data.code === 0) {
                 getPopularArticle();
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             }
         });
     };
@@ -226,6 +236,8 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
                 getSpecifiedArticle(id);
                 dispatch(updateArticleMsg('更新成功'));
                 dispatch(clearErrorMsg());
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(errorMsg(res.data.msg));
             }
@@ -244,6 +256,8 @@ export function findMatchTagsArticle({tag}) {
         axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
                 dispatch(matchTagArticle(res.data.data));
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
             }
         });
     };
