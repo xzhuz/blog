@@ -31,7 +31,6 @@ class Home extends React.PureComponent {
 
     componentDidMount() {
         this.props.getPartArticles(this.state);
-        this.props.getPopularArticle();
         this.props.doCountArticles();
         this.props.getAllArticleTags();
         NProgress.start();
@@ -67,7 +66,7 @@ class Home extends React.PureComponent {
     }
 
     render() {
-        const {article, popularArticle, articleSize} = this.props;
+        const {article, articleSize} = this.props;
         return (
             <div className='container'>
                 <div className={'articles'}>
@@ -92,14 +91,12 @@ class Home extends React.PureComponent {
 const mapStateToProps = state => {
     return {
         article: state.articlesList,
-        popularArticle: state.popularArticlesLoad,
         articleSize: state.articleCount,
     };
 };
 
 export default withRouter(connect(mapStateToProps, {
     getPartArticles,
-    getPopularArticle,
     reduceVisit,
     doCountArticles,
     getAllArticleTags,

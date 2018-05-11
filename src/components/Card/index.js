@@ -78,7 +78,7 @@ Card.propTypes = {
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.number.isRequired,
     showCardInfo: PropTypes.bool.isRequired,
     visit: PropTypes.number.isRequired,
     imgOnLoad: PropTypes.func,
