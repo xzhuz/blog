@@ -3,8 +3,8 @@ import {withRouter} from "react-router-dom";
 import {deleteArticle, getArticleList} from "../../reducers/article.redux";
 import {connect} from "react-redux";
 import ModifyCard from "../../components/ModifyCard";
-import './articleList.scss';
 import Pagination from "../../components/Pagination";
+import './articleList.scss';
 
 class ArticleList extends React.PureComponent {
 

@@ -49,7 +49,7 @@
     "react-dom": "^16.2.0",
     "react-icons": "^2.2.7",
     "react-lz-editor": "^0.12.1",
-    "react-markdown": "^3.3.0",
+    "react-markdown": "3.3.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",

@@ -210,7 +210,7 @@ module.exports = {
                             {
                             loader: 'sass-resources-loader',
                             options: {
-                                resources: paths.appIndexScss,
+                                resources: paths.appParamsScss,
                             },
                         }],
                     },
