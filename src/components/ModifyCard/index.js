@@ -18,12 +18,12 @@ class ModifyCard extends React.PureComponent {
     }
 
     render() {
-        const {id, title, visit, date, content, summary, tags, publish, thumb} = this.props.items;
+        const {id, title, visit, date, content, summary, tags, publish, thumb, compliment} = this.props.items;
         return (
             <div className={'modify-card-wrap'}>
                 <div className={'modify-card-info-wrap'}>
                     <span>{title ? title.trim() : title}</span>
-                    <span className={'modify-card-info'}>发布时间: {new Date(date).toLocaleString()} 阅读数: {visit}</span>
+                    <span className={'modify-card-info'}>发布时间: {new Date(date).toLocaleString()} 阅读数: {visit} 点赞数: {compliment}</span>
                 </div>
                 <div className={'modify-card-status-wrap'}>
                     <span className={'modify-card-info'}>{publish ? '已发布' : '草稿'}</span>

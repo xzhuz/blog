@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './info.scss';
 
@@ -8,18 +7,10 @@ class Info extends React.PureComponent{
     render () {
         const {icon, info} = this.props;
         return (
-            <ReactCSSTransitionGroup
-                component={'span'}
-                className={'info'}
-                transitionName='info'
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
-            >
+            <span className='info'>
                 <span className={'icon'}>{icon}</span>
                 <span className={'text'}>{info}</span>
-            </ReactCSSTransitionGroup>
+            </span>
         );
     }
 }

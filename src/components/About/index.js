@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as FontAwesome from 'react-icons/lib/fa';
 
 import Info from "../Info";
-import Interest from "../Interest";
 import './about.scss';
 
 class About extends React.PureComponent{
@@ -13,15 +11,7 @@ class About extends React.PureComponent{
         const github = <a href='https://github.com/mrmeisen' target='_blank'>mrmeisen</a>;
         const weiBo = <a href='https://weibo.com/3002849234/profile?rightmod=1&wvr=6&mod=personinfo' target='_blank'>_MrMei</a>;
         return (
-            <ReactCSSTransitionGroup
-                component={'div'}
-                className='container about-container'
-                transitionName='about'
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
-            >
+            <div className='container'>
                 <div className={'about-content'}>
                     <div className={'avatar'}>
                         <img src={avatar}/>
@@ -65,7 +55,7 @@ class About extends React.PureComponent{
 
                     </div>
                 </div>
-            </ReactCSSTransitionGroup>
+            </div>
         );
     }
 }

@@ -30,7 +30,7 @@ class Header extends React.PureComponent {
         if (scrollTop > 20 && this.oldScrollTop < scrollTop) {
             // 向下滚
             this.setState({scroll: true});
-        } else if (scrollTop > 20 && this.oldScrollTop > scrollTop) {
+        } else if (scrollTop > 30 && this.oldScrollTop > scrollTop) {
             // 向上滚
             this.setState({scroll: false});
         } else {

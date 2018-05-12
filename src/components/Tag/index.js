@@ -8,8 +8,9 @@ class Tag extends React.PureComponent {
 
     clickTag() {
         const {clickTag, label} = this.props;
-        if (clickTag) {
-            clickTag(label);
+        if (clickTag && label) {
+            const v = label.replace(/\s|\xA0/g,"");
+            clickTag(v);
         }
     }
 

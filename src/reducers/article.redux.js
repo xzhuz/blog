@@ -31,7 +31,7 @@ export function matchTagArticles(state = initState, action) {
 }
 
 const initArticle = {
-    tags: [],
+    tags: '',
     content: '',
     title: '',
     summary: '',

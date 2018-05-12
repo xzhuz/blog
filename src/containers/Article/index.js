@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import ReactMarkDown from 'react-markdown';
 import NProgress from 'nprogress';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
 import './article.scss';
+import Tag from "../../components/Tag";
 
 class Article extends React.PureComponent {
 
@@ -32,29 +32,26 @@ class Article extends React.PureComponent {
         NProgress.done();
     }
 
+    tagClick(v) {
+        this.props.history.push(`/tag/${v}`);
+    }
+
     render () {
         const {title, content, date, tags} = this.props.article;
-        const {articleTag} = this.props;
-        let tag = [];
-        articleTag.map(v => {
-            tag = [...tag, ...v];
-        });
-        tag = Array.from(new Set(tag));
         return (
-            <ReactCSSTransitionGroup
-                component={'div'}
-                className='container'
-                transitionName='article'
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
-            >
-                <div className={'article'}>
+            <div className='container'>
+                <div className='article'>
                     <section>
-                        <h2>{title ? title.trim() : ''}</h2>
-                        <p className='article-date'>{new Date(date).toDateString()}</p>
-                        <ReactMarkDown source={content} escapeHtml={false} skipHtml={true}/>
+                        <h1 className='article-title'>{title ? title.trim() : ''}</h1>
+                        <p className='article-date'>Post: {new Date(date).toLocaleString()}</p>
+                        <ReactMarkDown source={content} escapeHtml={false} skipHtml={true} className='article-content'/>
+                        <p className='article-tags'>
+                            {
+                                [...tags.split(',')].map((v, index) => (
+                                    <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                ))
+                            }
+                        </p>
                     </section>
                 </div>
                 {
@@ -63,7 +60,7 @@ class Article extends React.PureComponent {
                                          articleSideBarTitle={'相关文章'}
                     /> : ''
                 }
-            </ReactCSSTransitionGroup>
+            </div>
         );
     }
 }

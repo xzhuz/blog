@@ -1,7 +1,35 @@
 .article {
+
   width: 70%;
   background-color: white;
   padding: 2%;
+  border-radius: 2px;
+  color: #444;
+
+  section {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .article-title {
+    flex: 0 0 auto;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .article-content {
+    margin-top: 1.6rem;
+    flex: 1 0 auto;
+  }
+
+  .article-tags {
+    flex: 0 0 auto;
+  }
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -20,8 +48,8 @@
 
 .article-date{
   color: #b8b8b8;
-  font-size: .8rem;
-  margin: 1rem auto;
+  font-size: .9rem;
+  margin-top: .6rem;
 }
 
 .article-appear {

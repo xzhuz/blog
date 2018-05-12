@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 import Tag from '../Tag/index';
 
@@ -32,40 +32,39 @@ class Card extends React.PureComponent {
     render() {
         const {thumb, title, summary, tags, date, showCardInfo} = this.props;
         return (
-            <ReactCSSTransitionGroup
-                component={'div'}
-                className={'card'}
-                transitionName='card'
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
+            <CSSTransition
+                in={true}
+                timeout={300}
+                classNames="cards"
+                unmountOnExit
             >
-                <div className={'thumb'} onClick={this.showPost}>
-                        <img src={thumb} onLoad={this.handleImgOnLoad}/>
-                </div>
-                <div className={'card-container'}>
-                    <div className={'card-title'} onClick={this.showPost} >
-                        <span>{title}</span>
+                <div className={'card'}>
+                    <div className={'thumb'} onClick={this.showPost}>
+                            <img src={thumb} onLoad={this.handleImgOnLoad}/>
                     </div>
-                    <div className={'card-content'} onClick={this.showPost} >
-                        <span>{summary}</span>
-                    </div>
-                    <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
-                        <div className={'card-tags'}>
-                            {
-                                tags.split(',').sort().map((v, index) => (
-                                    <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
-                                ))
-                            }
+                    <div className={'card-container'}>
+                        <div className={'card-title'} onClick={this.showPost} >
+                            <span>{title}</span>
                         </div>
+                        <div className={'card-content'} onClick={this.showPost} >
+                            <span>{summary}</span>
+                        </div>
+                        <div className={'card-info'} style={{display: showCardInfo ? 'flex' : 'none'}}>
+                            <div className={'card-tags'}>
+                                {
+                                    tags.split(',').sort().map((v, index) => (
+                                        <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
+                                    ))
+                                }
+                            </div>
 
-                        <div className={'card-tail'}>
-                            <span className={'card-date'}>{new Date(date).toDateString()}</span>
+                            <div className={'card-tail'}>
+                                <span className={'card-date'}>{new Date(date).toDateString()}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </ReactCSSTransitionGroup>
+            </CSSTransition>
         );
     }
 }
