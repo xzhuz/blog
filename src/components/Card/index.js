@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
-
 import Tag from '../Tag/index';
-
 import './card.scss';
 
 class Card extends React.PureComponent {
@@ -34,9 +32,8 @@ class Card extends React.PureComponent {
         return (
             <CSSTransition
                 in={true}
-                timeout={300}
-                classNames="cards"
-                unmountOnExit
+                classNames="card"
+                timeout={{ enter: 500, exit: 300 }}
             >
                 <div className={'card'}>
                     <div className={'thumb'} onClick={this.showPost}>

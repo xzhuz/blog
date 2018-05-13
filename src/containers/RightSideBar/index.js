@@ -7,7 +7,7 @@ import Tag from "../../components/Tag/index";
 import Card from "../../components/Card/index";
 import {
     getPopularArticle,
-    findMatchTagsArticle,
+    findMatchTagsArticle, getAllArticleTags,
 } from "../../reducers/article.redux";
 import './rightSideBar.scss';
 
@@ -20,6 +20,7 @@ class RightSideBar extends React.PureComponent {
         } else {
             this.props.getPopularArticle();
         }
+        this.props.getAllArticleTags();
     }
 
     tagClick(v) {
@@ -79,10 +80,12 @@ const mapStateToProps = state => {
         articles: state.matchTagArticles,
         popularArticles: state.popularArticlesLoad,
         articleTag: state.articleTags,
+
     };
 };
 
 export default withRouter(connect(mapStateToProps, {
     getPopularArticle,
     findMatchTagsArticle,
+    getAllArticleTags,
 })(RightSideBar));

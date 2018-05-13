@@ -5,7 +5,6 @@ import NProgress from 'nprogress';
 import Card from '../../components/Card';
 import './home.scss';
 import {
-    getPopularArticle,
     reduceVisit,
     getPartArticles,
     doCountArticles,
@@ -32,7 +31,6 @@ class Home extends React.PureComponent {
     componentDidMount() {
         this.props.getPartArticles(this.state);
         this.props.doCountArticles();
-        this.props.getAllArticleTags();
         NProgress.start();
     }
 
@@ -99,5 +97,4 @@ export default withRouter(connect(mapStateToProps, {
     getPartArticles,
     reduceVisit,
     doCountArticles,
-    getAllArticleTags,
 })(Home));

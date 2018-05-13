@@ -12,8 +12,19 @@ import { clearErrorMsg, errorMsg,} from "../actions/user.index";
 
 import * as Article from '../actions/constants';
 
+const initArticle = {
+    tags: '',
+    content: '',
+    title: '',
+    summary: '',
+    thumb: '',
+    visit: 0,
+    publish: false,
+    introduction: '',
+    compliment: 0,
+};
 
-const initState = [];
+const initState = [initArticle];
 
 export function articlesList(state = initState, action) {
     switch (action.type) {
@@ -30,15 +41,7 @@ export function matchTagArticles(state = initState, action) {
     return Article.MATCH_TAG_ARTICLE === action.type ? action.payload : state;
 }
 
-const initArticle = {
-    tags: '',
-    content: '',
-    title: '',
-    summary: '',
-    thumb: '',
-    visit: 0,
-    publish: false,
-};
+
 
 export function articleLoad(state = initArticle, action) {
     return Article.LOAD_ARTICLE === action.type ? action.payload : state;
@@ -255,6 +258,7 @@ export function findMatchTagsArticle({tag}) {
     return dispatch => {
         axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
+                console.log(res.data.data);
                 dispatch(matchTagArticle(res.data.data));
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');

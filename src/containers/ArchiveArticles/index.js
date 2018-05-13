@@ -8,7 +8,6 @@ import {
     findMatchTagsArticle,
     reduceVisit,
     getPartArticles,
-    getAllArticleTags,
 } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
@@ -35,7 +34,6 @@ class ArchiveArticles extends React.PureComponent {
         const {tagName}  = this.props.match.params;
         NProgress.start();
         this.props.findMatchTagsArticle({tag: [tagName]});
-        this.props.getAllArticleTags();
     }
 
     componentDidUpdate() {
@@ -67,6 +65,13 @@ class ArchiveArticles extends React.PureComponent {
         return filled ? <BottomOut/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
     }
 
+    renderPartArticle(partArticle) {
+        return partArticle ?
+            partArticle.filter(v => v.publish).map((v, index) => (
+                this.renderCards(v, index)
+            )) :'';
+    }
+
     render() {
         const {article} = this.props;
         const pageSize = article.length;
@@ -74,14 +79,8 @@ class ArchiveArticles extends React.PureComponent {
         return (
             <div className='container'>
                 <div className={'articles'}>
-                    {
-                        partArticle.filter(v => v.publish).map((v, index) => (
-                            this.renderCards(v, index)
-                        ))
-                    }
-                    {
-                        this.renderReadMore(this.state.limit >= pageSize)
-                    }
+                    { this.renderPartArticle(partArticle)  }
+                    {  this.renderReadMore(this.state.limit >= pageSize) }
                 </div>
                 <RightSideBar showPostContent={(id, visit) => this.showPostContent(id, visit)}
                               articleSideBarTitle={'热门文章'} showPopular={true}
@@ -101,5 +100,4 @@ export default withRouter(connect(mapStateToProps, {
     getPartArticles,
     reduceVisit,
     findMatchTagsArticle,
-    getAllArticleTags,
 })(ArchiveArticles));

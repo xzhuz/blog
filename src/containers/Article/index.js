@@ -3,20 +3,17 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import ReactMarkDown from 'react-markdown';
 import NProgress from 'nprogress';
-
-import {getAllArticleTags, getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
+import { getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
-import './article.scss';
 import Tag from "../../components/Tag";
+import './article.scss';
 
 class Article extends React.PureComponent {
 
     componentDidMount() {
         const {articleId} = this.props.match.params;
-        NProgress.start();
         this.props.reduceVisit({id: articleId});
         this.props.getSpecifiedArticle(articleId);
-        this.props.getAllArticleTags();
     }
 
     showPostContent(articleId) {
@@ -68,8 +65,7 @@ class Article extends React.PureComponent {
 const mapStateToProps = state => {
     return {
         article: state.articleLoad,
-        articleTag: state.articleTags,
     };
 };
 
-export default withRouter(connect(mapStateToProps, {getSpecifiedArticle, getAllArticleTags, reduceVisit})(Article));
+export default withRouter(connect(mapStateToProps, {getSpecifiedArticle, reduceVisit})(Article));

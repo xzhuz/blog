@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import NotFound from "../components/NotFound";
 
 class App extends React.PureComponent {
+
     render() {
         return (
             <BrowserRouter>

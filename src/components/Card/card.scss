@@ -1,27 +1,3 @@
-.cards {
-  display: inline-block;
-  margin-left: 0.5rem;
-  transform: scale(1.25);
-}
-.cards-enter {
-  opacity: 0.01;
-  transform: translateY(-100%) scale(0.75);
-}
-.cards-enter-active {
-  opacity: 1;
-  transform: translateY(0%) scale(1.25);
-  transition: all 300ms ease-out;
-}
-.cards-exit {
-  opacity: 1;
-  transform: scale(1.25);
-}
-.cards-exit-active {
-  opacity: 0;
-  transform: scale(4);
-  transition: all 300ms ease-in;
-}
-
 .card {
   display: flex;
   display: -webkit-flex;
@@ -155,25 +131,21 @@
   }
 }
 
-//.card-enter {
-//  opacity: 0;
-//  transform: translate(0, 10%);
-//}
-//
-//.card-enter.card-enter-active {
-//  opacity: 1;
-//  transition: opacity 2s  ease-in-out;
-//  -webkit-transition: opacity 2s  ease-in-out;
-//  -moz-transition: opacity 2s  ease-in-out;
-//}
-//
-//.card-leave {
-//  opacity: 1;
-//  transform: translate(0, 0);
-//}
-//
-//.card-leave.card-leave-active {
-//  opacity: 0.01;
-//  transform: translate(1%, 0);
-//  transition: opacity 500ms linear;
-//}
+.card-enter {
+  opacity: 0.01;
+  transform: translateY(-100%) scale(0.75);
+}
+.card-enter.card-enter-active {
+  opacity: 1;
+  transform: translateY(0%) scale(1.25);
+  transition: all 300ms ease-out;
+}
+.card-exit {
+  opacity: 1;
+  transform: scale(1.25);
+}
+.card-exit.card-exit-active {
+  opacity: 0;
+  transform: scale(4);
+  transition: all 300ms ease-in;
+}
