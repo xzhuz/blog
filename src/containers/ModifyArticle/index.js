@@ -103,7 +103,6 @@ class ModifyArticle extends React.Component {
     }
 
     contentChange(v) {
-        console.log(v);
         this.setState({content: v});
         this.shouldComponentUpdate = () => {
             return false;
@@ -116,7 +115,7 @@ class ModifyArticle extends React.Component {
         const {filePath} = this.props.file;
         return (
             <ArticleForm tags={tags}
-                         btnContent={'发布'}
+                         btnContent={'更新'}
                          handlePublish={this.modify}
                          handleSave={this.save}
                          titleChange={(v) => this.handleChange('title', v)}

@@ -177,8 +177,9 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
     return dispatch => {
         axios.post('/api/articles/publish', {thumb, content, summary, title, tags: tags.join(','), visit, publish}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
-                publish ? dispatch(publishArticleMsg('发布文章成功!')) : dispatch(publishArticleMsg('保存文章成功!'));
                 dispatch(clearErrorMsg());
+                publish ? alert('发布文章成功') : alert('保存文章成功');
+                // publish ? dispatch(publishArticleMsg('发布文章成功!')) : dispatch(publishArticleMsg('保存文章成功!'));
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
@@ -237,8 +238,9 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
         axios.post('/api/articles/update', {id, content, summary, title, tags: tags.join(','), publish, thumb}).then(res => {
             if (res.status === 200 && res.data.code === 0) {
                 getSpecifiedArticle(id);
-                dispatch(updateArticleMsg('更新成功'));
                 dispatch(clearErrorMsg());
+               // dispatch(updateArticleMsg('更新成功'));
+                alert('更新成功');
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {

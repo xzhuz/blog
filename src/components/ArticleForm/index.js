@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputItem from "../InputItem";
 import SimpleMDE from 'simplemde';
-import marked from 'marked';
-import highlight from 'highlight.js';
+import {markdown} from "../../utils/markdownUtil";
 import Button from "../Button";
 import TopicTag from "../TopicTag";
 import DefaultImg from '../../img/default-img.png';
@@ -26,22 +25,7 @@ class ArticleForm extends React.Component {
             element: document.getElementById('articleContent').childElementCount,
             autofocus: true,
             autosave: true,
-            initialValue: this.props.defaultContent,
-            previewRender: function(plainText) {
-                return marked(plainText, {
-                    renderer: new marked.Renderer(),
-                    gfm: true,
-                    pedantic: false,
-                    sanitize: false,
-                    tables: true,
-                    breaks: true,
-                    smartLists: true,
-                    smartypants: true,
-                    highlight: function (code) {
-                        return highlight.highlightAuto(code).value;
-                    }
-                });
-            },
+            previewRender: (plainText) => markdown(plainText),
         });
         this.smde.codemirror.on("change", () => this.props.contentChange(this.smde.value()));
     }
@@ -89,11 +73,14 @@ class ArticleForm extends React.Component {
     }
 
     componentWillReceiveProps() {
-        this.smde.value(this.props.defaultContent);
+        if (this.props.defaultContent) {
+            this.smde.value(this.props.defaultContent);
+        }
+        return true;
     }
 
     render() {
-        const {tags, errorMsg, successMsg, btnContent, defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
+        const {tags, errorMsg, successMsg, btnContent, defaultSummary, defaultTitle, filePath, defaultThumb} = this.props;
         return (
             <div className={'container article-form'}>
                 <div className={'article-form-title'}>

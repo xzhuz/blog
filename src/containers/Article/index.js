@@ -58,7 +58,7 @@ class Article extends React.PureComponent {
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
                             <p className='article-date'>Post: {new Date(date).toLocaleString()}</p>
-                            <div className='article-content' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                            <div className='article-content markdown-body' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
                                     [...tags.split(',')].map((v, index) => (

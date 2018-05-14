@@ -70,7 +70,8 @@ class Header extends React.PureComponent {
         return (
             <header className={
                 classNames('header', {
-                    [`header-scroll`]: !pathname.includes('/article') &&this.state.scroll,
+                    [`header-scroll`]: !pathname.includes('/article') && this.state.scroll,
+                    [`header-hidden`]: pathname.includes('/dashboard')
             })}>
                 <nav className={'header-content'}>
                     <span className={'signature'}><Link to={{ pathname: '/', state: {}}}>Mei Sen</Link></span>
