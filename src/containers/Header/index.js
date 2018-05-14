@@ -73,13 +73,13 @@ class Header extends React.PureComponent {
                     [`header-scroll`]: !pathname.includes('/article') &&this.state.scroll,
             })}>
                 <nav className={'header-content'}>
-                    <span className={'signature'}><Link to={{ pathname: '/'}}>Mei Sen</Link></span>
+                    <span className={'signature'}><Link to={{ pathname: '/', state: {}}}>Mei Sen</Link></span>
                     <div className={
                         classNames('header-link', {
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
                         })
                     }>
-                        <span className={classNames('header-path-link')}><Link to={{ pathname: '/'}}>Home</Link></span>
+                        <span className={classNames('header-path-link')}><Link to={{ pathname: '/', state: {}}}>Home</Link></span>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/introduction',
                         })}><Link to={{ pathname: '/introduction'}}>About</Link></span>

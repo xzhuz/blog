@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import { CSSTransition } from 'react-transition-group';
 import SideBar from "../../components/SideBar/index";
 import Tag from "../../components/Tag/index";
 import Card from "../../components/Card/index";
@@ -13,6 +14,11 @@ import './rightSideBar.scss';
 
 class RightSideBar extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+        this.state = {showRightSideBar: false};
+    }
+
     componentDidMount() {
         const {tags} = this.props;
         if (tags && tags.length > 0) {
@@ -21,7 +27,9 @@ class RightSideBar extends React.PureComponent {
             this.props.getPopularArticle();
         }
         this.props.getAllArticleTags();
+        this.setState({showRightSideBar: true});
     }
+
 
     tagClick(v) {
         this.props.history.push(`/tag/${v}`);
@@ -44,26 +52,33 @@ class RightSideBar extends React.PureComponent {
         });
         tag = Array.from(new Set(tag));
         return (
-            <div className={'right-side-bar'}>
-                <SideBar barTitle={articleSideBarTitle}>
-                    {
-                        sideBarArticles.filter(v => v.publish).map((v, index) => (
-                            <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
-                                  summary={''} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                  showPost={(id) => this.showPostContent(id, v.tags)} showCardInfo={false}/>
-                        ))
-                    }
-                </SideBar>
-                <SideBar barTitle={'标签'}>
-                    {
-                        tag
-                            ? tag.map((v, index) => (
-                                <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+            <CSSTransition
+                in={this.state.showRightSideBar}
+                classNames="right-side-bar"
+                unmountOnExit
+                timeout={{ enter: 500, exit: 300 }}
+            >
+                <div className={'right-side-bar'}>
+                    <SideBar barTitle={articleSideBarTitle}>
+                        {
+                            sideBarArticles.filter(v => v.publish).map((v, index) => (
+                                <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
+                                      summary={''} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                                      showPost={(id) => this.showPostContent(id, v.tags)} showCardInfo={false}/>
                             ))
-                            : ''
-                    }
-                </SideBar>
-            </div>
+                        }
+                    </SideBar>
+                    <SideBar barTitle={'标签'}>
+                        {
+                            tag
+                                ? tag.map((v, index) => (
+                                    <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                ))
+                                : ''
+                        }
+                    </SideBar>
+                </div>
+            </CSSTransition>
         );
     }
 }

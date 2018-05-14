@@ -9,6 +9,7 @@ class Card extends React.PureComponent {
         super(props);
         this.showPost = this.showPost.bind(this);
         this.handleImgOnLoad = this.handleImgOnLoad.bind(this);
+        this.state = {showCard: false};
     }
 
     showPost() {
@@ -27,13 +28,23 @@ class Card extends React.PureComponent {
         this.props.clickTag(v);
     }
 
+    componentDidMount() {
+        this.setState({showCard: true});
+    }
+
+    componentWillUnmount() {
+        this.setState({showCard: false});
+    }
+
     render() {
         const {thumb, title, summary, tags, date, showCardInfo} = this.props;
         return (
             <CSSTransition
-                in={true}
+                in={this.state.showCard}
                 classNames="card"
+                unmountOnExit
                 timeout={{ enter: 500, exit: 300 }}
+                onExited={() => {this.setState({showCard: false});}}
             >
                 <div className={'card'}>
                     <div className={'thumb'} onClick={this.showPost}>
