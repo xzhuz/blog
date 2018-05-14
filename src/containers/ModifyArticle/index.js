@@ -103,6 +103,7 @@ class ModifyArticle extends React.Component {
     }
 
     contentChange(v) {
+        console.log(v);
         this.setState({content: v});
         this.shouldComponentUpdate = () => {
             return false;

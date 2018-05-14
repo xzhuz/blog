@@ -1,5 +1,4 @@
 .dashboard-container {
-  padding-top: 52px;
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -51,4 +50,8 @@
 
 .active-link{
   background: $baseColor;
+}
+
+.header {
+  display: none;
 }

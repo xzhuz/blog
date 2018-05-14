@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LzEditor from 'react-lz-editor';
 import InputItem from "../InputItem";
+import SimpleMDE from 'simplemde';
+import marked from 'marked';
+import highlight from 'highlight.js';
 import Button from "../Button";
 import TopicTag from "../TopicTag";
 import DefaultImg from '../../img/default-img.png';
+import 'simplemde/dist/simplemde.min.css';
 import './articleForm.scss';
 
 class ArticleForm extends React.Component {
@@ -16,7 +19,31 @@ class ArticleForm extends React.Component {
         this.modalClose = this.modalClose.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
         this.thumbChange = this.thumbChange.bind(this);
-        this.contentChange = this.contentChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.smde = new SimpleMDE({
+            element: document.getElementById('articleContent').childElementCount,
+            autofocus: true,
+            autosave: true,
+            initialValue: this.props.defaultContent,
+            previewRender: function(plainText) {
+                return marked(plainText, {
+                    renderer: new marked.Renderer(),
+                    gfm: true,
+                    pedantic: false,
+                    sanitize: false,
+                    tables: true,
+                    breaks: true,
+                    smartLists: true,
+                    smartypants: true,
+                    highlight: function (code) {
+                        return highlight.highlightAuto(code).value;
+                    }
+                });
+            },
+        });
+        this.smde.codemirror.on("change", () => this.props.contentChange(this.smde.value()));
     }
 
     publish() {
@@ -33,10 +60,6 @@ class ArticleForm extends React.Component {
 
     summaryChange(v) {
         this.props.summaryChange(v);
-    }
-
-    contentChange(v) {
-        this.props.contentChange(v);
     }
 
     tagEnter(v) {
@@ -65,9 +88,12 @@ class ArticleForm extends React.Component {
         }
     }
 
+    componentWillReceiveProps() {
+        this.smde.value(this.props.defaultContent);
+    }
+
     render() {
-        const {tags, errorMsg, successMsg, btnContent,
-            defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
+        const {tags, errorMsg, successMsg, btnContent, defaultSummary, defaultContent, defaultTitle, filePath, defaultThumb} = this.props;
         return (
             <div className={'container article-form'}>
                 <div className={'article-form-title'}>
@@ -93,26 +119,18 @@ class ArticleForm extends React.Component {
                         }
                     </InputItem>
                 </div>
-                <div className={'article-form-summary article-form-item'}>
-                    <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} value={defaultSummary} className={'summary-text'} />
-                </div>
                 <div className={'article-form-content article-form-item'}>
                     <span>正文</span>
-                    <LzEditor
-                        active={true}
-                        importContent={defaultContent}
-                        cbReceiver={(v) => this.contentChange(v)}
-                        image={false}
-                        video={false}
-                        audio={false}
-                        convertFormat="markdown"/>
+                    <textarea id='articleContent' />
+                </div>
+                <div className={'article-form-summary article-form-item'}>
+                    <span>简介</span> <textarea onChange={(v) => this.summaryChange(v)} value={defaultSummary} className={'summary-text'} />
                 </div>
                 <div className={'blog-img-file'}>
                     <input type='file' name='file' ref={(input)=>{this.fileInput = input;}} />
                     <input type='button' value={'上传图片'} onClick={this.handleUpload} />
                     <input type='text' readOnly={true} value={filePath} style={{width: '60%'}}/>
                 </div>
-
                 <div className={'article-form-button'}>
                     <Button describe={btnContent} btnClick={this.publish} className={''}/>
                     <Button describe={'保存'} btnClick={this.save} className={''}/>

@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import ReactMarkDown from 'react-markdown';
 import NProgress from 'nprogress';
 import { CSSTransition } from 'react-transition-group';
+import {markdown} from "../../utils/markdownUtil";
 import { getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
 import Tag from "../../components/Tag";
+import 'highlight.js/styles/atom-one-dark.css';
 import './article.scss';
 
 class Article extends React.PureComponent {
@@ -17,6 +18,7 @@ class Article extends React.PureComponent {
     }
 
     componentDidMount() {
+        NProgress.start();
         const {articleId} = this.props.match.params;
         this.props.reduceVisit({id: articleId});
         this.props.getSpecifiedArticle(articleId);
@@ -56,7 +58,7 @@ class Article extends React.PureComponent {
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
                             <p className='article-date'>Post: {new Date(date).toLocaleString()}</p>
-                            <ReactMarkDown source={content} escapeHtml={false} skipHtml={true} className='article-content'/>
+                            <div className='article-content' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
                                     [...tags.split(',')].map((v, index) => (

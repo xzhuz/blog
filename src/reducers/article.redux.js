@@ -258,7 +258,6 @@ export function findMatchTagsArticle({tag}) {
     return dispatch => {
         axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
-                console.log(res.data.data);
                 dispatch(matchTagArticle(res.data.data));
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');

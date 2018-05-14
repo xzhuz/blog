@@ -29,9 +29,9 @@ class Home extends React.PureComponent {
     }
 
     componentDidMount() {
+        NProgress.start();
         this.props.getPartArticles(this.state);
         this.props.doCountArticles();
-        NProgress.start();
     }
 
 
