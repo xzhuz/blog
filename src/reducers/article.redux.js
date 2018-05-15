@@ -20,7 +20,6 @@ const initArticle = {
     thumb: '',
     visit: 0,
     publish: false,
-    introduction: '',
     compliment: 0,
 };
 
@@ -244,6 +243,7 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
+                alert(res.data.msg);
                 dispatch(errorMsg(res.data.msg));
             }
         });
@@ -258,7 +258,7 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  */
 export function findMatchTagsArticle({tag}) {
     return dispatch => {
-        axios.get('/api/articles/tag?tag=' + new Array(tag).join(',')).then(res => {
+        axios.get('/api/articles/relative?tag=' + new Array(tag).join(',')).then(res => {
             if (res.data.code === 0) {
                 dispatch(matchTagArticle(res.data.data));
             } else if (res.data.code === 3) {

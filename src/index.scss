@@ -57,7 +57,7 @@ table {
   p {
     word-spacing:  .1rem;
     letter-spacing: .1rem;
-    font-size: 1rem;
+    font-size: 15px;
   }
 
   blockquote {
@@ -115,11 +115,27 @@ table {
 
   ul {
     padding-left: 1rem;
+
+    li {
+      font-size: 15px;
+    }
   }
 
   a {
     text-decoration: none;
     color: $baseFontColor;
+
+    &:hover {
+      color: $baseStressColor;
+    }
+  }
+
+  .link {
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 80%;
   }
 }
 
