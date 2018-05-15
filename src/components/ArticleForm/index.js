@@ -76,9 +76,7 @@ class ArticleForm extends React.Component {
         if (this.props.defaultContent) {
             this.smde.value(this.props.defaultContent);
         }
-        return true;
     }
-
     render() {
         const {tags, errorMsg, successMsg, btnContent, defaultSummary, defaultTitle, filePath, defaultThumb} = this.props;
         return (
