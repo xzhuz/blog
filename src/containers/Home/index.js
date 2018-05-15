@@ -3,16 +3,11 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import NProgress from 'nprogress';
 import Card from '../../components/Card';
-import './home.scss';
-import {
-    reduceVisit,
-    getPartArticles,
-    doCountArticles,
-    getAllArticleTags,
-} from "../../reducers/article.redux";
+import { reduceVisit, getPartArticles, doCountArticles } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
 import RightSideBar from "../RightSideBar";
+import './home.scss';
 
 class Home extends React.PureComponent {
 

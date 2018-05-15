@@ -95,13 +95,14 @@ table {
   }
 
   tt, code, kbd, samp {
-    font-family: monospace consolas ;
+    font-family: monospace, consolas, Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono;
   }
 
   code {
     display: block;
     overflow-x: auto;
     padding: 1rem;
+    font-size: .8rem;
     color: #abb2bf;
     background: #282c34;
   }
