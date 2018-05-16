@@ -3,7 +3,7 @@
   background-color: white;
   padding: 2%;
   border-radius: 2px;
-  color: #444;
+  color: #333;
 
   section {
     display: flex;
@@ -33,7 +33,8 @@
   .article-content {
     margin-top: .6rem;
     flex: 1 0 auto;
-    font-size: 1.1rem;
+    // font-size: 1.1rem;
+    font-size: 15px;
   }
 
   .article-tags {
