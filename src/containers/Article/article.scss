@@ -15,6 +15,12 @@
 
   .article-title {
     flex: 0 0 auto;
+    margin: 1rem 0;
+  }
+
+  .article-date{
+    color: #858585;
+    font-size: .8rem;
   }
 
   h1 {
@@ -25,7 +31,7 @@
   }
 
   .article-content {
-    margin-top: 1.6rem;
+    margin-top: .6rem;
     flex: 1 0 auto;
     font-size: 1.1rem;
   }
@@ -51,12 +57,6 @@
     width: 0;
     display: none;
   }
-}
-
-.article-date{
-  color: #b8b8b8;
-  font-size: .9rem;
-  margin-top: .6rem;
 }
 
 .article-enter {

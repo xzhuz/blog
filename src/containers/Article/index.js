@@ -46,17 +46,19 @@ class Article extends React.PureComponent {
     formatDate(date) {
         const newDate = new Date(date);
         const year = newDate.getFullYear();
-        const month = newDate.getMonth();
-        const day = newDate.getDay();
-        const time = newDate.getHours() + ':' + newDate.getMinutes() + ":" + newDate.getSeconds();
-        return year + '-' + month + '-' + day + ' ' + time;
+        const month = newDate.getMonth() + 1 < 10 ? '0' + (newDate.getMonth() + 1) : newDate.getMonth() + 1;
+        const day = newDate.getDate();
+        const hour = newDate.getHours() < 10 ? '0' + newDate.getHours() : newDate.getHours();
+        const minutes = newDate.getMinutes() < 10 ? '0' + newDate.getMinutes() : newDate.getMinutes();
+        const seconds = newDate.getSeconds() < 10 ? '0' + newDate.getSeconds() : newDate.getSeconds();
+        return year + '年' + month + '月' + day + '日 ' + hour + ':' + minutes + ":" + seconds;
     }
 
     render () {
         const {title, content, date, tags} = this.props.article;
         return (
             <CSSTransition
-                in={this.state.showArticle}
+                in={this.state.showArticle && !Number.isNaN(new Date(date).getFullYear())}
                 classNames="article"
                 unmountOnExit
                 timeout={{ enter: 500, exit: 300 }}
@@ -70,9 +72,9 @@ class Article extends React.PureComponent {
                             <div className='article-content markdown-body' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
-                                    [...tags.split(',')].map((v, index) => (
+                                    tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
                                         <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
-                                    ))
+                                    )) : ''
                                 }
                             </p>
                         </section>

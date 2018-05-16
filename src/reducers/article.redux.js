@@ -2,8 +2,6 @@ import axios from 'axios';
 import {
     loadArticle,
     loadPopularArticles,
-    publishArticleMsg,
-    updateArticleMsg,
     matchTagArticle,
     articleList,
     allArticleTags, listPartArticles, countArticles
@@ -113,6 +111,7 @@ export function getSpecifiedArticle(id) {
             } else if (res.data.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
+                alert("系统错误，请返回首页重试！");
                 dispatch(loadArticle({}));
             }
         }).catch(err => {
