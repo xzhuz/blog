@@ -50,7 +50,22 @@ class ModifyArticle extends React.Component {
                 tags: [...tags, tag]
             });
             v.target.value = '';
+            this.shouldComponentUpdate = () => {
+                return true;
+            };
         }
+    }
+
+    closeTag(id) {
+        const {tags} = this.state;
+        // 删除指定元素
+        tags.splice(id, 1);
+        this.setState({
+            tags: [...tags]
+        });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     modify() {
@@ -69,14 +84,6 @@ class ModifyArticle extends React.Component {
 
     }
 
-    closeTag(id) {
-        const {tags} = this.state;
-        // 删除指定元素
-        tags.splice(id, 1);
-        this.setState({
-            tags: [...tags]
-        });
-    }
 
     uploadImg(file) {
         const formData = new FormData();

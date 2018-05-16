@@ -43,6 +43,15 @@ class Article extends React.PureComponent {
         this.props.history.push(`/tag/${v}`);
     }
 
+    formatDate(date) {
+        const newDate = new Date(date);
+        const year = newDate.getFullYear();
+        const month = newDate.getMonth();
+        const day = newDate.getDay();
+        const time = newDate.getHours() + ':' + newDate.getMinutes() + ":" + newDate.getSeconds();
+        return year + '-' + month + '-' + day + ' ' + time;
+    }
+
     render () {
         const {title, content, date, tags} = this.props.article;
         return (
@@ -57,7 +66,7 @@ class Article extends React.PureComponent {
                     <div className='article'>
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                            <p className='article-date'>Post: {new Date(date).toLocaleString()}</p>
+                            <p className='article-date'>Post: {this.formatDate(date)}</p>
                             <div className='article-content markdown-body' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
