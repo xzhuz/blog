@@ -29,6 +29,9 @@ class Publish extends React.PureComponent {
         this.setState({
             [key]: val.target.value
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     handleTagChange(v) {
@@ -36,6 +39,9 @@ class Publish extends React.PureComponent {
         this.setState({
             tags: tag.split(';')
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     handleEnter(v) {
