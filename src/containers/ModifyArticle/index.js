@@ -99,6 +99,9 @@ class ModifyArticle extends React.Component {
             this.setState({
                 thumb: filePath
             });
+            this.shouldComponentUpdate = () => {
+                return true;
+            };
         }
     }
 
@@ -109,6 +112,9 @@ class ModifyArticle extends React.Component {
         this.setState({
             clickUpload: true
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     contentChange(v) {

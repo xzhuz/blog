@@ -88,6 +88,9 @@ class Publish extends React.PureComponent {
         const formData = new FormData();
         formData.append('file', file, file.name);
         this.props.uploadImg(formData);
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     uploadThumb(file) {
@@ -103,6 +106,9 @@ class Publish extends React.PureComponent {
             this.setState({
                 thumb: filePath
             });
+            this.shouldComponentUpdate = () => {
+                return true;
+            };
         }
     }
 
