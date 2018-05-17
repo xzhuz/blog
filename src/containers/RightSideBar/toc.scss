@@ -1,0 +1,15 @@
+.bar-toc {
+  color: $baseFontColor;
+  line-height: 1.8rem;
+  .toc-list-item a{
+    text-decoration: none;
+  }
+
+  .is-active-li>a{
+    color:$baseStressColor;
+  }
+
+  .toc-link::before {
+    height: auto;
+  }
+}

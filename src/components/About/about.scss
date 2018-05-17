@@ -92,6 +92,7 @@
     -webkit-justify-content: space-around;
     flex-wrap: wrap;
     margin: .5rem auto;
+    line-height: 1.8rem;
 
     @media only screen and (max-width: 600px) {
       .info:first-child {

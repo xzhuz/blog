@@ -36,6 +36,10 @@ table {
   border-collapse: collapse;
 }
 
+ul>li, ol>li{
+  list-style: none;
+}
+
 #root {
   height: 100%;
 }

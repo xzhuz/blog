@@ -80,10 +80,11 @@ class Article extends React.PureComponent {
                         </section>
                     </div>
                     {
-                        tags && tags.length > 0 ? <RightSideBar tags={tags} showPopular={false}
+                        tags && tags.length > 0
+                            ? <RightSideBar tags={tags} showPopular={false}
                                              showPostContent={(id, visit) => this.showPostContent(id, visit)}
-                                             articleSideBarTitle={'相关文章'}
-                        /> : ''
+                                             articleSideBarTitle={'相关文章'} />
+                            : ''
                     }
                 </div>
             </CSSTransition>
