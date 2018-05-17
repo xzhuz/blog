@@ -18,7 +18,7 @@ export function tocOption() {
         // Main class to add to lists.
         listClass: 'toc-list',
         // Extra classes to add to lists.
-        extraListClasses: '',
+        // extraListClasses: '',
         // Class that gets added when a list should be collapsed.
         isCollapsedClass: 'is-collapsed',
         // Class that gets added when a list should be able
@@ -37,8 +37,7 @@ export function tocOption() {
         // Smooth scroll duration.
         scrollSmoothDuration: 420,
         // Callback for scroll end.
-        scrollEndCallback: function (e) {
-        },
+        // scrollEndCallback: function (e) { },
         // Headings offset between the headings and the top of the document (this is meant for minor adjustments).
         headingsOffset: 1,
         // Timeout between events firing to make sure it's

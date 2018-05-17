@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
-import classNames from 'classnames';
 import tocbot from 'tocbot';
 import SideBar from "../../components/SideBar/index";
 import Tag from "../../components/Tag/index";
@@ -56,7 +55,7 @@ class RightSideBar extends React.PureComponent {
             tag = [...tag, ...v.split(',')];
         });
         tag = Array.from(new Set(tag));
-        tocbot.init(tocOption());
+        tocbot.init({...tocOption(),  headingsOffset: -window.innerHeight});
         return (
             <CSSTransition
                 in={this.state.showRightSideBar}
@@ -65,7 +64,7 @@ class RightSideBar extends React.PureComponent {
                 timeout={{ enter: 500, exit: 300 }}
             >
                 <div className={'right-side-bar'}>
-                    <SideBar barTitle={articleSideBarTitle}>
+                    <SideBar barTitle={articleSideBarTitle} >
                         {
                             sideBarArticles.filter(v => v.publish).map((v, index) => (
                                 <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
@@ -83,7 +82,7 @@ class RightSideBar extends React.PureComponent {
                                 : ''
                         }
                     </SideBar>
-                    <div ref={this.barToc} className='bar-toc'>
+                    <div className='bar-toc'>
                     </div>
                 </div>
             </CSSTransition>
