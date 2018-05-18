@@ -64,7 +64,7 @@ class Article extends React.PureComponent {
                 timeout={{ enter: 500, exit: 300 }}
                 onExited={() => {this.setState({showArticle: false});}}
             >
-                <div className='container'>
+                <article className='container'>
                     <div className='article'>
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
@@ -86,7 +86,7 @@ class Article extends React.PureComponent {
                                              articleSideBarTitle={'相关文章'} />
                             : ''
                     }
-                </div>
+                </article>
             </CSSTransition>
         );
     }

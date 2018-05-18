@@ -19,12 +19,15 @@ body {
   flex: 1 0 auto;
   margin: 4.5rem auto;
   width: 80%;
+  max-width: 1024px;
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
-  position: relative;
   background-size: cover;
   //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+  position: absolute;
+  left: 0;
+  right: 0;
 
   @media only screen and (max-width: 768px) {
     width: 96%;
@@ -36,7 +39,7 @@ table {
   border-collapse: collapse;
 }
 
-ul>li, ol>li{
+ul>li, ol>li {
   list-style: none;
 }
 
@@ -50,6 +53,7 @@ ul>li, ol>li{
   display: -moz-flex;
   height: 100%;
   flex-direction: column;
+  position: relative;
 }
 
 // markdown 样式

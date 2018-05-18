@@ -4,7 +4,10 @@
   padding: 2%;
   border-radius: 2px;
   color: #444;
-
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
   section {
     display: flex;
     display: -webkit-flex;
@@ -46,16 +49,6 @@
 
   @media only screen and (max-width: 768px) {
     width: 100%;
-  }
-}
-
-.right-side-bar {
-  width: 28%;
-  margin-left: 2%;
-
-  @media only screen and (max-width: 768px) {
-    width: 0;
-    display: none;
   }
 }
 

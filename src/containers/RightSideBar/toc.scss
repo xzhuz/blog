@@ -2,21 +2,37 @@
   color: $baseFontColor;
   line-height: 1.8rem;
   font-size: 1rem;
-  //height: 100%;
+  width: 100%;
   .toc-list {
     position: relative;
     overflow: hidden;
   }
   .toc-list-item a {
+    display: block;
     text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ul>li, ol>li {
+    list-style: disc;
   }
 
   .is-active-li > a {
-    color: $baseStressColor;
+    color: $baseColor;
+  }
+
+  .toc-list {
+    padding-left: 2rem;
+  }
+
+  .is-active-link {
+    background-color: #ebedef;
   }
 }
 
-//.bar-toc>.toc-list{
-//  position: fixed;
-//  top: 300px;
-//}
+.toc-fixed{
+  position: fixed;
+  top: 4.5rem;
+}
