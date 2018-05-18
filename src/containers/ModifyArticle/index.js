@@ -40,6 +40,9 @@ class ModifyArticle extends React.Component {
         this.setState({
             [key]: val.target.value
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     handleEnter(v) {
@@ -84,7 +87,6 @@ class ModifyArticle extends React.Component {
 
     }
 
-
     uploadImg(file) {
         const formData = new FormData();
         formData.append('file', file, file.name);
@@ -97,6 +99,9 @@ class ModifyArticle extends React.Component {
             this.setState({
                 thumb: filePath
             });
+            this.shouldComponentUpdate = () => {
+                return true;
+            };
         }
     }
 
@@ -107,6 +112,9 @@ class ModifyArticle extends React.Component {
         this.setState({
             clickUpload: true
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     contentChange(v) {

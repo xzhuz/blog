@@ -29,6 +29,9 @@ class Publish extends React.PureComponent {
         this.setState({
             [key]: val.target.value
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     handleTagChange(v) {
@@ -36,6 +39,9 @@ class Publish extends React.PureComponent {
         this.setState({
             tags: tag.split(';')
         });
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     handleEnter(v) {
@@ -82,6 +88,9 @@ class Publish extends React.PureComponent {
         const formData = new FormData();
         formData.append('file', file, file.name);
         this.props.uploadImg(formData);
+        this.shouldComponentUpdate = () => {
+            return true;
+        };
     }
 
     uploadThumb(file) {
@@ -97,6 +106,9 @@ class Publish extends React.PureComponent {
             this.setState({
                 thumb: filePath
             });
+            this.shouldComponentUpdate = () => {
+                return true;
+            };
         }
     }
 
