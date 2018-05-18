@@ -5,7 +5,7 @@ export function tocOption() {
         // Where to grab the headings to build the table of contents.
         contentSelector: '.article-content',
         // Which headings to grab inside of the contentSelector element.
-        headingSelector: 'h1, h2, h3, h4',
+        headingSelector: 'h1, h2, h3, h4, h5, h6',
         // Headings that match the ignoreSelector will be skipped.
         // ignoreSelector: '.js-toc-ignore',
         // Main class to add to links.

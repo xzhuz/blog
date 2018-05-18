@@ -36,3 +36,15 @@
   position: fixed;
   top: 4.5rem;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  outline: none;
+
+  &::before {
+    display: block;
+    content: " ";
+    height: 4rem;
+    margin-top: -4rem;
+    visibility: hidden;
+  }
+}
