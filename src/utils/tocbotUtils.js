@@ -11,8 +11,8 @@ export function tocOption() {
         // Main class to add to links.
         linkClass: 'toc-link',
         // Extra classes to add to links.
-        extraLinkClasses: '',
-        // Class to add to active links,
+        // extraLinkClasses: '',
+        // Class to add to active   links,
         // the link corresponding to the top most heading on the page.
         activeLinkClass: 'is-active-link',
         // Main class to add to lists.
@@ -58,6 +58,8 @@ export function tocOption() {
         // onclick function to apply to all links in toc. will be called with
         // the event as the first parameter, and this can be used to stop,
         // propagation, prevent default or perform action
-        onClick: false
+        onClick: function (e) {
+            return false;
+        }
     };
 }

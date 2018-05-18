@@ -1,15 +1,22 @@
 .bar-toc {
   color: $baseFontColor;
   line-height: 1.8rem;
-  .toc-list-item a{
+  font-size: 1rem;
+  //height: 100%;
+  .toc-list {
+    position: relative;
+    overflow: hidden;
+  }
+  .toc-list-item a {
     text-decoration: none;
   }
 
-  .is-active-li>a{
-    color:$baseStressColor;
-  }
-
-  .toc-link::before {
-    height: auto;
+  .is-active-li > a {
+    color: $baseStressColor;
   }
 }
+
+//.bar-toc>.toc-list{
+//  position: fixed;
+//  top: 300px;
+//}

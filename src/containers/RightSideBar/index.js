@@ -20,8 +20,9 @@ class RightSideBar extends React.PureComponent {
         this.state = {
             showRightSideBar: false,
         };
-        // this.barToc = React.createRef();
     }
+
+    tocInit;
 
     componentDidMount() {
         const {tags} = this.props;
@@ -32,6 +33,7 @@ class RightSideBar extends React.PureComponent {
         }
         this.props.getAllArticleTags();
         this.setState({showRightSideBar: true});
+        this.tocInit = false;
     }
 
 
@@ -47,6 +49,10 @@ class RightSideBar extends React.PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        this.tocInit = false;
+    }
+
     render() {
         const {articles, articleTag, popularArticles, showPopular, articleSideBarTitle} = this.props;
         const sideBarArticles = showPopular ? popularArticles : articles;
@@ -56,6 +62,7 @@ class RightSideBar extends React.PureComponent {
         });
         tag = Array.from(new Set(tag));
         tocbot.init({...tocOption(),  headingsOffset: -window.innerHeight});
+        console.log('render');
         return (
             <CSSTransition
                 in={this.state.showRightSideBar}
@@ -63,7 +70,7 @@ class RightSideBar extends React.PureComponent {
                 unmountOnExit
                 timeout={{ enter: 500, exit: 300 }}
             >
-                <div className={'right-side-bar'}>
+                <div className='right-side-bar'>
                     <SideBar barTitle={articleSideBarTitle} >
                         {
                             sideBarArticles.filter(v => v.publish).map((v, index) => (
