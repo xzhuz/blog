@@ -20,6 +20,10 @@
     display: -webkit-flex;
     display: -moz-flex;
     flex-direction: column;
+
+    .container {
+      position: static !important;
+    }
   }
 
   ul {
