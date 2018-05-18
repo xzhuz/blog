@@ -22,6 +22,7 @@ class RightSideBar extends React.PureComponent {
             showRightSideBar: false,
             tocFixed: false,
         };
+        this.handleTocScroll = this.handleTocScroll.bind(this);
         this.barTag = React.createRef();
         this.barTitle = React.createRef();
     }
@@ -39,7 +40,7 @@ class RightSideBar extends React.PureComponent {
         }
         this.props.getAllArticleTags();
         this.setState({showRightSideBar: true});
-        window.addEventListener('scroll', () => this.handleTocScroll());
+        window.addEventListener('scroll', this.handleTocScroll, false);
     }
 
     handleTocScroll() {
@@ -74,7 +75,7 @@ class RightSideBar extends React.PureComponent {
 
     componentWillUnmount() {
         tocbot.destroy();
-        // window.removeEventListener('scroll');
+        window.removeEventListener('scroll', this.handleTocScroll, false);
     }
 
     render() {
@@ -85,7 +86,6 @@ class RightSideBar extends React.PureComponent {
             tag = [...tag, ...v.split(',')];
         });
         tag = Array.from(new Set(tag));
-
         const path = this.props.history.location.pathname;
         if (path.includes('/article')) {
             tocbot.init(tocOption());

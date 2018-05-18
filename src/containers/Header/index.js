@@ -19,7 +19,7 @@ class Header extends React.PureComponent {
 
     componentDidMount() {
         const {pathname} = this.props.history.location;
-        window.addEventListener('scroll', () => this.handleScroll(pathname));
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     isTop = true;
@@ -62,6 +62,7 @@ class Header extends React.PureComponent {
 
     componentWillUnmount() {
         clearInterval(this.timer);
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     render() {
