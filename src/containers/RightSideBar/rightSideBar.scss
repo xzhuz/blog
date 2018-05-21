@@ -1,10 +1,8 @@
 .right-side-bar {
-  width: 28%;
-  position: absolute;
-  right: 0;
   box-sizing: border-box;
   -moz-box-sizing:border-box; /* Firefox */
   -webkit-box-sizing:border-box; /* Safari */
+  margin-left: 2%;
   @media only screen and (max-width: 768px) {
     width: 0;
     display: none;

@@ -25,9 +25,6 @@ body {
   display: -moz-flex;
   background-size: cover;
   //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
-  position: absolute;
-  left: 0;
-  right: 0;
 
   @media only screen and (max-width: 768px) {
     width: 96%;
