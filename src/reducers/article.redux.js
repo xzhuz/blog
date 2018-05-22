@@ -4,7 +4,7 @@ import {
     loadPopularArticles,
     matchTagArticle,
     articleList,
-    allArticleTags, listPartArticles, countArticles
+    allArticleTags, listPartArticles, countArticles, confirmCompliment
 } from "../actions/article.index";
 import { clearErrorMsg, errorMsg,} from "../actions/user.index";
 
@@ -38,8 +38,6 @@ export function matchTagArticles(state = initState, action) {
     return Article.MATCH_TAG_ARTICLE === action.type ? action.payload : state;
 }
 
-
-
 export function articleLoad(state = initArticle, action) {
     return Article.LOAD_ARTICLE === action.type ? action.payload : state;
 }
@@ -55,6 +53,18 @@ export function articleTags(state = [], action) {
 export function articleCount(state = 0, action) {
     return Article.COUNT_ARTICLE === action.type ? action.payload : state;
 }
+
+export function compliment(state = 0, action) {
+    switch (action.type) {
+        case Article.ARTICLE_CONFIRM_COMPLIMENT:
+            return action.compliment;
+        case Article.ARTICLE_CANCEL_COMPLIMENT:
+            return action.compliment;
+        default:
+            return state;
+    };
+}
+
 
 const msgInitState = {
     errorMsg: '',
@@ -289,6 +299,26 @@ export function doCountArticles() {
         axios.get('/api/articles/count').then(res => {
             if (res.data.code === 0) {
                 dispatch(countArticles(res.data.data));
+            }
+        });
+    };
+}
+
+export function doConfirmCompliment(id) {
+    return dispatch => {
+        axios.get('/api/articles/compliment/confirm?id=' + id).then(res => {
+            if (res.data.code === 0) {
+                dispatch(confirmCompliment(res.data.data));
+            }
+        });
+    };
+}
+
+export function doCancelCompliment(id) {
+    return dispatch => {
+        axios.get('/api/articles/compliment/cancel?id=' + id).then(res => {
+            if (res.data.code === 0) {
+                dispatch(confirmCompliment(res.data.data));
             }
         });
     };

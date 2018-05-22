@@ -21,9 +21,10 @@
     margin: 1rem 0;
   }
 
-  .article-date{
+  .article-info{
     color: #858585;
     font-size: .8rem;
+    margin-top: .4rem;
   }
 
   h1 {
@@ -36,21 +37,21 @@
   .article-content {
     margin-top: .6rem;
     flex: 1 0 auto;
-    // font-size: 1.1rem;
     font-size: 15px;
   }
 
-  .article-tags {
-    flex: 0 0 auto;
-
-    .tag {
-      margin-bottom: 2px;
-    }
-  }
 
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
+}
+
+.article-tags {
+  flex: 0 0 auto;
+  margin: 1.6rem 0 .8rem;
+  padding-top: .7rem;
+  border-top: 1px solid #ddd;
+  width: 100%;
 }
 
 .article-enter {

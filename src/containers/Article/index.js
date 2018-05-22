@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 import {markdown} from "../../utils/markdownUtil";
 import { getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
+import Compliment from '../Compliment';
 import Tag from "../../components/Tag";
 import 'highlight.js/styles/atom-one-dark.css';
 import './article.scss';
@@ -55,7 +56,7 @@ class Article extends React.PureComponent {
     }
 
     render () {
-        const {title, content, date, tags} = this.props.article;
+        const {title, content, date, tags, compliment, id, visit} = this.props.article;
         return (
             <CSSTransition
                 in={this.state.showArticle && !Number.isNaN(new Date(date).getFullYear())}
@@ -68,7 +69,8 @@ class Article extends React.PureComponent {
                     <div className='article'>
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                            <p className='article-date'>Post: {this.formatDate(date)}</p>
+                            <p className='article-info'>发布: {this.formatDate(date)}</p>
+                            <p className='article-info'>阅读: {visit} 次</p>
                             <div className='article-content markdown-body' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
@@ -77,6 +79,7 @@ class Article extends React.PureComponent {
                                     )) : ''
                                 }
                             </p>
+                            <Compliment id={id} origin={compliment} />
                         </section>
                     </div>
                     {

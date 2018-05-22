@@ -1,0 +1,56 @@
+.compliment {
+  padding: 4px 14px;
+  border: 1px solid $baseStressColor;
+  border-radius: 20px;
+  outline: none;
+  color: $baseStressColor;
+  font-size: 80%;
+  width: 90px;
+  margin: 0 auto;
+
+  svg {
+    margin-bottom: 4px;
+  }
+
+  span {
+    margin-left: 10px;
+    border-left: 1px solid $baseStressColor;
+    padding-left: 10px;
+  }
+}
+
+.complimentAnimation {
+  -webkit-animation-name: complimentStress;
+  -moz-animation-name: complimentStress;
+  animation-name: complimentStress;
+  -webkit-animation-duration: .2s;
+  -moz-animation-duration: .2s;
+  animation-duration: .2s;
+}
+
+.clickAnimation {
+  background-color: $baseStressColor;
+  color: #ffffff;
+  border: 1px solid $baseStressColor;
+
+  span {
+    border-left: 1px solid #ffffff;
+  }
+}
+
+@-webkit-keyframes complimentStress {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+@keyframes complimentStress {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

@@ -78,3 +78,26 @@ export const clearMsg = () => {
     };
 };
 
+/**
+ * 点赞
+ * @param compliment
+ * @returns {{type: string, compliment: *}}
+ */
+export const confirmCompliment = (compliment) => {
+    return {
+        type: Article.ARTICLE_CONFIRM_COMPLIMENT,
+        compliment,
+    };
+};
+
+/**
+ * 取消点赞
+ * @param compliment
+ * @returns {{type: string, compliment: *}}
+ */
+export const cancelCompliment = (compliment) => {
+    return {
+        type: Article.ARTICLE_CANCEL_COMPLIMENT,
+        compliment,
+    };
+};

@@ -6,7 +6,7 @@ import {
     articlesMsg,
     articleTags,
     articleCount,
-    matchTagArticles
+    matchTagArticles, compliment
 } from './article.redux';
 import {user} from "./user.redux";
 import {thumbFile, imgFile} from "./file.redux";
@@ -15,11 +15,12 @@ export const reducers = combineReducers({
     articlesList,
     articleLoad,
     articleCount,
-    user,
     articlesMsg,
-    imgFile,
-    thumbFile,
+    compliment,
     articleTags,
     popularArticlesLoad,
     matchTagArticles,
+    user,
+    imgFile,
+    thumbFile,
 });
