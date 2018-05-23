@@ -5,8 +5,12 @@
   outline: none;
   color: $baseStressColor;
   font-size: 80%;
-  width: 90px;
+  width: 80px;
   margin: 0 auto;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   svg {
     margin-bottom: 4px;
@@ -43,7 +47,7 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 }
 @keyframes complimentStress {
@@ -51,6 +55,6 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 }
