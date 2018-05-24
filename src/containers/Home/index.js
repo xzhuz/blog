@@ -4,8 +4,9 @@ import './home.scss';
 import Loading from '../../components/Loading';
 
 const LoadableComponent = Loadable({
-    loader: () => import('./home'),
+    loader: () => import('./LoadableHome'),
     loading: Loading,
+    delay: 200,
 });
 
 export default class Home extends React.Component {
