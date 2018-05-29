@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Home from './Home';
+import {LoadableHome} from './Home/LoadableHome';
 import Article from "./Article";
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -18,7 +18,7 @@ class App extends React.PureComponent {
                 <div className='app'>
                     <Header/>
                     <Switch>
-                        <Route exact path='/' component={Home}/>
+                        <Route exact path='/' component={LoadableHome()}/>
                         <Route path='/tag/:tagName' component={ArchiveArticles}/>
                         <Route path='/article/:articleId' component={Article}/>
                         <Route path='/about' component={About}/>

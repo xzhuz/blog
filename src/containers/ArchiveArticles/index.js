@@ -1,17 +1,4 @@
 import React from 'react';
-import Loadable from 'react-loadable';
-import Loading from '../../components/Loading';
+import { LoadableComponent } from '../../components/Loading/LoadableCompent';
 
-const LoadableComponent = Loadable({
-    loader: () => import('./LoadableArchiveArticles'),
-    loading: Loading,
-});
-
-export default class ArchiveArticles extends React.Component {
-    render () {
-        return (
-            <LoadableComponent/>
-        );
-    }
-}
-
+export default LoadableComponent(() => import('./LoadableArchiveArticles'));
