@@ -7,6 +7,7 @@ import {markdown} from "../../utils/markdownUtil";
 import { getSpecifiedArticle, reduceVisit} from "../../reducers/article.redux";
 import RightSideBar from "../RightSideBar";
 import Compliment from '../Compliment';
+import Comment from '../../components/Comment';
 import Tag from "../../components/Tag";
 import 'highlight.js/styles/atom-one-dark.css';
 import './article.scss';
@@ -80,6 +81,7 @@ class LoadableArticle extends React.PureComponent {
                                 }
                             </p>
                             <Compliment id={id} origin={compliment} />
+                            <Comment />
                         </section>
                     </div>
                     {
