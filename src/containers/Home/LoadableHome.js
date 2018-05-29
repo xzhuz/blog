@@ -1,6 +1,6 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-import axios from 'axios';
+import {asyncGetPartArticles, asyncCountArticles} from '../../reducers/article.redux';
 import Loading from '../../components/Loading';
 import {LoadableComponent} from '../../components/Loading/LoadableCompent';
 
@@ -17,19 +17,16 @@ export const LoadableHome = () => {
     return Loadable.Map({
         loader: {
             Home: () => import('./index'),
-            article: () =>  axios.get('/api/articles/part', {
-                params: {
-                    page: 0,
-                    size: 6,
-                }
-            }).then(res => res.data.data),
+            article: () => asyncGetPartArticles({page:0, size: 5}),
+            articleQuantity: () => asyncCountArticles(),
         },
         loading: Loading,
+        delay: 1000,
         render(loaded, props) {
             const Home = loaded.Home.default;
-            console.log(loaded.article);
             const articles = loaded.article;
-            return <Home {...props} articles={articles}/>;
+            const articleQuantity = loaded.articleQuantity;
+            return <Home {...props} initArticles={articles} articleQuantity={articleQuantity} />;
         }
     });
 };

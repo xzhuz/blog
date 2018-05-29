@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import NProgress from 'nprogress';
 import Card from '../../components/Card';
-import { reduceVisit, getPartArticles, doCountArticles } from "../../reducers/article.redux";
+import { getPartArticles } from "../../reducers/article.redux";
 import ReadMore from '../../components/ReadMore';
 import BottomOut from "../../components/BottomOut";
 import RightSideBar from "../RightSideBar";
@@ -16,20 +16,14 @@ class Home extends React.PureComponent {
         super(props);
         this.state = {
             skip: 0,
-            limit: 6
+            limit: 5,
+            clickRead: false,
         };
     }
 
     showPostContent(articleId) {
         this.props.history.push({pathname: `/article/${articleId}`});
     }
-
-    componentDidMount() {
-        NProgress.start();
-        // this.props.getPartArticles(this.state);
-        this.props.doCountArticles();
-    }
-
 
     componentWillUnmount() {
         NProgress.done();
@@ -47,8 +41,10 @@ class Home extends React.PureComponent {
 
     readMore(v) {
         this.setState(state => ({
-            limit: state.limit + 3
+            limit: state.limit + 3,
+            clickRead: true,
         }), () => this.props.getPartArticles(this.state));
+        NProgress.start();
     }
 
     renderReadMore(filled) {
@@ -59,19 +55,21 @@ class Home extends React.PureComponent {
         NProgress.done();
     }
 
+
+
     render() {
-        const {article, articleSize} = this.props;
-        console.log(this.props.articles);
+        const {articleList, articleQuantity, initArticles} = this.props;
+        const articles = this.state.clickRead ? articleList: initArticles;
         return (
             <div className='container'>
                 <div className={'articles'}>
                     {
-                        article.filter(v => v.publish).map((v, index) => (
+                        articles.filter(v => v.publish).map((v, index) => (
                             this.renderCards(v, index)
                         ))
                     }
                     {
-                        this.renderReadMore(this.state.limit >= articleSize)
+                        this.renderReadMore(this.state.limit >= articleQuantity)
                     }
                 </div>
                 <RightSideBar showPopular={true}
@@ -84,18 +82,16 @@ class Home extends React.PureComponent {
 }
 
 Home.propTypes = {
-    articles: PropTypes.array,
+    initArticles: PropTypes.array,
+    articleQuantity: PropTypes.number,
 };
-
 const mapStateToProps = state => {
     return {
-        article: state.articlesList,
-        articleSize: state.articleCount,
+        articleList: state.articlesList,
+
     };
 };
 
 export default withRouter(connect(mapStateToProps, {
     getPartArticles,
-    reduceVisit,
-    doCountArticles,
 })(Home));

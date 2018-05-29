@@ -170,6 +170,22 @@ export function getPartArticles({skip, limit}) {
     } ;
 }
 
+export function asyncGetPartArticles({page, size}) {
+    return axios
+        .get('/api/articles/part', {
+            params: {page, size}
+        })
+        .then(res => {
+            if (res.data.code === 0) {
+                return res.data.data;
+            } else if (res.data.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
+            } else {
+                return [];
+            }
+        });
+}
+
 /**
  * 发布博客
  * @param thumb
@@ -302,6 +318,15 @@ export function doCountArticles() {
             }
         });
     };
+}
+
+export function asyncCountArticles() {
+    return axios.get('/api/articles/count').then(res => {
+            if (res.data.code === 0) {
+                return res.data.data;
+            }
+            return 0;
+    });
 }
 
 export function doConfirmCompliment(id) {

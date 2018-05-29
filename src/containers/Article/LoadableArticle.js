@@ -72,7 +72,7 @@ class LoadableArticle extends React.PureComponent {
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
                             <p className='article-info'>发布: {this.formatDate(date)}</p>
                             <p className='article-info'>阅读: {visit} 次</p>
-                            <div className='article-content markdown-body' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                            <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
                                     tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
