@@ -8,8 +8,7 @@ class Comment extends React.Component{
 
     componentDidMount() {
         const {pathname} = this.props.history.location;
-        const host = location.pathname;
-        const gitalk = getGitTalk(pathname, host);
+        const gitalk = getGitTalk(pathname);
         gitalk.render('comment');
     }
 
