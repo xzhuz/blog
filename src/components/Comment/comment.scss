@@ -1,0 +1,12 @@
+.gt-btn.gt-btn-public{
+  background-color: $baseColor;
+}
+
+.gt-container {
+  .gt-svg svg {
+    fill: $baseColor;
+  }
+  .gt-comment-username, .gt-header-controls-tip {
+    color: $baseColor;
+  }
+}
