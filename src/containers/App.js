@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Home from './Home';
-import Article from "./Article";
+import Home from './Home/LoadableHome';
+import Article from "./Article/LoadableArticle";
 import Login from './Login';
 import Dashboard from './Dashboard';
-import ArchiveArticles from './ArchiveArticles';
+import ArchiveArticles from './ArchiveArticles/LoadableArchiveArticles';
 import About from "../components/About";
 import Footer from "../components/Footer";
 import NotFound from "../components/NotFound";

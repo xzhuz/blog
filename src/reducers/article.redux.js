@@ -1,13 +1,14 @@
-import axios from 'axios';
 import {
-    loadArticle,
-    loadPopularArticles,
-    matchTagArticle,
-    articleList,
-    allArticleTags, listPartArticles, countArticles, confirmCompliment
+loadArticle,
+loadPopularArticles,
+matchTagArticle,
+articleList,
+allArticleTags, listPartArticles, countArticles, confirmCompliment
 } from "../actions/article.index";
+
 import { clearErrorMsg, errorMsg,} from "../actions/user.index";
 
+import * as request from '../utils/axios/api';
 import * as Article from '../actions/constants';
 
 const initArticle = {
@@ -62,7 +63,7 @@ export function compliment(state = 0, action) {
             return action.compliment;
         default:
             return state;
-    };
+    }
 }
 
 
@@ -93,10 +94,10 @@ export function articlesMsg(state = msgInitState, action) {
  */
 export function getArticleList() {
     return dispatch => {
-        axios.get('/api/articles/list').then(res => {
-            if (res.data.code === 0) {
-                dispatch(articleList(res.data.data));
-            } else if (res.data.code === 3) {
+        request.articleList().then(res => {
+            if (res.code === 0) {
+                dispatch(articleList(res.data));
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(articleList([]));
@@ -113,12 +114,10 @@ export function getArticleList() {
  */
 export function getSpecifiedArticle(id) {
     return dispatch => {
-        axios.get('/api/articles/info', {
-            params: {id: id}
-        }).then(res => {
-            if (res.data.code === 0) {
-                dispatch(loadArticle(res.data.data));
-            } else if (res.data.code === 3) {
+        request.specifiedArticle(id).then(res => {
+            if (res.code === 0) {
+                dispatch(loadArticle(res.data));
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 alert("系统错误，请返回首页重试！");
@@ -135,9 +134,9 @@ export function getSpecifiedArticle(id) {
  */
 export function getPopularArticle() {
     return dispatch => {
-        axios.get('/api/articles/popular').then(res => {
-            if (res.data.code === 0) {
-               dispatch(loadPopularArticles(res.data.data));
+        request.popularArticles().then(res => {
+            if (res.code === 0) {
+               dispatch(loadPopularArticles(res.data));
             } else {
                dispatch(loadPopularArticles([]));
             }
@@ -153,15 +152,10 @@ export function getPopularArticle() {
  */
 export function getPartArticles({skip, limit}) {
     return dispatch => {
-        axios.get('/api/articles/part', {
-            params: {
-                page: skip,
-                size: limit,
-            }
-        }).then(res => {
-            if (res.data.code === 0) {
-                dispatch(listPartArticles(res.data.data));
-            } else if (res.data.code === 3) {
+        request.partArticles({page: skip, size: limit}).then(res => {
+            if (res.code === 0) {
+                dispatch(listPartArticles(res.data));
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 dispatch(listPartArticles([]));
@@ -169,6 +163,7 @@ export function getPartArticles({skip, limit}) {
         });
     } ;
 }
+
 
 /**
  * 发布博客
@@ -183,15 +178,15 @@ export function getPartArticles({skip, limit}) {
  */
 export function publishArticle({thumb, content, summary, title, tags, visit, publish}) {
     return dispatch => {
-        axios.post('/api/articles/publish', {thumb, content, summary, title, tags: tags.join(','), visit, publish}).then(res => {
-            if (res.status === 200 && res.data.code === 0) {
+        request.publishArticle({thumb, content, summary, title, tags, visit, publish}).then(res => {
+            if (res.status === 200 && res.code === 0) {
                 dispatch(clearErrorMsg());
                 publish ? alert('发布文章成功') : alert('保存文章成功');
                 // publish ? dispatch(publishArticleMsg('发布文章成功!')) : dispatch(publishArticleMsg('保存文章成功!'));
-            } else if (res.data.code === 3) {
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
-                dispatch(errorMsg(res.data.msg));
+                dispatch(errorMsg(res.msg));
             }
         });
     };
@@ -206,10 +201,10 @@ export function publishArticle({thumb, content, summary, title, tags, visit, pub
  */
 export function reduceVisit({id}) {
     return () => {
-        axios.get('/api/articles/visit', {params: {id: id}}).then(res => {
-            if (res.data.code === 0) {
+        request.reduceVisit(id).then(res => {
+            if (res.code === 0) {
                 getPopularArticle();
-            } else if (res.data.code === 3) {
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             }
         });
@@ -223,9 +218,9 @@ export function reduceVisit({id}) {
  */
 export function deleteArticle(id) {
     return dispatch => {
-        axios.get('/api/articles/delete?id=' + id).then(res => {
-            if (res.data.code !== 0) {
-                dispatch(errorMsg(res.data.msg));
+        request.deleteArticle(id).then(res => {
+            if (res.code !== 0) {
+                dispatch(errorMsg(res.msg));
             }
         });
     };
@@ -243,17 +238,17 @@ export function deleteArticle(id) {
  */
 export function updateArticle({id, content, summary, title, tags, publish, thumb}) {
     return dispatch => {
-        axios.post('/api/articles/update', {id, content, summary, title, tags: tags.join(','), publish, thumb}).then(res => {
-            if (res.status === 200 && res.data.code === 0) {
+        request.updateArticle({id, content, summary, title, tags, publish, thumb}).then(res => {
+            if (res.status === 200 && res.code === 0) {
                 getSpecifiedArticle(id);
                 dispatch(clearErrorMsg());
                // dispatch(updateArticleMsg('更新成功'));
                 alert('更新成功');
-            } else if (res.data.code === 3) {
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
-                alert(res.data.msg);
-                dispatch(errorMsg(res.data.msg));
+                alert(res.msg);
+                dispatch(errorMsg(res.msg));
             }
         });
     };
@@ -267,10 +262,10 @@ export function updateArticle({id, content, summary, title, tags, publish, thumb
  */
 export function findMatchTagsArticle({tag}) {
     return dispatch => {
-        axios.get('/api/articles/relative?tag=' + new Array(tag).join(',')).then(res => {
-            if (res.data.code === 0) {
-                dispatch(matchTagArticle(res.data.data));
-            } else if (res.data.code === 3) {
+       request.findMatchTagsArticle({tag}).then(res => {
+            if (res.code === 0) {
+                dispatch(matchTagArticle(res.data));
+            } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             }
         });
@@ -283,9 +278,9 @@ export function findMatchTagsArticle({tag}) {
  */
 export function getAllArticleTags() {
     return dispatch => {
-        axios.get('/api/articles/tags').then(res => {
-            if (res.data.code === 0 ) {
-                dispatch(allArticleTags(res.data.data));
+        request.allArticleTags().then(res => {
+            if (res.code === 0 ) {
+                dispatch(allArticleTags(res.data));
             }
         });
     };
@@ -296,9 +291,9 @@ export function getAllArticleTags() {
  */
 export function doCountArticles() {
     return dispatch => {
-        axios.get('/api/articles/count').then(res => {
-            if (res.data.code === 0) {
-                dispatch(countArticles(res.data.data));
+        request.countArticle().then(res => {
+            if (res.code === 0) {
+                dispatch(countArticles(res.data));
             }
         });
     };
@@ -306,9 +301,9 @@ export function doCountArticles() {
 
 export function doConfirmCompliment(id) {
     return dispatch => {
-        axios.get('/api/articles/compliment/confirm?id=' + id).then(res => {
-            if (res.data.code === 0) {
-                dispatch(confirmCompliment(res.data.data));
+        request.doConfirmCompliment(id).then(res => {
+            if (res.code === 0) {
+                dispatch(confirmCompliment(res.data));
             }
         });
     };
@@ -316,10 +311,32 @@ export function doConfirmCompliment(id) {
 
 export function doCancelCompliment(id) {
     return dispatch => {
-        axios.get('/api/articles/compliment/cancel?id=' + id).then(res => {
-            if (res.data.code === 0) {
-                dispatch(confirmCompliment(res.data.data));
+        request.doCancelCompliment(id).then(res => {
+            if (res.code === 0) {
+                dispatch(confirmCompliment(res.data));
             }
         });
     };
+}
+
+
+export function asyncCountArticles() {
+    return request.countArticle().then(res => {
+        if (res.code === 0) {
+            return res.data;
+        }
+        return 0;
+    });
+}
+
+export function asyncGetPartArticles({page, size}) {
+    return request.partArticles({page, size}).then(res => {
+        if (res.code === 0) {
+            return res.data;
+        } else if (res.code === 3) {
+            alert('您刷新过于频繁，系统已拦截，请联系博主');
+        } else {
+            return [];
+        }
+    });
 }
