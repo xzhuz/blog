@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import _ from 'lodash';
 import NProgress from 'nprogress';
 import Card from '../../components/Card';
 import { getPartArticles } from "../../reducers/article.redux";
@@ -55,11 +56,9 @@ class Home extends React.PureComponent {
         NProgress.done();
     }
 
-
-
     render() {
         const {articleList, articleQuantity, initArticles} = this.props;
-        const articles = this.state.clickRead ? articleList: initArticles;
+        const articles = _.uniqBy([...initArticles, ...articleList], 'id');
         return (
             <div className='container'>
                 <div className={'articles'}>
