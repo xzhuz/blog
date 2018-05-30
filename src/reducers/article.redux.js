@@ -340,16 +340,3 @@ export function asyncGetPartArticles({page, size}) {
         }
     });
 }
-
-export function asyncFindMatchTagsArticle({tag}) {
-    console.log(tag);
-    return request.findMatchTagsArticle({tag}).then(res => {
-        if (res.code === 0) {
-            return res.data;
-        } else if (res.code === 3) {
-            alert('您刷新过于频繁，系统已拦截，请联系博主');
-        } else {
-            return [];
-        }
-    });
-}
