@@ -22,7 +22,7 @@ class Login extends React.PureComponent {
 
     componentDidMount() {
         // 查询页面权限
-        axios.get('/api/config/auth').then(res => {
+        axios.get('/config/auth').then(res => {
             if (res.status === 200 && res.data.code !== 0 && res.data.data.auth !== 1) {
                 this.props.history.push(`/`);
             }
@@ -42,7 +42,7 @@ class Login extends React.PureComponent {
     }
     register() {
         // 查询注册权限
-        axios.get('/api/config/register').then(res => {
+        axios.get('/config/register').then(res => {
             if (res.status === 200 && res.data.code === 0 && res.data.data.auth === 1) {
                 this.props.register(this.state);
             } else {

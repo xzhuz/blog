@@ -16,12 +16,7 @@ export function get(url, params) {
 
 export function post(url, data) {
     return new Promise((resolve, reject) => {
-        axios.post(url, data, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            }
-        ).then(res => {
+        axios.post(url, data).then(res => {
             resolve(res.data);
         }).catch(err => {
             reject(err);
