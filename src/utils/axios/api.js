@@ -29,7 +29,7 @@ export const publishArticle = ({thumb, content, summary, title, tags, visit, pub
     return post('/articles/publish', {thumb, content, summary, title, tags: tags.join(','), visit, publish});
 };
 
-export const reduceVisit = ({id}) => {
+export const reduceVisit = (id) => {
     return get('/articles/visit', {id: id});
 };
 
