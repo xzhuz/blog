@@ -1,4 +1,3 @@
-import createHistory from 'history/createBrowserHistory';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { fromJS } from 'immutable';
@@ -6,7 +5,6 @@ import { fromJS } from 'immutable';
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export const history = createHistory();
 // Initial routing state
 const locationInitialState = fromJS({
   location: null

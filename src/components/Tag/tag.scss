@@ -1,0 +1,20 @@
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 60%;
+  color: #cccccc;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  margin-right: 5px;
+  height: 1rem;
+  line-height: 1rem;
+
+  &:hover {
+    transition-duration: .6s;
+    -moz-transition-duration: .6s;
+    -webkit-transition-duration: .6s;
+    color: $baseStressColor;
+    cursor: pointer;
+    border: 1px solid $baseStressColor;
+  }
+}
