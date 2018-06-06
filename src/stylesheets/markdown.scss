@@ -1,0 +1,96 @@
+// markdown 样式
+.markdown, .editor-preview-side {
+  p, blockquote, ul, ol, dl, table, pre {
+    margin: 1.2rem 0;
+  }
+
+  p {
+    word-spacing:  .1rem;
+    letter-spacing: .1rem;
+    font-size: 15px;
+    line-height: 1.8rem;
+  }
+
+  li>p {
+    margin: .5rem 0;
+  }
+
+  blockquote {
+    padding: 0 1rem;
+    color: #555555;
+    border-left: 0.2rem solid $baseStressColor;
+
+    &:first-child p{
+      font-weight: bold;
+    }
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+
+    tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1;
+
+      &:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    th, td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+  }
+
+  tt, code, kbd, samp {
+    font-family: monospace, consolas, Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono;
+  }
+
+  code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
+    font-size: .8rem;
+    color: #abb2bf;
+    background: #282c34;
+  }
+
+  h1, h2, h3 {
+    margin: 1.6rem 0 .8rem;
+    padding-bottom: .7rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  ul {
+    padding-left: 1rem;
+
+    li {
+      font-size: 15px;
+      line-height: 1.8rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $baseFontColor;
+
+    &:hover {
+      color: $baseStressColor;
+    }
+  }
+
+  .link {
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 80%;
+  }
+}
