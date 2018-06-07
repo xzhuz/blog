@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {List} from 'immutable';
 
 import Card from "../../../components/Card";
 import './stylesheets/home.scss';
@@ -29,7 +30,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-    initArticles: PropTypes.array,
+    initArticles: PropTypes.instanceOf(List),
     articleQuantity: PropTypes.number,
 };
 
