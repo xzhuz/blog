@@ -74,16 +74,37 @@
     font-weight: bold;
     font-size: 1.2rem;
     color: #555;
+    position: relative;
+    padding-bottom: 2px;
+
+    &:after{
+      content: "";
+      width: 0;
+      height: 2px;
+      background: $baseStressColor;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transition: all .8s;
+      -moz-transition: all .8s;
+      -webkit-transition: all .8s;
+    }
   }
+
   &:hover {
     span {
-      transition-duration: .6s;
-      -moz-transition-duration: .6s;
-      -webkit-transition-duration: .6s;
+      transition-duration: .8s;
+      -moz-transition-duration: .8s;
+      -webkit-transition-duration: .8s;
       color: $baseStressColor;
-    }
 
+      &:after {
+        left: 0;
+        width: 100%;
+      }
+    }
   }
+
 }
 
 .card-content {

@@ -41,7 +41,7 @@ export const updateArticle = ({id, content, summary, title, tags, publish, thumb
     return post('/articles/update', {id, content, summary, title, tags: tags.join(','), publish, thumb});
 };
 
-export const findMatchTagsArticle = ({tag}) => {
+export const relativeArticles = (tag) => {
     return get('/articles/relative', {tag: new Array(tag).join(',')});
 };
 

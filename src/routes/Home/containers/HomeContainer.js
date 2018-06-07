@@ -1,12 +1,16 @@
 import {connect} from 'react-redux';
+import * as Home from '../constants/home';
+import {pageableArticles, relativeArticles} from "../modules/home";
 
-// import { fromJS } from 'immutable';
-
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    pageableArticles: (pageable) => pageableArticles(pageable),
+    relativeArticles: (tag) => relativeArticles(tag),
+};
 
 const mapStateToProps = (state) => {
     return {
-        state
+        articles: state.get(Home.HOME).get(Home.ARTICLE_DATA),
+        relatives: state.get(Home.HOME).get(Home.RELATIVE_ARTICLE),
     };
 };
 

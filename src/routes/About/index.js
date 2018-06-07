@@ -1,3 +1,3 @@
-import About from './components/About';
+import { LoadableComponent } from '../../components/Loading/LoadableComponent';
 
-export default About;
+export default LoadableComponent(() => import('./components/About'));
