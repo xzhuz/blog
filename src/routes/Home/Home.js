@@ -4,25 +4,19 @@ import {List} from 'immutable';
 import * as FontAwesome from 'react-icons/lib/fa';
 import NProgress from 'nprogress';
 
-import BottomOut from "../../../components/BottomOut";
-import Card from "../../../components/Card";
-import ReadMore from "../../../components/ReadMore";
+import BottomOut from "../../components/BottomOut/index";
+import Card from "../../components/Card/index";
+import ReadMore from "../../components/ReadMore/index";
 import './stylesheets/home.scss';
 
 class Home extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        const {tag} = this.context.router.history.location.state;
+    constructor(props) {
+        super(props);
         this.state = {
             page: 0,
             size: 5,
-            tag,
         };
     }
-
-    static contextTypes = {
-        router: PropTypes.object
-    };
 
     componentWillUnmount() {
         NProgress.done();
@@ -56,10 +50,8 @@ class Home extends React.Component {
     }
 
     render() {
-        const {articleQuantity, initArticles, articles, relatives} = this.props;
-        const finalArticles = initArticles.merge(articles);
-        const {tag} = this.props.history.location.state;
-        console.log(this.state);
+        const {articleQuantity, initArticles, articles, relatives, tag} = this.props;
+        const mergedArticles = tag ? relatives :initArticles.merge(articles);
         return (
             <div className='container'>
                 <div className='articles'>
@@ -67,7 +59,7 @@ class Home extends React.Component {
                         tag ? <h1 className='tag-name'><FontAwesome.FaTag/>{tag}</h1> : ''
                     }
                     {
-                        finalArticles.filter(v => v.publish).map((v, index) => (
+                        mergedArticles.filter(v => v.publish).map((v, index) => (
                             <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit}
                                   summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                                   showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
@@ -91,6 +83,7 @@ Home.propTypes = {
     showPostContent: PropTypes.func,
     pageableArticles: PropTypes.func.isRequired,
     relativeArticles: PropTypes.func,
+    tag: PropTypes.string,
 };
 
 export default Home;
