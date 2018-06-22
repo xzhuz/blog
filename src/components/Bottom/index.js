@@ -1,7 +1,7 @@
 import React from 'react';
-import './bottomout.scss';
+import './bottom.scss';
 
-class BottomOut extends React.PureComponent{
+class Bottom extends React.PureComponent{
 
     render() {
         return (
@@ -12,4 +12,4 @@ class BottomOut extends React.PureComponent{
     }
 }
 
-export default BottomOut;
+export default Bottom;

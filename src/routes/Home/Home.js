@@ -4,7 +4,7 @@ import {List} from 'immutable';
 import * as FontAwesome from 'react-icons/lib/fa';
 import NProgress from 'nprogress';
 
-import BottomOut from "../../components/BottomOut/index";
+import Bottom from "../../components/Bottom/index";
 import Card from "../../components/Card/index";
 import ReadMore from "../../components/ReadMore/index";
 import './stylesheets/home.scss';
@@ -34,7 +34,7 @@ class Home extends React.Component {
     }
 
     renderReadMore(filled) {
-        return filled ? <BottomOut/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
+        return filled ? <Bottom/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
     }
 
     showPostContent(articleId) {

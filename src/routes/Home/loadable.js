@@ -1,6 +1,6 @@
 import React from 'react';
 import Loadable from "react-loadable";
-import {getArticlesQuantity, getPartArticles} from "./modules";
+import { getPartArticles } from "./modules";
 import Loading from "../../components/Loading/index";
 import * as Home from './containers';
 
