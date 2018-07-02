@@ -73,11 +73,13 @@ export function pageableArticles({page, size}) {
 /**
  * 相关文章
  * @param tag
+ * @param page
+ * @param size
  * @returns {Function}
  */
-export function relativeArticles(tag) {
+export function relativeArticles({tag, page, size}) {
     return dispatch => {
-        request.relativeArticles(tag).then(res => {
+        request.relativeArticles({tag, page, size}).then(res => {
             if (res.code === 0) {
                 dispatch(relativeArticleData(res.data));
                 dispatch(showRelativeArticleTag(tag));

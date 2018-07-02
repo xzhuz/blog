@@ -46,7 +46,7 @@ class Home extends React.Component {
     tagClick(tag) {
         this.props.history.push('/tag');
         NProgress.start();
-        this.props.relativeArticles(tag);
+        this.props.relativeArticles({tag, page: 0, size: 5});
     }
 
     render() {

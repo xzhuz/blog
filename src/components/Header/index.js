@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import injectReducer from '../../store/reducers';
 import { withConnect } from './containers';
 import reducer from './modules';
-import Header from './Header';
+import Header from './header';
 
 const withReducer = injectReducer({key: 'header', reducer});
 

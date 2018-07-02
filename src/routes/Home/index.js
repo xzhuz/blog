@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import injectReducer from '../../store/reducers';
 
 import { compose } from 'redux';
-import Home from './Home';
+import Home from './home';
 import { withConnect } from './containers';
 import reducer from './modules';
 

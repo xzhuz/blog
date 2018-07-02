@@ -4,7 +4,7 @@ import {pageableArticles, relativeArticles} from "./modules";
 
 const mapDispatchToProps = {
     pageableArticles: (pageable) => pageableArticles(pageable),
-    relativeArticles: (tag) => relativeArticles(tag),
+    relativeArticles: ({tag, page, size}) => relativeArticles({tag, page, size}),
 };
 
 const mapStateToProps = (state) => {
