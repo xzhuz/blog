@@ -44,7 +44,7 @@ class Home extends React.Component {
     }
 
     tagClick(tag) {
-        this.props.history.push({pathname: '/tag', state: {tag}});
+        this.props.history.push('/tag');
         NProgress.start();
         this.props.relativeArticles(tag);
     }
@@ -84,6 +84,10 @@ Home.propTypes = {
     pageableArticles: PropTypes.func.isRequired,
     relativeArticles: PropTypes.func,
     tag: PropTypes.string,
+};
+
+Home.defaultProps = {
+    articleQuantity: 0,
 };
 
 export default Home;

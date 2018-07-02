@@ -36,11 +36,15 @@
     text-decoration: none;
     color: #444;
     font-size: 1rem;
+    transition-duration: .6s;
+    -moz-transition-duration: .6s;
+    -webkit-transition-duration: .6s;
 
     svg {
       height: 52px;
       width: 20px;
     }
+
   }
 
   @media only screen and (max-width: 768px) {
@@ -115,17 +119,19 @@
 
 
 .signature{
-  a {
-    font-size: 1.6rem;
-    color: $baseColor;
-    text-decoration: none;
+  background: none;
+  border: none;
+  color: $baseColor;
+  font-size: 1.6rem;
+  outline: none;
+  transition-duration: .6s;
+  -moz-transition-duration: .6s;
+  -webkit-transition-duration: .6s;
 
-    &:hover{
-      cursor: pointer;
-      color: $baseStressColor;
-    }
+  &:hover{
+    cursor: pointer;
+    color: $baseStressColor;
   }
-
   @media only screen and (max-width: 767px) {
     width: 0;
     display: none;
@@ -151,4 +157,21 @@
 
 .header-hidden {
   display: none;
+}
+
+.header-path-link {
+  background: none;
+  border: none;
+  color: #444;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: none;
+  transition-duration: .6s;
+  -moz-transition-duration: .6s;
+  -webkit-transition-duration: .6s;
+
+  &:hover, a:hover {
+    cursor: pointer;
+    color: $baseStressColor;
+  }
 }

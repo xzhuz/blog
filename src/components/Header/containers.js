@@ -1,7 +1,10 @@
 import {connect} from 'react-redux';
 import * as Header from './constants';
+import {clearRelativeTag} from "./modules";
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    goHome: () => clearRelativeTag(),
+};
 
 const mapStateToProps = (state) => {
     return {

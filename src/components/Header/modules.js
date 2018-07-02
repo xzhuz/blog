@@ -8,6 +8,12 @@ export const showTitle = (title) => {
     };
 };
 
+export const clearRelativeTag = () => {
+    return {
+        type: Header.HEADER_TAG,
+    };
+};
+
 const initialState = fromJS({
     title: '',
 });
