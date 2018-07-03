@@ -43,27 +43,6 @@ export function pageableArticles({page, size}) {
     };
 }
 
-/**
- * 相关文章
- * @param tag
- * @param page
- * @param size
- * @returns {Function}
- */
-// export function relativeArticles({tag, page, size}) {
-//     return dispatch => {
-//         request.relativeArticles({tag, page, size}).then(res => {
-//             if (res.code === 0) {
-//                 dispatch(relativeArticleData(res.data));
-//                 dispatch(showRelativeArticleTag(tag));
-//             } else if (res.code === 3) {
-//                 alert('您刷新过于频繁，系统已拦截，请联系博主');
-//                 dispatch(showRelativeArticleTag(''));
-//             }
-//         });
-//     };
-// }
-
 export function getPartArticles({page, size}) {
     return request.partArticles({page, size}).then(res => {
         if (res.code === 0) {

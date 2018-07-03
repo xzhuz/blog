@@ -2,7 +2,7 @@ import React from 'react';
 import * as FontAwesome from 'react-icons/lib/fa';
 import { CSSTransition } from 'react-transition-group';
 
-import Info from "../../../components/Info";
+import Info from "../../components/Info/index";
 import './assets/stylesheets/about.scss';
 
 class About extends React.PureComponent{

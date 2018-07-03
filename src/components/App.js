@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Home from '../routes/Home/loadable';
 import About from '../routes/About';
+import Relative from '../routes/Relative';
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -15,7 +16,7 @@ class App extends React.PureComponent {
                     <Header />
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Route path='/tag/:tagName' component={Home}/>
+                        <Route path='/tag/:tagName' component={Relative}/>
                         <Route path='/about' component={About} />
                     </Switch>
                     <Footer />

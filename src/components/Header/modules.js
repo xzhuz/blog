@@ -8,9 +8,9 @@ export const showTitle = (title) => {
     };
 };
 
-export const clearRelativeTag = () => {
+export const clearRelatives = () => {
     return {
-        type: Header.HEADER_TAG,
+        type: Header.CLEAR_RELATIVE,
     };
 };
 

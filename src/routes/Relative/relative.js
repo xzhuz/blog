@@ -9,7 +9,7 @@ import Card from "../../components/Card/index";
 import ReadMore from "../../components/ReadMore/index";
 import './stylesheets/relative.scss';
 
-class Home extends React.Component {
+class Relative extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +19,7 @@ class Home extends React.Component {
     }
 
     componentWillUnmount() {
+        this.props.clearRelatives();
         NProgress.done();
     }
 
@@ -52,17 +53,16 @@ class Home extends React.Component {
     }
 
     tagClick(tag) {
-        this.props.history.push(`/tag/${tag}`);
-        NProgress.start();
+        this.props.clearRelatives();
         this.props.relativeArticles({tag, page: 0, size: 5});
+        this.props.history.push(`/tag/${tag}`);
     }
 
     render() {
         // articles: 点击加载更多时的文章  relatives: 相关文章
-        const { relatives, tag} = this.props;
+        const { relatives, tag } = this.props;
         // 判断是否已经加载完所有文章
         const articleOver = relatives.size < this.state.size;
-        console.log(tag);
         return (
             <div className='container'>
                 <div className='articles'>
@@ -83,13 +83,13 @@ class Home extends React.Component {
     }
 }
 
-Home.propTypes = {
-    articles: PropTypes.instanceOf(List),
+Relative.propTypes = {
     relatives: PropTypes.instanceOf(List),
     tagClick: PropTypes.func,
     showPostContent: PropTypes.func,
     relativeArticles: PropTypes.func,
+    clearRelatives: PropTypes.func,
     tag: PropTypes.string,
 };
 
-export default Home;
+export default Relative;

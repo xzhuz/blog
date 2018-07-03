@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import * as Home from './constants';
-import {pageableArticles, relativeArticles} from "./modules";
+import {pageableArticles} from "./modules";
 
 const mapDispatchToProps = {
     pageableArticles: (pageable) => pageableArticles(pageable),

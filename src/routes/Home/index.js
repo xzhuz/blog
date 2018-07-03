@@ -1,8 +1,7 @@
 import {withRouter} from 'react-router-dom';
+import { compose } from 'redux';
 
 import injectReducer from '../../store/reducers';
-
-import { compose } from 'redux';
 import Home from './home';
 import { withConnect } from './containers';
 import reducer from './modules';
