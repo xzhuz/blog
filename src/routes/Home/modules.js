@@ -43,6 +43,16 @@ export function pageableArticles({page, size}) {
     };
 }
 
+export function getArticlesCount() {
+    return request.countArticle().then(res => {
+        if (res.code === 0) {
+            return res.data;
+        }
+        return 0;
+    });
+}
+
+
 export function getPartArticles({page, size}) {
     return request.partArticles({page, size}).then(res => {
         if (res.code === 0) {

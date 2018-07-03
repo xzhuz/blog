@@ -48,10 +48,8 @@ class Home extends React.Component {
 
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
-        const {initArticles, articles} = this.props;
+        const {initArticles, articles, articleCount} = this.props;
         const mergedArticles = initArticles.merge(articles);
-        // 判断是否已经加载完所有文章
-        const articleOver = mergedArticles.size < this.state.size;
         return (
             <div className='container'>
                 <div className='articles'>
@@ -63,7 +61,7 @@ class Home extends React.Component {
                         ))
                     }
                     {
-                        this.renderReadMore(articleOver)
+                        this.renderReadMore(articleCount <= this.state.size)
                     }
                 </div>
             </div>
@@ -77,6 +75,7 @@ Home.propTypes = {
     tagClick: PropTypes.func,
     showPostContent: PropTypes.func,
     pageableArticles: PropTypes.func.isRequired,
+    articleCount: PropTypes.number.isRequired,
 };
 
 export default Home;
