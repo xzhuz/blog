@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 import Tag from '../Tag';
 import './card.scss';
@@ -30,7 +31,12 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {thumb, title, summary, tags, date, showCardInfo} = this.props;
+        const {thumb, title, summary, tags, date, showCardInfo, compliment, visit} = this.props;
+        const blogDate = new Date(date);
+        const year = blogDate.getFullYear();
+        const month = blogDate.getMonth();
+        const day = blogDate.getDate();
+        const formatBlogDate = year + '/' + month + '/' + day;
         return (
             <CSSTransition
                 in={this.state.showCard}
@@ -58,9 +64,8 @@ class Card extends React.PureComponent {
                                     ))
                                 }
                             </div>
-
                             <div className='card-tail'>
-                                <span className='card-date'>{new Date(date).toDateString()}</span>
+                                <span className='card-tail-item'>{formatBlogDate}</span>
                             </div>
                         </div>
                     </div>
@@ -81,6 +86,7 @@ Card.propTypes = {
     date: PropTypes.number.isRequired,
     showCardInfo: PropTypes.bool.isRequired,
     visit: PropTypes.number.isRequired,
+    compliment: PropTypes.number,
 };
 
 export default Card;

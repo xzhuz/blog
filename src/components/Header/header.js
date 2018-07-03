@@ -91,10 +91,10 @@ class Header extends React.Component{
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
                         })
                     }>
-                        <button className='header-path-link' onClick={this.goHome}>Home</button>
+                        <button className='header-path-link' onClick={this.goHome}>HOME</button>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/about',
-                        })}><Link to={{ pathname: '/about'}}>About</Link></span>
+                        })}><Link to={{ pathname: '/about'}}>ABOUT</Link></span>
 
                     </div>
                     <div className={

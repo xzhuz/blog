@@ -8,6 +8,9 @@
   margin-right: 5px;
   height: 1rem;
   line-height: 1rem;
+  transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
 
   &:hover {
     transition-duration: .6s;

@@ -3,12 +3,12 @@
   display: -webkit-flex;
   display: -moz-flex;
   justify-content: flex-start;
-  min-height: 140px;
+  min-height: 120px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
-  padding: .6rem;
+  padding: .8rem;
   margin-bottom: 2%;
   border-radius: 2px;
 
@@ -38,17 +38,13 @@
 
 .card .thumb {
   width: 35%;
-  max-width: 140px;
+  max-width: 120px;
   overflow: hidden;
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  flex-direction: row;
   align-items: center;
   img {
-    width: 140px;
-    max-height: 140px;
-    transition: transform .3s linear;
+    width: 120px;
+    max-height: 120px;
+    transition: transform .6s linear;
   }
 
   @media only screen and (max-width: 767px) {
@@ -72,7 +68,7 @@
 .card-title {
   span {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #555;
     position: relative;
     padding-bottom: 2px;
@@ -108,7 +104,7 @@
 }
 
 .card-content {
-  font-size: 12px;
+  font-size: 13px;
   span {
     color: #a8a8a8;
   }
@@ -119,7 +115,6 @@
   display: -webkit-flex;
   display: -moz-flex;
   justify-content: space-between;
-  border-top: 1px solid #cccccc;
   padding-top: .2rem;
 
   .card-tail {
@@ -136,7 +131,7 @@
 
   }
 
-  .card-tail .card-date {
+  .card-tail .card-tail-item {
     display: inline-block;
     line-height: 1.8rem;
     font-size: 14px;
