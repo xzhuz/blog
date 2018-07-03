@@ -85,17 +85,17 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      transition: all .8s;
-      -moz-transition: all .8s;
-      -webkit-transition: all .8s;
+      transition: all 1s;
+      -moz-transition: all 1s;
+      -webkit-transition: all 1s;
     }
   }
 
   &:hover {
     span {
-      transition-duration: .8s;
-      -moz-transition-duration: .8s;
-      -webkit-transition-duration: .8s;
+      transition-duration: 1s;
+      -moz-transition-duration: 1s;
+      -webkit-transition-duration: 1s;
       color: $baseStressColor;
 
       &:after {
