@@ -13,6 +13,7 @@ class App extends React.PureComponent {
         return (
             <BrowserRouter>
                 <div className='app'>
+                    <Header />
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route path='/tag/:tagName' component={Relative}/>
