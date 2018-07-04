@@ -3,27 +3,23 @@
   display: -webkit-flex;
   display: -moz-flex;
   justify-content: flex-start;
-  min-height: 120px;
+  min-height: 160px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   padding: .8rem;
   margin-bottom: 2%;
-  border-radius: 2px;
-
-  @media only screen and (max-width: 767px) {
-    border-radius: 6px;
-  }
+  border-radius: 6px;
 
   &:hover {
     transition-duration: .4s;
     -moz-transition-duration: .4s;
     -webkit-transition-duration: .4s;
-    cursor: pointer;
-    -webkit-box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
-    -moz-box-shadow: 6px 6px 10px 6px rgba(0, 24, 54, 0.05);
-    box-shadow: 6px 6px 10px 6px rgba(0, 34, 77, .05);
+    -webkit-box-shadow: 1px 3px 25px $baseColor;
+    -moz-box-shadow: 1px 3px 25px $baseColor;
+    box-shadow: 1px 3px 25px $baseColor;
+    margin-top: -2px;
 
     .thumb img {
       -webkit-transform: scale(1.1);
@@ -88,6 +84,7 @@
   }
 
   &:hover {
+    cursor: pointer;
     span {
       transition-duration: 1s;
       -moz-transition-duration: 1s;
@@ -104,45 +101,35 @@
 }
 
 .card-content {
-  font-size: 13px;
+  font-size: 14px;
+  padding: 1rem 0;
   span {
     color: #a8a8a8;
   }
+}
+
+.card .card-tags {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  padding-top: .2rem;
 }
 
 .card .card-info {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
-  justify-content: space-between;
-  padding-top: .2rem;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #cccccc;
+  padding-top: 1rem;
 
-  .card-tail {
-    width: 30%;
-    display: flex;
-    display: -webkit-flex;
-    display: -moz-flex;
-    justify-content: flex-end;
+  i {
+    padding-right: .8rem;
 
-    @media only screen and (max-width: 400px) {
-      width: 0;
-      display: none;
-    }
-
-  }
-
-  .card-tail .card-tail-item {
-    display: inline-block;
-    line-height: 1.8rem;
-    font-size: 14px;
-    color: #cccccc;
-
-    @media only screen and (max-width: 767px) {
-      font-size: 12px;
-    }
-
-    @media only screen and (min-width: 768px ) and (max-width: 895px) {
-      font-size: 12px;
+    svg {
+      padding-right: 5px;
+      padding-bottom: 4px;
     }
   }
 }

@@ -30,13 +30,23 @@ class Card extends React.PureComponent {
         this.setState({showCard: false});
     }
 
-    render() {
-        const {thumb, title, summary, tags, date, showCardInfo, compliment, visit} = this.props;
+    prefixInteger(num, n) {
+        return (Array(n).join(0) + num).slice(-n);
+    }
+
+    formatDate(date) {
         const blogDate = new Date(date);
         const year = blogDate.getFullYear();
-        const month = blogDate.getMonth();
-        const day = blogDate.getDate();
-        const formatBlogDate = year + '/' + month + '/' + day;
+        const month = this.prefixInteger(blogDate.getMonth(), 2);
+        const day = this.prefixInteger(blogDate.getDate(), 2);
+        const hours = this.prefixInteger(blogDate.getHours(), 2);
+        const minutes = this.prefixInteger(blogDate.getMinutes(), 2);
+        const seconds = this.prefixInteger(blogDate.getSeconds(), 2);
+        return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+
+    render() {
+        const {thumb, title, summary, tags, date, showCardInfo, compliment, visit} = this.props;
         return (
             <CSSTransition
                 in={this.state.showCard}
@@ -52,21 +62,21 @@ class Card extends React.PureComponent {
                     <div className='card-container'>
                         <div className='card-title' onClick={this.showPost} >
                             <span>{title}</span>
+                            <section className='card-info'>
+                                <i><FontAwesome.FaCalendar/>{this.formatDate(date)}</i>
+                                <i><FontAwesome.FaEye/>{visit}</i>
+                                <i><FontAwesome.FaThumbsUp/>{compliment}</i>
+                            </section>
                         </div>
                         <div className='card-content' onClick={this.showPost} >
                             <span>{summary}</span>
                         </div>
-                        <div className='card-info' style={{display: showCardInfo ? 'flex' : 'none'}}>
-                            <div className='card-tags'>
-                                {
-                                    tags.split(',').sort().map((v, index) => (
-                                        <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
-                                    ))
-                                }
-                            </div>
-                            <div className='card-tail'>
-                                <span className='card-tail-item'>{formatBlogDate}</span>
-                            </div>
+                        <div className='card-tags' style={{display: showCardInfo ? 'flex' : 'none'}}>
+                            {
+                                tags.split(',').sort().map((v, index) => (
+                                    <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

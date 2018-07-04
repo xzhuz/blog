@@ -1,10 +1,11 @@
 .tag {
   display: inline-block;
-  padding: 3px 10px;
-  font-size: 60%;
-  color: #cccccc;
-  border: 1px solid #cccccc;
-  border-radius: 20px;
+  padding: 1px 5px;
+  font-size: 65%;
+  color: #ffffff;
+  border: 1px solid $loadingColor;
+  background: $loadingColor;
+  border-radius: 8px;
   margin-right: 5px;
   height: 1rem;
   line-height: 1rem;
@@ -16,8 +17,9 @@
     transition-duration: .6s;
     -moz-transition-duration: .6s;
     -webkit-transition-duration: .6s;
-    color: $baseStressColor;
+    color: $loadingColor;
     cursor: pointer;
-    border: 1px solid $baseStressColor;
+    border: 1px solid $loadingColor;
+    background: #ffffff;
   }
 }
