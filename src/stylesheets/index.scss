@@ -11,7 +11,7 @@ html, body{
 body {
   font-size: 12px;
   font-size: 1.2rem;
-  font-family: 'Arial','Microsoft YaHei','黑体','宋体', 'Helvetica Neue', Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono,monospace;
+  font-family: 'SansSerif','Microsoft YaHei','黑体','宋体', 'Helvetica Neue', Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono,monospace;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 }
 
@@ -38,6 +38,10 @@ table {
 
 ul>li, ol>li {
   list-style: none;
+}
+
+li {
+  word-wrap: break-word;
 }
 
 #root {

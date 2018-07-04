@@ -15,6 +15,7 @@ class Header extends React.Component{
         this.goHome = this.goHome.bind(this);
         this.state = {
             scroll: false,
+            hover: false,
         };
     }
 
@@ -75,6 +76,10 @@ class Header extends React.Component{
         window.removeEventListener('scroll', this.handleScroll);
     }
 
+    closeMenu(e) {
+        e.nativeEvent.stopImmediatePropagation();
+    }
+
     render () {
         const {pathname} = this.context.router.history.location;
         const { title } = this.props;
@@ -87,15 +92,31 @@ class Header extends React.Component{
                 <nav className='header-content'>
                     <button className='signature' onClick={this.goHome}>Mei Sen</button>
                     <div className={
-                        classNames('header-link', {
+                        classNames('header-menu', {
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
                         })
                     }>
-                        <button className='header-path-link' onClick={this.goHome}>HOME</button>
+                        <span className='header-path-link' onClick={this.goHome}>首页</span>
+                        <span className={classNames('header-path-link', {
+                            [`active`]: pathname === '/achieve',
+                        })}>
+                            <Link to={{ pathname: '/achieve'}}>归档</Link>
+                        </span>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/about',
-                        })}><Link to={{ pathname: '/about'}}>ABOUT</Link></span>
-
+                        })}>
+                            <Link to={{ pathname: '/about'}}>关于</Link>
+                        </span>
+                    </div>
+                    <div className='header-mobile-menu' onClick={(e) => this.closeMenu(e)}>
+                        <span className='icon-menu cross'>
+                            <span className='middle'/>
+                        </span>
+                        <ul>
+                            <li><span onClick={this.goHome}>首页</span></li>
+                            <li><Link to={{ pathname: '/achieve'}}>归档</Link></li>
+                            <li><Link to={{ pathname: '/about'}}>关于</Link></li>
+                        </ul>
                     </div>
                     <div className={
                         classNames('article-header', {

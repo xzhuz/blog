@@ -35,7 +35,6 @@
   a {
     text-decoration: none;
     color: #444;
-    font-size: 1rem;
     transition-duration: .6s;
     -moz-transition-duration: .6s;
     -webkit-transition-duration: .6s;
@@ -52,7 +51,7 @@
   }
 }
 
-.header-content .header-link, .header-content .article-header  {
+.header-content .header-menu, .header-content .article-header  {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -63,22 +62,18 @@
   -webkit-transition: -webkit-transform .3s;
   -moz-transition: transform .3s, -moz-transform .3s;
 
-  .header-path-link:first-child {
-    margin-right: 4%;
-  }
-
-  a {
-    text-decoration: none;
-    color: #444;
-    font-size: 1.2rem;
+  .header-path-link:not(:first-child) {
+    margin-left: 2rem;
   }
 
   .active a{
     color: $baseStressColor;
   }
+}
 
+.header-content .header-menu {
   @media only screen and (max-width: 767px) {
-    width: 100%;
+    display: none;
   }
 }
 
@@ -132,11 +127,6 @@
     cursor: pointer;
     color: $baseStressColor;
   }
-  @media only screen and (max-width: 767px) {
-    width: 0;
-    display: none;
-  }
-
 }
 
 .header-contact{
@@ -163,8 +153,7 @@
   background: none;
   border: none;
   color: #444;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.1rem;
   outline: none;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
@@ -173,5 +162,136 @@
   &:hover, a:hover {
     cursor: pointer;
     color: $baseStressColor;
+  }
+}
+
+.header-mobile-menu {
+  z-index: 1;
+  cursor: pointer;
+  display: none;
+  padding: 0 0 0 10px;
+
+  ul {
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    margin: 0 0 0 -95px;
+    padding: 0;
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    -webkit-transform: translate(120px,0);
+    -ms-transform: translate(120px,0);
+    transform: translate(120px,0);
+    text-indent: 0;
+  }
+
+  li {
+    position: relative;
+    display: inline;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  ul li a {
+    font-size: 15px;
+    line-height: 2.2;
+    display: block;
+    width: 160px;
+    margin: 0;
+    padding: 8px 25px;
+    background-color: red;
+  }
+
+  &:hover>ul, &:active>ul, &:focus>ul {
+      overflow: inherit;
+      clip: inherit;
+      -webkit-transition: -webkit-transform .3s;
+      transition: -webkit-transform .3s;
+      transition: transform .3s;
+      -webkit-transform: translateX(0) translateY(0) translateZ(0);
+      transform: translateX(0) translateY(0) translateZ(0);
+  }
+
+  &:active .icon-menu.cross:before, &:hover .icon-menu.cross:before {
+    background: $baseStressColor;
+    top: 5px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-box-shadow: 0 0 0 #fff;
+    box-shadow: 0 0 0 #fff;
+  }
+
+  &:active .icon-menu.cross .middle, &:hover .icon-menu.cross .middle {
+    opacity:0;
+  }
+
+  &:active .icon-menu.cross:after, &:hover .icon-menu.cross:after {
+    background: $baseStressColor;
+    top: 5px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-box-shadow: 0 0 0 #fff;
+    box-shadow: 0 0 0 #fff;
+  }
+
+  @media only screen and (max-width: 767px) {
+    display: inline-block;
+  }
+}
+
+.icon-menu {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 12px;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -webkit-transition-timing-function: cubic-bezier(.61,.04,.17,1.32);
+  transition-timing-function: cubic-bezier(.61,.04,.17,1.32);
+
+  .middle {
+    position: absolute;
+    top: 50%;
+    left: -.25rem;
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    margin-top: -1px;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    background: $baseFontColor;
+  }
+
+  &:before, &:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    left: -.25em;
+    width: 20px;
+    height: 2px;
+    content: '';
+    -webkit-transition: all .8s ease-in-out;
+    -moz-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
+    -webkit-transform-origin: 50% 50% 0;
+    -ms-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    background: $baseFontColor;
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom: 0;
   }
 }
