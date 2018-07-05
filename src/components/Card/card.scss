@@ -5,9 +5,6 @@
   justify-content: flex-start;
   min-height: 160px;
   background-color: #ffffff;
-  //-webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
-  //-moz-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
-  //box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   padding: .8rem;
   margin-bottom: 2%;
   border-radius: 6px;
@@ -96,7 +93,6 @@
       }
     }
   }
-
 }
 
 .card-content {
@@ -112,6 +108,13 @@
   display: -webkit-flex;
   display: -moz-flex;
   padding-top: .2rem;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+
+  span {
+    margin-bottom: 2px;
+  }
 }
 
 .card .card-info {
