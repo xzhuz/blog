@@ -7,7 +7,6 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         article: state.get(Article.ARTICLE).get(Article.ARTICLE_DETAIL),
     };

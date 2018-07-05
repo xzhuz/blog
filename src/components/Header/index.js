@@ -55,32 +55,30 @@ class Header extends React.Component{
 
     render () {
         const {pathname} = this.context.router.history.location;
+        const logo = require('./images/logo.png');
         return (
             <header className={
                 classNames('header', {
                     [`header-scroll`]: this.state.scroll,
                     [`header-hidden`]: pathname.includes('/dashboard'),
                 })}>
-                <nav className={
-                    classNames('header-content', {
-                        [`header-content-hidden`]: this.state.scroll,
-                })}>
+                <nav className='header-nav'>
                     <div className='signature'>
-                        <Link  to={{ pathname: '/'}}>Mei Sen</Link>
+                        <Link  to={{ pathname: '/'}} className='header-logo'>
+                            <img src={logo} style={{height: '30px'}}/>
+                        </Link>
                     </div>
 
                     <div className='header-menu'>
                         <Link className='header-path-link' to={{ pathname: '/'}}>首页</Link>
-                        <span className={classNames('header-path-link', {
-                            [`active`]: pathname === '/achieve',
-                        })}>
-                                <Link to={{ pathname: '/achieve'}}>归档</Link>
-                            </span>
-                        <span className={classNames('header-path-link', {
-                            [`active`]: pathname === '/about',
-                        })}>
-                                <Link to={{ pathname: '/about'}}>关于</Link>
-                            </span>
+                        <Link className={classNames('header-path-link', {
+                            [`active`]: pathname.includes('/achieve'),
+                        })} to={{ pathname: '/achieve'}}>
+                            归档
+                        </Link>
+                        <Link className={classNames('header-path-link', {[`active`]: pathname.includes('/about')})} to={{ pathname: '/about'}}>
+                            关于
+                        </Link>
                     </div>
                     <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}
                          onClick={(e) => this.mobileMenu(e)}>

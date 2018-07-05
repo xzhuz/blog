@@ -38,8 +38,8 @@ class About extends React.PureComponent{
                     <div className={'about-content'}>
                         <div className={'avatar'}>
                             <img src={avatar}/>
-                            <h1>Mei Sen</h1>
-                            <h2>Java Developer</h2>
+                            <h1>梅 森</h1>
+                            <h2>Java开发工程师</h2>
                         </div>
                         <div className={'about-info'}>
                             <section className='about-info-about'>

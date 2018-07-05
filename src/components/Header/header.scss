@@ -3,9 +3,9 @@
   display: -webkit-flex;
   display: -moz-flex;
   justify-content: space-between;
-  z-index: 101;
   position: fixed;
   top: 0;
+  z-index: 2;
   flex: 0 0 auto;
   width: 100%;
   height: 52px;
@@ -19,9 +19,10 @@
   -webkit-transition-duration: .6s;
 }
 
-.header-content{
+.header-nav{
   display: flex;
   display: -webkit-flex;
+  display: -moz-flex;
   width: 80%;
   max-width: 1024px;
   margin: 0 auto;
@@ -48,7 +49,20 @@
   }
 }
 
-.header-content .header-menu  {
+.header-logo {
+  line-height: 4.5rem;
+}
+
+.header-scroll{
+  height: 0;
+
+  .header-logo, .header-contact a, .header-menu a {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+}
+
+.header-nav .header-menu  {
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -59,35 +73,26 @@
   -webkit-transition: -webkit-transform .3s;
   -moz-transition: transform .3s, -moz-transform .3s;
 
-  .header-path-link:not(:first-child) {
-    margin-left: 2rem;
-  }
-
-  .active a{
+  .active{
     color: $baseStressColor;
   }
-}
 
-.header-content .header-menu {
   @media only screen and (max-width: 767px) {
     display: none;
   }
 }
 
 .signature{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
   color: $baseColor;
   font-size: 1.2rem;
-  outline: none;
+  height: 52px;
   z-index: 9999;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
-
-  padding: 0 10px;
-
-  &.is-hidden {
-    display: none;
-  }
 
   &:hover{
     color: $baseStressColor;
@@ -97,6 +102,8 @@
 .header-contact{
   display: flex;
   display: -webkit-flex;
+  display: -moz-flex;
+  height: 52px;
   width: 70px;
   justify-content: space-between;
 
@@ -115,11 +122,8 @@
 }
 
 .header-path-link {
-  background: none;
-  border: none;
   color: #444;
   font-size: 1.1rem;
-  outline: none;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
@@ -261,9 +265,5 @@
       }
     }
   }
-}
-
-.header-scroll{
-  height: 1%;
 }
 
