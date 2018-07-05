@@ -12,7 +12,6 @@ class Header extends React.Component{
     constructor(props, context) {
         super(props, context);
         this.handleScroll = this.handleScroll.bind(this);
-        this.goHome = this.goHome.bind(this);
         this.state = {
             scroll: false,
             menuShown: false,
@@ -29,11 +28,6 @@ class Header extends React.Component{
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-    }
-
-    goHome() {
-        this.props.history.push('/');
-        this.props.goHome();
     }
 
     handleScroll() {
@@ -92,13 +86,13 @@ class Header extends React.Component{
                     [`header-hidden`]: pathname.includes('/dashboard')
                 })}>
                 <nav className='header-content'>
-                    <button className='signature' onClick={this.goHome}></button>
+                    <Link className='signature' to={{ pathname: '/'}}>Mei Sen</Link>
                     <div className={
                         classNames('header-menu', {
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
                         })
                     }>
-                        <span className='header-path-link' onClick={this.goHome}>首页</span>
+                        <Link className='header-path-link' to={{ pathname: '/'}}>首页</Link>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/achieve',
                         })}>
@@ -147,7 +141,6 @@ class Header extends React.Component{
 
 Header.propTypes = {
     title: PropTypes.string,
-    goHome: PropTypes.func.isRequired,
 };
 
 export default Header;

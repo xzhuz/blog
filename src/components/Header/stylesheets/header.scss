@@ -34,7 +34,6 @@
 
   a {
     text-decoration: none;
-    color: #444;
     transition-duration: .6s;
     -moz-transition-duration: .6s;
     -webkit-transition-duration: .6s;
@@ -77,23 +76,6 @@
   }
 }
 
-.signature{
-  background: none;
-  border: none;
-  color: $baseColor;
-  font-size: 1.2rem;
-  outline: none;
-  z-index: 9999;
-  transition-duration: .6s;
-  -moz-transition-duration: .6s;
-  -webkit-transition-duration: .6s;
-
-  &:hover{
-    cursor: pointer;
-    color: $baseStressColor;
-  }
-}
-
 .header-contact{
   display: flex;
   display: -webkit-flex;
@@ -117,12 +99,15 @@
 .header-path-link {
   background: none;
   border: none;
-  color: #444;
   font-size: 1.1rem;
   outline: none;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
+
+  a, a:active, a:focus {
+    color: #444;
+  }
 
   &:hover, a:hover {
     cursor: pointer;
@@ -164,7 +149,19 @@
   }
 }
 
+.signature{
+  color: $baseColor;
+  font-size: 1.2rem;
+  outline: none;
+  z-index: 9999;
+  transition-duration: .6s;
+  -moz-transition-duration: .6s;
+  -webkit-transition-duration: .6s;
 
+  &:hover{
+    color: $baseStressColor;
+  }
+}
 
 .menu-ctrl {
   cursor: pointer;

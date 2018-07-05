@@ -1,9 +1,7 @@
 import {connect} from 'react-redux';
 import * as Header from './constants';
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 const mapStateToProps = (state) => {
     return {
