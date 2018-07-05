@@ -15,7 +15,7 @@ class Header extends React.Component{
         this.goHome = this.goHome.bind(this);
         this.state = {
             scroll: false,
-            hover: false,
+            menuShown: false,
         };
     }
 
@@ -76,8 +76,10 @@ class Header extends React.Component{
         window.removeEventListener('scroll', this.handleScroll);
     }
 
-    closeMenu(e) {
-        e.nativeEvent.stopImmediatePropagation();
+    mobileMenu(e) {
+        this.setState(state => ({
+            menuShown: !state.menuShown,
+        }));
     }
 
     render () {
@@ -108,7 +110,7 @@ class Header extends React.Component{
                             <Link to={{ pathname: '/about'}}>关于</Link>
                         </span>
                     </div>
-                    <div className='header-mobile-menu' onClick={(e) => this.closeMenu(e)}>
+                    <div className={classNames('header-mobile-menu', {[`header-mobile-menu-on`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
                         <span className='icon-menu cross'>
                             <span className='middle'/>
                         </span>
