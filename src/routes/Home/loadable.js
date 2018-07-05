@@ -1,7 +1,7 @@
 import React from 'react';
-import Loadable from "react-loadable";
-import { getPartArticles, getArticlesCount } from "./modules";
-import Loading from "../../components/Loading/index";
+import Loadable from 'react-loadable';
+import { getPartArticles, getArticlesCount } from './modules';
+import Loading from '../../components/Loading/index';
 import * as Home from './containers';
 
 export default Loadable.Map({
@@ -14,7 +14,7 @@ export default Loadable.Map({
     delay: 1000,
     render(loaded, props) {
         const Home = loaded.Home.default;
-        const articles = loaded.article.get('ARTICLE_DATA');
+        const articles = loaded.article.get('HOME_DATA');
         const articleCount = loaded.articleCount;
         return <Home {...props} initArticles={articles} articleCount={articleCount} />;
     }

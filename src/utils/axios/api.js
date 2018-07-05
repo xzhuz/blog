@@ -6,7 +6,7 @@ export const articleList = () => {
     return get('/articles/list');
 };
 
-export const specifiedArticle = (id) => {
+export const articleDetail = (id) => {
     return get('/articles/info', {id: id});
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import * as FontAwesome from 'react-icons/lib/fa';
-
+import {formatDate} from "../../utils/commentUtils";
 import Tag from '../Tag';
 import './card.scss';
 
@@ -30,21 +30,6 @@ class Card extends React.PureComponent {
         this.setState({showCard: false});
     }
 
-    prefixInteger(num, n) {
-        return (Array(n).join(0) + num).slice(-n);
-    }
-
-    formatDate(date) {
-        const blogDate = new Date(date);
-        const year = blogDate.getFullYear();
-        const month = this.prefixInteger(blogDate.getMonth(), 2);
-        const day = this.prefixInteger(blogDate.getDate(), 2);
-        const hours = this.prefixInteger(blogDate.getHours(), 2);
-        const minutes = this.prefixInteger(blogDate.getMinutes(), 2);
-        const seconds = this.prefixInteger(blogDate.getSeconds(), 2);
-        return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-    }
-
     render() {
         const {thumb, title, summary, tags, date, showCardInfo, compliment, visit} = this.props;
         return (
@@ -63,7 +48,7 @@ class Card extends React.PureComponent {
                         <div className='card-title' onClick={this.showPost} >
                             <span>{title}</span>
                             <section className='card-info'>
-                                <i><FontAwesome.FaCalendar/>{this.formatDate(date)}</i>
+                                <i><FontAwesome.FaCalendar/>{formatDate(date)}</i>
                                 <i><FontAwesome.FaEye/>{visit}</i>
                                 <i><FontAwesome.FaThumbsUp/>{compliment}</i>
                             </section>

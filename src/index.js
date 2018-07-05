@@ -7,6 +7,7 @@ import createStore from './store/createStore';
 import App from './components/App';
 import 'nprogress/nprogress.css';
 import './stylesheets/index.scss';
+import './stylesheets/markdown.scss';
 
 // Store Initialization
 // ------------------------------------

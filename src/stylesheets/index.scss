@@ -31,6 +31,11 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  color: $baseFontColor;
+}
+
 table {
   border-spacing: 0;
   border-collapse: collapse;

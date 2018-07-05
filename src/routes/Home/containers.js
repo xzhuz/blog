@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import * as Home from './constants';
-import {pageableArticles} from "./modules";
-import {clearRelatives} from "./modules";
+import {pageableArticles, clearRelatives} from './modules';
 
 const mapDispatchToProps = {
     pageableArticles: (pageable) => pageableArticles(pageable),
@@ -10,7 +9,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
     return {
-        articles: state.get(Home.HOME).get(Home.ARTICLE_DATA),
+        articles: state.get(Home.HOME).get(Home.HOME_DATA),
     };
 };
 

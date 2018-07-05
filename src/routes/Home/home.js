@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
 
-import Bottom from "../../components/Bottom/index";
-import Card from "../../components/Card/index";
-import ReadMore from "../../components/ReadMore/index";
+import Bottom from '../../components/Bottom/index';
+import Card from '../../components/Card/index';
+import ReadMore from '../../components/ReadMore/index';
 import './stylesheets/home.scss';
 
 class Home extends React.Component {

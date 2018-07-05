@@ -5,7 +5,7 @@ import * as Home from './constants';
 
 export const articleData = (articles) => {
     return {
-        type: Home.ARTICLE_DATA,
+        type: Home.HOME_DATA,
         articles,
     };
 };
@@ -17,13 +17,13 @@ export const clearRelatives = () => {
 };
 
 const initialState = fromJS({
-    ARTICLE_DATA: new List(),
+    HOME_DATA: new List(),
 });
 
-export default function articleReducer(state = initialState, action) {
+export default function homeReducer(state = initialState, action) {
     switch (action.type) {
-        case Home.ARTICLE_DATA:
-            return state.set(Home.ARTICLE_DATA, List.of(...action.articles));
+        case Home.HOME_DATA:
+            return state.set(Home.HOME_DATA, List.of(...action.articles));
         default:
             return state;
     }
@@ -62,7 +62,7 @@ export function getArticlesCount() {
 export function getPartArticles({page, size}) {
     return request.partArticles({page, size}).then(res => {
         if (res.code === 0) {
-            return fromJS({ARTICLE_DATA: List.of(...res.data)});
+            return fromJS({HOME_DATA: List.of(...res.data)});
         } else if (res.code === 3) {
             alert('您刷新过于频繁，系统已拦截，请联系博主');
         } else {

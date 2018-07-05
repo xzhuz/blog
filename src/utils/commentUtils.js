@@ -11,3 +11,18 @@ export function getGitTalk(pathname) {
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 }
+
+export function prefixInteger(num, n) {
+    return (Array(n).join(0) + num).slice(-n);
+}
+
+export function formatDate(date) {
+    const blogDate = new Date(date);
+    const year = blogDate.getFullYear();
+    const month = prefixInteger(blogDate.getMonth(), 2);
+    const day = prefixInteger(blogDate.getDate(), 2);
+    const hours = prefixInteger(blogDate.getHours(), 2);
+    const minutes = prefixInteger(blogDate.getMinutes(), 2);
+    const seconds = prefixInteger(blogDate.getSeconds(), 2);
+    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+}
