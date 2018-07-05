@@ -77,48 +77,13 @@
   }
 }
 
-
-.header .header-content {
-  .article-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    .article-header-title {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      cursor: pointer;
-      margin-top: 2px;
-      font-size: 30px;
-      font-weight: 600;
-      min-width: 200px;
-      line-height: 52px;
-      color: #444;
-      text-align: center;
-    }
-  }
-
-  .article-header:not(.is-shown) {
-    -webkit-transform: translateY(100%);
-    transform: translateY(100%)
-  }
-
-  .header-link.is-hidden {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-}
-
-
 .signature{
   background: none;
   border: none;
   color: $baseColor;
   font-size: 1.2rem;
   outline: none;
+  z-index: 9999;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
@@ -165,60 +130,54 @@
   }
 }
 
-.header-mobile-menu {
+.header .header-content {
+  .article-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .article-header-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      margin-top: 2px;
+      font-size: 30px;
+      font-weight: 600;
+      min-width: 200px;
+      line-height: 52px;
+      color: #444;
+      text-align: center;
+    }
+  }
+
+  .article-header:not(.is-shown) {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%)
+  }
+
+  .header-link.is-hidden {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+}
+
+
+
+.menu-ctrl {
   cursor: pointer;
   display: none;
   padding: 0 10px 0 10px;
-
-  ul {
-    position: absolute;
-    top: 100%;
-    overflow: hidden;
-    clip: rect(1px,1px,1px,1px);
-    margin: 0 0 0 -95px;
-    padding: 0;
-    -webkit-transition: -webkit-transform .3s;
-    transition: -webkit-transform .3s;
-    transition: transform .3s;
-    -webkit-transform: translate(120px,0);
-    -ms-transform: translate(120px,0);
-    transform: translate(120px,0);
-    text-indent: 0;
-  }
-
-  li {
-    position: relative;
-    display: inline;
-    margin: 0;
-    text-decoration: none;
-  }
-
-  ul li a, ul li span {
-    font-size: 15px;
-    line-height: 2.2;
-    display: block;
-    width: 160px;
-    margin: 0;
-    padding: 8px 25px;
-    background-color: red;
-  }
+  z-index: 9999;
 
   @media only screen and (max-width: 767px) {
     display: inline-block;
   }
 }
 
-.header-mobile-menu-on {
-  ul {
-    overflow: inherit;
-    clip: inherit;
-    -webkit-transition: -webkit-transform .3s;
-    transition: -webkit-transform .3s;
-    transition: transform .3s;
-    -webkit-transform: translateX(0) translateY(0) translateZ(0);
-    transform: translateX(0) translateY(0) translateZ(0);
-  }
-
+.menu-ctrl-on {
   .icon-menu.cross:before {
     -webkit-transform-origin: 100% 50%;
     -ms-transform-origin: 100% 50%;
@@ -227,8 +186,6 @@
     -webkit-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    -webkit-box-shadow: 0 0 0 #fff;
-    box-shadow: 0 0 0 #fff;
   }
 
   .icon-menu.cross .middle {
@@ -243,8 +200,6 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    -webkit-box-shadow: 0 0 0 #fff;
-    box-shadow: 0 0 0 #fff;
   }
 }
 
@@ -257,8 +212,6 @@
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
-  -webkit-transition-timing-function: cubic-bezier(.61,.04,.17,1.32);
-  transition-timing-function: cubic-bezier(.61,.04,.17,1.32);
 
   .middle {
     position: absolute;
@@ -276,9 +229,6 @@
   }
 
   &:before, &:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     position: absolute;
     width: 22px;
     height: 2px;
@@ -295,5 +245,41 @@
 
   &:after {
     bottom: 5px;
+  }
+}
+
+.header-nav-menu {
+  position: fixed;
+  left: 0;
+  z-index: 9999;
+  padding: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .98);
+  text-align: center;
+  -webkit-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+
+  .header-nav-main {
+    margin-top: 52px;
+  }
+}
+
+.header-nav-menu-show {
+  @media only screen and (max-width: 767px) {
+    height: 101%;
+
+
+    .nav-item {
+      border-bottom: 1px solid #efefef;
+      line-height: 60px;
+      width: 90%;
+      margin: 0 auto;
+    }
   }
 }

@@ -10,6 +10,12 @@ export const articleData = (articles) => {
     };
 };
 
+export const clearRelatives = () => {
+    return {
+        type: Home.CLEAR_RELATIVE,
+    };
+};
+
 const initialState = fromJS({
     ARTICLE_DATA: new List(),
 });

@@ -1,9 +1,11 @@
 import {connect} from 'react-redux';
 import * as Home from './constants';
 import {pageableArticles} from "./modules";
+import {clearRelatives} from "./modules";
 
 const mapDispatchToProps = {
     pageableArticles: (pageable) => pageableArticles(pageable),
+    clearRelatives: () => clearRelatives(),
 };
 
 const mapStateToProps = (state) => {

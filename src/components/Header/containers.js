@@ -1,9 +1,8 @@
 import {connect} from 'react-redux';
 import * as Header from './constants';
-import {clearRelatives} from "./modules";
 
 const mapDispatchToProps = {
-    goHome: () => clearRelatives(),
+
 };
 
 const mapStateToProps = (state) => {

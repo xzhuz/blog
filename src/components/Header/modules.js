@@ -8,11 +8,6 @@ export const showTitle = (title) => {
     };
 };
 
-export const clearRelatives = () => {
-    return {
-        type: Header.CLEAR_RELATIVE,
-    };
-};
 
 const initialState = fromJS({
     title: '',

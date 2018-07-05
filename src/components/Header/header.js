@@ -92,7 +92,7 @@ class Header extends React.Component{
                     [`header-hidden`]: pathname.includes('/dashboard')
                 })}>
                 <nav className='header-content'>
-                    <button className='signature' onClick={this.goHome}>Mei Sen</button>
+                    <button className='signature' onClick={this.goHome}></button>
                     <div className={
                         classNames('header-menu', {
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
@@ -110,15 +110,19 @@ class Header extends React.Component{
                             <Link to={{ pathname: '/about'}}>关于</Link>
                         </span>
                     </div>
-                    <div className={classNames('header-mobile-menu', {[`header-mobile-menu-on`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
+                    <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
+                        <div className='header-nav-main'>
+                            <ul>
+                                <li className='nav-item'><Link to={{ pathname: '/'}}>首页</Link></li>
+                                <li className='nav-item'><Link to={{ pathname: '/achieve'}}>归档</Link></li>
+                                <li className='nav-item'><Link to={{ pathname: '/about'}}>关于</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className={classNames('menu-ctrl', {[`menu-ctrl-on`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
                         <span className='icon-menu cross'>
                             <span className='middle'/>
                         </span>
-                        <ul>
-                            <li><span onClick={this.goHome}>首页</span></li>
-                            <li><Link to={{ pathname: '/achieve'}}>归档</Link></li>
-                            <li><Link to={{ pathname: '/about'}}>关于</Link></li>
-                        </ul>
                     </div>
                     <div className={
                         classNames('article-header', {

@@ -25,6 +25,10 @@ class Home extends React.Component {
         NProgress.done();
     }
 
+    componentDidMount() {
+        this.props.clearRelatives();
+    }
+
     readMore(v) {
         this.setState(state => ({
             size: state.size + 3,
@@ -76,6 +80,7 @@ Home.propTypes = {
     showPostContent: PropTypes.func,
     pageableArticles: PropTypes.func.isRequired,
     articleCount: PropTypes.number.isRequired,
+    clearRelatives: PropTypes.func.isRequired,
 };
 
 export default Home;
