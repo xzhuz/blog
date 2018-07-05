@@ -83,10 +83,18 @@ class Header extends React.Component{
             <header className={
                 classNames('header', {
                     [`header-scroll`]: !pathname.includes('/article') && this.state.scroll,
-                    [`header-hidden`]: pathname.includes('/dashboard')
+                    [`header-hidden`]: pathname.includes('/dashboard'),
+                    [`over-flow`]: !this.state.menuShown,
                 })}>
                 <nav className='header-content'>
-                    <Link className='signature' to={{ pathname: '/'}}>Mei Sen</Link>
+                    <div className={
+                        classNames('signature', {
+                            [`is-hidden`]: pathname.includes('/article') && this.state.scroll
+                        })
+                    }>
+                        <Link  to={{ pathname: '/'}}>Mei Sen</Link>
+                    </div>
+
                     <div className={
                         classNames('header-menu', {
                             [`is-hidden`]: pathname.includes('/article') && this.state.scroll
@@ -96,15 +104,16 @@ class Header extends React.Component{
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/achieve',
                         })}>
-                            <Link to={{ pathname: '/achieve'}}>归档</Link>
-                        </span>
+                                <Link to={{ pathname: '/achieve'}}>归档</Link>
+                            </span>
                         <span className={classNames('header-path-link', {
                             [`active`]: pathname === '/about',
                         })}>
-                            <Link to={{ pathname: '/about'}}>关于</Link>
-                        </span>
+                                <Link to={{ pathname: '/about'}}>关于</Link>
+                            </span>
                     </div>
-                    <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
+                    <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}
+                         onClick={(e) => this.mobileMenu(e)}>
                         <div className='header-nav-main'>
                             <ul>
                                 <li className='nav-item'><Link to={{ pathname: '/'}}>首页</Link></li>
@@ -113,10 +122,14 @@ class Header extends React.Component{
                             </ul>
                         </div>
                     </div>
-                    <div className={classNames('menu-ctrl', {[`menu-ctrl-on`]: this.state.menuShown})} onClick={(e) => this.mobileMenu(e)}>
-                        <span className='icon-menu cross'>
-                            <span className='middle'/>
-                        </span>
+                    <div className={classNames('menu-ctrl', {
+                        [`menu-ctrl-on`]: this.state.menuShown,
+                        [`is-hidden`]: pathname.includes('/article') && this.state.scroll,
+                    })}
+                         onClick={(e) => this.mobileMenu(e)}>
+                            <span className='icon-menu cross'>
+                                <span className='middle'/>
+                            </span>
                     </div>
                     <div className={
                         classNames('article-header', {

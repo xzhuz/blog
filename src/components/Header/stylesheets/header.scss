@@ -1,12 +1,12 @@
-.header{
+.header {
   flex: 0 0 auto;
   width: 100%;
   height: 52px;
   line-height: 52px;
   background-color: #ffffff;
-  border-bottom: 1px solid rgba(30,35,42,.06);
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
-  box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
+  border-bottom: 1px solid rgba(30, 35, 42, .06);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
@@ -14,6 +14,9 @@
   z-index: 101;
   position: fixed;
   top: 0;
+}
+
+.over-flow {
   overflow: hidden;
 }
 
@@ -34,6 +37,7 @@
 
   a {
     text-decoration: none;
+    color: #444;
     transition-duration: .6s;
     -moz-transition-duration: .6s;
     -webkit-transition-duration: .6s;
@@ -42,7 +46,6 @@
       height: 52px;
       width: 20px;
     }
-
   }
 
   @media only screen and (max-width: 768px) {
@@ -76,6 +79,26 @@
   }
 }
 
+.signature{
+  color: $baseColor;
+  font-size: 1.2rem;
+  outline: none;
+  z-index: 9999;
+  transition-duration: .6s;
+  -moz-transition-duration: .6s;
+  -webkit-transition-duration: .6s;
+
+  padding: 0 10px;
+
+  &.is-hidden {
+    display: none;
+  }
+
+  &:hover{
+    color: $baseStressColor;
+  }
+}
+
 .header-contact{
   display: flex;
   display: -webkit-flex;
@@ -99,15 +122,12 @@
 .header-path-link {
   background: none;
   border: none;
+  color: #444;
   font-size: 1.1rem;
   outline: none;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
-
-  a, a:active, a:focus {
-    color: #444;
-  }
 
   &:hover, a:hover {
     cursor: pointer;
@@ -128,7 +148,6 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       cursor: pointer;
-      margin-top: 2px;
       font-size: 30px;
       font-weight: 600;
       min-width: 200px;
@@ -139,35 +158,26 @@
   }
 
   .article-header:not(.is-shown) {
-    -webkit-transform: translateY(100%);
-    transform: translateY(100%)
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%)
   }
 
   .header-link.is-hidden {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
   }
 }
 
-.signature{
-  color: $baseColor;
-  font-size: 1.2rem;
-  outline: none;
-  z-index: 9999;
-  transition-duration: .6s;
-  -moz-transition-duration: .6s;
-  -webkit-transition-duration: .6s;
-
-  &:hover{
-    color: $baseStressColor;
-  }
-}
 
 .menu-ctrl {
   cursor: pointer;
   display: none;
   padding: 0 10px 0 10px;
   z-index: 9999;
+
+  &.is-hidden{
+    display: none;
+  }
 
   @media only screen and (max-width: 767px) {
     display: inline-block;
@@ -255,11 +265,13 @@
   text-align: center;
   -webkit-transform-origin: 50% 0;
   -ms-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
   transform-origin: 50% 0;
   height: 0;
   overflow: hidden;
   -webkit-transition: all .3s;
   -o-transition: all .3s;
+  -moz-transition: all .3s;
   transition: all .3s;
 
   .header-nav-main {
@@ -271,12 +283,21 @@
   @media only screen and (max-width: 767px) {
     height: 101%;
 
-
     .nav-item {
       border-bottom: 1px solid #efefef;
       line-height: 60px;
       width: 90%;
-      margin: 0 auto;
+      margin:0 auto;
+
+      a {
+        text-decoration: none;
+        color: #444;
+        transition-duration: .6s;
+        -moz-transition-duration: .6s;
+        -webkit-transition-duration: .6s;
+        display: block;
+        width: 100%;
+      }
     }
   }
 }
