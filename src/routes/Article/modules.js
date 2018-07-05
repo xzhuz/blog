@@ -31,6 +31,16 @@ export default function articleReducer(state = initialState, action) {
 };
 
 
+export function increaseVisit(id) {
+    return () => {
+        request.increaseVisit(id).then(res => {
+            if (res.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
+            }
+        });
+    };
+}
+
 export function getArticleDetail(id) {
     return (dispatch) => {
         request.articleDetail(id).then(res => {

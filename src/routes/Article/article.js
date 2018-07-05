@@ -6,6 +6,8 @@ import {markdown} from '../../utils/markdownUtil';
 import {formatDate} from '../../utils/commentUtils';
 
 import Tag from '../../components/Tag';
+import Compliment from '../../components/Compliment';
+import Comment from '../../components/Comment';
 import 'highlight.js/styles/atom-one-dark.css';
 import './stylesheets/article.scss';
 
@@ -20,6 +22,7 @@ class Article extends React.PureComponent {
         NProgress.start();
         const {articleId} = this.props.match.params;
         this.props.articleDetail(articleId);
+        this.props.increaseVisit(articleId);
     }
 
     showPostContent(articleId) {
@@ -46,12 +49,11 @@ class Article extends React.PureComponent {
         return (
             <CSSTransition
                 in={this.state.showArticle && !Number.isNaN(new Date(date).getFullYear())}
-                classNames="article"
+                classNames='article'
                 unmountOnExit
                 timeout={{ enter: 500, exit: 300 }}
                 onExited={() => {this.setState({showArticle: false});}}
             >
-
                 <article className='container'>
                     <div className='article'>
                         <section>
@@ -66,6 +68,8 @@ class Article extends React.PureComponent {
                                     )) : ''
                                 }
                             </p>
+                            <Compliment id={id} origin={compliment} />
+                            <Comment />
                         </section>
                     </div>
                 </article>
@@ -76,6 +80,7 @@ class Article extends React.PureComponent {
 
 Article.propTypes = {
     articleDetail: PropTypes.func.isRequired,
+    increaseVisit: PropTypes.func.isRequired,
     article: PropTypes.object.isRequired,
 };
 

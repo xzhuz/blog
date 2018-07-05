@@ -9,10 +9,10 @@
 .read-more-text{
   font-size: .8rem;
   padding: .4rem;
-  border: 1px solid $baseColor;
+  border: 1px solid $baseStressColor;
   border-radius: 4px;
-  width: 85px;
-  color: $baseColor;
+  //width: 85px;
+  color: $baseStressColor;
   &:hover {
     border: 1px solid $baseStressColor;
     background-color: $baseStressColor;

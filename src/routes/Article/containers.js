@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
 import * as Article from './constants';
-import {getArticleDetail} from './modules';
+import {getArticleDetail, increaseVisit} from './modules';
 
 const mapDispatchToProps = {
     articleDetail: (id) => getArticleDetail(id),
+    increaseVisit: (id) => increaseVisit(id),
 };
 
 const mapStateToProps = (state) => {
