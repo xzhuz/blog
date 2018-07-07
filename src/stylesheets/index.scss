@@ -9,16 +9,17 @@ html, body{
 }
 
 body {
-  font-size: 12px;
-  font-size: 1.2rem;
-  font-family: 'SansSerif','Microsoft YaHei','黑体','宋体', 'Helvetica Neue', Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono,monospace;
+  //font-size: 10px;
+  //font-family: 'SansSerif', "Microsoft YaHei", 'Helvetica Neue', 'Open Sans', Consolas, serif;
+  font: 10px 'Open Sans', "Microsoft Yahei", 'SansSerif', 'Helvetica Neue', 'Open Sans', Consolas;
+  font-weight: 300;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 }
 
 .container {
   flex: 1 0 auto;
   margin: 4.5rem auto;
-  width: 80%;
+  width: 90%;
   max-width: 1024px;
   display: flex;
   display: -webkit-flex;

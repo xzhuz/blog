@@ -6,7 +6,7 @@
   min-height: 160px;
   background-color: #ffffff;
   padding: .8rem;
-  margin-bottom: 2%;
+  margin-bottom: 8px;
   border-radius: 6px;
 
   &:hover {
@@ -49,7 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 2%;
+  padding-left: 1.6rem;
   padding-top: 5px;
   width: 100%;
   @media only screen and (max-width: 767px) {
@@ -73,18 +73,18 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      transition: all 1s;
-      -moz-transition: all 1s;
-      -webkit-transition: all 1s;
+      transition-duration: .6s;
+      -moz-transition-duration: .6s;
+      -webkit-transition-duration: .6s;
     }
   }
 
   &:hover {
     cursor: pointer;
     span {
-      transition-duration: 1s;
-      -moz-transition-duration: 1s;
-      -webkit-transition-duration: 1s;
+      transition-duration: .6s;
+      -moz-transition-duration: .6s;
+      -webkit-transition-duration: .6s;
       color: $baseStressColor;
 
       &:after {

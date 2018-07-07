@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 
-import * as FontAwesome from 'react-icons/lib/fa';
 import './header.scss';
 
 
@@ -70,14 +69,14 @@ class Header extends React.Component{
                     </div>
 
                     <div className='header-menu'>
-                        <Link className='header-path-link' to={{ pathname: '/'}}>首页</Link>
+                        <Link className='header-path-link' to={{ pathname: '/'}}>Home</Link>
                         <Link className={classNames('header-path-link', {
                             [`active`]: pathname.includes('/achieve'),
                         })} to={{ pathname: '/achieve'}}>
-                            归档
+                            Achieves
                         </Link>
                         <Link className={classNames('header-path-link', {[`active`]: pathname.includes('/about')})} to={{ pathname: '/about'}}>
-                            关于
+                            About
                         </Link>
                     </div>
                     <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}
@@ -97,14 +96,6 @@ class Header extends React.Component{
                             <span className='icon-menu cross'>
                                 <span className='middle'/>
                             </span>
-                    </div>
-                    <div className='header-contact'>
-                        <a href='https://github.com/mrmeisen' target='_blank'>
-                            <FontAwesome.FaGithub/>
-                        </a>
-                        <a href='https://weibo.com/3002849234/profile?rightmod=1&wvr=6&mod=personinfo' target='_blank'>
-                            <FontAwesome.FaWeibo/>
-                        </a>
                     </div>
                 </nav>
             </header>

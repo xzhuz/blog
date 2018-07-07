@@ -68,6 +68,9 @@ class Home extends React.Component {
                         this.renderReadMore(articleCount <= this.state.size)
                     }
                 </div>
+                <div className='right-side-bar'>
+
+                </div>
             </div>
         );
     }
