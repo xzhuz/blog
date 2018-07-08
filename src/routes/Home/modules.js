@@ -16,24 +16,15 @@ export const clearRelatives = () => {
     };
 };
 
-export const loadPopularArticles = (articles) => {
-    return {
-        type: Home.POPULAR_ARTICLES,
-        articles
-    };
-};
 
 const initialState = fromJS({
     HOME_DATA: new List(),
-    POPULAR_ARTICLES: new List(),
 });
 
 export default function homeReducer(state = initialState, action) {
     switch (action.type) {
         case Home.HOME_DATA:
             return state.set(Home.HOME_DATA, List.of(...action.articles));
-        case Home.POPULAR_ARTICLES:
-            return state.set(Home.POPULAR_ARTICLES, List.of(...action.articles));
         default:
             return state;
     }
@@ -54,22 +45,6 @@ export function pageableArticles({page, size}) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 return [];
-            }
-        });
-    };
-}
-
-/**
- * 热门文章
- * @returns {Function}
- */
-export function popularArticles() {
-    return (dispatch) => {
-        request.popularArticles().then(res => {
-            if (res.code === 0) {
-                dispatch(loadPopularArticles(res.data));
-            } else {
-                dispatch(loadPopularArticles([]));
             }
         });
     };

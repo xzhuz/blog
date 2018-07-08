@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
 
+import PopularArticlesBar from "../../components/PopularArticlesBar";
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
-import SquareCard from "../../components/SquareCard";
 import './stylesheets/home.scss';
 
 class Home extends React.Component {
@@ -28,7 +28,6 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
-        this.props.loadPopularArticles();
     }
 
     readMore(v) {
@@ -70,21 +69,7 @@ class Home extends React.Component {
                         this.renderReadMore(articleCount <= this.state.size)
                     }
                 </div>
-                <div className='right-side-bar'>
-                    <div className='side-bar-name'>
-                        <h1>热门文章</h1>
-                    </div>
-                    <div className='side-popular-articles'>
-                        {
-                            popularArticles.filter(v => v.publish).map((v) => (
-                                <SquareCard key={`${v.date}-${v.title}`} title={v.title} date={v.date} id={v.id}
-                                            compliment={v.compliment} summary={v.summary} thumb={v.thumb} visit={v.visit}
-                                            showPostContent={() => this.showPostContent(v.id)}
-                                />
-                            ))
-                        }
-                    </div>
-                </div>
+                <PopularArticlesBar/>
             </div>
         );
     }
@@ -93,13 +78,11 @@ class Home extends React.Component {
 Home.propTypes = {
     initArticles: PropTypes.instanceOf(List),
     articles: PropTypes.instanceOf(List),
-    popularArticles: PropTypes.instanceOf(List),
     tagClick: PropTypes.func,
     showPostContent: PropTypes.func,
     pageableArticles: PropTypes.func.isRequired,
     articleCount: PropTypes.number.isRequired,
     clearRelatives: PropTypes.func.isRequired,
-    loadPopularArticles: PropTypes.func,
 };
 
 export default Home;

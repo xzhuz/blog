@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import NProgress from 'nprogress';
+
 import {markdown} from '../../utils/markdownUtil';
+
 import {formatDate} from '../../utils/commentUtils';
 
 import Tag from '../../components/Tag';
 import Compliment from '../../components/Compliment';
 import Comment from '../../components/Comment';
+import RightSideBar from "../../components/RightSideBar";
+
 import 'highlight.js/styles/atom-one-dark.css';
 import './stylesheets/article.scss';
 
@@ -15,7 +19,9 @@ class Article extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {showArticle: false};
+        this.state = {
+            showArticle: false,
+        };
     }
 
     componentDidMount() {
@@ -25,14 +31,14 @@ class Article extends React.PureComponent {
         this.props.increaseVisit(articleId);
     }
 
+
     showPostContent(articleId) {
-        // this.props.getSpecifiedArticle(articleId);
         this.props.history.push({pathname: `/article/${articleId}`});
     }
 
     componentDidUpdate() {
-        this.setState({showArticle: true});
         NProgress.done();
+        this.setState({showArticle: true});
     }
 
     componentWillUnmount() {
@@ -72,6 +78,10 @@ class Article extends React.PureComponent {
                             <Comment />
                         </section>
                     </div>
+
+                    {
+                        tags && tags.length > 0 ? <RightSideBar tag={tags} id={id} showPostContent={(id) => this.showPostContent(id)}/> : ''
+                    }
                 </article>
             </CSSTransition>
         );
