@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
 
-import Bottom from '../../components/Bottom/index';
-import Card from '../../components/Card/index';
-import ReadMore from '../../components/ReadMore/index';
+import Bottom from '../../components/Bottom';
+import Card from '../../components/Card';
+import ReadMore from '../../components/ReadMore';
+import SquareCard from "../../components/SquareCard";
 import './stylesheets/home.scss';
 
 class Home extends React.Component {
@@ -27,6 +28,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
+        this.props.loadPopularArticles();
     }
 
     readMore(v) {
@@ -52,7 +54,7 @@ class Home extends React.Component {
 
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
-        const {initArticles, articles, articleCount} = this.props;
+        const {initArticles, articles, articleCount, popularArticles} = this.props;
         const mergedArticles = initArticles.merge(articles);
         return (
             <div className='container'>
@@ -69,7 +71,19 @@ class Home extends React.Component {
                     }
                 </div>
                 <div className='right-side-bar'>
-
+                    <div className='side-bar-name'>
+                        <h1>热门文章</h1>
+                    </div>
+                    <div className='side-popular-articles'>
+                        {
+                            popularArticles.filter(v => v.publish).map((v) => (
+                                <SquareCard key={`${v.date}-${v.title}`} title={v.title} date={v.date} id={v.id}
+                                            compliment={v.compliment} summary={v.summary} thumb={v.thumb} visit={v.visit}
+                                            showPostContent={() => this.showPostContent(v.id)}
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         );
@@ -79,11 +93,13 @@ class Home extends React.Component {
 Home.propTypes = {
     initArticles: PropTypes.instanceOf(List),
     articles: PropTypes.instanceOf(List),
+    popularArticles: PropTypes.instanceOf(List),
     tagClick: PropTypes.func,
     showPostContent: PropTypes.func,
     pageableArticles: PropTypes.func.isRequired,
     articleCount: PropTypes.number.isRequired,
     clearRelatives: PropTypes.func.isRequired,
+    loadPopularArticles: PropTypes.func,
 };
 
 export default Home;

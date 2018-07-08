@@ -1,0 +1,31 @@
+.side-bar {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
+  box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
+  margin-bottom: 10px;
+}
+
+.side-bar .bar-title {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  width: 100%;
+  border-bottom: 1px solid #DBDBDB;
+  padding: 8px;
+  font-size: 1rem;
+  color: #757575;
+}
+
+.side-bar .bar-child{
+  width: 100%;
+  padding: 8px;
+
+  .tag {
+    margin-bottom: .4rem;
+  }
+}

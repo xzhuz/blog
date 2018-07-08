@@ -1,0 +1,64 @@
+.square-card {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  width: 200px;
+  margin: 0 auto;
+  &:not(:first-child){
+    margin-top: -80px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.square-card .square-card-container .square-card-thumb {
+
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+
+  img {
+    width: 200px;
+  }
+}
+
+.square-card .square-card-container .square-card-items {
+
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 1rem;
+    color: $baseFontColor;
+    max-height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+  background: #ffffff;
+  height: 80px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 10px 20px;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  transform: translateY(-100%);
+
+  .square-card-info {
+    font-size: 14px;
+    color: $loadingColor;
+    padding: 5px 0;
+
+    span {
+      padding-right: 10px;
+      svg {
+        padding-bottom: 4px;
+        padding-right: 5px;
+      }
+    }
+  }
+}
