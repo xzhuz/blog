@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
 
-import PopularArticlesBar from "../../components/PopularArticlesBar";
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
@@ -69,7 +68,6 @@ class Home extends React.Component {
                         this.renderReadMore(articleCount <= this.state.size)
                     }
                 </div>
-                <PopularArticlesBar/>
             </div>
         );
     }

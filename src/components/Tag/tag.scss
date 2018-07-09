@@ -13,6 +13,10 @@
   -moz-transition-duration: 1s;
   -webkit-transition-duration: 1s;
 
+  svg {
+    margin-bottom: 4px;
+  }
+
   &:hover {
     transition-duration: .6s;
     -moz-transition-duration: .6s;
