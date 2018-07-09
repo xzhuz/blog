@@ -7,8 +7,8 @@ class Info extends React.PureComponent{
         const {icon, info} = this.props;
         return (
             <span className='info'>
-                    <span className={'icon'}>{icon}</span>
-                    <span className={'text'}>{info}</span>
+                <span className={'icon'}>{icon}</span>
+                <span className={'text'}>{info}</span>
             </span>
         );
     }

@@ -25,7 +25,14 @@
   .article-info{
     color: #858585;
     font-size: .8rem;
-    margin-top: .4rem;
+    span {
+      margin-right: 1rem;
+
+      svg {
+        font-size: 1rem;
+        margin-top: -4px;
+      }
+    }
   }
 
   h1 {

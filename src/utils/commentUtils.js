@@ -24,5 +24,5 @@ export function formatDate(date) {
     const hours = prefixInteger(blogDate.getHours(), 2);
     const minutes = prefixInteger(blogDate.getMinutes(), 2);
     const seconds = prefixInteger(blogDate.getSeconds(), 2);
-    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    return year + '年' + month + '月' + day + '日 ' + hours + ':' + minutes + ':' + seconds;
 }

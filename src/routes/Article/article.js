@@ -2,23 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import NProgress from 'nprogress';
+import tocbot from 'tocbot';
+import classNames from 'classnames';
+import * as FontAwesome from 'react-icons/lib/fa';
+
 
 import {markdown} from '../../utils/markdownUtil';
 import {formatDate} from '../../utils/commentUtils';
+import {tocOption} from '../../utils/tocbotUtils';
 
 import Tag from '../../components/Tag';
 import Compliment from '../../components/Compliment';
 import Comment from '../../components/Comment';
+import SideBar from "../../components/SideBar";
 
 import 'highlight.js/styles/atom-one-dark.css';
+import 'tocbot/dist/tocbot.css';
 import './stylesheets/article.scss';
+import './stylesheets/toc.scss';
 
 class Article extends React.PureComponent {
 
     constructor(props) {
         super(props);
+        this.handleTocScroll = this.handleTocScroll.bind(this);
         this.state = {
             showArticle: false,
+            tocFixed: false,
         };
     }
 
@@ -27,20 +37,34 @@ class Article extends React.PureComponent {
         const {articleId} = this.props.match.params;
         this.props.articleDetail(articleId);
         this.props.increaseVisit(articleId);
+        window.addEventListener('scroll', this.handleTocScroll, false);
     }
 
+    handleTocScroll() {
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+        const fixedHeight = 310;
+        if (scrollTop > fixedHeight) {
+            this.setState({tocFixed: true});
+        } else if(this.state.tocFixed) {
+            this.setState({tocFixed: false});
+        }
+    }
 
     showPostContent(articleId) {
         this.props.history.push({pathname: `/article/${articleId}`});
     }
 
     componentDidUpdate() {
+        tocbot.init(tocOption());
         NProgress.done();
         this.setState({showArticle: true});
     }
 
     componentWillUnmount() {
         this.setState({showArticle: false});
+        tocbot.destroy();
+        window.removeEventListener('scroll', this.handleTocScroll, false);
         NProgress.done();
     }
 
@@ -62,8 +86,10 @@ class Article extends React.PureComponent {
                     <div className='article'>
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                            <p className='article-info'>发布: {formatDate(date)}</p>
-                            <p className='article-info'>阅读: {visit} 次</p>
+                            <p className='article-info'>
+                                <span><FontAwesome.FaClockO /> {formatDate(date)}</span>
+                                <span><FontAwesome.FaEye /> {visit}次</span>
+                            </p>
                             <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
                             <p className='article-tags'>
                                 {
@@ -76,7 +102,12 @@ class Article extends React.PureComponent {
                             <Comment />
                         </section>
                     </div>
-
+                    <SideBar>
+                        <div className={classNames('bar-toc', {
+                            [`toc-fixed`]: this.state.tocFixed,
+                        })}>
+                        </div>
+                    </SideBar>
                 </article>
             </CSSTransition>
         );

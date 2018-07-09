@@ -1,27 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import './sidebar.scss';
+import * as FontAwesome from 'react-icons/lib/fa';
+
+import './assests/sidebar.scss';
 
 class SideBar extends React.PureComponent {
     render() {
-        const {barTitle, children, sideBarRef} = this.props;
+        const avatar = require('./assests/batman.jpg');
+        const {children} = this.props;
         return (
-            <div className={'side-bar'} ref={sideBarRef}>
-                <div className={'bar-title'}>
-                    {barTitle}
-                </div>
-                <div className={'bar-child'}>
-                    {children}
-                </div>
+            <div className='right-side-bar'>
+                <section className='side-bar'>
+                    <div className='bar-avatar'>
+                        <img src={avatar} />
+                        <h2 className='name'>Mei Sen</h2>
+                        <h3 className='major'>Java Developer</h3>
+                    </div>
+                    <p className='bar-contact'>
+                        <a className='bar-icon' href='https://github.com/mrmeisen' target='_blank'><FontAwesome.FaGithub/> <span>GitHub</span></a>
+                        <a className='https://weibo.com/3002849234/profile?rightmod=1&wvr=6&mod=personinfo'
+                           target='_blank'><FontAwesome.FaWeibo/> <span>WeiBo</span></a>
+                    </p>
+                </section>
+                {children}
             </div>
         );
     }
 }
-
-SideBar.propTypes = {
-    barTitle: PropTypes.string.isRequired,
-    sideBarRef: PropTypes.object,
-};
 
 export default SideBar;

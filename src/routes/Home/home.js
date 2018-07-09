@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
+import SideBar from "../../components/SideBar";
 import './stylesheets/home.scss';
 
 class Home extends React.Component {
@@ -68,10 +69,7 @@ class Home extends React.Component {
                         this.renderReadMore(articleCount <= this.state.size)
                     }
                 </div>
-                <div className='right-side-bar'>
-                    <div className='side-bar'>
-                    </div>
-                </div>
+                <SideBar/>
             </div>
         );
     }

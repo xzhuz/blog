@@ -7,6 +7,7 @@ import NProgress from 'nprogress';
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
+import SideBar from "../../components/SideBar";
 import './stylesheets/relative.scss';
 
 class Relative extends React.Component {
@@ -66,7 +67,7 @@ class Relative extends React.Component {
         return (
             <div className='container'>
                 <div className='articles'>
-                    <h1 className='tag-name'><FontAwesome.FaTag/>{tag}</h1>
+                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                     {
                         relatives.filter(v => v.publish).map((v, index) => (
                             <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
@@ -78,6 +79,7 @@ class Relative extends React.Component {
                         this.renderReadMore(articleOver)
                     }
                 </div>
+                <SideBar/>
             </div>
         );
     }
