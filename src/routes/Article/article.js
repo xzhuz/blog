@@ -4,13 +4,11 @@ import { CSSTransition } from 'react-transition-group';
 import NProgress from 'nprogress';
 
 import {markdown} from '../../utils/markdownUtil';
-
 import {formatDate} from '../../utils/commentUtils';
 
 import Tag from '../../components/Tag';
 import Compliment from '../../components/Compliment';
 import Comment from '../../components/Comment';
-import RightSideBar from "../../components/RightSideBar";
 
 import 'highlight.js/styles/atom-one-dark.css';
 import './stylesheets/article.scss';
@@ -79,9 +77,6 @@ class Article extends React.PureComponent {
                         </section>
                     </div>
 
-                    {
-                        tags && tags.length > 0 ? <RightSideBar tag={tags} id={id} showPostContent={(id) => this.showPostContent(id)}/> : ''
-                    }
                 </article>
             </CSSTransition>
         );

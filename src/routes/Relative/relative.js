@@ -4,7 +4,6 @@ import {List} from 'immutable';
 import * as FontAwesome from 'react-icons/lib/fa';
 import NProgress from 'nprogress';
 
-import PopularArticlesBar from "../../components/PopularArticlesBar";
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
@@ -79,7 +78,6 @@ class Relative extends React.Component {
                         this.renderReadMore(articleOver)
                     }
                 </div>
-                <PopularArticlesBar/>
             </div>
         );
     }
