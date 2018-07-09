@@ -3,8 +3,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Home from '../routes/Home/loadable';
 import About from '../routes/About';
-import Article from '../routes/Article';
-import Relative from '../routes/Relative';
+import Article from '../routes/Article/loadable';
+import Relative from '../routes/Relative/loadable';
 import Header from './Header';
 import Footer from './Footer';
 
