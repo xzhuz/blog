@@ -25,6 +25,10 @@ export const partArticles = ({page, size}) => {
     });
 };
 
+export const achieveArticle = () => {
+    return get('/articles/achieve');
+};
+
 export const publishArticle = ({thumb, content, summary, title, tags, visit, publish}) => {
     return post('/articles/publish', {thumb, content, summary, title, tags: tags.join(','), visit, publish});
 };

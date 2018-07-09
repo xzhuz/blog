@@ -26,3 +26,11 @@ export function formatDate(date) {
     const seconds = prefixInteger(blogDate.getSeconds(), 2);
     return year + '年' + month + '月' + day + '日 ' + hours + ':' + minutes + ':' + seconds;
 }
+
+export function dateFormate(date) {
+    const blogDate = new Date(date);
+    const year = blogDate.getFullYear();
+    const month = prefixInteger(blogDate.getMonth(), 2);
+    const day = prefixInteger(blogDate.getDate(), 2);
+    return year + '-' + month + '-' + day;
+}
