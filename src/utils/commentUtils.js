@@ -27,7 +27,7 @@ export function formatDate(date) {
     return year + '年' + month + '月' + day + '日 ' + hours + ':' + minutes + ':' + seconds;
 }
 
-export function dateFormate(date) {
+export function dateFormat(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
     const month = prefixInteger(blogDate.getMonth(), 2);
