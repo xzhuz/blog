@@ -28,7 +28,10 @@ class Achieve extends React.Component {
     }
 
     render() {
-        console.log(this.props.articles.toString());
+        const {achieves} = this.props;
+        for (const key of achieves.keys()) {
+            console.log(key);
+        }
         return (
             <div className='container'>
                 <section className='achieves'>
@@ -41,7 +44,7 @@ class Achieve extends React.Component {
 }
 
 Achieve.propTypes = {
-    articles: PropTypes.object,
+    achieves: PropTypes.instanceOf(Map),
     showPostContent: PropTypes.func,
     clearRelatives: PropTypes.func.isRequired,
 };
