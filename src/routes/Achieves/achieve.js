@@ -48,7 +48,7 @@ class Achieve extends React.Component {
             const id = data.get('id');
             const date = dateFormat(data.get('date'));
             const title = data.get('title');
-            return <p key={`${id}`} className='achieve-items'><Link to={`/article/${id}`}>{date} {title}</Link></p>;
+            return <p key={`${id}`} className='achieve-items'><span className='achieve-date'>{date}</span><span className='achieve-title'><Link to={`/article/${id}`}>{title}</Link></span></p>;
         });
     }
 

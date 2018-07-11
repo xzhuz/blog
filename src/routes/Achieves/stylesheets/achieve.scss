@@ -13,3 +13,53 @@
     width: 100%;
   }
 }
+
+.achieves .achieve {
+  padding-bottom: 1rem;
+
+  .achieve-items {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    min-height: 2rem;
+    line-height: 2rem;
+    .achieve-date {
+      font-size: 1rem;
+      color: #a1a1a1;
+      width: 40%;
+      max-width: 7rem;
+      min-width: 7rem;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    color: $baseColor;
+  }
+
+  p {
+    padding: 5px 0 5px 3rem;
+    font-size: 1.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: $baseFontColor;
+    word-break: break-all;
+
+    &:hover {
+      color: $baseStressColor;
+    }
+  }
+
+  @media only screen and (max-width: 468px) {
+    h1 {
+      padding: 1rem 0;
+    }
+
+    p {
+      padding: 5px 0 0;
+    }
+  }
+}
