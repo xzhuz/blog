@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {Map, List} from 'immutable';
+import {Map} from 'immutable';
 import NProgress from 'nprogress';
+import { CSSTransition } from 'react-transition-group';
+
 
 import {dateFormat} from "../../utils/commentUtils";
 import SideBar from "../../components/SideBar";
@@ -10,9 +12,16 @@ import './stylesheets/achieve.scss';
 
 class Achieve extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false,
+        };
+    }
 
     componentWillUnmount() {
         NProgress.done();
+        this.setState({show: false});
     }
 
     componentDidUpdate() {
@@ -21,6 +30,7 @@ class Achieve extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
+        this.setState({show: true});
     }
 
     showPostContent(articleId) {
@@ -53,16 +63,23 @@ class Achieve extends React.Component {
     }
 
     render() {
-
         return (
-            <div className='container'>
-                <div className='achieves'>
-                    {
-                        this.renderAchieve()
-                    }
+            <CSSTransition
+                in={this.state.show}
+                classNames="achieves"
+                unmountOnExit
+                timeout={{ enter: 500, exit: 300 }}
+                onExited={() => {this.setState({show: false});}}
+            >
+                <div className='container'>
+                    <div className='achieves'>
+                        {
+                            this.renderAchieve()
+                        }
+                    </div>
+                    <SideBar/>
                 </div>
-                <SideBar/>
-            </div>
+            </CSSTransition>
         );
     }
 }
