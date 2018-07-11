@@ -1,4 +1,7 @@
 // markdown 样式
+.markdown {
+  max-width: 700px;
+}
 .markdown, .editor-preview-side {
   p, blockquote, ul, ol, dl, table, pre {
     margin: 1.2rem 0;

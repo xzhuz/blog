@@ -42,7 +42,6 @@ class Article extends React.PureComponent {
 
     handleTocScroll() {
         const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-
         const fixedHeight = 310;
         if (scrollTop > fixedHeight) {
             this.setState({tocFixed: true});
@@ -56,8 +55,8 @@ class Article extends React.PureComponent {
     }
 
     componentDidUpdate() {
-        tocbot.init(tocOption());
         NProgress.done();
+        tocbot.init(tocOption());
         this.setState({showArticle: true});
     }
 
