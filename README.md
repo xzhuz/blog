@@ -11,7 +11,7 @@ Personal Blog
 
 > 后端 的最初版本是Node、Express、Mongoose,  但是由于本身也是一个后端开发人员，所以直接就用spring Boot来实现了。
 
-> PS. 之前的Node后端在修改小部分代码之后（需要将id更新为_id)也是可以兼容目前的前端。
+
 
 实现功能:
 + 前台页面
@@ -33,5 +33,3 @@ Personal Blog
 ### 项目首页预览
 ![首页预览](./doc/example.png)
 
-
-##### 欢迎大家star😋😋😋
