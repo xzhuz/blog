@@ -1,9 +1,10 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import NProgress from 'nprogress';
 import tocbot from 'tocbot';
-import classNames from 'classnames';
 import * as FontAwesome from 'react-icons/lib/fa';
 
 
@@ -82,6 +83,7 @@ class Article extends React.PureComponent {
                 onExited={() => {this.setState({showArticle: false});}}
             >
                 <article className='container'>
+                    <Helmet title={title}/>
                     <div className='article'>
                         <section>
                             <h1 className='article-title'>{title ? title.trim() : ''}</h1>

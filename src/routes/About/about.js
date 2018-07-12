@@ -1,6 +1,7 @@
 import React from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
+import {Helmet} from 'react-helmet';
 import { CSSTransition } from 'react-transition-group';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 import Info from "../../components/Info/index";
 import './stylesheets/about.scss';
@@ -34,6 +35,7 @@ class About extends React.PureComponent{
                 onExited={() => {this.setState({showAbout: false});}}
             >
                 <div className='container'>
+                    <Helmet title='About'/>
                     <div className={'about-content'}>
                         <div className={'about-info'}>
                             <section className='about-info-about'>

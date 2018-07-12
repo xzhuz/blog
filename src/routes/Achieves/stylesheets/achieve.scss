@@ -40,14 +40,16 @@
 
   p {
     padding: 5px 0 5px 3rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   a {
     text-decoration: none;
     color: $baseFontColor;
     word-break: break-word;
-
+    transition-duration: .4s;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
     &:hover {
       color: $baseStressColor;
     }

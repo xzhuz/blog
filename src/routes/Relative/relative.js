@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import * as FontAwesome from 'react-icons/lib/fa';
@@ -66,6 +67,7 @@ class Relative extends React.Component {
         const articleOver = relatives.size < this.state.size;
         return (
             <div className='container'>
+                <Helmet title={tag} />
                 <div className='articles'>
                     <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                     {

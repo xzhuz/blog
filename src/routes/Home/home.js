@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
@@ -53,10 +54,11 @@ class Home extends React.Component {
 
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
-        const {initArticles, articles, articleCount, popularArticles} = this.props;
+        const {initArticles, articles, articleCount} = this.props;
         const mergedArticles = initArticles.merge(articles);
         return (
             <div className='container'>
+                <Helmet title='Mei Sen'/>
                 <div className='articles'>
                     {
                         mergedArticles.filter(v => v.publish).map((v, index) => (

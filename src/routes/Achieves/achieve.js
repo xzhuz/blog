@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Map} from 'immutable';
@@ -72,6 +73,7 @@ class Achieve extends React.Component {
                 onExited={() => {this.setState({show: false});}}
             >
                 <div className='container'>
+                    <Helmet title={`Achieves`}/>
                     <div className='achieves'>
                         {
                             this.renderAchieve()
