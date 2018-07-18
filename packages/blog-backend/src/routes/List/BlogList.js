@@ -18,7 +18,7 @@ import {
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-import styles from './BasicList.less';
+import styles from './BlogList.less';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -28,7 +28,7 @@ const { Search } = Input;
   list,
   loading: loading.models.list,
 }))
-export default class BasicList extends PureComponent {
+export default class BlogList extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({

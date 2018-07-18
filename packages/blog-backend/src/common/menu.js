@@ -15,24 +15,24 @@ const menuData = [
     ],
   },
   {
-    name: '表单页',
-    icon: 'form',
-    path: 'form',
-    children: [
-      {
-        name: '基础表单',
-        path: 'basic-form',
-      },
-    ],
-  },
-  {
-    name: '列表页',
+    name: '文章列表页',
     icon: 'table',
     path: 'list',
     children: [
       {
-        name: '标准列表',
-        path: 'basic-list',
+        name: '文章列表',
+        path: 'blog-list',
+      },
+    ],
+  },
+  {
+    name: '文章发布页',
+    icon: 'form',
+    path: 'form',
+    children: [
+      {
+        name: '发布文章',
+        path: 'blog-publish',
       },
     ],
   },

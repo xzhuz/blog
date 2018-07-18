@@ -75,18 +75,16 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
     },
     '/dashboard/workplace': {
-      component: dynamicWrapper(app, ['project', 'activities', 'chart'], () =>
-        import('../routes/Dashboard/Workplace')
-      ),
+      component: dynamicWrapper(app, ['project'], () => import('../routes/Dashboard/Workplace')),
       // hideInBreadcrumb: true,
       // name: '工作台',
       // authority: 'admin',
     },
-    '/form/basic-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/BasicForm')),
+    '/form/blog-publish': {
+      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/BlogPublish')),
     },
-    '/list/basic-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/BasicList')),
+    '/list/blog-list': {
+      component: dynamicWrapper(app, ['list'], () => import('../routes/List/BlogList')),
     },
     '/profile/advanced': {
       component: dynamicWrapper(app, ['profile'], () =>

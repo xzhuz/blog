@@ -266,8 +266,8 @@ class BasicLayout extends React.PureComponent {
             <GlobalFooter
               links={[
                 {
-                  key: '博客网站',
-                  title: '博客网站',
+                  key: '个人网站',
+                  title: '个人网站',
                   href: 'https://meisen.pro/',
                   blankTarget: true,
                 },
@@ -275,6 +275,12 @@ class BasicLayout extends React.PureComponent {
                   key: 'github',
                   title: <Icon type="github" />,
                   href: 'https://github.com/mrmeisen',
+                  blankTarget: true,
+                },
+                {
+                  key: 'WeiBo',
+                  title: <Icon type="weibo" />,
+                  href: 'https://weibo.com/u/3002849234?refer_flag=1001030101_',
                   blankTarget: true,
                 },
               ]}
