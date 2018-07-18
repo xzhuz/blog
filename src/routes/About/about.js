@@ -44,7 +44,7 @@ class About extends React.PureComponent{
                                 <p>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</p>
                                 <p>目前正走在成为一个牛逼(Zhuang Bi)程序猿的路上. 前途很艰辛, 但是我会坚持!</p>
                                 <p>最后, 生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</p>
-                                <p><i className='quote-content'>“人生得意须尽欢, 莫使金樽空对月.” </i> <i className='quote-name'> - 李白</i></p>
+                                <p><i className='quote-name'>子曰：</i><i className='quote-content'>“生而知之者，上也；学而知之者，次也；困而学之，又其次也；困而不学，民斯为下矣。” </i></p>
                             </section>
                             <section className='about-info-blog'>
                                 <h2><span className='title'>Blo</span>g</h2>
