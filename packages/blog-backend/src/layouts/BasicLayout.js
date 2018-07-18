@@ -15,7 +15,8 @@ import NotFound from '../routes/Exception/404';
 import { getRoutes } from '../utils/utils';
 import Authorized from '../utils/Authorized';
 import { getMenuData } from '../common/menu';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
+import logoSmall from '../assets/logo-small.png';
 
 const { Content, Header, Footer } = Layout;
 const { AuthorizedRoute, check } = Authorized;
@@ -125,7 +126,7 @@ class BasicLayout extends React.PureComponent {
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = 'Mei Sen';
     let currRouterData = null;
     // match params path
     Object.keys(routerData).forEach(key => {
@@ -134,7 +135,7 @@ class BasicLayout extends React.PureComponent {
       }
     });
     if (currRouterData && currRouterData.name) {
-      title = `${currRouterData.name} - Ant Design Pro`;
+      title = `${currRouterData.name} - Mei Sen`;
     }
     return title;
   }
@@ -215,6 +216,7 @@ class BasicLayout extends React.PureComponent {
       <Layout>
         <SiderMenu
           logo={logo}
+          logoSmall={logoSmall}
           // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
           // If you do not have the Authorized parameter
           // you will be forced to jump to the 403 interface without permission
@@ -229,6 +231,7 @@ class BasicLayout extends React.PureComponent {
           <Header style={{ padding: 0 }}>
             <GlobalHeader
               logo={logo}
+              logoSmall={logoSmall}
               currentUser={currentUser}
               fetchingNotices={fetchingNotices}
               notices={notices}
@@ -263,27 +266,21 @@ class BasicLayout extends React.PureComponent {
             <GlobalFooter
               links={[
                 {
-                  key: 'Pro 首页',
-                  title: 'Pro 首页',
-                  href: 'http://pro.ant.design',
+                  key: '博客网站',
+                  title: '博客网站',
+                  href: 'https://meisen.pro/',
                   blankTarget: true,
                 },
                 {
                   key: 'github',
                   title: <Icon type="github" />,
-                  href: 'https://github.com/ant-design/ant-design-pro',
-                  blankTarget: true,
-                },
-                {
-                  key: 'Ant Design',
-                  title: 'Ant Design',
-                  href: 'http://ant.design',
+                  href: 'https://github.com/mrmeisen',
                   blankTarget: true,
                 },
               ]}
               copyright={
                 <Fragment>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+                  Copyright <Icon type="copyright" /> 2018 Mei Sen
                 </Fragment>
               }
             />
