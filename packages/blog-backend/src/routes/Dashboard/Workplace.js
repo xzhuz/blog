@@ -8,22 +8,22 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import styles from './Workplace.less';
 
-@connect(({ project, loading }) => ({
-  project,
-  projectLoading: loading.effects['project/fetchNotice'],
+@connect(({ articles, loading }) => ({
+  articles,
+  articlesLoading: loading.effects['articles/fetchPopular'],
 }))
 export default class Workplace extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'project/fetchNotice',
+      type: 'articles/fetchPopular',
     });
   }
 
   render() {
     const {
-      project: { notice },
-      projectLoading,
+      articles: { popular },
+      articlesLoading,
     } = this.props;
 
     const pageHeaderContent = (
@@ -51,16 +51,15 @@ export default class Workplace extends PureComponent {
               title="热门文章"
               bordered={false}
               extra={<Link to="/list/blog-list">全部文章</Link>}
-              loading={projectLoading}
+              loading={articlesLoading}
               bodyStyle={{ padding: 0 }}
             >
-              {notice.map(item => (
+              {popular.map(item => (
                 <Card.Grid className={styles.projectGrid} key={item.id}>
                   <Card bodyStyle={{ padding: 0 }} bordered={false}>
                     <Card.Meta
                       title={
                         <div className={styles.cardTitle}>
-                          <Avatar size="small" src={item.logo} />
                           <Link to={item.href}>{item.title}</Link>
                         </div>
                       }

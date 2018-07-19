@@ -77,3 +77,11 @@ export async function fakeRegister(params) {
 export async function queryNotices() {
   return request('/api/notices');
 }
+
+export async function queryAllArticles() {
+  return request('/articles/list');
+}
+
+export async function queryPopularArticles() {
+  return request('/articles/popular');
+}

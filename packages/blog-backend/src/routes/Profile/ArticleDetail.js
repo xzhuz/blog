@@ -20,7 +20,7 @@ import {
 import classNames from 'classnames';
 import DescriptionList from 'components/DescriptionList';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import styles from './AdvancedProfile.less';
+import styles from './ArticleDetail.less';
 
 const { Step } = Steps;
 const { Description } = DescriptionList;
@@ -184,7 +184,7 @@ const columns = [
   profile,
   loading: loading.effects['profile/fetchAdvanced'],
 }))
-export default class AdvancedProfile extends Component {
+export default class ArticleDetail extends Component {
   state = {
     operationkey: 'tab1',
     stepDirection: 'horizontal',

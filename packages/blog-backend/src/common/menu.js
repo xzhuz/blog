@@ -37,14 +37,13 @@ const menuData = [
     ],
   },
   {
-    name: '详情页',
+    name: '文章详情页',
     icon: 'profile',
     path: 'profile',
     children: [
       {
-        name: '高级详情页',
+        name: '文章详情页',
         path: 'advanced',
-        authority: 'admin',
       },
     ],
   },

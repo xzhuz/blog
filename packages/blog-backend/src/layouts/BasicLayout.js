@@ -272,15 +272,15 @@ class BasicLayout extends React.PureComponent {
                   blankTarget: true,
                 },
                 {
-                  key: 'github',
-                  title: <Icon type="github" />,
-                  href: 'https://github.com/mrmeisen',
-                  blankTarget: true,
-                },
-                {
                   key: 'WeiBo',
                   title: <Icon type="weibo" />,
                   href: 'https://weibo.com/u/3002849234?refer_flag=1001030101_',
+                  blankTarget: true,
+                },
+                {
+                  key: 'github',
+                  title: <Icon type="github" />,
+                  href: 'https://github.com/mrmeisen',
                   blankTarget: true,
                 },
               ]}
