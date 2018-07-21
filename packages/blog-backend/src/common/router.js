@@ -80,16 +80,19 @@ export const getRouterData = app => {
       // name: '工作台',
       // authority: 'admin',
     },
-    '/form/blog-publish': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Forms/BlogPublish')),
+    '/article/blog-publish': {
+      component: dynamicWrapper(app, ['form'], () => import('../routes/Blog/BlogPublish')),
     },
-    '/list/blog-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/List/BlogList')),
-    },
-    '/profile/detail': {
-      component: dynamicWrapper(app, ['profile'], () =>
-        import('../routes/Profile/AdvancedProfile')
+    '/article/blog-detail': {
+      component: dynamicWrapper(app, ['profile', 'article'], () =>
+        import('../routes/Blog/BlogDetail.js')
       ),
+    },
+    '/article/blog-update': {
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Blog/BlogUpdate.js')),
+    },
+    '/articles/blog-list': {
+      component: dynamicWrapper(app, ['list'], () => import('../routes/List/BlogList')),
     },
     '/result/success': {
       component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),

@@ -20,7 +20,7 @@ import {
 import classNames from 'classnames';
 import DescriptionList from 'components/DescriptionList';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import styles from './ArticleDetail.less';
+import styles from './BlogDetail.less';
 
 const { Step } = Steps;
 const { Description } = DescriptionList;
@@ -170,8 +170,8 @@ const columns = [
   },
   {
     title: '操作时间',
-    dataIndex: 'updatedAt',
-    key: 'updatedAt',
+    dataIndex: 'update',
+    key: 'update',
   },
   {
     title: '备注',
@@ -184,7 +184,7 @@ const columns = [
   profile,
   loading: loading.effects['profile/fetchAdvanced'],
 }))
-export default class ArticleDetail extends Component {
+export default class BlogDetail extends Component {
   state = {
     operationkey: 'tab1',
     stepDirection: 'horizontal',

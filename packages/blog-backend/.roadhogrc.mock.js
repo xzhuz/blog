@@ -1,6 +1,12 @@
 import mockjs from 'mockjs';
 import { getRule, postRule } from './mock/rule';
-import { getActivities, getNotice, getPopularArticles, getFakeList } from './mock/api';
+import {
+  getActivities,
+  getNotice,
+  getPopularArticles,
+  getAllArticles,
+  getFakeList,
+} from './mock/api';
 import { getFakeChartData } from './mock/chart';
 import { getProfileBasicData } from './mock/profile';
 import { getProfileAdvancedData } from './mock/profile';
@@ -137,6 +143,7 @@ const proxy = {
   },
 
   'GET /articles/popular': getPopularArticles,
+  'GET /articles/list': getAllArticles,
 };
 
 export default (noProxy ? {} : delay(proxy, 1000));

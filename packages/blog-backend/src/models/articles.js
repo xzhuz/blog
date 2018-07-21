@@ -1,3 +1,5 @@
+import { routerRedux } from 'dva/router';
+
 import { queryPopularArticles, queryAllArticles } from '../services/api';
 
 export default {
@@ -5,14 +7,14 @@ export default {
 
   state: {
     popular: [],
-    all: [],
+    list: [],
   },
 
   effects: {
     *fetchList(_, { call, put }) {
       const response = yield call(queryAllArticles);
       yield put({
-        type: 'saveAll',
+        type: 'saveList',
         payload: Array.isArray(response) ? response : [],
       });
     },
@@ -23,6 +25,13 @@ export default {
         payload: Array.isArray(response) ? response : [],
       });
     },
+    *addArticle(_, { put }) {
+      yield put(
+        routerRedux.push({
+          pathname: '/article/blog-publish',
+        })
+      );
+    },
   },
 
   reducers: {
@@ -32,10 +41,10 @@ export default {
         popular: action.payload,
       };
     },
-    saveAll(state, action) {
+    saveList(state, action) {
       return {
         ...state,
-        all: action.payload,
+        list: action.payload,
       };
     },
   },

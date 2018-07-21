@@ -17,7 +17,7 @@ const menuData = [
   {
     name: '文章列表页',
     icon: 'table',
-    path: 'list',
+    path: 'articles',
     children: [
       {
         name: '文章列表',
@@ -26,24 +26,21 @@ const menuData = [
     ],
   },
   {
-    name: '文章发布页',
-    icon: 'form',
-    path: 'form',
+    name: '文章详情页',
+    icon: 'profile',
+    path: 'article',
     children: [
+      {
+        name: '文章详情页',
+        path: 'blog-detail',
+      },
       {
         name: '发布文章',
         path: 'blog-publish',
       },
-    ],
-  },
-  {
-    name: '文章详情页',
-    icon: 'profile',
-    path: 'profile',
-    children: [
       {
-        name: '文章详情页',
-        path: 'advanced',
+        name: '编辑文章',
+        path: 'blog-update',
       },
     ],
   },

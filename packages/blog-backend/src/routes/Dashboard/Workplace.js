@@ -50,7 +50,7 @@ export default class Workplace extends PureComponent {
               style={{ marginBottom: 24 }}
               title="热门文章"
               bordered={false}
-              extra={<Link to="/list/blog-list">全部文章</Link>}
+              extra={<Link to="/articles/blog-list">全部文章</Link>}
               loading={articlesLoading}
               bodyStyle={{ padding: 0 }}
             >
@@ -60,16 +60,20 @@ export default class Workplace extends PureComponent {
                     <Card.Meta
                       title={
                         <div className={styles.cardTitle}>
-                          <Link to={item.href}>{item.title}</Link>
+                          <Link to={{ pathname: '/article/blog-detail', search: `${item.id}` }}>
+                            {item.title}
+                          </Link>
                         </div>
                       }
                       description={item.description}
                     />
                     <div className={styles.projectItemContent}>
-                      <Link to={item.memberLink}>{item.member || ''}</Link>
-                      {item.updatedAt && (
-                        <span className={styles.datetime} title={item.updatedAt}>
-                          {moment(item.updatedAt).fromNow()}
+                      <Link to={{ pathname: '/article/tags', search: `${item.memberLink}` }}>
+                        {item.member || ''}
+                      </Link>
+                      {item.update && (
+                        <span className={styles.datetime} title={item.update}>
+                          {moment(item.update).fromNow()}
                         </span>
                       )}
                     </div>

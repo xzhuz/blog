@@ -1,20 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'dva/router';
 import { connect } from 'dva';
-import {
-  List,
-  Card,
-  Row,
-  Col,
-  Radio,
-  Input,
-  Progress,
-  Button,
-  Icon,
-  Dropdown,
-  Menu,
-  Avatar,
-} from 'antd';
+import { List, Card, Row, Col, Radio, Button } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -22,28 +10,45 @@ import styles from './BlogList.less';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
-const { Search } = Input;
 
-@connect(({ list, loading }) => ({
-  list,
-  loading: loading.models.list,
+@connect(({ articles, loading }) => ({
+  articles,
+  articlesLoading: loading.effects['articles/fetchList'],
 }))
-export default class BlogList extends PureComponent {
+export default class BlogList extends Component {
+  state = {
+    group: 0,
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'list/fetch',
-      payload: {
-        count: 5,
-      },
+      type: 'articles/fetchList',
     });
   }
 
+  addArticle = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'articles/addArticle',
+    });
+  };
+
+  handleDelete = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'articles/deleteArticle',
+      payload: id,
+    });
+  };
+
   render() {
     const {
-      list: { list },
-      loading,
+      articles: { list },
+      articlesLoading,
     } = this.props;
+
+    const { group } = this.state;
 
     const Info = ({ title, value, bordered }) => (
       <div className={styles.headerInfo}>
@@ -55,55 +60,46 @@ export default class BlogList extends PureComponent {
 
     const extraContent = (
       <div className={styles.extraContent}>
-        <RadioGroup defaultValue="all">
-          <RadioButton value="all">全部</RadioButton>
-          <RadioButton value="progress">进行中</RadioButton>
-          <RadioButton value="waiting">等待中</RadioButton>
+        <RadioGroup
+          defaultValue="0"
+          onChange={e => this.setState({ group: e.target.value })}
+          buttonStyle="solid"
+        >
+          <RadioButton value="0">全部</RadioButton>
+          <RadioButton value="1">已发布</RadioButton>
+          <RadioButton value="2">未发布</RadioButton>
         </RadioGroup>
-        <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
       </div>
     );
+
+    const allArticles = list;
+    const publishArticles = list.filter(l => l.publish);
+    const nonPublishArticles = list.filter(l => !l.publish);
+
+    let articles = allArticles;
+    if (group === '1') {
+      articles = publishArticles;
+    } else if (group === '2') {
+      articles = nonPublishArticles;
+    }
 
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 5,
-      total: 50,
+      total: articles.length,
     };
 
-    const ListContent = ({ data: { owner, createdAt, percent, status } }) => (
+    const ListContent = ({ data: { publish, date } }) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
-          <span>Owner</span>
-          <p>{owner}</p>
+          <p>{publish}</p>
         </div>
         <div className={styles.listContentItem}>
-          <span>开始时间</span>
-          <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
-        </div>
-        <div className={styles.listContentItem}>
-          <Progress percent={percent} status={status} strokeWidth={6} style={{ width: 180 }} />
+          <span>发布时间</span>
+          <p>{moment(date).format('YYYY-MM-DD HH:mm')}</p>
         </div>
       </div>
-    );
-
-    const menu = (
-      <Menu>
-        <Menu.Item>
-          <a>编辑</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a>删除</a>
-        </Menu.Item>
-      </Menu>
-    );
-
-    const MoreBtn = () => (
-      <Dropdown overlay={menu}>
-        <a>
-          更多 <Icon type="down" />
-        </a>
-      </Dropdown>
     );
 
     return (
@@ -112,13 +108,13 @@ export default class BlogList extends PureComponent {
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
-                <Info title="我的待办" value="8个任务" bordered />
+                <Info title="全部文章" value={`${allArticles.length}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周任务平均处理时间" value="32分钟" bordered />
+                <Info title="已发布文章" value={`${publishArticles.length}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周完成任务数" value="24个任务" />
+                <Info title="未发布文章" value={`${nonPublishArticles.length}篇`} />
               </Col>
             </Row>
           </Card>
@@ -126,25 +122,42 @@ export default class BlogList extends PureComponent {
           <Card
             className={styles.listCard}
             bordered={false}
-            title="标准列表"
+            title="文章列表"
             style={{ marginTop: 24 }}
             bodyStyle={{ padding: '0 32px 40px 32px' }}
             extra={extraContent}
           >
-            <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon="plus">
+            <Button
+              type="dashed"
+              style={{ width: '100%', marginBottom: 8 }}
+              icon="plus"
+              onClick={this.addArticle}
+            >
               添加
             </Button>
             <List
               size="large"
               rowKey="id"
-              loading={loading}
+              loading={articlesLoading}
               pagination={paginationProps}
-              dataSource={list}
+              dataSource={articles}
               renderItem={item => (
-                <List.Item actions={[<a>编辑</a>, <MoreBtn />]}>
+                <List.Item
+                  actions={[
+                    <Link to={{ pathname: '/article/blog-update', search: `${item.id}` }}>
+                      编辑
+                    </Link>,
+                    <Button className={styles.deletBtn} onClick={() => this.handleDelete(item.id)}>
+                      删除
+                    </Button>,
+                  ]}
+                >
                   <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
-                    title={<a href={item.href}>{item.title}</a>}
+                    title={
+                      <Link to={{ pathname: '/article/blog-detail', search: `${item.id}` }}>
+                        {item.title}
+                      </Link>
+                    }
                     description={item.subDescription}
                   />
                   <ListContent data={item} />

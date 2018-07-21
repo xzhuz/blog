@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import styles from './style.less';
+import styles from './BlogUpdate.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -24,7 +24,7 @@ const { TextArea } = Input;
   submitting: loading.effects['form/submitRegularForm'],
 }))
 @Form.create()
-export default class BasicForms extends PureComponent {
+export default class BlogUpdate extends PureComponent {
   handleSubmit = e => {
     e.preventDefault();
     const { form, dispatch } = this.props;

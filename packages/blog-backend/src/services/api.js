@@ -85,3 +85,11 @@ export async function queryAllArticles() {
 export async function queryPopularArticles() {
   return request('/articles/popular');
 }
+
+export async function queryArticleDetail(articleId) {
+  return request(`/articles/info?id=${articleId}`);
+}
+
+export async function deleteArticle(articleId) {
+  return request(`/articles/delete?id=${articleId}`);
+}
