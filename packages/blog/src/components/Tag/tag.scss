@@ -1,0 +1,29 @@
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 12px;
+  color: #ffffff;
+  border: 1px solid $loadingColor;
+  background: $loadingColor;
+  border-radius: 10px;
+  margin-right: 5px;
+  height: 1rem;
+  line-height: 1rem;
+  transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+
+  svg {
+    margin-bottom: 4px;
+  }
+
+  &:hover {
+    transition-duration: .6s;
+    -moz-transition-duration: .6s;
+    -webkit-transition-duration: .6s;
+    color: $loadingColor;
+    cursor: pointer;
+    border: 1px solid #f7f7f7;
+    background: #f7f7f7;
+  }
+}

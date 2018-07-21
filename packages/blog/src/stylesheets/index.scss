@@ -1,0 +1,65 @@
+//#EFDC05 #E53A40 #090707
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body{
+  height: 100%;
+}
+
+body {
+  //font-size: 10px;
+  //font-family: 'SansSerif', "Microsoft YaHei", 'Helvetica Neue', 'Open Sans', Consolas, serif;
+  font: 10px "open sans", "Microsoft Yahei", sans-serif,  Helvetica, Arial;
+  font-weight: 300;
+  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+}
+
+.container {
+  flex: 1 0 auto;
+  margin: 4.5rem auto;
+  width: 90%;
+  max-width: 1024px;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  background-size: cover;
+  //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+
+  @media only screen and (max-width: 768px) {
+    width: 96%;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+ul>li, ol>li {
+  list-style: none;
+}
+
+li {
+  word-wrap: break-word;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
+}
+
+

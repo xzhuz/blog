@@ -1,0 +1,25 @@
+.read-more{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.read-more-text{
+  font-size: .8rem;
+  padding: .4rem;
+  border: 1px solid $baseStressColor;
+  border-radius: 4px;
+  //width: 85px;
+  color: $baseStressColor;
+  &:hover {
+    border: 1px solid $baseStressColor;
+    background-color: $baseStressColor;
+    cursor: pointer;
+    color: #ffffff;
+    transition: all  .6s;
+    -moz-transition: all .6s;
+    -webkit-transition: all .6s;
+  }
+}

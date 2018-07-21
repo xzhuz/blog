@@ -1,0 +1,51 @@
+.bar-toc {
+  color: $baseFontColor;
+  line-height: 1.8rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 260px;
+  .toc-list {
+    position: relative;
+    overflow: hidden;
+  }
+  .toc-list-item a {
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ul>li, ol>li {
+    list-style: disc;
+  }
+
+  .is-active-li > a {
+    color: $baseColor;
+  }
+
+  .toc-list {
+    padding-left: 2rem;
+  }
+
+  .is-active-link {
+    background-color: #ebedef;
+  }
+}
+
+.toc-fixed{
+  position: fixed;
+  top: 4.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  outline: none;
+
+  &::before {
+    display: block;
+    content: " ";
+    height: 4rem;
+    margin-top: -4rem;
+    visibility: hidden;
+  }
+}
