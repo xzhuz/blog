@@ -4,15 +4,15 @@ import SimpleMDE from 'simplemde';
 
 import { Form, Input, Button, Card } from 'antd';
 import { markdown } from '../../utils/markdownUtils';
+import { toolbar } from '../../utils/simpleMarkdownIdeUtil';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import 'simplemde/dist/simplemde.min.css';
-// import styles from './BlogPublish.less';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
 @connect(({ loading }) => ({
-  submitting: loading.effects['form/submitRegularForm'],
+  submitting: loading.effects['form/publishArticle'],
 }))
 @Form.create()
 export default class BlogPublish extends PureComponent {
@@ -22,6 +22,7 @@ export default class BlogPublish extends PureComponent {
       autofocus: true,
       autosave: true,
       previewRender: plainText => markdown(plainText),
+      toolbar,
     });
     this.smde.codemirror.on('change', () => this.contentChange(this.smde.value()));
   }
@@ -32,7 +33,7 @@ export default class BlogPublish extends PureComponent {
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         dispatch({
-          type: 'form/submitRegularForm',
+          type: 'form/publishArticle',
           payload: values,
         });
       }
@@ -52,8 +53,8 @@ export default class BlogPublish extends PureComponent {
 
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 0 },
+        xs: { span: 8 },
+        sm: { span: 4 },
       },
       wrapperCol: {
         xs: { span: 24 },
@@ -65,7 +66,7 @@ export default class BlogPublish extends PureComponent {
     const submitFormLayout = {
       wrapperCol: {
         xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
+        sm: { span: 24, offset: 0 },
       },
     };
 
@@ -113,7 +114,7 @@ export default class BlogPublish extends PureComponent {
                 ],
               })(<TextArea style={{ minHeight: 32 }} rows={4} placeholder="请输入文章内容" />)}
             </FormItem>
-            <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
+            <FormItem {...submitFormLayout} style={{ marginTop: 32, textAlign: 'center' }}>
               <Button type="primary" htmlType="submit" loading={submitting}>
                 提交
               </Button>

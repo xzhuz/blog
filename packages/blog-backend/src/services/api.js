@@ -93,3 +93,10 @@ export async function queryArticleDetail(articleId) {
 export async function deleteArticle(articleId) {
   return request(`/articles/delete?id=${articleId}`);
 }
+
+export async function publishArticle(params) {
+  return request('/articles/publish', {
+    method: 'POST',
+    body: params,
+  });
+}

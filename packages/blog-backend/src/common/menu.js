@@ -31,7 +31,7 @@ const menuData = [
     path: 'article',
     children: [
       {
-        name: '文章详情页',
+        name: '文章详情',
         path: 'blog-detail',
       },
       {

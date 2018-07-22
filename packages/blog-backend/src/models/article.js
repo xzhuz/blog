@@ -1,4 +1,4 @@
-import { queryArticleDetail, deleteArticle } from '../services/api';
+import { queryArticleDetail, deleteArticle, publishArticle } from '../services/api';
 
 export default {
   namespace: 'article',
@@ -18,9 +18,16 @@ export default {
     *deleteArticle({ payload }, { call }) {
       yield call(deleteArticle, payload);
     },
+    *publishArticle({ payload }, { call, put }) {
+      const response = yield call(publishArticle, payload);
+      yield put({
+        type: 'saveArticleDetail',
+        payload: response,
+      });
+    },
   },
   reducers: {
-    *saveArticleDetail(state, action) {
+    saveArticleDetail(state, action) {
       return {
         ...state,
         articleDetail: action.payload,
