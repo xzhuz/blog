@@ -41,6 +41,8 @@ const menuData = [
       {
         name: '编辑文章',
         path: 'blog-update',
+        // hideInBreadcrumb: true,
+        // hideInMenu: true,
       },
     ],
   },

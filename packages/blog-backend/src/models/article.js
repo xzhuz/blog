@@ -8,15 +8,15 @@ export default {
   },
 
   effects: {
-    *fetchArticleDetail({ payload }, { call, put }) {
-      const response = yield call(queryArticleDetail, payload);
+    *fetchArticle({ payload }, { call, put }) {
+      const response = yield call(queryArticleDetail, { id: payload });
       yield put({
         type: 'saveArticleDetail',
         payload: response,
       });
     },
     *deleteArticle({ payload }, { call }) {
-      yield call(deleteArticle, payload);
+      yield call(deleteArticle, { id: payload });
     },
     *publishArticle({ payload }, { call, put }) {
       const response = yield call(publishArticle, payload);

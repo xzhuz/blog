@@ -86,12 +86,12 @@ export async function queryPopularArticles() {
   return request('/articles/popular');
 }
 
-export async function queryArticleDetail(articleId) {
-  return request(`/articles/info?id=${articleId}`);
+export async function queryArticleDetail(params) {
+  return request(`/articles/info?${stringify(params)}`);
 }
 
-export async function deleteArticle(articleId) {
-  return request(`/articles/delete?id=${articleId}`);
+export async function deleteArticle(params) {
+  return request(`/articles/delete?${stringify(params)}`);
 }
 
 export async function publishArticle(params) {
