@@ -30,8 +30,10 @@ function beforeUpload(file) {
   return isJPG && isLt2M;
 }
 
-@connect(({ loading }) => ({
-  submitting: loading.effects['article/updateArticle'],
+@connect(({ article, loading }) => ({
+  article,
+  submitting: loading.effects['/article/updateArticle'],
+  fetching: loading.effects['/article/fetchArticle'],
 }))
 @Form.create()
 export default class BlogUpdate extends PureComponent {
@@ -139,9 +141,16 @@ export default class BlogUpdate extends PureComponent {
   };
 
   render() {
-    const { submitting, form } = this.props;
+    const {
+      submitting,
+      form,
+      article: { articleDetail },
+      fetching,
+    } = this.props;
+    const { title, content, summary } = articleDetail;
     const { tags, inputVisible, inputValue, loading, imageUrl } = this.state;
     const { getFieldDecorator } = form;
+    console.log(content);
 
     const formItemLayout = {
       labelCol: {
@@ -170,7 +179,7 @@ export default class BlogUpdate extends PureComponent {
     );
     return (
       <PageHeaderLayout title="发布文章">
-        <Card bordered={false}>
+        <Card bordered={false} loading={fetching}>
           <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
             <FormItem {...formItemLayout} label="文章图像">
               {getFieldDecorator('thumb')(
@@ -195,6 +204,7 @@ export default class BlogUpdate extends PureComponent {
                     message: '请输入标题',
                   },
                 ],
+                initialValue: title,
               })(<Input placeholder="请输入文章标题" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="文章简介">
@@ -205,6 +215,7 @@ export default class BlogUpdate extends PureComponent {
                     message: '请输入文章简介',
                   },
                 ],
+                initialValue: summary,
               })(<Input placeholder="请输入文章简介" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="文章标签">
@@ -263,6 +274,7 @@ export default class BlogUpdate extends PureComponent {
                     message: '请输入文章内容',
                   },
                 ],
+                initialValue: content,
               })(<TextArea style={{ minHeight: 32 }} rows={4} placeholder="请输入文章内容" />)}
             </FormItem>
             <FormItem {...formItemLayout}>

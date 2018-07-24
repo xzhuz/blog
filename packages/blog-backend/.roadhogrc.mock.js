@@ -5,6 +5,7 @@ import {
   getNotice,
   getPopularArticles,
   getAllArticles,
+  getArticle,
   getFakeList,
 } from './mock/api';
 import { getFakeChartData } from './mock/chart';
@@ -144,6 +145,8 @@ const proxy = {
 
   'GET /articles/popular': getPopularArticles,
   'GET /articles/list': getAllArticles,
+  'GET /articles/info': getArticle,
+  'GET /articles/update': getArticle,
 };
 
 export default (noProxy ? {} : delay(proxy, 1000));

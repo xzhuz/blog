@@ -1,4 +1,6 @@
-import { queryArticleDetail, deleteArticle, publishArticle } from '../services/api';
+import { message } from 'antd';
+import { routerRedux } from 'dva/router';
+import { queryArticleDetail, deleteArticle, publishArticle, updateArticle } from '../services/api';
 
 export default {
   namespace: 'article',
@@ -16,14 +18,30 @@ export default {
       });
     },
     *deleteArticle({ payload }, { call }) {
-      yield call(deleteArticle, { id: payload });
+      const response = yield call(deleteArticle, { id: payload });
+      if (response.code) {
+        message.error('删除失败!');
+      } else {
+        message.success('删除成功!');
+      }
     },
     *publishArticle({ payload }, { call, put }) {
       const response = yield call(publishArticle, payload);
-      yield put({
-        type: 'saveArticleDetail',
-        payload: response,
-      });
+      if (response.code) {
+        message.error('发布失败!');
+      } else {
+        message.success('发布成功!');
+        const { id } = payload;
+        yield put(routerRedux.push('/article/blog-detail', { id }));
+      }
+    },
+    *updateArticle({ payload }, { call }) {
+      const response = yield call(updateArticle, payload);
+      if (response.code) {
+        message.error('更新失败!');
+      } else {
+        message.success('更新成功!');
+      }
     },
   },
   reducers: {

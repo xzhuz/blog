@@ -2,34 +2,18 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Card } from 'antd';
 import { routerRedux } from 'dva/router';
+import { parse } from 'qs';
 import DescriptionList from 'components/DescriptionList';
+import moment from 'moment';
+import { markdown } from '../../utils/markdownUtils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './BlogDetail.less';
 
 const { Description } = DescriptionList;
 const ButtonGroup = Button.Group;
 
-const action = (
-  <Fragment>
-    <ButtonGroup>
-      <Button>发布</Button>
-      <Button>保存为草稿</Button>
-    </ButtonGroup>
-  </Fragment>
-);
-
-const description = (
-  <DescriptionList className={styles.headerList} size="small" col="2">
-    <Description term="创建时间">2017-07-07</Description>
-    <Description term="更新时间">2017-08-08</Description>
-    <Description term="标签">服务</Description>
-    <Description term="阅读数">22</Description>
-    <Description term="点赞数">33</Description>
-  </DescriptionList>
-);
-
-@connect(({ profile, loading }) => ({
-  profile,
+@connect(({ article, loading }) => ({
+  article,
   articleLoading: loading.effects['article/fetchArticle'],
 }))
 export default class BlogDetail extends Component {
@@ -41,19 +25,65 @@ export default class BlogDetail extends Component {
         pathname: '/article/blog-list',
       });
     }
-    const id = search.substring(1);
+    const { id } = parse(search);
     dispatch({
       type: 'article/fetchArticle',
       payload: id,
     });
   }
 
+  handleUpdateArticle = e => {
+    const {
+      dispatch,
+      article: { articleDetail },
+    } = this.props;
+    if (e === 0) {
+      dispatch({
+        type: 'article/updateArticle',
+        payload: { ...articleDetail, publish: true },
+      });
+    } else if (e === 1) {
+      dispatch({
+        type: 'article/updateArticle',
+        payload: { ...articleDetail, publish: false },
+      });
+    }
+  };
+
   render() {
-    const { articleLoading } = this.props;
+    const {
+      articleLoading,
+      article: { articleDetail },
+    } = this.props;
+    const { content, date, update, tags, visit, compliment } = articleDetail;
+
+    const action = (
+      <Fragment>
+        <ButtonGroup>
+          <Button onClick={() => this.handleUpdateArticle(0)}>发布</Button>
+          <Button onClick={() => this.handleUpdateArticle(1)}>保存为草稿</Button>
+        </ButtonGroup>
+      </Fragment>
+    );
+
+    const description = (
+      <DescriptionList className={styles.headerList} size="small" col="2">
+        <Description term="创建时间">{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Description>
+        <Description term="更新时间">{moment(update).format('YYYY-MM-DD HH:mm:ss')}</Description>
+        <Description term="标签">{tags}</Description>
+        <Description term="阅读数">{visit}</Description>
+        <Description term="点赞数">{compliment}</Description>
+      </DescriptionList>
+    );
 
     return (
-      <PageHeaderLayout title="。。。" action={action} content={description}>
-        <Card style={{ marginBottom: 24 }} bordered={false} loading={articleLoading} />
+      <PageHeaderLayout title="Hello World" action={action} content={description}>
+        <Card style={{ marginBottom: 24 }} bordered={false} loading={articleLoading}>
+          <div
+            className={styles.markdown}
+            dangerouslySetInnerHTML={{ __html: markdown(content) }}
+          />
+        </Card>
       </PageHeaderLayout>
     );
   }

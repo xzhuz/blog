@@ -78,6 +78,7 @@ export async function queryNotices() {
   return request('/api/notices');
 }
 
+// ***********真实接口********/
 export async function queryAllArticles() {
   return request('/articles/list');
 }
@@ -96,6 +97,13 @@ export async function deleteArticle(params) {
 
 export async function publishArticle(params) {
   return request('/articles/publish', {
+    method: 'POST',
+    body: params,
+  });
+}
+
+export async function updateArticle(params) {
+  return request('/articles/update', {
     method: 'POST',
     body: params,
   });
