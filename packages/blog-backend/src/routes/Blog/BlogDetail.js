@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Card } from 'antd';
-import { routerRedux } from 'dva/router';
-import { parse } from 'qs';
-import DescriptionList from 'components/DescriptionList';
+import queryString from 'query-string';
 import moment from 'moment';
+import { routerRedux } from 'dva/router';
+import DescriptionList from 'components/DescriptionList';
 import { markdown } from '../../utils/markdownUtils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './BlogDetail.less';
@@ -25,7 +25,7 @@ export default class BlogDetail extends Component {
         pathname: '/article/blog-list',
       });
     }
-    const { id } = parse(search);
+    const { id } = queryString.parse(search);
     dispatch({
       type: 'article/fetchArticle',
       payload: id,

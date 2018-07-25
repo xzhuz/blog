@@ -2,8 +2,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import SimpleMDE from 'simplemde';
-
 import { Form, Input, Button, Card, Tag, Tooltip, Icon, Upload, message } from 'antd';
+import queryString from 'query-string';
+
 import { markdown } from '../../utils/markdownUtils';
 import { toolbar } from '../../utils/simpleMarkdownIdeUtil';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -48,7 +49,7 @@ export default class BlogUpdate extends PureComponent {
   componentDidMount() {
     const { location, dispatch } = this.props;
     const { search } = location;
-    const id = search.substring(1);
+    const { id } = queryString.parse(search);
     dispatch({
       type: 'article/fetchArticle',
       payload: id,
