@@ -91,7 +91,9 @@ export const getRouterData = app => {
       ),
     },
     '/article/blog-update': {
-      component: dynamicWrapper(app, ['article'], () => import('../routes/Blog/BlogUpdate.js')),
+      component: dynamicWrapper(app, ['article'], () =>
+        import('../routes/Blog/BlogUpdate/BlogUpdate.js')
+      ),
     },
     '/articles/blog-list': {
       component: dynamicWrapper(app, ['list'], () => import('../routes/Blog/BlogList')),

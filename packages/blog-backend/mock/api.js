@@ -284,7 +284,7 @@ export const getArticle = {
   id: '0129f09dcd5c4cb8a09b0a2c18e60b66',
   title: '测试测试一',
   summary: '这个其实就是一个描述',
-  tags: 'test',
+  tags: 'test, java, 干货, 我也不知道为什么',
   publish: true,
   content:
     '> 作为前端小白，从项目计划，开发和上线历经2个月，上线啦??\n' +
