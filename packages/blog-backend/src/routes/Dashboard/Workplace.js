@@ -65,12 +65,9 @@ export default class Workplace extends PureComponent {
                           </Link>
                         </div>
                       }
-                      description={item.description}
+                      description={item.summary}
                     />
                     <div className={styles.projectItemContent}>
-                      <Link to={{ pathname: '/article/tags', search: `${item.memberLink}` }}>
-                        {item.member || ''}
-                      </Link>
                       {item.update && (
                         <span className={styles.datetime} title={item.update}>
                           {moment(item.update).fromNow()}
