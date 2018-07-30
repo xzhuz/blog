@@ -144,7 +144,7 @@ export default class BlogList extends Component {
               renderItem={item => (
                 <List.Item
                   actions={[
-                    <Link to={{ pathname: '/article/blog-update', search: `${item.id}` }}>
+                    <Link to={{ pathname: '/article/blog-update', search: `id=${item.id}` }}>
                       编辑
                     </Link>,
                     <Button className={styles.deletBtn} onClick={() => this.handleDelete(item.id)}>
@@ -154,7 +154,7 @@ export default class BlogList extends Component {
                 >
                   <List.Item.Meta
                     title={
-                      <Link to={{ pathname: '/article/blog-detail', search: `${item.id}` }}>
+                      <Link to={{ pathname: '/article/blog-detail', search: `id=${item.id}` }}>
                         {item.title}
                       </Link>
                     }

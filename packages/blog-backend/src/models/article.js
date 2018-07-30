@@ -12,36 +12,47 @@ export default {
   effects: {
     *fetchArticle({ payload }, { call, put }) {
       const response = yield call(queryArticleDetail, { id: payload });
-      yield put({
-        type: 'saveArticleDetail',
-        payload: response,
-      });
+      if (response.code === 0) {
+        yield put({
+          type: 'saveArticleDetail',
+          payload: response.data,
+        });
+      } else {
+        message.error('查询文章信息失败');
+      }
     },
-    *deleteArticle({ payload }, { call }) {
+    *deleteArticle({ payload }, { call, put }) {
       const response = yield call(deleteArticle, { id: payload });
-      if (response.code) {
+      if (response.code !== 0) {
         message.error('删除失败!');
       } else {
+        yield put(routerRedux.push('/article/blog-list'));
         message.success('删除成功!');
       }
     },
     *publishArticle({ payload }, { call, put }) {
       const response = yield call(publishArticle, payload);
-      if (response.code) {
-        message.error('发布失败!');
-      } else {
+      if (response.code === 0) {
         message.success('发布成功!');
         const { id } = payload;
         yield put(routerRedux.push('/article/blog-detail', { id }));
+      } else {
+        message.error('发布失败!');
       }
     },
     *updateArticle({ payload }, { call }) {
       const response = yield call(updateArticle, payload);
-      if (response.code) {
-        message.error('更新失败!');
-      } else {
+      if (response.code === 0) {
         message.success('更新成功!');
+      } else {
+        message.error('更新失败!');
       }
+    },
+    *clearArticle(_, { put }) {
+      yield put({
+        type: 'saveArticleDetail',
+        payload: {},
+      });
     },
   },
   reducers: {

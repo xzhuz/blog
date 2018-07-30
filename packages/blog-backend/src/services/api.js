@@ -1,5 +1,6 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
+import customAxios from '../utils/customAxios';
 
 export async function queryProjectNotice() {
   return request('/api/project/notice');
@@ -80,31 +81,31 @@ export async function queryNotices() {
 
 // ***********真实接口********/
 export async function queryAllArticles() {
-  return request('/articles/list');
+  return customAxios('/articles/list');
 }
 
 export async function queryPopularArticles() {
-  return request('/articles/popular');
+  return customAxios('/articles/popular');
 }
 
 export async function queryArticleDetail(params) {
-  return request(`/articles/info?${stringify(params)}`);
+  return customAxios('/articles/info', { params });
 }
 
 export async function deleteArticle(params) {
-  return request(`/articles/delete?${stringify(params)}`);
+  return customAxios('/articles/delete', { params });
 }
 
 export async function publishArticle(params) {
-  return request('/articles/publish', {
+  return customAxios('/articles/publish', {
     method: 'POST',
-    body: params,
+    data: params,
   });
 }
 
 export async function updateArticle(params) {
-  return request('/articles/update', {
+  return customAxios('/articles/update', {
     method: 'POST',
-    body: params,
+    data: params,
   });
 }

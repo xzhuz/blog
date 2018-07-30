@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import SimpleMDE from 'simplemde';
-import { Form, Input, Button, Tag, Tooltip, Icon, Upload, message } from 'antd';
+import { Form, Input, Button, Tag, Tooltip, Icon, Upload, message, Switch } from 'antd';
 
 import { markdown } from '../../../utils/markdownUtils';
 import { toolbar } from '../../../utils/simpleMarkdownIdeUtil';
@@ -62,6 +62,13 @@ export default class UpdateForm extends PureComponent {
     this.smde.codemirror.on('change', () => this.contentChange(this.smde.value()));
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/clearArticle',
+    });
+  }
+
   handleClose = removedTag => {
     const { tags } = this.state;
     const resultTags = tags.filter(tag => tag !== removedTag);
@@ -101,8 +108,8 @@ export default class UpdateForm extends PureComponent {
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         dispatch({
-          type: 'article/publishArticle',
-          payload: values,
+          type: 'article/updateArticle',
+          payload: { ...values },
         });
       }
     });
@@ -143,7 +150,7 @@ export default class UpdateForm extends PureComponent {
     const {
       submitting,
       form,
-      data: { title, content, summary },
+      data: { title, content, summary, publish },
     } = this.props;
     const { tags, inputVisible, inputValue, loading, imageUrl } = this.state;
     const { getFieldDecorator } = form;
@@ -182,7 +189,7 @@ export default class UpdateForm extends PureComponent {
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="//jsonplaceholder.typicode.com/posts/"
+              action="/file/upload"
               beforeUpload={beforeUpload}
               onChange={this.handleChange}
             >
@@ -257,6 +264,16 @@ export default class UpdateForm extends PureComponent {
             </div>
           )}
         </FormItem>
+        <FormItem {...formItemLayout} label="文章是否发布">
+          {getFieldDecorator('publish', {
+            rules: [
+              {
+                required: true,
+              },
+            ],
+            initialValue: publish,
+          })(<Switch checkedChildren="是" unCheckedChildren="否" defaultChecked={publish} />)}
+        </FormItem>
         <FormItem {...formItemLayout} label="文章内容">
           {getFieldDecorator('content', {
             rules: [
@@ -273,7 +290,7 @@ export default class UpdateForm extends PureComponent {
             valuePropName: 'fileList',
             getValueFromEvent: this.normFile,
           })(
-            <Upload name="logo" action="/upload.do" listType="picture">
+            <Upload name="logo" action="/file/upload" listType="picture">
               <Button>
                 <Icon type="upload" /> Click to upload
               </Button>

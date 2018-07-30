@@ -1,5 +1,4 @@
 import axios from 'axios';
-import merge from 'merge';
 import { notification } from 'antd';
 import { routerRedux } from 'dva/router';
 import store from '../index';
@@ -39,11 +38,13 @@ function checkStatus(response) {
 
 const createAxios = (customConfig = {}) => {
   const defaultConfig = {
-    baseURL: 'http://localhost:8080/api/',
+    baseURL: 'http://localhost:8000/api/',
     withCredentials: false,
+    crossDomain: true,
+    dataType: 'jsonp',
   };
 
-  return axios.create(merge(defaultConfig, customConfig));
+  return axios.create({ ...defaultConfig, ...customConfig });
 };
 
 export default function customAxios(url, config) {
@@ -60,9 +61,9 @@ export default function customAxios(url, config) {
     };
   }
 
-  const axiosRequest = createAxios();
+  const axiosInstance = createAxios();
 
-  return axiosRequest
+  return axiosInstance
     .request(url, newConfig)
     .then(checkStatus)
     .then(response => {

@@ -20,10 +20,8 @@ export default class BlogDetail extends Component {
   componentDidMount() {
     const { location, dispatch } = this.props;
     const { search } = location;
-    if (search) {
-      routerRedux.push({
-        pathname: '/article/blog-list',
-      });
+    if (!search) {
+      dispatch(routerRedux.push('/articles/blog-list'));
     }
     const { id } = queryString.parse(search);
     dispatch({

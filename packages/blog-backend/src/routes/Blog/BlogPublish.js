@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import SimpleMDE from 'simplemde';
 
-import { Form, Input, Button, Card, Tag, Tooltip, Icon, Upload, message } from 'antd';
+import { Form, Input, Button, Card, Tag, Tooltip, Icon, Upload, message, Switch } from 'antd';
 import { markdown } from '../../utils/markdownUtils';
 import { toolbar } from '../../utils/simpleMarkdownIdeUtil';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -94,7 +94,7 @@ export default class BlogPublish extends PureComponent {
       if (!err) {
         dispatch({
           type: 'article/publishArticle',
-          payload: values,
+          payload: { ...values },
         });
       }
     });
@@ -108,7 +108,6 @@ export default class BlogPublish extends PureComponent {
   };
 
   normFile = e => {
-    console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -116,6 +115,7 @@ export default class BlogPublish extends PureComponent {
   };
 
   handleChange = info => {
+    console.log(info);
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
@@ -172,11 +172,15 @@ export default class BlogPublish extends PureComponent {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="//jsonplaceholder.typicode.com/posts/"
+                  action="http://up.qiniu.com"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                 >
-                  {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
+                  {imageUrl ? (
+                    <img src={imageUrl} alt="avatar" style={{ width: 120 }} />
+                  ) : (
+                    uploadButton
+                  )}
                 </Upload>
               )}
             </FormItem>
@@ -248,6 +252,16 @@ export default class BlogPublish extends PureComponent {
                 </div>
               )}
             </FormItem>
+            <FormItem {...formItemLayout} label="文章是否发布">
+              {getFieldDecorator('publish', {
+                rules: [
+                  {
+                    required: true,
+                  },
+                ],
+                initialValue: false,
+              })(<Switch checkedChildren="是" unCheckedChildren="否" defaultChecked={false} />)}
+            </FormItem>
             <FormItem {...formItemLayout} label="文章内容">
               {getFieldDecorator('content', {
                 rules: [
@@ -263,13 +277,14 @@ export default class BlogPublish extends PureComponent {
                 valuePropName: 'fileList',
                 getValueFromEvent: this.normFile,
               })(
-                <Upload name="logo" action="/upload.do" listType="picture">
+                <Upload name="logo" action="/file/upload" listType="picture">
                   <Button>
                     <Icon type="upload" /> Click to upload
                   </Button>
                 </Upload>
               )}
             </FormItem>
+
             <FormItem {...submitFormLayout} style={{ marginTop: 32, textAlign: 'center' }}>
               <Button type="primary" htmlType="submit" loading={submitting}>
                 提交
