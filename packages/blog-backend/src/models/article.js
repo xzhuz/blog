@@ -22,7 +22,7 @@ export default {
       }
     },
     *deleteArticle({ payload }, { call, put }) {
-      const response = yield call(deleteArticle, { id: payload });
+      const response = yield call(deleteArticle, payload);
       if (response.code !== 0) {
         message.error('删除失败!');
       } else {
@@ -40,10 +40,12 @@ export default {
         message.error('发布失败!');
       }
     },
-    *updateArticle({ payload }, { call }) {
+    *updateArticle({ payload }, { call, put }) {
       const response = yield call(updateArticle, payload);
       if (response.code === 0) {
         message.success('更新成功!');
+        const { id } = payload;
+        yield put(routerRedux.push('/article/blog-detail', { id }));
       } else {
         message.error('更新失败!');
       }

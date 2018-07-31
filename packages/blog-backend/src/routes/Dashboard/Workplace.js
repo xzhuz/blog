@@ -17,7 +17,7 @@ export default class Workplace extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'articles/fetchPopular',
-      payload: { page: 0, size: 6 },
+      payload: { page: 0, size: 5 },
     });
   }
 
@@ -61,7 +61,7 @@ export default class Workplace extends PureComponent {
                     <Card.Meta
                       title={
                         <div className={styles.cardTitle}>
-                          <Link to={{ pathname: '/article/blog-detail', search: `${item.id}` }}>
+                          <Link to={{ pathname: '/article/blog-detail', search: `id=${item.id}` }}>
                             {item.title}
                           </Link>
                         </div>

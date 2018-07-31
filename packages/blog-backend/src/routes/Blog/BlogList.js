@@ -38,7 +38,7 @@ export default class BlogList extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'articles/deleteArticle',
-      payload: id,
+      payload: { id },
     });
   };
 
@@ -147,7 +147,7 @@ export default class BlogList extends Component {
                     <Link to={{ pathname: '/article/blog-update', search: `id=${item.id}` }}>
                       编辑
                     </Link>,
-                    <Button className={styles.deletBtn} onClick={() => this.handleDelete(item.id)}>
+                    <Button className={styles.deleteBtn} onClick={() => this.handleDelete(item.id)}>
                       删除
                     </Button>,
                   ]}
@@ -158,7 +158,6 @@ export default class BlogList extends Component {
                         {item.title}
                       </Link>
                     }
-                    description={item.subDescription}
                   />
                   <ListContent data={item} />
                 </List.Item>

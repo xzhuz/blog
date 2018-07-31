@@ -104,13 +104,14 @@ export default class UpdateForm extends PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { form, dispatch } = this.props;
+    const {
+      form,
+      handleSubmit,
+      data: { id },
+    } = this.props;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        dispatch({
-          type: 'article/updateArticle',
-          payload: { ...values },
-        });
+        handleSubmit({ ...values, id });
       }
     });
   };
@@ -150,7 +151,7 @@ export default class UpdateForm extends PureComponent {
     const {
       submitting,
       form,
-      data: { title, content, summary, publish },
+      data: { title, content, summary, publish, thumb },
     } = this.props;
     const { tags, inputVisible, inputValue, loading, imageUrl } = this.state;
     const { getFieldDecorator } = form;
@@ -183,7 +184,9 @@ export default class UpdateForm extends PureComponent {
     return (
       <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
         <FormItem {...formItemLayout} label="文章图像">
-          {getFieldDecorator('thumb')(
+          {getFieldDecorator('thumb', {
+            initialValue: thumb,
+          })(
             <Upload
               name="avatar"
               listType="picture-card"

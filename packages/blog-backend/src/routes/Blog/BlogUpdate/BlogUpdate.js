@@ -18,14 +18,24 @@ export default class BlogUpdate extends PureComponent {
     const { location, dispatch } = this.props;
     const { search } = location;
     if (!search) {
-      dispatch(routerRedux.push('/article/blog-list'));
+      dispatch(routerRedux.push('/articles/blog-list'));
+    } else {
+      const { id } = queryString.parse(search);
+      dispatch({
+        type: 'article/fetchArticle',
+        payload: id,
+      });
     }
-    const { id } = queryString.parse(search);
-    dispatch({
-      type: 'article/fetchArticle',
-      payload: id,
-    });
   }
+
+  handleSubmit = e => {
+    const { dispatch } = this.props;
+    const { tags } = e;
+    dispatch({
+      type: 'article/updateArticle',
+      payload: { ...e, tags: tags.join(',') },
+    });
+  };
 
   render() {
     const {
@@ -38,7 +48,7 @@ export default class BlogUpdate extends PureComponent {
     return (
       <PageHeaderLayout title="发布文章">
         <Card bordered={false} loading={fetching}>
-          {!title ? '' : <UpdateForm data={articleDetail} />}
+          {!title ? '' : <UpdateForm data={articleDetail} handleSubmit={this.handleSubmit} />}
         </Card>
       </PageHeaderLayout>
     );

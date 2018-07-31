@@ -90,11 +90,12 @@ export default class BlogPublish extends PureComponent {
   handleSubmit = e => {
     e.preventDefault();
     const { form, dispatch } = this.props;
+    const { tags } = this.state;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         dispatch({
           type: 'article/publishArticle',
-          payload: { ...values },
+          payload: { ...values, tags },
         });
       }
     });
@@ -115,7 +116,15 @@ export default class BlogPublish extends PureComponent {
   };
 
   handleChange = info => {
-    console.log(info);
+    // return info.fileList.map(file => {
+    //   if (file.response) {
+    //     // 这个地方是上传结束之后会调用的方法，这边是判断success!!!
+    //     if (file.response.success) {
+    //       return this.filter(file);
+    //     }
+    //   }
+    //   return file;
+    // });
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
@@ -161,6 +170,10 @@ export default class BlogPublish extends PureComponent {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+
+    const uploadProps = {
+      headers: { 'X-Requested-With': null },
+    };
     return (
       <PageHeaderLayout title="发布文章">
         <Card bordered={false}>
@@ -168,13 +181,14 @@ export default class BlogPublish extends PureComponent {
             <FormItem {...formItemLayout} label="文章图像">
               {getFieldDecorator('thumb')(
                 <Upload
-                  name="avatar"
+                  name="thumb"
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="http://up.qiniu.com"
+                  action="//localhost:8000/api/file/upload"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
+                  {...uploadProps}
                 >
                   {imageUrl ? (
                     <img src={imageUrl} alt="avatar" style={{ width: 120 }} />

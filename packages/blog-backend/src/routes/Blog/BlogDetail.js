@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Card } from 'antd';
@@ -22,12 +23,13 @@ export default class BlogDetail extends Component {
     const { search } = location;
     if (!search) {
       dispatch(routerRedux.push('/articles/blog-list'));
+    } else {
+      const { id } = queryString.parse(search);
+      dispatch({
+        type: 'article/fetchArticle',
+        payload: id,
+      });
     }
-    const { id } = queryString.parse(search);
-    dispatch({
-      type: 'article/fetchArticle',
-      payload: id,
-    });
   }
 
   handleUpdateArticle = e => {
@@ -53,7 +55,7 @@ export default class BlogDetail extends Component {
       articleLoading,
       article: { articleDetail },
     } = this.props;
-    const { content, date, update, tags, visit, compliment } = articleDetail;
+    const { content, date, update, tags, visit, compliment, publish } = articleDetail;
 
     const action = (
       <Fragment>
@@ -71,6 +73,7 @@ export default class BlogDetail extends Component {
         <Description term="标签">{tags}</Description>
         <Description term="阅读数">{visit}</Description>
         <Description term="点赞数">{compliment}</Description>
+        <Description term="是否发布">{publish ? '是' : '否'}</Description>
       </DescriptionList>
     );
 
