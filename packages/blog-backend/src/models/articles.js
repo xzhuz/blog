@@ -22,8 +22,8 @@ export default {
         message.error('查询失败');
       }
     },
-    *fetchPopular(_, { call, put }) {
-      const response = yield call(queryPopularArticles);
+    *fetchPopular({ payload }, { call, put }) {
+      const response = yield call(queryPopularArticles, payload);
       if (response.code === 0) {
         yield put({
           type: 'savePopular',

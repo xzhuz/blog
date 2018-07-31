@@ -84,8 +84,8 @@ export async function queryAllArticles() {
   return customAxios('/articles/list');
 }
 
-export async function queryPopularArticles() {
-  return customAxios('/articles/popular');
+export async function queryPopularArticles(params) {
+  return customAxios('/articles/popular', { params });
 }
 
 export async function queryArticleDetail(params) {

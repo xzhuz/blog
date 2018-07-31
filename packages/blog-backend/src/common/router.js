@@ -81,14 +81,10 @@ export const getRouterData = app => {
       // authority: 'admin',
     },
     '/article/blog-publish': {
-      component: dynamicWrapper(app, ['form', 'article'], () =>
-        import('../routes/Blog/BlogPublish')
-      ),
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Blog/BlogPublish')),
     },
     '/article/blog-detail': {
-      component: dynamicWrapper(app, ['profile', 'article'], () =>
-        import('../routes/Blog/BlogDetail.js')
-      ),
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Blog/BlogDetail.js')),
     },
     '/article/blog-update': {
       component: dynamicWrapper(app, ['article'], () =>
@@ -96,7 +92,7 @@ export const getRouterData = app => {
       ),
     },
     '/articles/blog-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Blog/BlogList')),
+      component: dynamicWrapper(app, ['articles'], () => import('../routes/Blog/BlogList')),
     },
     '/exception/403': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),

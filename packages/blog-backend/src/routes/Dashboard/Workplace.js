@@ -17,6 +17,7 @@ export default class Workplace extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'articles/fetchPopular',
+      payload: { page: 0, size: 6 },
     });
   }
 
