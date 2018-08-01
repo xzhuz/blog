@@ -11,23 +11,13 @@ const { Tab, UserName, Password, Submit } = Login;
   submitting: loading.effects['login/login'],
 }))
 export default class LoginPage extends Component {
-  state = {
-    type: 'account',
-  };
-
-  onTabChange = type => {
-    this.setState({ type });
-  };
-
   handleSubmit = (err, values) => {
-    const { type } = this.state;
     const { dispatch } = this.props;
     if (!err) {
       dispatch({
         type: 'login/login',
         payload: {
           ...values,
-          type,
         },
       });
     }
@@ -39,17 +29,16 @@ export default class LoginPage extends Component {
 
   render() {
     const { login, submitting } = this.props;
-    const { type } = this.state;
     return (
       <div className={styles.main}>
-        <Login defaultActiveKey={type} onTabChange={this.onTabChange} onSubmit={this.handleSubmit}>
+        <Login defaultActiveKey="account" onSubmit={this.handleSubmit}>
           <Tab key="account" tab="账户密码登录">
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
-              this.renderMessage('账户或密码错误（admin/888888）')}
-            <UserName name="userName" placeholder="admin/user" />
-            <Password name="password" placeholder="888888/123456" />
+              this.renderMessage('账户或密码错误')}
+            <UserName name="username" placeholder="用户名" />
+            <Password name="password" placeholder="密码" />
           </Tab>
           <Submit loading={submitting}>登录</Submit>
         </Login>

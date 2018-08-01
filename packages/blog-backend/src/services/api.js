@@ -109,3 +109,10 @@ export async function updateArticle(params) {
     data: params,
   });
 }
+
+export async function login(params) {
+  return customAxios('/user/login', {
+    method: 'POST',
+    data: params,
+  });
+}
