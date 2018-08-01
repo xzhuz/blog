@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
-import { Button, Card } from 'antd';
+import { Card, Radio } from 'antd';
 import queryString from 'query-string';
 import moment from 'moment';
 import { routerRedux } from 'dva/router';
@@ -11,7 +11,8 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './BlogDetail.less';
 
 const { Description } = DescriptionList;
-const ButtonGroup = Button.Group;
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 @connect(({ article, loading }) => ({
   article,
@@ -59,10 +60,14 @@ export default class BlogDetail extends Component {
 
     const action = (
       <Fragment>
-        <ButtonGroup>
-          <Button onClick={() => this.handleUpdateArticle(0)}>发布</Button>
-          <Button onClick={() => this.handleUpdateArticle(1)}>保存为草稿</Button>
-        </ButtonGroup>
+        <RadioGroup
+          defaultValue={publish ? '0' : '1'}
+          onChange={e => this.handleUpdateArticle({ group: e.target.value })}
+          buttonStyle="solid"
+        >
+          <RadioButton value="0">发布</RadioButton>
+          <RadioButton value="1">保存为草稿</RadioButton>
+        </RadioGroup>
       </Fragment>
     );
 

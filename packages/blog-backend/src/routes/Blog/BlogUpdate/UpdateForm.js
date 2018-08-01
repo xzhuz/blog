@@ -41,6 +41,7 @@ export default class UpdateForm extends PureComponent {
     inputValue: '',
     loading: false,
     imageUrl: '',
+    fileList: [],
   };
 
   componentDidMount() {
@@ -124,7 +125,6 @@ export default class UpdateForm extends PureComponent {
   };
 
   normFile = e => {
-    console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -145,6 +145,35 @@ export default class UpdateForm extends PureComponent {
         })
       );
     }
+    const {
+      file: { response },
+    } = info;
+    if (response.code !== 0) {
+      message.error(`上传文件失败，原因: ${response.msg}`);
+    }
+  };
+
+  handleUploadPicture = info => {
+    let list = info.fileList;
+    // 1. 读取远程路径并显示链接
+    list = list.map(file => {
+      if (file.response) {
+        // 组件会将 file.url 作为链接进行展示
+        const name = file.response.data;
+        return { ...file, name };
+      }
+      return file;
+    });
+
+    // 2. 按照服务器返回信息筛选成功上传的文件
+    list = list.filter(file => {
+      if (file.response) {
+        return file.response.code === 0;
+      }
+      return true;
+    });
+
+    this.setState({ fileList: list });
   };
 
   render() {
@@ -153,7 +182,7 @@ export default class UpdateForm extends PureComponent {
       form,
       data: { title, content, summary, publish, thumb },
     } = this.props;
-    const { tags, inputVisible, inputValue, loading, imageUrl } = this.state;
+    const { tags, inputVisible, inputValue, loading, imageUrl, fileList } = this.state;
     const { getFieldDecorator } = form;
 
     const formItemLayout = {
@@ -181,6 +210,18 @@ export default class UpdateForm extends PureComponent {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+
+    const uploadProps = {
+      headers: { 'X-Requested-With': null },
+    };
+
+    const uploadPictureProps = {
+      action: '//localhost:8000/api/file/upload',
+      onChange: this.handleUploadPicture,
+      multiple: true,
+      normalize: this.normFile,
+    };
+
     return (
       <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
         <FormItem {...formItemLayout} label="文章图像">
@@ -188,15 +229,16 @@ export default class UpdateForm extends PureComponent {
             initialValue: thumb,
           })(
             <Upload
-              name="avatar"
+              name="file"
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="/file/upload"
+              action="//localhost:8000/api/file/upload"
               beforeUpload={beforeUpload}
               onChange={this.handleChange}
+              {...uploadProps}
             >
-              {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
+              {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: 120 }} /> : uploadButton}
             </Upload>
           )}
         </FormItem>
@@ -288,18 +330,11 @@ export default class UpdateForm extends PureComponent {
             initialValue: content,
           })(<TextArea style={{ minHeight: 32 }} rows={4} placeholder="请输入文章内容" />)}
         </FormItem>
-        <FormItem {...formItemLayout}>
-          {getFieldDecorator('upload', {
-            valuePropName: 'fileList',
-            getValueFromEvent: this.normFile,
-          })(
-            <Upload name="logo" action="/file/upload" listType="picture">
-              <Button>
-                <Icon type="upload" /> Click to upload
-              </Button>
-            </Upload>
-          )}
-        </FormItem>
+        <Upload name="file" {...uploadPictureProps} listType="picture" fileList={fileList}>
+          <Button>
+            <Icon type="upload" /> 上传图片
+          </Button>
+        </Upload>
         <FormItem {...submitFormLayout} style={{ marginTop: 32, textAlign: 'center' }}>
           <Button type="primary" htmlType="submit" loading={submitting}>
             提交
