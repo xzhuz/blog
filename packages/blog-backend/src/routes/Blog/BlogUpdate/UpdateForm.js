@@ -216,7 +216,7 @@ export default class UpdateForm extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '//localhost:8000/api/file/upload',
+      action: '/api/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -233,7 +233,7 @@ export default class UpdateForm extends PureComponent {
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="//localhost:8000/api/file/upload"
+              action="/api/file/upload"
               beforeUpload={beforeUpload}
               onChange={this.handleChange}
               {...uploadProps}
