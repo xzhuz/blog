@@ -26,7 +26,7 @@ export default {
       if (response.code !== 0) {
         message.error('删除失败!');
       } else {
-        yield put(routerRedux.push('/article/blog-list'));
+        yield put(routerRedux.push('/article/blogList'));
         message.success('删除成功!');
       }
     },
@@ -35,7 +35,7 @@ export default {
       if (response.code === 0) {
         message.success('发布成功!');
         const { id } = payload;
-        yield put(routerRedux.push('/article/blog-detail', { id }));
+        yield put(routerRedux.push('/article/blogDetail', { id }));
       } else {
         message.error('发布失败!');
       }
@@ -45,7 +45,7 @@ export default {
       if (response.code === 0) {
         message.success('更新成功!');
         const { id } = payload;
-        yield put(routerRedux.push('/article/blog-detail', { id }));
+        yield put(routerRedux.push('/article/blogDetail', { id }));
       } else {
         message.error('更新失败!');
       }

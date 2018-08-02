@@ -21,7 +21,7 @@ const menuData = [
     children: [
       {
         name: '文章列表',
-        path: 'blog-list',
+        path: 'blogList',
       },
     ],
   },
@@ -32,15 +32,15 @@ const menuData = [
     children: [
       {
         name: '文章详情',
-        path: 'blog-detail',
+        path: 'blogDetail',
       },
       {
         name: '发布文章',
-        path: 'blog-publish',
+        path: 'blogPublish',
       },
       {
         name: '编辑文章',
-        path: 'blog-update',
+        path: 'blogUpdate',
         // hideInBreadcrumb: true,
         // hideInMenu: true,
       },

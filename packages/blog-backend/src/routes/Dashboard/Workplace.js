@@ -51,7 +51,7 @@ export default class Workplace extends PureComponent {
               style={{ marginBottom: 24 }}
               title="热门文章"
               bordered={false}
-              extra={<Link to="/articles/blog-list">全部文章</Link>}
+              extra={<Link to="/articles/blogList">全部文章</Link>}
               loading={articlesLoading}
               bodyStyle={{ padding: 0 }}
             >
@@ -61,7 +61,7 @@ export default class Workplace extends PureComponent {
                     <Card.Meta
                       title={
                         <div className={styles.cardTitle}>
-                          <Link to={{ pathname: '/article/blog-detail', search: `id=${item.id}` }}>
+                          <Link to={{ pathname: '/article/blogDetail', search: `id=${item.id}` }}>
                             {item.title}
                           </Link>
                         </div>

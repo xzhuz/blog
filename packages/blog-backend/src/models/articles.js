@@ -36,7 +36,7 @@ export default {
     *addArticle(_, { put }) {
       yield put(
         routerRedux.push({
-          pathname: '/article/blog-publish',
+          pathname: '/article/blogPublish',
         })
       );
     },

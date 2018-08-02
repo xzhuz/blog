@@ -18,7 +18,7 @@ export default class BlogUpdate extends PureComponent {
     const { location, dispatch } = this.props;
     const { search } = location;
     if (!search) {
-      dispatch(routerRedux.push('/articles/blog-list'));
+      dispatch(routerRedux.push('/articles/blogList'));
     } else {
       const { id } = queryString.parse(search);
       dispatch({
