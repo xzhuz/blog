@@ -144,7 +144,6 @@ class BasicLayout extends React.PureComponent {
     // According to the url parameter to redirect
     // 这里是重定向的,重定向到 url 的 redirect 参数所示地址
     const urlParams = new URL(window.location.href);
-
     const redirect = urlParams.searchParams.get('redirect');
     // Remove the parameters in the url
     if (redirect) {

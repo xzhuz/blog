@@ -50,7 +50,6 @@ const menuData = [
     name: '账户',
     icon: 'user',
     path: 'user',
-    authority: 'guest',
     children: [
       {
         name: '登录',

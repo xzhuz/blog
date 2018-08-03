@@ -15,15 +15,13 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
-      console.log(response);
-      const { code } = response;
       yield put({
         type: 'changeLoginStatus',
-        payload: { ...response, status: code === 0 ? 'ok' : 'error', currentAuthority: 'admin' },
+        payload: { ...response, currentAuthority: 'admin' },
       });
       // Login successfully
       if (response.code === 0) {
-        // reloadAuthorized();
+        reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;

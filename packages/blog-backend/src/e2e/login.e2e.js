@@ -11,7 +11,7 @@ describe('Login', () => {
   beforeEach(async () => {
     page = await browser.newPage();
     await page.goto('http://localhost:8000/#/user/login', { waitUntil: 'networkidle2' });
-    await page.evaluate(() => window.localStorage.setItem('antd-pro-authority', 'guest'));
+    await page.evaluate(() => window.localStorage.setItem('blog-authority', 'guest'));
   });
 
   afterEach(() => page.close());
