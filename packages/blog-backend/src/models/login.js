@@ -15,6 +15,7 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
+      console.log(response);
       const { code } = response;
       yield put({
         type: 'changeLoginStatus',
