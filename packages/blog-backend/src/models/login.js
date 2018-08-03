@@ -17,7 +17,7 @@ export default {
       const response = yield call(login, payload);
       yield put({
         type: 'changeLoginStatus',
-        payload: { ...response, currentAuthority: 'admin' },
+        payload: { ...response },
       });
       // Login successfully
       if (response.code === 0) {
