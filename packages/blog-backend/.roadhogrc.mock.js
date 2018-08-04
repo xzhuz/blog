@@ -3,8 +3,8 @@ import { getRule, postRule } from './mock/rule';
 import {
   getActivities,
   getNotice,
-  getPopularArticles,
-  getAllArticles,
+  getPopulararticle,
+  getAllarticle,
   getArticle,
   getFakeList,
 } from './mock/api';
@@ -122,10 +122,10 @@ const proxy = {
     });
   },
 
-  'GET /articles/popular': getPopularArticles,
-  'GET /articles/list': getAllArticles,
-  'GET /articles/info': getArticle,
-  'GET /articles/update': getArticle,
+  'GET /article/popular': getPopulararticle,
+  'GET /article/list': getAllarticle,
+  'GET /article/info': getArticle,
+  'GET /article/update': getArticle,
 };
 
 export default (noProxy ? {} : delay(proxy, 1000));

@@ -75,7 +75,7 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
     },
     '/dashboard/workplace': {
-      component: dynamicWrapper(app, ['articles'], () => import('../routes/Dashboard/Workplace')),
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Dashboard/Workplace')),
       // hideInBreadcrumb: true,
       // name: '工作台',
       // authority: 'admin',
@@ -91,8 +91,8 @@ export const getRouterData = app => {
         import('../routes/Blog/BlogUpdate/BlogUpdate.js')
       ),
     },
-    '/articles/blogList': {
-      component: dynamicWrapper(app, ['articles'], () => import('../routes/Blog/BlogList')),
+    '/article/blogList': {
+      component: dynamicWrapper(app, ['article'], () => import('../routes/Blog/BlogList')),
     },
     '/exception/403': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),

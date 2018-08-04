@@ -23,7 +23,7 @@ export default class BlogDetail extends Component {
     const { location, dispatch } = this.props;
     const { search } = location;
     if (!search) {
-      dispatch(routerRedux.push('/articles/blogList'));
+      dispatch(routerRedux.push('/article/blogList'));
     } else {
       const { id } = queryString.parse(search);
       dispatch({
@@ -37,6 +37,7 @@ export default class BlogDetail extends Component {
     const {
       dispatch,
       article: { articleDetail },
+      location: { search },
     } = this.props;
     if (e === '0') {
       dispatch({
@@ -48,6 +49,12 @@ export default class BlogDetail extends Component {
         type: 'article/updateArticle',
         payload: { ...articleDetail, publish: false, nextPath: '' },
       });
+    } else if (e === '1') {
+      const { id } = queryString.parse(search);
+      dispatch({
+        type: 'article/deleteArticle',
+        payload: { id },
+      });
     }
   };
 
@@ -55,14 +62,16 @@ export default class BlogDetail extends Component {
     const {
       articleLoading,
       article: { articleDetail },
+      location: { search },
     } = this.props;
-    const { content, date, update, tags, visit, compliment, publish, id } = articleDetail;
-
+    const { content, date, update, tags, visit, compliment, publish } = articleDetail;
+    const { id } = queryString.parse(search);
     const action = (
       <Fragment>
         <RadioGroup onChange={e => this.handleUpdateArticle(e.target.value)} buttonStyle="solid">
           <RadioButton value="0">发布文章</RadioButton>
           <RadioButton value="1">保存草稿</RadioButton>
+          <RadioButton value="2">删除文章</RadioButton>
         </RadioGroup>
       </Fragment>
     );
@@ -76,7 +85,7 @@ export default class BlogDetail extends Component {
         <Description term="点赞数">{compliment}</Description>
         <Description term="是否发布">{publish ? '是' : '否'}</Description>
         <Description term="编辑">
-          <Link to={{ pathname: '/article/blogDetail', search: `id=${id}` }}>点击编辑</Link>
+          <Link to={{ pathname: '/article/blogUpdate', search: `id=${id}` }}>点击编辑</Link>
         </Description>
       </DescriptionList>
     );

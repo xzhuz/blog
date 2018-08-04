@@ -4,7 +4,6 @@ export default {
   namespace: 'user',
 
   state: {
-    list: [],
     currentUser: {},
   },
 
@@ -13,7 +12,7 @@ export default {
       const response = yield call(queryCurrent);
       yield put({
         type: 'saveCurrentUser',
-        payload: response,
+        payload: response.data,
       });
     },
   },

@@ -1,5 +1,5 @@
-import request from '../utils/request';
+import customAxios from '../utils/customAxios';
 
 export async function queryCurrent() {
-  return request('/api/currentUser');
+  return customAxios('/user/currentUser');
 }

@@ -15,21 +15,14 @@ const menuData = [
     ],
   },
   {
-    name: '文章列表页',
-    icon: 'table',
-    path: 'articles',
+    name: '文章详情页',
+    icon: 'profile',
+    path: 'article',
     children: [
       {
         name: '文章列表',
         path: 'blogList',
       },
-    ],
-  },
-  {
-    name: '文章详情页',
-    icon: 'profile',
-    path: 'article',
-    children: [
       {
         name: '文章详情',
         path: 'blogDetail',

@@ -91,14 +91,18 @@ export default class BlogPublish extends PureComponent {
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const { thumb } = values;
-        const {
-          file: { response },
-        } = thumb;
-        if (response.code === 0) {
-          const { data } = response;
+        if (thumb) {
+          const {
+            response: { data },
+          } = thumb.file;
           dispatch({
             type: 'article/publishArticle',
             payload: { ...values, tags: tags.join(','), thumb: data },
+          });
+        } else {
+          dispatch({
+            type: 'article/publishArticle',
+            payload: { ...values, tags: tags.join(',') },
           });
         }
       }
@@ -200,7 +204,7 @@ export default class BlogPublish extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '//localhost:8000/api/file/upload',
+      action: '/api/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -216,7 +220,7 @@ export default class BlogPublish extends PureComponent {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="//localhost:8000/api/file/upload"
+                  action="/api/file/upload"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                   {...uploadProps}

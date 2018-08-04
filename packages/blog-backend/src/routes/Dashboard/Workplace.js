@@ -8,23 +8,23 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import styles from './Workplace.less';
 
-@connect(({ articles, loading }) => ({
-  articles,
-  articlesLoading: loading.effects['articles/fetchPopular'],
+@connect(({ article, loading }) => ({
+  article,
+  articleLoading: loading.effects['article/fetchPopular'],
 }))
 export default class Workplace extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'articles/fetchPopular',
+      type: 'article/fetchPopular',
       payload: { page: 0, size: 5 },
     });
   }
 
   render() {
     const {
-      articles: { popular },
-      articlesLoading,
+      article: { popular },
+      articleLoading,
     } = this.props;
 
     const pageHeaderContent = (
@@ -51,8 +51,8 @@ export default class Workplace extends PureComponent {
               style={{ marginBottom: 24 }}
               title="热门文章"
               bordered={false}
-              extra={<Link to="/articles/blogList">全部文章</Link>}
-              loading={articlesLoading}
+              extra={<Link to="/article/blogList">全部文章</Link>}
+              loading={articleLoading}
               bodyStyle={{ padding: 0 }}
             >
               {popular.map(item => (

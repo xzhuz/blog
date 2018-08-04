@@ -11,9 +11,9 @@ import styles from './BlogList.less';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-@connect(({ articles, loading }) => ({
-  articles,
-  articlesLoading: loading.effects['articles/fetchList'],
+@connect(({ article, loading }) => ({
+  article,
+  articleLoading: loading.effects['article/fetchList'],
 }))
 export default class BlogList extends Component {
   state = {
@@ -23,29 +23,29 @@ export default class BlogList extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'articles/fetchList',
+      type: 'article/fetchList',
     });
   }
 
   addArticle = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'articles/addArticle',
+      type: 'article/addArticle',
     });
   };
 
   handleDelete = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'articles/deleteArticle',
+      type: 'article/deleteArticle',
       payload: { id },
     });
   };
 
   render() {
     const {
-      articles: { list },
-      articlesLoading,
+      article: { list },
+      articleLoading,
     } = this.props;
 
     const { group } = this.state;
@@ -72,22 +72,22 @@ export default class BlogList extends Component {
       </div>
     );
 
-    const allArticles = list;
-    const publishArticles = list.filter(l => l.publish);
-    const nonPublishArticles = list.filter(l => !l.publish);
+    const allarticle = list;
+    const publisharticle = list.filter(l => l.publish);
+    const nonPublisharticle = list.filter(l => !l.publish);
 
-    let articles = allArticles;
+    let article = allarticle;
     if (group === '1') {
-      articles = publishArticles;
+      article = publisharticle;
     } else if (group === '2') {
-      articles = nonPublishArticles;
+      article = nonPublisharticle;
     }
 
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 5,
-      total: articles.length,
+      total: article.length,
     };
 
     const ListContent = ({ data: { publish, date } }) => (
@@ -108,13 +108,13 @@ export default class BlogList extends Component {
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
-                <Info title="全部文章" value={`${allArticles.length}篇`} bordered />
+                <Info title="全部文章" value={`${allarticle.length}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="已发布文章" value={`${publishArticles.length}篇`} bordered />
+                <Info title="已发布文章" value={`${publisharticle.length}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="未发布文章" value={`${nonPublishArticles.length}篇`} />
+                <Info title="未发布文章" value={`${nonPublisharticle.length}篇`} />
               </Col>
             </Row>
           </Card>
@@ -138,9 +138,9 @@ export default class BlogList extends Component {
             <List
               size="large"
               rowKey="id"
-              loading={articlesLoading}
+              loading={articleLoading}
               pagination={paginationProps}
-              dataSource={articles}
+              dataSource={article}
               renderItem={item => (
                 <List.Item
                   actions={[

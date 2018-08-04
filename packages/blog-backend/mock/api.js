@@ -116,7 +116,7 @@ export const getNotice = [];
 
 export const getActivities = [];
 
-export const getPopularArticles = [
+export const getPopulararticle = [
   {
     id: '0129f09dcd5c4cb8a09b0a2c18e60b66',
     title: '测试测试一',
@@ -160,7 +160,7 @@ export const getPopularArticles = [
   },
 ];
 
-export const getAllArticles = [
+export const getAllarticle = [
   {
     id: '0129f09dcd5c4cb8a09b0a2c18e60b66',
     title: '测asdas试一',
@@ -405,8 +405,8 @@ export const getArticle = {
 export default {
   getNotice,
   getActivities,
-  getPopularArticles,
-  getAllArticles,
+  getPopulararticle,
+  getAllarticle,
   getArticle,
   getFakeList,
 };
