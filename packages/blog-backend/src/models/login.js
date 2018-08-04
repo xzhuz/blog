@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'qs';
-import { login } from '../services/api';
+import { login, logout } from '../services/api';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
 import { getPageQuery } from '../utils/utils';
@@ -10,15 +10,23 @@ export default {
 
   state: {
     status: undefined,
+    errorMsg: undefined,
   },
 
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: { ...response },
-      });
+      if (response.code === 0) {
+        yield put({
+          type: 'changeLoginStatus',
+          payload: { ...response.data },
+        });
+      } else {
+        yield put({
+          type: 'changeLoginStatus',
+          payload: { ...response, status: 'error', currentAuthority: '' },
+        });
+      }
       // Login successfully
       if (response.code === 0) {
         reloadAuthorized();
@@ -40,7 +48,8 @@ export default {
         yield put(routerRedux.replace(redirect || '/'));
       }
     },
-    *logout(_, { put }) {
+    *logout(_, { call, put }) {
+      yield call(logout);
       yield put({
         type: 'changeLoginStatus',
         payload: {
@@ -65,6 +74,7 @@ export default {
       return {
         ...state,
         status: payload.status,
+        errorMsg: payload.msg,
       };
     },
   },

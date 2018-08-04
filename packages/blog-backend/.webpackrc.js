@@ -26,4 +26,5 @@ export default {
   disableDynamicImport: true,
   publicPath: '/',
   hash: true,
+  es5ImcompatibleVersions: true,
 };

@@ -200,7 +200,7 @@ export default class BlogPublish extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '/api/file/upload',
+      action: '//localhost:8000/api/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -216,7 +216,7 @@ export default class BlogPublish extends PureComponent {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="/api/file/upload"
+                  action="//localhost:8000/api/file/upload"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                   {...uploadProps}

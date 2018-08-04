@@ -55,14 +55,6 @@ const menuData = [
         name: '登录',
         path: 'login',
       },
-      {
-        name: '注册',
-        path: 'register',
-      },
-      {
-        name: '注册结果',
-        path: 'register-result',
-      },
     ],
   },
 ];

@@ -17,6 +17,8 @@ export default {
           type: 'saveArticleDetail',
           payload: response.data,
         });
+      } else if (response.code === 101) {
+        yield put(routerRedux.push('/user/login'));
       } else {
         message.error('查询文章信息失败');
       }
@@ -25,17 +27,22 @@ export default {
       const response = yield call(deleteArticle, payload);
       if (response.code !== 0) {
         message.error('删除失败!');
+      } else if (response.code === 101) {
+        yield put(routerRedux.push('/user/login'));
       } else {
         yield put(routerRedux.push('/article/blogList'));
         message.success('删除成功!');
       }
     },
     *publishArticle({ payload }, { call, put }) {
+      console.log(payload);
       const response = yield call(publishArticle, payload);
       if (response.code === 0) {
         message.success('发布成功!');
         const { id } = payload;
         yield put(routerRedux.push('/article/blogDetail', { id }));
+      } else if (response.code === 101) {
+        yield put(routerRedux.push('/user/login'));
       } else {
         message.error('发布失败!');
       }
@@ -44,8 +51,12 @@ export default {
       const response = yield call(updateArticle, payload);
       if (response.code === 0) {
         message.success('更新成功!');
-        const { id } = payload;
-        yield put(routerRedux.push('/article/blogDetail', { id }));
+        const { id, nextPath } = payload;
+        if (nextPath) {
+          yield put(routerRedux.push(nextPath, { id }));
+        }
+      } else if (response.code === 101) {
+        yield put(routerRedux.push('/user/login'));
       } else {
         message.error('更新失败!');
       }

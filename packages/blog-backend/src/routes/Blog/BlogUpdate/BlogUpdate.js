@@ -33,7 +33,7 @@ export default class BlogUpdate extends PureComponent {
     const { tags } = e;
     dispatch({
       type: 'article/updateArticle',
-      payload: { ...e, tags: tags.join(',') },
+      payload: { ...e, tags: tags.join(','), nextPath: '/article/blogDetail' },
     });
   };
 

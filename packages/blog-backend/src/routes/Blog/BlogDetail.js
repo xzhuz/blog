@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import { Card, Radio } from 'antd';
 import queryString from 'query-string';
 import moment from 'moment';
-import { routerRedux } from 'dva/router';
+import { Link, routerRedux } from 'dva/router';
 import DescriptionList from 'components/DescriptionList';
 import { markdown } from '../../utils/markdownUtils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -38,15 +38,15 @@ export default class BlogDetail extends Component {
       dispatch,
       article: { articleDetail },
     } = this.props;
-    if (e === 0) {
+    if (e === '0') {
       dispatch({
         type: 'article/updateArticle',
-        payload: { ...articleDetail, publish: true },
+        payload: { ...articleDetail, publish: true, nextPath: '' },
       });
-    } else if (e === 1) {
+    } else if (e === '1') {
       dispatch({
         type: 'article/updateArticle',
-        payload: { ...articleDetail, publish: false },
+        payload: { ...articleDetail, publish: false, nextPath: '' },
       });
     }
   };
@@ -56,17 +56,13 @@ export default class BlogDetail extends Component {
       articleLoading,
       article: { articleDetail },
     } = this.props;
-    const { content, date, update, tags, visit, compliment, publish } = articleDetail;
+    const { content, date, update, tags, visit, compliment, publish, id } = articleDetail;
 
     const action = (
       <Fragment>
-        <RadioGroup
-          defaultValue={publish ? '0' : '1'}
-          onChange={e => this.handleUpdateArticle({ group: e.target.value })}
-          buttonStyle="solid"
-        >
-          <RadioButton value="0">发布</RadioButton>
-          <RadioButton value="1">保存为草稿</RadioButton>
+        <RadioGroup onChange={e => this.handleUpdateArticle(e.target.value)} buttonStyle="solid">
+          <RadioButton value="0">发布文章</RadioButton>
+          <RadioButton value="1">保存草稿</RadioButton>
         </RadioGroup>
       </Fragment>
     );
@@ -79,6 +75,9 @@ export default class BlogDetail extends Component {
         <Description term="阅读数">{visit}</Description>
         <Description term="点赞数">{compliment}</Description>
         <Description term="是否发布">{publish ? '是' : '否'}</Description>
+        <Description term="编辑">
+          <Link to={{ pathname: '/article/blogDetail', search: `id=${id}` }}>点击编辑</Link>
+        </Description>
       </DescriptionList>
     );
 

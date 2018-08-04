@@ -116,3 +116,7 @@ export async function login(params) {
     data: params,
   });
 }
+
+export async function logout() {
+  return customAxios('/user/logout');
+}
