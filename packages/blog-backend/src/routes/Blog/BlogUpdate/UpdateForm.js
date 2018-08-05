@@ -54,7 +54,7 @@ export default class UpdateForm extends PureComponent {
     form.setFieldsValue({ tags: tagArr });
     this.smde = new SimpleMDE({
       element: document.getElementById('content').childElementCount,
-      autofocus: true,
+      autofocus: false,
       autosave: true,
       previewRender: plainText => markdown(plainText),
       initialValue: content,
