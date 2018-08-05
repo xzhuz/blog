@@ -35,7 +35,6 @@ export default class BlogUpdate extends PureComponent {
       thumb: { file },
     } = e;
     if (file) {
-      console.log(e);
       const {
         response: { data },
       } = file;
@@ -44,7 +43,6 @@ export default class BlogUpdate extends PureComponent {
         payload: { ...e, tags: tags.join(','), nextPath: '/article/blogDetail', thumb: data },
       });
     } else {
-      console.log(e);
       dispatch({
         type: 'article/updateArticle',
         payload: { ...e, tags: tags.join(','), nextPath: '/article/blogDetail' },

@@ -90,11 +90,8 @@ export default class BlogList extends Component {
       total: article.length,
     };
 
-    const ListContent = ({ data: { publish, date } }) => (
+    const ListContent = ({ data: { date } }) => (
       <div className={styles.listContent}>
-        <div className={styles.listContentItem}>
-          <p>{publish}</p>
-        </div>
         <div className={styles.listContentItem}>
           <span>发布时间</span>
           <p>{moment(date).format('YYYY-MM-DD HH:mm')}</p>
