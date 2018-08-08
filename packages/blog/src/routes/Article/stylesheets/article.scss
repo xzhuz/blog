@@ -64,12 +64,14 @@
 
 .article-enter {
   opacity: 0.01;
-  transform: translateY(-2%);
+  transform: translateX(-2%);
 }
 .article-enter-active {
   opacity: 1;
-  transform: translateY(0%);
-  transition: all 300ms ease-out;
+  transform: translateX(0%);
+  transition: all 600ms ease-out;
+  -webkit-transition: all 600ms ease-out;
+  -moz-transition: all 600ms ease-out;
 }
 .article-exit {
   opacity: 1;
@@ -78,7 +80,9 @@
 .article-exit-active {
   opacity: 0;
   transform: scale(4);
-  transition: all 300ms ease-in;
+  transition: all 600ms ease-in;
+  -webkit-transition: all 600ms ease-in;
+  -moz-transition: all 600ms ease-in;
 }
 
 .right-side-bar {
