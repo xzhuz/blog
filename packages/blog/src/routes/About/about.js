@@ -25,7 +25,7 @@ class About extends React.PureComponent{
 
     render() {
         const github = <a href='https://github.com/mrmeisen' target='_blank'>mrmeisen</a>;
-        const weiBo = <a href='https://weibo.com/3002849234/profile?rightmod=1&wvr=6&mod=personinfo' target='_blank'>_MrMei</a>;
+        const weiBo = <a href='https://weibo.com/u/3002849234?refer_flag=1001030101_' target='_blank'>_MrMei</a>;
         return (
             <CSSTransition
                 in={this.state.showAbout}
@@ -53,7 +53,6 @@ class About extends React.PureComponent{
                                 <p>对自己生活的记录</p>
                                 <p>同时, 也是对于自己生活工作的一个记录😋</p>
                                 <p>技术驱动: 前端: React + Redux + React-Router 后端: Spring Boot + MySQL + Redis </p>
-                                <p>P.S. 由于博客才开始搭建, UI和功能都相对简单, 慢慢来...👐👐</p>
                             </section>
                             <section>
                                 <h2><span className={'title'}>Con</span>tact</h2>
