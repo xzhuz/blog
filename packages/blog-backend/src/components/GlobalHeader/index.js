@@ -80,11 +80,7 @@ export default class GlobalHeader extends PureComponent {
           {currentUser.username ? (
             <Dropdown overlay={menu}>
               <span className={`${styles.action} ${styles.account}`}>
-                <Avatar
-                  size="small"
-                  className={styles.avatar}
-                  src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
-                />
+                <Avatar size="small" className={styles.avatar} src={logoSmall} />
                 <span className={styles.name}>{currentUser.username}</span>
               </span>
             </Dropdown>
