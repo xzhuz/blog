@@ -56,6 +56,7 @@ class Home extends React.Component {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
         const {initArticles, articles, articleCount} = this.props;
         const mergedArticles = initArticles.merge(articles);
+        console.log(mergedArticles);
         return (
             <div className='container'>
                 <Helmet title='Mei Sen'/>

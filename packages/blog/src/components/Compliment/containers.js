@@ -6,4 +6,10 @@ const mapDispatchToProps = {
     confirmCompliment: (id, compliment) => confirmCompliment(id, compliment),
 };
 
-export const withConnect = connect(state => state, mapDispatchToProps);
+const mapStateToProps = (state) => {
+    return {
+        compliment: state.get(Compliment.COMPLIMENT).get(Compliment.COMPLIMENT_MOUNT),
+    };
+};
+
+export const withConnect = connect(mapStateToProps, mapDispatchToProps);
