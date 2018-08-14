@@ -8,7 +8,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
     return {
-        compliment: state.get(Compliment.COMPLIMENT).get(Compliment.COMPLIMENT_MOUNT),
+        complimented: state.get(Compliment.COMPLIMENT).get(Compliment.COMPLIMENT_MOUNT),
     };
 };
 

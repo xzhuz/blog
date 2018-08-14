@@ -73,7 +73,7 @@ class Article extends React.PureComponent {
     }
 
     render () {
-        const {title, content, date, tags, compliment, id, visit} = this.props.article;
+        const {article: {title, content, date, tags, compliment, id, visit} } = this.props;
         return (
             <CSSTransition
                 in={this.state.showArticle && !Number.isNaN(new Date(date).getFullYear())}
