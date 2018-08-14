@@ -7,36 +7,31 @@ import './stylesheets/compliment.scss';
 
 class Compliment extends React.PureComponent{
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            clickTimes: 0,
-            // 是否点击
-            click: false,
+          compliment: 0,
         };
     }
 
-    handleCompliment(id) {
-        if (this.state.clickTimes > 4) {
-            alert('你弄痛我了，不要在点我啦!');
-            return;
-        }
-        this.setState(state => ({clickTimes: ++state.clickTimes}));
-        if (this.state.click) {
-            this.setState({click: false}, () => this.props.cancelCompliment(id));
-            return;
-        }
+    componentDidMount() {
+        const { compliment } = this.props;
+        this.setState({compliment});
+    }
+
+    handleCompliment(id, compliment) {
         this.setState({
-            click: true,
-        }, () => this.props.confirmCompliment(id));
+            compliment: compliment + 1,
+        }, () => this.props.confirmCompliment(id, compliment + 1));
     }
 
     render () {
-        const {compliment, origin, id} = this.props;
+        const {id} = this.props;
+        const { compliment } =this.state;
         return (
-            <div onClick={() => this.handleCompliment(id, origin)} className={classNames('compliment', {[`clickAnimation`]: this.state.click })}>
-                <a><FontAwesome.FaThumbsUp className={classNames({[`complimentAnimation`]: this.state.click })} /> 点赞</a>
-                <span>{compliment === 0 ? origin : compliment}</span>
+            <div onClick={() => this.handleCompliment(id, compliment)} className={classNames('compliment')}>
+                <a><FontAwesome.FaThumbsUp/> 点赞</a>
+                <span>{compliment}</span>
             </div>
         );
     }
@@ -44,9 +39,7 @@ class Compliment extends React.PureComponent{
 
 Compliment.propTypes = {
     confirmCompliment: PropTypes.func.isRequired,
-    cancelCompliment: PropTypes.func.isRequired,
     compliment: PropTypes.number.isRequired,
-    origin: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
 };
 

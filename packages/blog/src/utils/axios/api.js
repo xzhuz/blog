@@ -34,10 +34,7 @@ export const relativeArticles = ({tag, page, size}) => {
 };
 
 
-export const doConfirmCompliment = (id) => {
-    return get('/blog/compliment/confirm', {id: id});
+export const doConfirmCompliment = (id, compliment) => {
+    return get('/blog/compliment', {id, compliment});
 };
 
-export const doCancelCompliment = (id) => {
-    return get('/blog/compliment/cancel', {id: id});
-};

@@ -99,7 +99,7 @@ class Article extends React.PureComponent {
                                     )) : ''
                                 }
                             </p>
-                            <Compliment id={id} origin={compliment} />
+                            <Compliment id={id} compliment={compliment} />
                             <Comment />
                         </section>
                     </div>
