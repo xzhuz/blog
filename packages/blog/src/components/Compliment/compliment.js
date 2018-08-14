@@ -10,7 +10,8 @@ class Compliment extends React.PureComponent{
     constructor(props) {
         super(props);
         this.state = {
-          compliment: 0,
+            compliment: 0,
+            click: false,
         };
     }
 
@@ -20,17 +21,20 @@ class Compliment extends React.PureComponent{
     }
 
     handleCompliment(id, compliment) {
-        this.setState({
-            compliment: compliment + 1,
-        }, () => this.props.confirmCompliment(id, compliment + 1));
+        if (!this.state.click) {
+            this.setState({
+                compliment: compliment + 1,
+                click: true,
+            }, () => this.props.confirmCompliment(id, compliment + 1));
+        }
     }
 
     render () {
         const {id} = this.props;
-        const { compliment } =this.state;
+        const { compliment, click } =this.state;
         return (
-            <div onClick={() => this.handleCompliment(id, compliment)} className={classNames('compliment')}>
-                <a><FontAwesome.FaThumbsUp/> 点赞</a>
+            <div onClick={() => this.handleCompliment(id, compliment)} className={classNames('compliment', {[`clickAnimation`]: click })}>
+                <a><FontAwesome.FaThumbsUp className={classNames({[`complimentAnimation`]: click })} /> 点赞</a>
                 <span>{compliment}</span>
             </div>
         );
