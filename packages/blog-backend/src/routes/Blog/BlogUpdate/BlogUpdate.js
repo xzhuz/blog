@@ -33,7 +33,7 @@ export default class BlogUpdate extends PureComponent {
       dispatch,
       article: { articleDetail },
     } = this.props;
-    const { date } = articleDetail;
+    const { date, visit, compliment } = articleDetail;
     const {
       tags,
       thumb: { file },
@@ -44,12 +44,27 @@ export default class BlogUpdate extends PureComponent {
       } = file;
       dispatch({
         type: 'article/updateArticle',
-        payload: { ...e, tags: tags.join(','), nextPath: '/article/blogDetail', thumb: data, date },
+        payload: {
+          ...e,
+          tags: tags.join(','),
+          nextPath: '/article/blogDetail',
+          thumb: data,
+          date,
+          visit,
+          compliment,
+        },
       });
     } else {
       dispatch({
         type: 'article/updateArticle',
-        payload: { ...e, tags: tags.join(','), nextPath: '/article/blogDetail', date },
+        payload: {
+          ...e,
+          tags: tags.join(','),
+          nextPath: '/article/blogDetail',
+          date,
+          visit,
+          compliment,
+        },
       });
     }
   };

@@ -19,7 +19,7 @@ export function prefixInteger(num, n) {
 export function formatDate(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
-    const month = prefixInteger(blogDate.getMonth(), 2);
+    const month = prefixInteger(blogDate.getMonth() + 1, 2);
     const day = prefixInteger(blogDate.getDate(), 2);
     const hours = prefixInteger(blogDate.getHours(), 2);
     const minutes = prefixInteger(blogDate.getMinutes(), 2);
@@ -30,7 +30,7 @@ export function formatDate(date) {
 export function dateFormat(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
-    const month = prefixInteger(blogDate.getMonth(), 2);
+    const month = prefixInteger(blogDate.getMonth() + 1, 2);
     const day = prefixInteger(blogDate.getDate(), 2);
     return year + '-' + month + '-' + day;
 }
