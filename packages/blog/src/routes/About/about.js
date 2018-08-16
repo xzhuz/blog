@@ -25,7 +25,7 @@ class About extends React.PureComponent{
 
     render() {
         const github = <a href='https://github.com/mrmeisen' target='_blank'>mrmeisen</a>;
-        const weiBo = <a href='https://weibo.com/u/3002849234?refer_flag=1001030101_' target='_blank'>_MrMei</a>;
+        const weiBo = <a href='https://weibo.com/u/3002849234?refer_flag=1001030101_' target='_blank'>小二不吃香菜</a>;
         return (
             <CSSTransition
                 in={this.state.showAbout}
