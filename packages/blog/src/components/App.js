@@ -6,7 +6,6 @@ import About from '../routes/About';
 import Article from '../routes/Article/loadable';
 import Achieve from "../routes/Achieves/loadable";
 import Relative from '../routes/Relative/loadable';
-import Login from '../routes/Login';
 import Header from './Header';
 import Footer from './Footer';
 import NotFound from "./NotFound";
@@ -24,7 +23,6 @@ class App extends React.PureComponent {
                         <Route path='/article/:articleId' component={Article}/>
                         <Route path='/achieve' component={Achieve}/>
                         <Route path='/about' component={About} />
-                        <Route path='/login' component={Login}/>
                         <Route component={NotFound} />
                     </Switch>
                     <Footer />
