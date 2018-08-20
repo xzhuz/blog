@@ -7,7 +7,7 @@ Personal Blog
 
 前端: React, Create-React-App, Redux, React-Redux, React-Router v4, simplemde-markdown-editor
 
-后端: Spring Boot, mysql, Redis, Druid (后端地址： [Server](https://github.com/mrmeisen/springboot-server) )
+后端: Spring Boot, mysql, Redis, Druid (后端地址： [Server](https://github.com/xebcxc/springboot-server) )
 
 > 后端 的最初版本是Node、Express、Mongoose,  但是由于本身也是一个后端开发人员，所以直接就用spring Boot来实现了。
 

@@ -22,4 +22,5 @@ yarn-error.log*
 *.lock
 .idea/*
 .idea
+blog/
 package-lock.json
