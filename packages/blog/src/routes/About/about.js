@@ -24,7 +24,7 @@ class About extends React.PureComponent{
     }
 
     render() {
-        const github = <a href='https://github.com/mrmeisen' target='_blank'>mrmeisen</a>;
+        const github = <a href='https://github.com/xebcxc' target='_blank'>xebcxc</a>;
         const weiBo = <a href='https://weibo.com/u/3002849234?refer_flag=1001030101_' target='_blank'>小二不吃香菜</a>;
         return (
             <CSSTransition
@@ -40,7 +40,7 @@ class About extends React.PureComponent{
                         <div className={'about-info'}>
                             <section className='about-info-about'>
                                 <h2><span className='title'>Abo</span>ut</h2>
-                                <p>大家好👋️, 我叫梅森, 来自重庆的Java程序猿👨🏼‍💻</p>
+                                <p>大家好👋️, 我叫梅森, 来自重庆的Java工程师👨🏼‍💻</p>
                                 <p>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</p>
                                 <p>目前正走在成为一个牛逼(Zhuang Bi)程序猿的路上. 前途很艰辛, 但是我会坚持!</p>
                                 <p>最后, 生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</p>
@@ -51,8 +51,8 @@ class About extends React.PureComponent{
                                 <p>期望：平时生活和工作一种记录🖋, 希望之后回过头再来看自己的博客也会有所收获或感想</p>
                                 <p>自己一些杂谈📽(不是一个纯粹的技术博客🤫)</p>
                                 <p>对自己生活的记录</p>
+                                <p>希望自己越来越强大，越来越开心🚀🚀</p>
                                 <p>同时, 也是对于自己生活工作的一个记录😋</p>
-                                <p>技术驱动: 前端: React + Redux + React-Router 后端: Spring Boot + MySQL + Redis </p>
                             </section>
                             <section>
                                 <h2><span className={'title'}>Con</span>tact</h2>

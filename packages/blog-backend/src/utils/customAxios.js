@@ -38,7 +38,7 @@ function checkStatus(response) {
 
 const createAxios = (customConfig = {}) => {
   const defaultConfig = {
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: '/api/',
     withCredentials: true,
     crossDomain: true,
     dataType: 'jsonp',

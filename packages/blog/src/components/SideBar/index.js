@@ -15,7 +15,7 @@ class SideBar extends React.PureComponent {
                         <h3 className='major'>Java Developer</h3>
                     </div>
                     <p className='bar-contact'>
-                        <a className='bar-icon' href='https://github.com/mrmeisen' target='_blank'>
+                        <a className='bar-icon' href='https://github.com/xebcxc' target='_blank'>
                             <FontAwesome.FaGithub/> <span>GitHub</span></a>
                         <a className='bar-icon' href='https://weibo.com/u/3002849234?refer_flag=1001030101_'
                            target='_blank'><FontAwesome.FaWeibo/> <span>WeiBo</span></a>

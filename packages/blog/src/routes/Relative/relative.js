@@ -71,7 +71,7 @@ class Relative extends React.Component {
                 <div className='articles'>
                     <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                     {
-                        relatives.filter(v => v.publish).map((v, index) => (
+                        relatives.map((v, index) => (
                             <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
                                   summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                                   showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
