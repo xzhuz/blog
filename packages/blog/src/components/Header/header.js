@@ -43,8 +43,8 @@ class Header extends React.Component{
     }
 
     changePage() {
-        this.props.changeAppPage(false);
         this.context.router.history.push('/');
+        this.props.changeAppPage(false);
     }
 
     componentWillUnmount() {

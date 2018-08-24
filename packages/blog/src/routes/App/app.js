@@ -16,7 +16,10 @@ class App extends React.PureComponent {
 
     componentDidMount() {
         const {pathname} = this.context.router.history.location;
-        console.log(pathname);
+        if (pathname.length > 2) {
+            this.props.changeAppPage(true);
+            this.context.router.history.push(pathname);
+        }
     }
 
     render() {
@@ -33,6 +36,7 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   appPage: PropTypes.bool,
+  changeAppPage: PropTypes.func.isRequired,
 };
 
 export default App;
