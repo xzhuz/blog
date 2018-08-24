@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux';
 
 import createStore from './store/createStore';
 
-import App from './components/App';
+import App from './routes/App';
 import 'nprogress/nprogress.css';
 import './stylesheets/index.scss';
 import './stylesheets/markdown.scss';
@@ -20,6 +21,8 @@ const MOUNT_NODE = document.getElementById('root');
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     </Provider>
     , MOUNT_NODE);

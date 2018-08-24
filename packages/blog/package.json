@@ -53,6 +53,7 @@
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "tocbot": "^4.3.2",
+    "typed.js": "^2.0.9",
     "url-loader": "0.6.2",
     "utility": "^1.13.1",
     "webpack": "3.8.1",
@@ -134,5 +135,5 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8080"
 }

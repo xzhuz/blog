@@ -1,15 +1,16 @@
 import {connect} from 'react-redux';
 
-import * as Home from './constants';
+import * as App from './constants';
 import {changeAppPage} from "./modules";
 
 const mapDispatchToProps = {
     changeAppPage: (appPage) => changeAppPage(appPage),
+
 };
 
 const mapStateToProps = (state) => {
     return {
-        appPage: state.get(Home.HOME).get(Home.APP_PAGE),
+        appPage: state.get(App.APP).get(App.APP_PAGE),
     };
 };
 

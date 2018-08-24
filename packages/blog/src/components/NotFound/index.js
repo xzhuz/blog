@@ -12,7 +12,7 @@ class NotFound extends React.PureComponent{
     };
 
     componentDidMount() {
-        this.context.router.history.push('/');
+        this.context.router.history.push('/blog');
     }
 
     render() {

@@ -1,23 +1,22 @@
 import {fromJS} from 'immutable';
 
-import * as Home from './constants';
+import * as App from './constants';
 
 export const changeAppPage = (appPage) => {
     return {
-        type: Home.APP_PAGE,
+        type: App.APP_PAGE,
         appPage,
     };
 };
-
 
 const initialState = fromJS({
     APP_PAGE: false,
 });
 
-export default function globalReducer(state = initialState, action) {
+export default function appReducer(state = initialState, action) {
     switch (action.type) {
-        case Home.APP_PAGE:
-            return state.set(Home.APP_PAGE, action.appPage);
+        case App.APP_PAGE:
+            return state.set(App.APP_PAGE, action.appPage);
         default:
             return state;
     }

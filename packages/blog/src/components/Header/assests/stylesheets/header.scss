@@ -51,10 +51,16 @@
 
 .header-logo {
   line-height: 4.5rem;
+  border: none;
+  outline: none;
+  background: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .header-scroll{
-  height: 1%;
+  height: 0;
 
   .header-logo, .header-contact a, .header-menu a {
     -webkit-transform: translateY(-100%);
@@ -72,6 +78,18 @@
   transition: transform .3s;
   -webkit-transition: -webkit-transform .3s;
   -moz-transition: transform .3s, -moz-transform .3s;
+
+  .header-button {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.1rem;
+    font-weight: 300;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .active{
     color: $baseStressColor;
@@ -224,7 +242,14 @@
   .header-nav-main {
     margin-top: 52px;
   }
+
+  .nav-item .header-button {
+    font-weight: 300;
+    font-size: 1.4rem;
+  }
+
 }
+
 
 .header-nav-menu-show {
   @media only screen and (max-width: 767px) {
@@ -236,6 +261,12 @@
       width: 90%;
       margin:0 auto;
       font-size: 1.4rem;
+
+      .header-button {
+        transition-duration: .6s;
+        -moz-transition-duration: .6s;
+        -webkit-transition-duration: .6s;
+      }
 
       a {
         text-decoration: none;

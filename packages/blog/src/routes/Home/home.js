@@ -1,90 +1,63 @@
 import React from 'react';
-import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
-import {List} from 'immutable';
-import NProgress from 'nprogress';
+import Typed from 'typed.js';
 
-import Bottom from '../../components/Bottom';
-import Card from '../../components/Card';
-import ReadMore from '../../components/ReadMore';
-import SideBar from "../../components/SideBar";
+import {typedOptions} from '../../utils/typedUtils';
+
 import './stylesheets/home.scss';
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: 0,
-            size: 5,
-        };
+class Home extends React.PureComponent {
+
+    constructor(props, context) {
+        super(props, context);
+        this.changePage = this.changePage.bind(this);
+        this.changeAboutPage = this.changeAboutPage.bind(this);
     }
 
-    componentWillUnmount() {
-        NProgress.done();
-    }
-
-    componentDidUpdate() {
-        NProgress.done();
-    }
+    static contextTypes = {
+        router: PropTypes.object
+    };
 
     componentDidMount() {
-        this.props.clearRelatives();
+        const options = {
+            ...typedOptions,
+            strings: ['欢迎来到我的博客小站...', '那么就开始这快乐的旅程吧！']
+        };
+        new Typed('.type', options);
     }
 
-    readMore(v) {
-        this.setState(state => ({
-            size: state.size + 3,
-        }), () => this.props.pageableArticles(this.state));
-        NProgress.start();
+    changePage() {
+        this.props.changeAppPage(true);
+        const {pathname} = this.context.router.history.location;
+        if (pathname.length > 2) {
+            this.context.router.history.push(pathname);
+        } else {
+            this.context.router.history.push('/articles');
+        }
     }
 
-    renderReadMore(filled) {
-        return filled ? <Bottom/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
-    }
-
-    showPostContent(articleId) {
-        this.props.history.push({
-            pathname: `/article/${articleId}`
-        });
-    }
-
-    tagClick(tag) {
-        this.props.history.push(`/tag/${tag}`);
+    changeAboutPage() {
+        this.props.changeAppPage(true);
+        this.context.router.history.push('/about');
     }
 
     render() {
-        // initArticles: 初始文章 articles: 点击加载更多时的文章
-        const {initArticles, articles, articleCount} = this.props;
-        const mergedArticles = initArticles.merge(articles);
         return (
-            <div className='container'>
-                <Helmet title='Mei Sen'/>
-                <div className='articles'>
-                    {
-                        mergedArticles.map((v, index) => (
-                            <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                  summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                  showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                        ))
-                    }
-                    {
-                        this.renderReadMore(articleCount <= this.state.size)
-                    }
+            <div className='home'>
+                <div className='home-text'>
+                    <div className='type' />
                 </div>
-                <SideBar/>
+                <div className='blog-button'>
+                    <button onClick={this.changePage}>博客</button>
+                    <button onClick={this.changeAboutPage}>关于</button>
+                </div>
             </div>
         );
     }
 }
 
 Home.propTypes = {
-    initArticles: PropTypes.instanceOf(List),
-    articles: PropTypes.instanceOf(List),
-    tagClick: PropTypes.func,
-    showPostContent: PropTypes.func,
-    pageableArticles: PropTypes.func.isRequired,
-    articleCount: PropTypes.number.isRequired,
-    clearRelatives: PropTypes.func.isRequired,
+    changeAppPage: PropTypes.func.isRequired,
 };
 
 export default Home;

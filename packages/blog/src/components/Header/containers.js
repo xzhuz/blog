@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import * as Home from './constants';
+import * as Header from './constants';
 import {changeAppPage} from "./modules";
 
 const mapDispatchToProps = {
@@ -9,7 +9,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
     return {
-        appPage: state.get(Home.HOME).get(Home.APP_PAGE),
+        appPage: state.get(Header.HEADER).get(Header.APP_PAGE),
     };
 };
 
