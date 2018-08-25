@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Typed from 'typed.js';
 
 import {typedOptions} from '../../utils/typedUtils';
+import { strings } from '../../utils/homeStringsUtils';
 
 import './stylesheets/home.scss';
 
@@ -12,6 +13,9 @@ class Home extends React.PureComponent {
         super(props, context);
         this.changePage = this.changePage.bind(this);
         this.changeAboutPage = this.changeAboutPage.bind(this);
+        this.state = {
+            index: Math.floor(Math.random() * 11),
+        };
     }
 
     static contextTypes = {
@@ -19,21 +23,18 @@ class Home extends React.PureComponent {
     };
 
     componentDidMount() {
+        const { index } = this.state;
+        const { sentence} = strings[index];
         const options = {
             ...typedOptions,
-            strings: ['欢迎来到我的博客小站...', '那么就开始这快乐的旅程吧！']
+            strings: sentence,
         };
         new Typed('.type', options);
     }
 
     changePage() {
         this.props.changeAppPage(true);
-        const {pathname} = this.context.router.history.location;
-        if (pathname.length > 2) {
-            this.context.router.history.push(pathname);
-        } else {
-            this.context.router.history.push('/articles');
-        }
+        this.context.router.history.push('/articles');
     }
 
     changeAboutPage() {
@@ -42,10 +43,15 @@ class Home extends React.PureComponent {
     }
 
     render() {
+        const { index } = this.state;
+        const { chapter} = strings[index];
         return (
             <div className='home'>
                 <div className='home-text'>
                     <div className='type' />
+                    <p className='chapter'>
+                        --{chapter}
+                    </p>
                 </div>
                 <div className='blog-button'>
                     <button onClick={this.changePage}>博客</button>

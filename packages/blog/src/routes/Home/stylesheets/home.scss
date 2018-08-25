@@ -20,7 +20,14 @@
   }
 
   .home-text .type {
-    display: inline-block;
+    display: inline;
+  }
+
+  .home-text .chapter {
+    font-size: .8rem;
+    font-weight: 200;
+    text-align: right;
+    padding: 1rem 1rem 0 0;
   }
   .typed-cursor {
     font-weight: 500;

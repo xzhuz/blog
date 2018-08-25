@@ -244,6 +244,10 @@
   }
 
   .nav-item .header-button {
+    border: none;
+    outline: none;
+    background: none;
+    color: $baseFontColor;
     font-weight: 300;
     font-size: 1.4rem;
   }
@@ -263,17 +267,17 @@
       font-size: 1.4rem;
 
       .header-button {
-        transition-duration: .6s;
-        -moz-transition-duration: .6s;
-        -webkit-transition-duration: .6s;
+        transition-duration: .3s;
+        -moz-transition-duration: .3s;
+        -webkit-transition-duration: .3s;
       }
 
       a {
         text-decoration: none;
-        color: #444;
-        transition-duration: .6s;
-        -moz-transition-duration: .6s;
-        -webkit-transition-duration: .6s;
+        color: $baseFontColor;
+        transition-duration: .3s;
+        -moz-transition-duration: .3s;
+        -webkit-transition-duration: .3s;
         display: inline-block;
         width: 100%;
       }
