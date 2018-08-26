@@ -68,13 +68,13 @@ class Header extends React.Component{
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>
-                        <button className='header-logo' onClick={this.changePage}>
+                        <Link className='header-logo' to={{ pathname: '/'}} onClick={this.changePage}>
                             <img src={logo} style={{height: '30px'}}/>
-                        </button>
+                        </Link>
                     </div>
 
                     <div className='header-menu'>
-                        <button className='header-button' onClick={this.changePage}>首页</button>
+                        <Link className='header-path-link' to={{ pathname: '/'}} onClick={this.changePage}>首页</Link>
                         <Link className={classNames('header-path-link', {
                             [`active`]: pathname.includes('/articles'),
                         })} to={{ pathname: '/articles'}}>
@@ -93,7 +93,7 @@ class Header extends React.Component{
                          onClick={(e) => this.mobileMenu(e)}>
                         <div className='header-nav-main'>
                             <ul>
-                                <li className='nav-item'><button className='header-button' onClick={this.changePage}>首页</button></li>
+                                <li className='nav-item'><Link to={{ pathname: '/'}} onClick={this.changePage}>首页</Link></li>
                                 <li className='nav-item'><Link to={{ pathname: '/articles'}}>文章</Link></li>
                                 <li className='nav-item'><Link to={{ pathname: '/achieve'}}>归档</Link></li>
                                 <li className='nav-item'><Link to={{ pathname: '/about'}}>关于</Link></li>

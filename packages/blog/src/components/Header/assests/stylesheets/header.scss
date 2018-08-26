@@ -51,12 +51,6 @@
 
 .header-logo {
   line-height: 4.5rem;
-  border: none;
-  outline: none;
-  background: none;
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .header-scroll{
@@ -78,18 +72,6 @@
   transition: transform .3s;
   -webkit-transition: -webkit-transform .3s;
   -moz-transition: transform .3s, -moz-transform .3s;
-
-  .header-button {
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.1rem;
-    font-weight: 300;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
 
   .active{
     color: $baseStressColor;
@@ -243,15 +225,6 @@
     margin-top: 52px;
   }
 
-  .nav-item .header-button {
-    border: none;
-    outline: none;
-    background: none;
-    color: $baseFontColor;
-    font-weight: 300;
-    font-size: 1.4rem;
-  }
-
 }
 
 
@@ -265,12 +238,6 @@
       width: 90%;
       margin:0 auto;
       font-size: 1.4rem;
-
-      .header-button {
-        transition-duration: .3s;
-        -moz-transition-duration: .3s;
-        -webkit-transition-duration: .3s;
-      }
 
       a {
         text-decoration: none;
