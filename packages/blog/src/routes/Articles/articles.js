@@ -1,6 +1,6 @@
 import React from 'react';
-import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
+import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
 
@@ -58,7 +58,7 @@ class Articles extends React.Component {
         const mergedArticles = initArticles.merge(articles);
         return (
             <div className='container'>
-                <Helmet title='Mei Sen'/>
+                <Helmet title='梅森的困学集'/>
                 <div className='articles'>
                     {
                         mergedArticles.map((v, index) => (

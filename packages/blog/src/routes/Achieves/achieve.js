@@ -73,7 +73,7 @@ class Achieve extends React.Component {
                 onExited={() => {this.setState({show: false});}}
             >
                 <div className='container'>
-                    <Helmet title={`Achieves`}/>
+                    <Helmet title='归档'/>
                     <div className='achieves'>
                         {
                             this.renderAchieve()

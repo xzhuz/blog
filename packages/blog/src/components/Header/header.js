@@ -58,7 +58,7 @@ class Header extends React.Component{
     }
 
     render () {
-        const {pathname} = this.context.router.history.location;
+        const {pathname} = this.props.location;
         const logo = require('./assests/images/logo.png');
         return (
             <header className={
@@ -86,7 +86,7 @@ class Header extends React.Component{
                             归档
                         </Link>
                         <Link className={classNames('header-path-link', {[`active`]: pathname.includes('/about')})} to={{ pathname: '/about'}}>
-                            关于
+                            关于我
                         </Link>
                     </div>
                     <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}

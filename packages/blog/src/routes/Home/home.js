@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Helmet} from "react-helmet";
 import Typed from 'typed.js';
 
 import {typedOptions} from '../../utils/typedUtils';
@@ -47,6 +48,7 @@ class Home extends React.PureComponent {
         const { chapter} = strings[index];
         return (
             <div className='home'>
+                <Helmet title='梅 森'/>
                 <div className='home-text'>
                     <div className='type' />
                     <p className='chapter'>
@@ -55,7 +57,7 @@ class Home extends React.PureComponent {
                 </div>
                 <div className='blog-button'>
                     <button onClick={this.changePage}>困学集</button>
-                    <button onClick={this.changeAboutPage}>关于</button>
+                    <button onClick={this.changeAboutPage}>关于我</button>
                 </div>
             </div>
         );

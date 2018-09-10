@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "../Header";
 import Footer from "../Footer";
+import {Helmet} from "react-helmet";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Articles from "../../routes/Articles/loadable";
 import Relative from "../../routes/Relative/loadable";
@@ -15,6 +16,7 @@ class BasicLayout extends React.PureComponent {
         return (
             <BrowserRouter>
                 <div>
+                    <Helmet title='梅 森'/>
                     <Header/>
                     <Switch>
                         <Route path='/articles' component={Articles} />
