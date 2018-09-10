@@ -68,13 +68,13 @@ class Header extends React.Component{
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>
-                        <Link className='header-logo' to={{ pathname: '/articles'}} onClick={this.changePage}>
+                        <Link className='header-logo' to={{ pathname: '/articles'}}>
                             <img src={logo} style={{height: '30px'}}/>
                         </Link>
                     </div>
 
                     <div className='header-menu'>
-                        <Link className='header-path-link' to={{ pathname: '/'}} onClick={this.changePage}>首页</Link>
+                        <Link className='header-path-link' to={{ pathname: '/'}} onClick={this.changePage}>主页</Link>
                         <Link className={classNames('header-path-link', {
                             [`active`]: pathname.includes('/articles'),
                         })} to={{ pathname: '/articles'}}>

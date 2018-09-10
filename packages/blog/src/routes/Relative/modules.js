@@ -35,7 +35,7 @@ export default function articleReducer(state = initialState, action) {
         case Relative.ARTICLE_TAG:
             return state.set(Relative.ARTICLE_TAG, action.tag);
         case Relative.CLEAR_RELATIVE:
-            return state.set(Relative.ARTICLE_TAG, '').set(Relative.RELATIVE_ARTICLE, List.of([]));
+            return state.set(Relative.ARTICLE_TAG, '').set(Relative.RELATIVE_ARTICLE, new List());
         default:
             return state;
     }

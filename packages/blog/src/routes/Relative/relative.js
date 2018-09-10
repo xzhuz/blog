@@ -30,10 +30,8 @@ class Relative extends React.Component {
     }
 
     componentDidMount() {
-        const {pathname} = this.props.history.location;
         const {tagName}  = this.props.match.params;
-        const isTagPage = pathname.includes('/tag');
-        isTagPage ? this.props.relativeArticles(Object.assign({}, {tag: tagName}, this.state)): '';
+        this.props.relativeArticles(Object.assign({}, {tag: tagName}, this.state));
     }
 
     readMore(v) {
@@ -56,8 +54,9 @@ class Relative extends React.Component {
 
     tagClick(tag) {
         this.props.clearRelatives();
-        this.props.relativeArticles({tag, page: 0, size: 5});
-        this.props.history.push(`/tag/${tag}`);
+        this.setState(() => ({
+            size: 5,
+        }), () => this.props.relativeArticles(Object.assign({}, {tag}, this.state)));
     }
 
     render() {
