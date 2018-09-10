@@ -68,7 +68,7 @@ class Header extends React.Component{
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>
-                        <Link className='header-logo' to={{ pathname: '/'}} onClick={this.changePage}>
+                        <Link className='header-logo' to={{ pathname: '/articles'}} onClick={this.changePage}>
                             <img src={logo} style={{height: '30px'}}/>
                         </Link>
                     </div>
