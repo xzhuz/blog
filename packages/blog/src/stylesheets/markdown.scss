@@ -57,13 +57,19 @@
     font-family: monospace, consolas, Open Sans,Source Sans Pro,Consolas,Menlo,DejaVu Sans Mono;
   }
 
-  code {
-    display: block;
+  pre code {
+     display: block;
+     overflow-x: auto;
+     padding: 1rem;
+     font-size: .8rem;
+     color: #abb2bf;
+     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;;
+   }
+
+  p code {
     overflow-x: auto;
-    padding: 1rem;
     font-size: .8rem;
-    color: #abb2bf;
-    background: #282c34;
+    color: $baseStressColor;
   }
 
   h1, h2, h3 {

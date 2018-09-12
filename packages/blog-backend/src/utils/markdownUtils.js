@@ -11,6 +11,7 @@ const languages = [
   'http',
   'java',
   'js',
+  'javascript',
   'json',
   'less',
   'makefile',
@@ -29,6 +30,7 @@ hljs.registerLanguage('md', require('highlight.js/lib/languages/markdown'));
 hljs.registerLanguage('http', require('highlight.js/lib/languages/http'));
 hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
 hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 hljs.registerLanguage('less', require('highlight.js/lib/languages/less'));
 hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));
