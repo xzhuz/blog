@@ -9,9 +9,8 @@ html, body{
 }
 
 body {
-  //font-size: 10px;
-  //font-family: 'SansSerif', "Microsoft YaHei", 'Helvetica Neue', 'Open Sans', Consolas, serif;
-  font: 10px "open sans", "Microsoft Yahei", sans-serif,  Helvetica, Arial;
+  font-size: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft Yahei", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 300;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 }
