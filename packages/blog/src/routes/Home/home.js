@@ -56,7 +56,7 @@ class Home extends React.PureComponent {
                     </p>
                 </div>
                 <div className='blog-button'>
-                    <button onClick={this.changePage}>困知集</button>
+                    <button onClick={this.changePage}>困学集</button>
                     <button onClick={this.changeAboutPage}>关于我</button>
                 </div>
             </div>

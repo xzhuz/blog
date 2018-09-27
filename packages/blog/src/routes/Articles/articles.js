@@ -58,7 +58,7 @@ class Articles extends React.Component {
         const mergedArticles = initArticles.merge(articles);
         return (
             <div className='container'>
-                <Helmet title='梅森的困知集'/>
+                <Helmet title='梅森的困学集'/>
                 <div className='articles'>
                     {
                         mergedArticles.map((v, index) => (
