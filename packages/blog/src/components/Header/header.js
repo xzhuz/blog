@@ -5,13 +5,28 @@ import classNames from 'classnames';
 
 import './assests/stylesheets/header.scss';
 
+const menu = [
+    {
+        name: '文章',
+        path: '/articles',
+    },
+    {
+        name: '归档',
+        path: '/achieve',
+
+    },
+    {
+        name: '关于',
+        path: '/about',
+
+    }
+];
 
 class Header extends React.Component{
 
     constructor(props, context) {
         super(props, context);
         this.handleScroll = this.handleScroll.bind(this);
-        this.changePage = this.changePage.bind(this);
         this.state = {
             scroll: false,
             menuShown: false,
@@ -42,11 +57,6 @@ class Header extends React.Component{
         this.oldScrollTop = scrollTop;
     }
 
-    changePage() {
-        this.context.router.history.push('/');
-        this.props.changeAppPage(false);
-    }
-
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
     }
@@ -74,29 +84,18 @@ class Header extends React.Component{
                     </div>
 
                     <div className='header-menu'>
-                        <Link className='header-path-link' to={{ pathname: '/'}} onClick={this.changePage}>主页</Link>
-                        <Link className={classNames('header-path-link', {
-                            [`active`]: pathname.includes('/articles'),
-                        })} to={{ pathname: '/articles'}}>
-                            文章
-                        </Link>
-                        <Link className={classNames('header-path-link', {
-                            [`active`]: pathname.includes('/achieve'),
-                        })} to={{ pathname: '/achieve'}}>
-                            归档
-                        </Link>
-                        <Link className={classNames('header-path-link', {[`active`]: pathname.includes('/about')})} to={{ pathname: '/about'}}>
-                            关于我
-                        </Link>
+                        {
+                            menu.map(v =>  <Link className={classNames('header-path-link', {[`active`]: pathname.includes(`${v.path}`)})}
+                                                 to={{ pathname: `${v.path}`}} key={v.path}>{v.name}</Link>)
+                        }
                     </div>
                     <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}
                          onClick={(e) => this.mobileMenu(e)}>
                         <div className='header-nav-main'>
                             <ul>
-                                <li className='nav-item'><Link to={{ pathname: '/'}} onClick={this.changePage}>首页</Link></li>
-                                <li className='nav-item'><Link to={{ pathname: '/articles'}}>文章</Link></li>
-                                <li className='nav-item'><Link to={{ pathname: '/achieve'}}>归档</Link></li>
-                                <li className='nav-item'><Link to={{ pathname: '/about'}}>关于</Link></li>
+                                {
+                                    menu.map(v => <li className='nav-item' key={v.path}><Link to={{ pathname: `${v.path}`}}>{v.name}</Link></li>)
+                                }
                             </ul>
                         </div>
                     </div>
@@ -113,9 +112,5 @@ class Header extends React.Component{
         );
     }
 }
-
-Header.propTypes = {
-    changeAppPage: PropTypes.func.isRequired,
-};
 
 export default Header;
