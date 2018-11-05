@@ -1,5 +1,15 @@
+.relative-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  margin: 4.5rem auto;
+  width: 100%;
+}
+
+
 .articles {
-  width: 70%;
+  width: 100%;
 
   h1.tag-name {
     color: $baseFontColor;
@@ -7,7 +17,14 @@
     font-size: 1.6rem;
   }
 
+}
+
+.articles-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 90%;
+
   @media only screen and (max-width: 768px) {
-    width: 100%;
+    width: 96%;
   }
 }

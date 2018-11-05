@@ -7,7 +7,7 @@ import './assests/stylesheets/header.scss';
 
 const menu = [
     {
-        name: '文章',
+        name: '首页',
         path: '/',
     },
     {
@@ -75,6 +75,7 @@ class Header extends React.Component{
                 classNames('header', {
                     [`header-scroll`]: this.state.scroll,
                     [`header-hidden`]: pathname.includes('/dashboard'),
+                    [`header-diff`]: pathname === '/',
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>

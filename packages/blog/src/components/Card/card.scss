@@ -13,9 +13,9 @@
     transition-duration: .4s;
     -moz-transition-duration: .4s;
     -webkit-transition-duration: .4s;
-    -webkit-box-shadow: 1px 3px 25px $lightColor;
-    -moz-box-shadow: 1px 3px 25px $lightColor;
-    box-shadow: 1px 3px 25px $lightColor;
+    -webkit-box-shadow: 1px 3px 9px $baseFontColor;
+    -moz-box-shadow: 1px 3px 9px $baseFontColor;
+    box-shadow: 1px 3px 9px $baseFontColor;
   }
 
 }

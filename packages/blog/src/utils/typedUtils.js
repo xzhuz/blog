@@ -19,7 +19,7 @@ export const typedOptions =  {
     /**
      * @property {boolean} smartBackspace only backspace what doesn't match the previous string
      */
-    smartBackspace: true,
+    smartBackspace: false,
 
     /**
      * @property {boolean} shuffle shuffle the strings

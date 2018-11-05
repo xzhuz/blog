@@ -5,7 +5,8 @@
   align-items: stretch;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin-top: 53px !important;
+  //margin-top: 53px;
+  width: 100%;
 }
 
 .banner {
@@ -39,14 +40,15 @@
       }
 
       .banner-type, .typed-cursor {
-        color: $baseFontColor;
+        color: #ffffff;
         letter-spacing: 1px;
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 600;
         display: inline-block;
 
         @media only screen and (max-width: 768px) {
-         font-size: 1rem;
+          font-size: 1rem;
+          font-weight: 500;
         }
       }
     }
@@ -58,14 +60,21 @@
   font-weight: 400;
   margin: 2rem auto;
 }
-.article-container {
+.articles-container {
   display: -ms-flexbox;
   display: flex;
   max-width: 1024px;
   margin: 0 auto;
+  width: 90%;
+
+  @media only screen and (max-width: 768px) {
+    width: 96%;
+  }
 }
 
 .articles {
+  width: 100%;
+
   h1.tag-name {
     color: $baseFontColor;
     margin-bottom: 1rem;

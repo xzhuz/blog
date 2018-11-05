@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
-import Typed from 'typed.js';
 
-import {typedOptions} from '../../utils/typedUtils';
-import { strings } from '../../utils/homeStringsUtils';
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
@@ -32,13 +29,6 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
-        const { index } = this.state;
-        const { sentence} = strings[index];
-        const options = {
-            ...typedOptions,
-            strings: sentence,
-        };
-        new Typed('.banner-type', options);
     }
 
     readMore(v) {
@@ -67,39 +57,42 @@ class Home extends React.Component {
         const {initArticles, articles, articleCount} = this.props;
         const mergedArticles = initArticles.merge(articles);
         const banner = require('./assets/images/banner.jpg');
-        const avatar = require('./assets/images/avatar.png');
+        const avatar = require('./assets/images/avatar.jpeg');
         return (
-            <div className='container home-container'>
-                <Helmet title='困学集'/>
-                <div className='banner' style={{
-                        backgroundImage: `url(${banner})`,
-                        backgroundPositionX: '50%',
-                        backgroundPositionY: '50%',
-                        backgroundSize: 'cover',
-                        backgroundColor: 'rgb(17, 17, 17)',
-                    }}
-                >
-                    <div className='banner-content'>
-                        <div className='banner-detail'>
-                            <img src={avatar} className='banner-avatar' />
-                                <p className='banner-type' />
+            <div className='container'>
+                <div className="home-container">
+                    <Helmet title='困学集'/>
+                    <div className='banner' style={{
+                            backgroundImage: `url(${banner})`,
+                            backgroundPositionX: '50%',
+                            backgroundPositionY: '50%',
+                            backgroundSize: 'cover',
+                            backgroundColor: 'rgb(17, 17, 17)',
+                        }}
+                    >
+                        <div className='banner-content'>
+                            <div className='banner-detail'>
+                                <img src={avatar} className='banner-avatar' />
+                                <p className='banner-type'>
+                                     我只是一个程序猿
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <p className='segment'>
-                </p>
-                <div className='article-container'>
-                    <div className='articles'>
-                        {
-                            mergedArticles.map((v, index) => (
-                                <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                            ))
-                        }
-                        {
-                            this.renderReadMore(articleCount <= this.state.size)
-                        }
+                    <p className='segment'> 所有文章 </p>
+                    <div className='articles-container'>
+                        <div className='articles'>
+                            {
+                                mergedArticles.map((v, index) => (
+                                    <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                                          summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                                          showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+                                ))
+                            }
+                            {
+                                this.renderReadMore(articleCount <= this.state.size)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

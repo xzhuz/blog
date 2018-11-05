@@ -13,20 +13,21 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Microsoft Yahei", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 300;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  flex-direction: column;
 }
 
 .container {
   flex: 1 0 auto;
-  margin: 4.5rem auto;
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
   background-size: cover;
+  width: 100%;
   //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 
-  @media only screen and (max-width: 768px) {
-    width: 96%;
-  }
 }
 
 a {

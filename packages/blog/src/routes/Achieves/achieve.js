@@ -4,25 +4,15 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Map} from 'immutable';
 import NProgress from 'nprogress';
-import { CSSTransition } from 'react-transition-group';
 
-
+import BasicLayout from "../../components/BasicLayout";
 import {dateFormat} from "../../utils/commentUtils";
-import SideBar from "../../components/SideBar";
 import './stylesheets/achieve.scss';
 
 class Achieve extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            show: false,
-        };
-    }
-
     componentWillUnmount() {
         NProgress.done();
-        this.setState({show: false});
     }
 
     componentDidUpdate() {
@@ -31,7 +21,6 @@ class Achieve extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
-        this.setState({show: true});
     }
 
     showPostContent(articleId) {
@@ -59,30 +48,27 @@ class Achieve extends React.Component {
             const id = data.get('id');
             const date = dateFormat(data.get('date'));
             const title = data.get('title');
-            return <p key={`${id}`} className='achieve-items'><span className='achieve-date'>{date}</span><span className='achieve-title'><Link to={`/article/${id}`}>{title}</Link></span></p>;
+            return <p key={`${id}`} className='achieve-items'>
+                <span className='achieve-date'>{date}</span>
+                <span className='achieve-title'>
+                    <Link to={`/article/${id}`}>
+                        {title}
+                    </Link>
+                </span>
+            </p>;
         });
     }
 
     render() {
         return (
-            <CSSTransition
-                in={this.state.show}
-                classNames="achieves"
-                unmountOnExit
-                timeout={{ enter: 500, exit: 300 }}
-                onExited={() => {this.setState({show: false});}}
-            >
-                <div className='container'>
-                    <Helmet title='困学集 | 归档'/>
-                    <div className='achieve-container'>
-                        <div className='achieves'>
-                            {
-                                this.renderAchieve()
-                            }
-                        </div>
-                    </div>
+            <BasicLayout>
+                <Helmet title='困学集 | 归档'/>
+                <div className='achieves'>
+                    {
+                        this.renderAchieve()
+                    }
                 </div>
-            </CSSTransition>
+            </BasicLayout>
         );
     }
 }
