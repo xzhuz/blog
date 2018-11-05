@@ -73,13 +73,14 @@ class Achieve extends React.Component {
                 onExited={() => {this.setState({show: false});}}
             >
                 <div className='container'>
-                    <Helmet title='归档'/>
-                    <div className='achieves'>
-                        {
-                            this.renderAchieve()
-                        }
+                    <Helmet title='困学集 | 归档'/>
+                    <div className='achieve-container'>
+                        <div className='achieves'>
+                            {
+                                this.renderAchieve()
+                            }
+                        </div>
                     </div>
-                    <SideBar/>
                 </div>
             </CSSTransition>
         );

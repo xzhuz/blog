@@ -1,5 +1,16 @@
+.article-container {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  background-size: cover;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .article {
-  width: 80%;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
   background-color: #ffffff;
   padding: 2%;
   border-radius: 2px;
@@ -20,11 +31,13 @@
     flex: 0 0 auto;
     margin: 1rem 0;
     font-weight: bold;
+    text-align: center;
   }
 
   .article-info{
     color: #858585;
     font-size: .8rem;
+    text-align: center;
     span {
       margin-right: 1rem;
 

@@ -83,32 +83,34 @@ class Article extends React.PureComponent {
                 onExited={() => {this.setState({showArticle: false});}}
             >
                 <article className='container'>
-                    <Helmet title={title}/>
-                    <div className='article'>
-                        <section>
-                            <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                            <p className='article-info'>
-                                <span><FontAwesome.FaClockO /> {formatDate(date)}</span>
-                                <span><FontAwesome.FaEye /> {visit}次</span>
-                            </p>
-                            <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
-                            <p className='article-tags'>
-                                {
-                                    tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
-                                        <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
-                                    )) : ''
-                                }
-                            </p>
-                            <Compliment id={id} compliment={compliment} />
-                            <Comment />
-                        </section>
-                    </div>
-                    <SideBar>
-                        <div className={classNames('bar-toc', {
-                            [`toc-fixed`]: this.state.tocFixed,
-                        })}>
+                    <Helmet title={title} />
+                    <div className='article-container'>
+                        <div className='article'>
+                            <section>
+                                <h1 className='article-title'>{title ? title.trim() : ''}</h1>
+                                <p className='article-info'>
+                                    <span><FontAwesome.FaClockO /> {formatDate(date)}</span>
+                                    <span><FontAwesome.FaEye /> {visit}次</span>
+                                </p>
+                                <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                                <p className='article-tags'>
+                                    {
+                                        tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
+                                            <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                        )) : ''
+                                    }
+                                </p>
+                                <Compliment id={id} compliment={compliment} />
+                                <Comment />
+                            </section>
                         </div>
-                    </SideBar>
+                 {  /*       <SideBar>
+                            <div className={classNames('bar-toc', {
+                                [`toc-fixed`]: this.state.tocFixed,
+                            })}>
+                            </div>
+                        </SideBar> */ }
+                    </div>
                 </article>
             </CSSTransition>
         );

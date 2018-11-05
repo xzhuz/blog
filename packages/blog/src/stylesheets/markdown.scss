@@ -1,6 +1,6 @@
 // markdown 样式
 .markdown {
-  max-width: 700px;
+  //max-width: 700px;
 }
 .markdown, .editor-preview-side {
   p, blockquote, ul, ol, dl, table, pre {
@@ -25,6 +25,7 @@
 
   li {
     list-style-type: disc;
+    margin-left: 1rem;
   }
 
   blockquote {

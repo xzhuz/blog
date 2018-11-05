@@ -1,5 +1,14 @@
+.achieve-container {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  background-size: cover;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
 .achieves {
-  width: 80%;
+  width: 100%;
   background-color: #ffffff;
   padding: 2%;
 

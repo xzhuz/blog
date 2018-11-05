@@ -1,24 +1,73 @@
-import {fromJS} from 'immutable';
+import {fromJS, List} from 'immutable';
 
-import * as Home from './constants';
+import * as request from '../../utils/axios/api';
+import * as Articles from './constants';
 
-export const changeAppPage = (appPage) => {
+export const articleData = (articles) => {
     return {
-        type: Home.APP_PAGE,
-        appPage,
+        type: Articles.ARTICLES_DATA,
+        articles,
+    };
+};
+
+export const clearRelatives = () => {
+    return {
+        type: Articles.CLEAR_RELATIVE,
     };
 };
 
 
 const initialState = fromJS({
-    APP_PAGE: false,
+    ARTICLES_DATA: new List(),
 });
 
-export default function globalReducer(state = initialState, action) {
+export default function homeReducer(state = initialState, action) {
     switch (action.type) {
-        case Home.APP_PAGE:
-            return state.set(Home.APP_PAGE, action.appPage);
+        case Articles.ARTICLES_DATA:
+            return state.set(Articles.ARTICLES_DATA, List.of(...action.articles));
         default:
             return state;
     }
 };
+
+/**
+ * 分页文章
+ * @param page
+ * @param size
+ * @returns {Function}
+ */
+export function pageableArticles({page, size}) {
+    return (dispatch) => {
+        request.partArticles({page, size}).then(res => {
+            if (res.code === 0) {
+                dispatch(articleData(res.data));
+            } else if (res.code === 3) {
+                alert('您刷新过于频繁，系统已拦截，请联系博主');
+            } else {
+                return [];
+            }
+        });
+    };
+}
+
+export function getArticlesCount() {
+    return request.countArticle().then(res => {
+        if (res.code === 0) {
+            return res.data;
+        }
+        return 0;
+    });
+}
+
+
+export function getPartArticles({page, size}) {
+    return request.partArticles({page, size}).then(res => {
+        if (res.code === 0) {
+            return fromJS({ARTICLES_DATA: List.of(...res.data)});
+        } else if (res.code === 3) {
+            alert('您刷新过于频繁，系统已拦截，请联系博主');
+        } else {
+            return [];
+        }
+    });
+}

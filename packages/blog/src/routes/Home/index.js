@@ -1,3 +1,4 @@
+import {withRouter} from 'react-router-dom';
 import { compose } from 'redux';
 
 import injectReducer from '../../store/reducers';
@@ -7,5 +8,5 @@ import reducer from './modules';
 
 const withReducer = injectReducer({key: 'home', reducer});
 
-export default compose(withReducer, withConnect)(Home);
+export default withRouter(compose(withReducer, withConnect)(Home));
 

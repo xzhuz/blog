@@ -35,7 +35,7 @@ class About extends React.PureComponent{
                 onExited={() => {this.setState({showAbout: false});}}
             >
                 <div className='container'>
-                    <Helmet title='关于我'/>
+                    <Helmet title='梅 森 | 关于'/>
                     <div className={'about-content'}>
                         <div className={'about-info'}>
                             <section className='about-info-about'>
