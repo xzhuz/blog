@@ -12,7 +12,7 @@
   max-width: 1024px;
   margin: 0 auto;
   background-color: #ffffff;
-  padding: 2%;
+  padding: 2% 10%;
   border-radius: 2px;
   color: #444;
   position: relative;
@@ -32,6 +32,9 @@
     margin: 1rem 0;
     font-weight: bold;
     text-align: center;
+    @media only screen and (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 
   .article-info{
@@ -51,7 +54,7 @@
   h1 {
     font-size: 2.2rem;
     @media only screen and (max-width: 768px) {
-      font-weight: 400;
+      font-size: 1.4rem;
     }
   }
 
@@ -64,6 +67,7 @@
 
   @media only screen and (max-width: 768px) {
     width: 100%;
+    padding: 2%;
   }
 }
 
