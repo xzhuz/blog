@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import * as Article from './constants';
-import {getArticleDetail, increaseVisit, relativeArticles} from './modules';
+import {getArticleDetail, increaseVisit} from './modules';
 
 const mapDispatchToProps = {
     articleDetail: (id) => getArticleDetail(id),

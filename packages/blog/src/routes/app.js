@@ -17,7 +17,6 @@ class App extends React.PureComponent {
         return (
             <BrowserRouter>
                 <div className='app'>
-                    <Helmet title='梅 森'/>
                     <Header/>
                     <Switch>
                         <Route path='/' exact component={Home} />

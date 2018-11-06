@@ -27,7 +27,6 @@ class Article extends React.PureComponent {
         this.props.increaseVisit(articleId);
     }
 
-
     showPostContent(articleId) {
         this.props.history.push({pathname: `/article/${articleId}`});
     }
@@ -45,7 +44,7 @@ class Article extends React.PureComponent {
     }
 
     render () {
-        const {article: {title, content, date, tags, compliment, id, visit} } = this.props;
+        const {article: {title, content, date, tags, compliment, id, visit}} = this.props;
         return (
             <BasicLayout>
                 <article className='article-container'>

@@ -10,13 +10,6 @@ export const articleDetail = (article) => {
     };
 };
 
-export const showTitle = (title) => {
-    return {
-        type: Article.SHOW_TITLE,
-        title,
-    };
-};
-
 const initialState = fromJS({
     ARTICLE_DETAIL: {},
 });
@@ -46,12 +39,10 @@ export function getArticleDetail(id) {
         request.articleDetail(id).then(res => {
             if (res.code === 0) {
                 dispatch(articleDetail(res.data));
-                const { title } = res.data;
-                dispatch(showTitle(title));
             } else if (res.code === 3) {
                 alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
-                return dispatch(articleDetail(''));
+                return dispatch(articleDetail({}));
             }
         });
     };
