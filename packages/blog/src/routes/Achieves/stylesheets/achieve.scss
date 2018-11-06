@@ -9,6 +9,7 @@
   overflow: hidden;
   z-index: 1;
   box-sizing: border-box;
+  padding: 2%;
 
   h1.tag-name {
     color: $baseFontColor;
@@ -17,7 +18,7 @@
   }
 
   @media only screen and (max-width: 768px) {
-    width: 100%;
+    width: 96%;
   }
 }
 
