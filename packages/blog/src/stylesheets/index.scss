@@ -9,14 +9,15 @@ html, body{
 }
 
 body {
-  font-size: 10px;
-  font-family: -apple-system, BlinkMacSystemFont, "Microsoft Yahei", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 12px;
+  font-family: -apple-system,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;
   font-weight: 300;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
   flex-direction: column;
+  text-rendering: optimizeLegibility;
 }
 
 .container {
