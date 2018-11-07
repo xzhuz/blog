@@ -7,8 +7,8 @@ import './assests/stylesheets/header.scss';
 
 const menu = [
     {
-        name: '文章',
-        path: '/articles',
+        name: '首页',
+        path: '/',
     },
     {
         name: '归档',
@@ -75,17 +75,18 @@ class Header extends React.Component{
                 classNames('header', {
                     [`header-scroll`]: this.state.scroll,
                     [`header-hidden`]: pathname.includes('/dashboard'),
+                    [`header-diff`]: pathname === '/',
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>
-                        <Link className='header-logo' to={{ pathname: '/articles'}}>
+                        <Link className='header-logo' to={{ pathname: '/'}}>
                             <img src={logo} style={{height: '30px'}}/>
                         </Link>
                     </div>
 
                     <div className='header-menu'>
                         {
-                            menu.map(v =>  <Link className={classNames('header-path-link', {[`active`]: pathname.includes(`${v.path}`)})}
+                            menu.map(v =>  <Link className={classNames('header-path-link', {[`active`]: pathname === `${v.path}`})}
                                                  to={{ pathname: `${v.path}`}} key={v.path}>{v.name}</Link>)
                         }
                     </div>
@@ -94,7 +95,14 @@ class Header extends React.Component{
                         <div className='header-nav-main'>
                             <ul>
                                 {
-                                    menu.map(v => <li className='nav-item' key={v.path}><Link to={{ pathname: `${v.path}`}}>{v.name}</Link></li>)
+                                    menu.map(v => <li className='nav-item' key={v.path}>
+                                        <Link
+                                            className={classNames('header-path-link', {[`active`]: pathname === `${v.path}`})}
+                                            to={{ pathname: `${v.path}`}}
+                                        >
+                                            {v.name}
+                                        </Link>
+                                    </li>)
                                 }
                             </ul>
                         </div>

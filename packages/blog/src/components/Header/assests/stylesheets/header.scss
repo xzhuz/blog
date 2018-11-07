@@ -10,13 +10,19 @@
   width: 100%;
   height: 52px;
   line-height: 52px;
-  background-color: #ffffff;
-  border-bottom: 1px solid rgba(30, 35, 42, .06);
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
-  box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
+  background-color: hsla(0,1%,100%,.7);
+  border-bottom: 1px solid rgba(30, 35, 42, .06);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+  box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
+}
+
+.header-diff {
+  background: none;
+  border:none;
+  box-shadow: none;
 }
 
 .header-nav{
@@ -86,17 +92,12 @@
   display: flex;
   display: -webkit-flex;
   display: -moz-flex;
-  color: $baseColor;
   font-size: 1.2rem;
   height: 52px;
   z-index: 9999;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;
-
-  &:hover{
-    color: $baseStressColor;
-  }
 }
 
 .header-hidden {
@@ -105,7 +106,8 @@
 
 .header-path-link {
   color: #444;
-  font-size: 1.1rem;
+  font-weight: 400;
+  font-size: 1.2rem;
   transition-duration: .6s;
   -moz-transition-duration: .6s;
   -webkit-transition-duration: .6s;

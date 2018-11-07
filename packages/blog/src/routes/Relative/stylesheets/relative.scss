@@ -1,13 +1,25 @@
-.articles {
-  width: 70%;
+.relative-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  margin: 4.5rem auto;
+  width: 100%;
+}
 
-  h1.tag-name {
+
+.articles-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 90%;
+
+  .tag-name {
     color: $baseFontColor;
     margin-bottom: 1rem;
     font-size: 1.6rem;
   }
 
   @media only screen and (max-width: 768px) {
-    width: 100%;
+    width: 96%;
   }
 }

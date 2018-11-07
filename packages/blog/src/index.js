@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 
 import createStore from './store/createStore';
 
-import App from './routes/App';
+import App from './routes/app';
 import 'nprogress/nprogress.css';
 import './stylesheets/index.scss';
 import './stylesheets/markdown.scss';

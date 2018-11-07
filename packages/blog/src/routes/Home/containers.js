@@ -1,15 +1,15 @@
 import {connect} from 'react-redux';
-
 import * as Home from './constants';
-import {changeAppPage} from "./modules";
+import {pageableArticles, clearRelatives} from './modules';
 
 const mapDispatchToProps = {
-    changeAppPage: (appPage) => changeAppPage(appPage),
+    pageableArticles: (pageable) => pageableArticles(pageable),
+    clearRelatives: () => clearRelatives(),
 };
 
 const mapStateToProps = (state) => {
     return {
-        appPage: state.get(Home.HOME).get(Home.APP_PAGE),
+        articles: state.get(Home.Home).get(Home.ARTICLES_DATA),
     };
 };
 

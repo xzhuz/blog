@@ -1,7 +1,17 @@
+.article-container {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  background-size: cover;
+  width: 90%;
+}
+
 .article {
-  width: 80%;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
   background-color: #ffffff;
-  padding: 2%;
+  padding: 2% 10%;
   border-radius: 2px;
   color: #444;
   position: relative;
@@ -19,12 +29,17 @@
   .article-title {
     flex: 0 0 auto;
     margin: 1rem 0;
-    font-weight: bold;
+    font-weight: 400;
+    text-align: center;
+    @media only screen and (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 
   .article-info{
     color: #858585;
     font-size: .8rem;
+    text-align: center;
     span {
       margin-right: 1rem;
 
@@ -38,7 +53,7 @@
   h1 {
     font-size: 2.2rem;
     @media only screen and (max-width: 768px) {
-      font-weight: 400;
+      font-size: 1.4rem;
     }
   }
 
@@ -51,6 +66,7 @@
 
   @media only screen and (max-width: 768px) {
     width: 100%;
+    padding: 2%;
   }
 }
 

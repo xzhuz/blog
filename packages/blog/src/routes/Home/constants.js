@@ -1,3 +1,4 @@
-export const HOME = 'home';
+export const Home = 'home';
 
-export const APP_PAGE = 'APP_PAGE';
+export const ARTICLES_DATA = 'ARTICLES_DATA';
+export const CLEAR_RELATIVE = 'CLEAR_RELATIVE';

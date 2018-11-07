@@ -8,7 +8,6 @@ import NProgress from 'nprogress';
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
-import SideBar from "../../components/SideBar";
 import './stylesheets/relative.scss';
 
 class Relative extends React.Component {
@@ -66,21 +65,24 @@ class Relative extends React.Component {
         const articleOver = relatives.size < this.state.size;
         return (
             <div className='container'>
-                <Helmet title={tag} />
-                <div className='articles'>
-                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
-                    {
-                        relatives.map((v, index) => (
-                            <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                  summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                  showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                        ))
-                    }
-                    {
-                        this.renderReadMore(articleOver)
-                    }
+                <div className="relative-container">
+                    <Helmet title='困学集'/>
+                    <div className='articles-container'>
+                        <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
+                        <div className='articles'>
+                            {
+                                relatives.map((v, index) => (
+                                    <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                                          summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                                          showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+                                ))
+                            }
+                            {
+                                this.renderReadMore(articleOver)
+                            }
+                        </div>
+                    </div>
                 </div>
-                <SideBar/>
             </div>
         );
     }

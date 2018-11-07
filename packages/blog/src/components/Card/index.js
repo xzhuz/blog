@@ -41,9 +41,6 @@ class Card extends React.PureComponent {
                 onExited={() => {this.setState({showCard: false});}}
             >
                 <div className='card'>
-                    <div className='thumb' onClick={this.showPost}>
-                        <img src={thumb} alt='picture'/>
-                    </div>
                     <div className='card-container'>
                         <div className='card-title' onClick={this.showPost} >
                             <span>{title}</span>
@@ -63,6 +60,9 @@ class Card extends React.PureComponent {
                                 ))
                             }
                         </div>
+                    </div>
+                    <div className='thumb' onClick={this.showPost}>
+                        <img src={thumb} alt='picture'/>
                     </div>
                 </div>
             </CSSTransition>

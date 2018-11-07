@@ -1,34 +1,37 @@
 import React from 'react';
-import Header from "../Header";
-import Footer from "../Footer";
-import {Helmet} from "react-helmet";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Articles from "../../routes/Articles/loadable";
-import Relative from "../../routes/Relative/loadable";
-import Article from "../../routes/Article/loadable";
-import Achieve from "../../routes/Achieves/loadable";
-import About from "../../routes/About";
-import NotFound from "../NotFound";
+import {CSSTransition} from "react-transition-group";
+
+import './basicLayout.scss';
 
 class BasicLayout extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showLayout: false,
+        };
+    }
+
+    componentDidMount() {
+        this.setState({showLayout: true});
+    }
+
+    componentWillUnmount() {
+        this.setState({showLayout: false});
+    }
 
     render () {
         return (
-            <BrowserRouter>
-                <div>
-                    <Helmet title='梅 森'/>
-                    <Header/>
-                    <Switch>
-                        <Route path='/articles' component={Articles} />
-                        <Route path='/tag/:tagName' component={Relative}/>
-                        <Route path='/article/:articleId' component={Article}/>
-                        <Route path='/achieve' component={Achieve}/>
-                        <Route path='/about' component={About} />
-                        <Route component={NotFound} />
-                    </Switch>
-                    <Footer/>
+            <CSSTransition
+                in={this.state.showLayout}
+                classNames="basicLayout"
+                unmountOnExit
+                timeout={{ enter: 500, exit: 300 }}
+                onExited={() => {this.setState({showLayout: false});}}
+            >
+                <div className='container'>
+                    {this.props.children}
                 </div>
-            </BrowserRouter>
+            </CSSTransition>
         );
     }
 }

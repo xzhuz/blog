@@ -1,63 +1,103 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Helmet} from "react-helmet";
-import Typed from 'typed.js';
+import {Helmet} from 'react-helmet';
+import {List} from 'immutable';
+import NProgress from 'nprogress';
 
-import {typedOptions} from '../../utils/typedUtils';
-import { strings } from '../../utils/homeStringsUtils';
+import Bottom from '../../components/Bottom';
+import Card from '../../components/Card';
+import ReadMore from '../../components/ReadMore';
+import './assets/stylesheets/home.scss';
 
-import './stylesheets/home.scss';
-
-class Home extends React.PureComponent {
-
-    constructor(props, context) {
-        super(props, context);
-        this.changePage = this.changePage.bind(this);
-        this.changeAboutPage = this.changeAboutPage.bind(this);
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            index: Math.floor(Math.random() * 11),
+            page: 0,
+            size: 5,
         };
     }
 
-    static contextTypes = {
-        router: PropTypes.object
-    };
+    componentWillUnmount() {
+        NProgress.done();
+    }
+
+    componentDidUpdate() {
+        NProgress.done();
+    }
 
     componentDidMount() {
-        const { index } = this.state;
-        const { sentence} = strings[index];
-        const options = {
-            ...typedOptions,
-            strings: sentence,
-        };
-        new Typed('.type', options);
+        this.props.clearRelatives();
     }
 
-    changePage() {
-        this.props.changeAppPage(true);
-        this.context.router.history.push('/articles');
+    readMore(v) {
+        this.setState(state => ({
+            size: state.size + 3,
+        }), () => this.props.pageableArticles(this.state));
+        NProgress.start();
     }
 
-    changeAboutPage() {
-        this.props.changeAppPage(true);
-        this.context.router.history.push('/about');
+    renderReadMore(filled) {
+        return filled ? <Bottom/> : <ReadMore handleReadMore={(v) => this.readMore(v)}/>;
+    }
+
+    showPostContent(articleId) {
+        this.props.history.push({
+            pathname: `/article/${articleId}`
+        });
+    }
+
+    tagClick(tag) {
+        this.props.history.push(`/tag/${tag}`);
+    }
+
+    reduce(arr) {
+        const res = new Map();
+        return Array.from(arr).filter(a => !res.has(a.id) && res.set(a.id, 1));
     }
 
     render() {
-        const { index } = this.state;
-        const { chapter} = strings[index];
+        // initArticles: 初始文章 articles: 点击加载更多时的文章
+        const {initArticles, articles, articleCount} = this.props;
+        const resultArticles = this.reduce([...initArticles, ...articles]);
+        const banner = require('./assets/images/banner.jpg');
+        const avatar = require('./assets/images/avatar.jpeg');
         return (
-            <div className='home'>
-                <Helmet title='梅 森'/>
-                <div className='home-text'>
-                    <div className='type' />
-                    <p className='chapter'>
-                        --{chapter}
-                    </p>
-                </div>
-                <div className='blog-button'>
-                    <button onClick={this.changePage}>困学集</button>
-                    <button onClick={this.changeAboutPage}>关于我</button>
+            <div className='container'>
+                <div className="home-container">
+                    <Helmet title='困学集'/>
+                    <div className='banner' style={{
+                            backgroundImage: `url(${banner})`,
+                            backgroundPositionX: '50%',
+                            backgroundPositionY: '50%',
+                            backgroundSize: 'cover',
+                            backgroundColor: 'rgb(17, 17, 17)',
+                        }}
+                    >
+                        <div className='banner-content'>
+                            <div className='banner-detail'>
+                                <img src={avatar} className='banner-avatar' />
+                                <p className='banner-type'>
+                                     我只是一个程序猿
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p className='segment'> 所有文章 </p>
+                    <div className='articles-container'>
+                        <div className='articles'>
+                            {
+                                resultArticles.map((v, index) => (
+                                    <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                                          summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                                          showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+                                ))
+                            }
+                            {
+                                this.renderReadMore(articleCount <= this.state.size)
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -65,7 +105,13 @@ class Home extends React.PureComponent {
 }
 
 Home.propTypes = {
-    changeAppPage: PropTypes.func.isRequired,
+    initArticles: PropTypes.instanceOf(List),
+    articles: PropTypes.instanceOf(List),
+    tagClick: PropTypes.func,
+    showPostContent: PropTypes.func,
+    pageableArticles: PropTypes.func.isRequired,
+    articleCount: PropTypes.number.isRequired,
+    clearRelatives: PropTypes.func.isRequired,
 };
 
 export default Home;

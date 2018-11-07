@@ -1,6 +1,6 @@
 // markdown 样式
 .markdown {
-  max-width: 700px;
+  //max-width: 700px;
 }
 .markdown, .editor-preview-side {
   p, blockquote, ul, ol, dl, table, pre {
@@ -8,11 +8,10 @@
   }
 
   p {
-    word-spacing:  .1rem;
-    letter-spacing: .1rem;
     font-size: 15px;
     line-height: 1.8rem;
     word-break: break-word;
+    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
   }
 
   li>p {
@@ -20,11 +19,12 @@
   }
 
   ul {
-    padding-left: 1rem;
+    padding-left: 2rem;
   }
 
   li {
     list-style-type: disc;
+    margin-left: 1rem;
   }
 
   blockquote {
@@ -33,7 +33,7 @@
     border-left: 0.2rem solid $baseStressColor;
 
     &:first-child p{
-      font-weight: bold;
+      font-weight: 400;
     }
   }
 
@@ -62,7 +62,7 @@
   }
 
   tt, code, kbd, samp {
-    font-family: monospace, Consolas, Open Sans, Source Sans Pro, Menlo, DejaVu Sans Mono;
+    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
   }
 
   pre code {
@@ -71,13 +71,14 @@
      padding: 1rem;
      font-size: .8rem;
      color: #abb2bf;
-     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;;
+     background: #f8f8f8;
    }
 
   p code {
     overflow-x: auto;
-    font-size: .8rem;
+    font-size: .87rem;
     color: $baseStressColor;
+    background-color: #fff5f5;
   }
 
   h1, h2, h3 {
@@ -98,7 +99,6 @@
   a {
     text-decoration: none;
     color: $baseStressColor;
-    font-weight: lighter;
   }
 
   .link {
