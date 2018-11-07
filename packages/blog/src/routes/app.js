@@ -11,7 +11,6 @@ import Footer from "../components/Footer";
 
 class App extends React.PureComponent {
 
-
     render() {
         return (
             <BrowserRouter>
@@ -31,6 +30,5 @@ class App extends React.PureComponent {
         );
     }
 }
-
 
 export default App;

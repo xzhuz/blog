@@ -1,0 +1,49 @@
+.not-found {
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 1rem 0;
+  font-family: Verdana, STXihei, serif;
+}
+
+.oops {
+  font-size: 4rem;
+  line-height: 4rem;
+  color: #ddd;
+}
+
+.title {
+  margin: 4rem 0;
+  font-size: 2rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
+.contract {
+  text-align: center;
+
+  ul {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+
+  }
+}
+.contract ul>li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+
+  .contract-icon {
+    color: $baseFontColor;
+    font-size: 2rem;
+    margin: 0 8px;
+  }
+}

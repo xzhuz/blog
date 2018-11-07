@@ -1,7 +1,6 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import PropTypes from 'prop-types';
-import NProgress from 'nprogress';
 import * as FontAwesome from 'react-icons/lib/fa';
 
 
@@ -21,22 +20,12 @@ import BasicLayout from "../../components/BasicLayout";
 class Article extends React.PureComponent {
 
     componentDidMount() {
-        NProgress.start();
         const {articleId} = this.props.match.params;
-        this.props.articleDetail(articleId);
         this.props.increaseVisit(articleId);
     }
 
     showPostContent(articleId) {
         this.props.history.push({pathname: `/article/${articleId}`});
-    }
-
-    componentDidUpdate() {
-        NProgress.done();
-    }
-
-    componentWillUnmount() {
-        NProgress.done();
     }
 
     tagClick(v) {
@@ -81,7 +70,6 @@ class Article extends React.PureComponent {
 }
 
 Article.propTypes = {
-    articleDetail: PropTypes.func.isRequired,
     increaseVisit: PropTypes.func.isRequired,
     article: PropTypes.object.isRequired,
 };

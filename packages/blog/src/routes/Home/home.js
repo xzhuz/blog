@@ -51,10 +51,15 @@ class Home extends React.Component {
         this.props.history.push(`/tag/${tag}`);
     }
 
+    reduce(arr) {
+        const res = new Map();
+        return Array.from(arr).filter(a => !res.has(a.id) && res.set(a.id, 1));
+    }
+
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
         const {initArticles, articles, articleCount} = this.props;
-        const mergedArticles = initArticles.merge(articles);
+        const resultArticles = this.reduce([...initArticles, ...articles]);
         const banner = require('./assets/images/banner.jpg');
         const avatar = require('./assets/images/avatar.jpeg');
         return (
@@ -82,7 +87,7 @@ class Home extends React.Component {
                     <div className='articles-container'>
                         <div className='articles'>
                             {
-                                mergedArticles.map((v, index) => (
+                                resultArticles.map((v, index) => (
                                     <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
                                           summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
                                           showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>

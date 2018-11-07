@@ -8,8 +8,6 @@
   }
 
   p {
-    word-spacing:  .1rem;
-    letter-spacing: .1rem;
     font-size: 15px;
     line-height: 1.8rem;
     word-break: break-word;
@@ -21,7 +19,7 @@
   }
 
   ul {
-    padding-left: 1rem;
+    padding-left: 2rem;
   }
 
   li {
@@ -35,7 +33,7 @@
     border-left: 0.2rem solid $baseStressColor;
 
     &:first-child p{
-      font-weight: bold;
+      font-weight: 400;
     }
   }
 
@@ -101,7 +99,6 @@
   a {
     text-decoration: none;
     color: $baseStressColor;
-    font-weight: lighter;
   }
 
   .link {

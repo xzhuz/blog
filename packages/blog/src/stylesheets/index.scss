@@ -11,7 +11,6 @@ html, body{
 body {
   font-size: 12px;
   font-family: -apple-system,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;
-  font-weight: 300;
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
   display: flex;
   display: -webkit-flex;
@@ -26,6 +25,7 @@ body {
   display: -webkit-flex;
   display: -moz-flex;
   background-size: cover;
+  margin: 4.5rem auto;
   width: 100%;
   //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 

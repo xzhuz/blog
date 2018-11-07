@@ -79,7 +79,7 @@ class Header extends React.Component{
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>
-                        <Link className='header-logo' to={{ pathname: '/articles'}}>
+                        <Link className='header-logo' to={{ pathname: '/'}}>
                             <img src={logo} style={{height: '30px'}}/>
                         </Link>
                     </div>
