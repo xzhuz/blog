@@ -15,7 +15,6 @@ class Home extends React.Component {
         this.state = {
             page: 0,
             size: 5,
-            index: Math.floor(Math.random() * 11),
         };
     }
 
