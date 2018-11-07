@@ -24,12 +24,13 @@ class Article extends React.PureComponent {
         this.props.increaseVisit(articleId);
     }
 
-    showPostContent(articleId) {
-        this.props.history.push({pathname: `/article/${articleId}`});
-    }
-
     tagClick(v) {
         this.props.history.push(`/tag/${v}`);
+    }
+
+    componentWillUnmount() {
+        // this.props.history.push('/');
+        document.location.reload();
     }
 
     render () {
