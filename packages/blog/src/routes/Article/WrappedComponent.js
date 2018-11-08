@@ -15,7 +15,8 @@ export default WrappedComponent =>
         }
 
         hideLoader = () => {
-            const proc = fetchArticle();
+            const {articleId} = this.props.match.params;
+            const proc = fetchArticle(articleId);
             proc.then((value) => {
                 if (!value || Object.keys(value).length === 0) {
                     this.props.history.push('/404');

@@ -48,9 +48,7 @@ export function getArticleDetail(id) {
     };
 }
 
-export function fetchArticle() {
-    const {pathname} = document.location;
-    const id = pathname.substring(pathname.lastIndexOf('/') + 1);
+export function fetchArticle(id) {
     return request.articleDetail(id).then(res => {
         if (res.code === 0) {
             return res.data;
