@@ -1,5 +1,6 @@
 import React from 'react';
 import Loading from "../../components/Loading";
+import BasicLayout from "../../components/BasicLayout";
 import {fetchArticle} from "./modules";
 
 export default WrappedComponent =>
@@ -14,12 +15,10 @@ export default WrappedComponent =>
         }
 
         hideLoader = () => {
-            console.log(this.props);
             const proc = fetchArticle();
             proc.then((value) => {
-                console.log(value);
                 if (!value || Object.keys(value).length === 0) {
-                    this.props.history.location.push('/404');
+                    this.props.history.push('/404');
                 } else {
                     this.setState({
                         isLoading: false,
@@ -32,16 +31,12 @@ export default WrappedComponent =>
         render() {
             const { article, isLoading } = this.state;
             return (
-                <div>
-                    {isLoading ? <Loading/> : <WrappedComponent article={article}/>}
-                </div>
+                <BasicLayout>
+                    {
+                        isLoading ? <Loading/> : <WrappedComponent article={article}/>
+                    }
+                </BasicLayout>
             );
         }
     };
-
-// new Promise((resolve) => {
-//     require.ensure([], (require) => {
-//         resolve(require('./index'));
-//     });
-// })
 
