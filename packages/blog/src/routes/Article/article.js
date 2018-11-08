@@ -29,8 +29,6 @@ class Article extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        // this.props.history.push('/');
-        document.location.reload();
     }
 
     render () {
