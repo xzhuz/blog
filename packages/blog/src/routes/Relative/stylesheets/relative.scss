@@ -1,18 +1,12 @@
-.relative-container {
+.articles-container {
+  max-width: 1024px;
+  margin: 0 auto;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-align: stretch;
   align-items: stretch;
-  margin: 0 auto;
-  width: 100%;
-}
-
-
-.articles-container {
-  max-width: 1024px;
-  margin: 0 auto;
   width: 90%;
 
   .tag-name {

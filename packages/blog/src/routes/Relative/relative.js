@@ -9,6 +9,7 @@ import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
 import './stylesheets/relative.scss';
+import BasicLayout from "../../components/BasicLayout";
 
 class Relative extends React.Component {
     constructor(props) {
@@ -64,26 +65,24 @@ class Relative extends React.Component {
         // 判断是否已经加载完所有文章
         const articleOver = relatives.size < this.state.size;
         return (
-            <div className='container'>
-                <div className="relative-container">
-                    <Helmet title='困学集'/>
-                    <div className='articles-container'>
-                        <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
-                        <div className='articles'>
-                            {
-                                relatives.map((v, index) => (
-                                    <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                          summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                          showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                                ))
-                            }
-                            {
-                                this.renderReadMore(articleOver)
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
+           <BasicLayout>
+               <Helmet title='困学集'/>
+               <div className='articles-container'>
+                   <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
+                   <div className='articles'>
+                       {
+                           relatives.map((v, index) => (
+                               <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                                     summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                                     showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+                           ))
+                       }
+                       {
+                           this.renderReadMore(articleOver)
+                       }
+                   </div>
+               </div>
+            </BasicLayout>
         );
     }
 }
