@@ -66,7 +66,7 @@ class Relative extends React.Component {
         const articleOver = relatives.size < this.state.size;
         return (
            <BasicLayout>
-               <Helmet title='困学集'/>
+               <Helmet title='困知记'/>
                <div className='articles-container'>
                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                    <div className='articles'>
