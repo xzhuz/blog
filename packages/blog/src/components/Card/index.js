@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Image from 'react-shimmer';
 import { CSSTransition } from 'react-transition-group';
 import * as FontAwesome from 'react-icons/lib/fa';
 import {formatDate} from "../../utils/commentUtils";
 import Tag from '../Tag';
 import './card.scss';
-import Img from "../Img";
 
 class Card extends React.PureComponent {
     constructor(props) {
@@ -63,7 +63,14 @@ class Card extends React.PureComponent {
                         </div>
                     </div>
                     <div className='thumb' onClick={this.showPost}>
-                        <Img src={thumb} alt='picture'/>
+                        <Image
+                            src={thumb}
+                            width={160}
+                            height={160}
+                            style={{objectFit: 'cover'}} // Style your <img>
+                            delay={25}
+                            duration={0.9} // Customize the animation duration (s).
+                        />
                     </div>
                 </div>
             </CSSTransition>

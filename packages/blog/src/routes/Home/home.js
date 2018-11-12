@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
+import ReactInfinitScroller from 'react-vertical-infinite-scrolling';
+import Loader from 'react-loaders';
 
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
 import ReadMore from '../../components/ReadMore';
+import 'loaders.css';
 import './assets/stylesheets/home.scss';
 
 class Home extends React.Component {
@@ -56,12 +59,29 @@ class Home extends React.Component {
         return Array.from(arr).filter(a => !res.has(a.id) && res.set(a.id, 1));
     }
 
+    loadItems(e) {
+        setTimeout(() => {
+            this.setState(state => ({
+                size: state.size + e,
+            }), () => this.props.pageableArticles(this.state));
+        }, 1000);
+    }
+
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
         const {initArticles, articles, articleCount} = this.props;
         const resultArticles = this.reduce([...initArticles, ...articles]);
         const banner = require('./assets/images/banner.jpg');
         const avatar = require('./assets/images/avatar.jpeg');
+
+        const items = [];
+        resultArticles.map((v, index) => {
+            items.push(
+                <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
+                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+            );
+        });
         return (
             <div className='container'>
                 <div className="home-container">
@@ -86,16 +106,22 @@ class Home extends React.Component {
                     <p className='segment'> 所有文章 </p>
                     <div className='articles-container'>
                         <div className='articles'>
-                            {
-                                resultArticles.map((v, index) => (
-                                    <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                          summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                          showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                                ))
-                            }
-                            {
-                                this.renderReadMore(articleCount <= this.state.size)
-                            }
+                            <ReactInfinitScroller
+                                pageStart={0}
+                                loadMore={(e) => this.loadItems(e)}
+                                hasMore={articleCount >= this.state.size}
+                                loader={
+                                    <Loader type='ball-beat'
+                                            active={true}
+                                            key={0}
+                                            innerClassName='articles-loading'
+                                            color='#E53A40'
+                                            style={{transform: 'scale(0.5)'}}
+                                    />
+                                }
+                            >
+                               {items}
+                            </ReactInfinitScroller>
                         </div>
                     </div>
                 </div>
