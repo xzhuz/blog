@@ -5,6 +5,7 @@ import * as FontAwesome from 'react-icons/lib/fa';
 import {formatDate} from "../../utils/commentUtils";
 import Tag from '../Tag';
 import './card.scss';
+import Img from "../Img";
 
 class Card extends React.PureComponent {
     constructor(props) {
@@ -62,7 +63,7 @@ class Card extends React.PureComponent {
                         </div>
                     </div>
                     <div className='thumb' onClick={this.showPost}>
-                        <img src={thumb} alt='picture'/>
+                        <Img src={thumb} alt='picture'/>
                     </div>
                 </div>
             </CSSTransition>

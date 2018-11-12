@@ -5,5 +5,6 @@ export const LoadableComponent = (component) =>{
     return Loadable({
         loader: component,
         loading: Loading,
+        delay: 1000,
     });
 };

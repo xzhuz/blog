@@ -11,7 +11,7 @@ export default Loadable.Map({
         articleCount: () => getArticlesCount(),
     },
     loading: Loading,
-    // delay: 100,
+    delay: 1000,
     render(loaded, props) {
         const Articles = loaded.Articles.default;
         const articles = loaded.article.get('ARTICLES_DATA');

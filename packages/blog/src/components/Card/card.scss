@@ -146,11 +146,11 @@
 
 .card-enter {
   opacity: 0.01;
-  transform: translateX(-2%);
+  transform: translateY(2%);
 }
 .card-enter-active {
   opacity: 1;
-  transform: translateX(0%);
+  transform: translateY(0%);
   transition: all 600ms ease-out;
   -webkit-transition: all 600ms ease-out;
   -moz-transition: all 600ms ease-out;
