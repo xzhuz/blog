@@ -67,9 +67,9 @@ class Card extends React.PureComponent {
                             src={thumb}
                             width={160}
                             height={160}
-                            style={{objectFit: 'cover'}} // Style your <img>
+                            style={{objectFit: 'cover'}}
                             delay={25}
-                            duration={0.9} // Customize the animation duration (s).
+                            duration={0.9}
                         />
                     </div>
                 </div>

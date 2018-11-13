@@ -103,7 +103,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <p className='segment'> 所有文章 </p>
+                    <p className='segment'> 最近文章 </p>
                     <div className='articles-container'>
                         <div className='articles'>
                             <InfiniteScroll

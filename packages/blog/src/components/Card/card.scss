@@ -10,6 +10,7 @@
   border-radius: 4px;
 
   &:hover {
+    cursor: pointer;
     transition-duration: .4s;
     -moz-transition-duration: .4s;
     -webkit-transition-duration: .4s;
@@ -32,7 +33,6 @@
   }
 
   &:hover {
-    cursor: pointer;
     img {
       -webkit-transform: scale(1.1);
       -moz-transform: scale(1.1);
