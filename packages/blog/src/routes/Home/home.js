@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
 import NProgress from 'nprogress';
-import ReactInfinitScroller from 'react-vertical-infinite-scrolling';
+import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loaders';
 
 import Bottom from '../../components/Bottom';
@@ -106,7 +106,7 @@ class Home extends React.Component {
                     <p className='segment'> 所有文章 </p>
                     <div className='articles-container'>
                         <div className='articles'>
-                            <ReactInfinitScroller
+                            <InfiniteScroll
                                 pageStart={0}
                                 loadMore={(e) => this.loadItems(e)}
                                 hasMore={articleCount >= this.state.size}
@@ -121,7 +121,7 @@ class Home extends React.Component {
                                 }
                             >
                                {items}
-                            </ReactInfinitScroller>
+                            </InfiniteScroll>
                         </div>
                     </div>
                 </div>
