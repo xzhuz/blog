@@ -17,7 +17,7 @@ export default class Workplace extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'article/fetchPopular',
-      payload: { page: 0, size: 5 },
+      payload: { page: 0, size: 9 },
     });
   }
 
@@ -36,7 +36,7 @@ export default class Workplace extends PureComponent {
           />
         </div>
         <div className={styles.content}>
-          <div className={styles.contentTitle}>困而学, 学而知!</div>
+          <div className={styles.contentTitle}>困而学, 学而知.</div>
           <div>Java软件工程师 前端开发工程师</div>
         </div>
       </div>
