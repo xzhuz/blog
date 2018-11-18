@@ -17,7 +17,7 @@ class Home extends React.Component {
         super(props);
         this.state = {
             page: 0,
-            size: 5,
+            size: 3,
         };
     }
 

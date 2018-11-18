@@ -7,11 +7,11 @@ import * as Articles from './containers';
 export default Loadable.Map({
     loader: {
         Articles: () => import('./index'),
-        article: () => getPartArticles({page:0, size: 5}),
+        article: () => getPartArticles({page:0, size: 3}),
         articleCount: () => getArticlesCount(),
     },
     loading: Loading,
-    delay: 1000,
+    delay: 800,
     render(loaded, props) {
         const Articles = loaded.Articles.default;
         const articles = loaded.article.get('ARTICLES_DATA');
