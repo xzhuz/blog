@@ -1,3 +1,4 @@
+import * as routerRedux from 'react-router-redux';
 import { queryCurrent } from '../services/user';
 
 export default {
@@ -10,10 +11,14 @@ export default {
   effects: {
     *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
-      yield put({
-        type: 'saveCurrentUser',
-        payload: response.data,
-      });
+      if (response.code === 0) {
+        yield put({
+          type: 'saveCurrentUser',
+          payload: response.data,
+        });
+      } else {
+        yield put(routerRedux.push('/user/login'));
+      }
     },
   },
 
