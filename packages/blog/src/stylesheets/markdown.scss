@@ -22,7 +22,7 @@
     padding-left: 2rem;
   }
 
-  li {
+  ul > li {
     list-style-type: disc;
     margin-left: 1rem;
   }
@@ -107,5 +107,9 @@
 
   img {
     width: 80%;
+  }
+
+  input[type="checkbox"] + ol {
+    display: inline-block;
   }
 }

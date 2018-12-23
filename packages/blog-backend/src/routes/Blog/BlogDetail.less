@@ -66,11 +66,10 @@
   }
 
   p {
-    word-spacing: 0.1rem;
-    letter-spacing: 0.1rem;
     font-size: 15px;
     line-height: 1.8rem;
     word-break: break-word;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   }
 
   li > p {
@@ -116,7 +115,7 @@
   code,
   kbd,
   samp {
-    font-family: monospace, consolas, Open Sans, Source Sans Pro, Consolas, Menlo, DejaVu Sans Mono;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   }
 
   pre code {
@@ -125,13 +124,14 @@
     padding: 1rem;
     font-size: 0.8rem;
     color: #abb2bf;
-    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+    background: #f8f8f8;
   }
 
   p code {
     overflow-x: auto;
     font-size: 0.8rem;
     color: #e53a40;
+    background-color: #fff5f5;
   }
 
   h1,
@@ -166,5 +166,9 @@
 
   img {
     width: 80%;
+  }
+
+  input[type='checkbox'] + ol {
+    display: inline-block;
   }
 }
