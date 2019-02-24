@@ -77,13 +77,8 @@
 }
 
 .about-container .about-info {
-  .about-info-statement, .about-info-about, .about-info-blog {
-    p {
-      display: flex;
-      display: -webkit-flex;
-      display: -moz-flex;
-      justify-content: flex-start;
-      -webkit-justify-content: flex-start;
+  .about-info-statement, .about-info-about, .about-info-blog, .about-info-skills {
+    li {
       font-size: 1rem;
       color: #555;
       margin-bottom: 1rem;
@@ -93,12 +88,38 @@
       }
     }
 
+    .skills {
+      padding: 1rem 0;
+    }
+
+    .skills-title {
+      text-align: right;
+      -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+      flex-grow: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+      padding-right: 20px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .skills-detail {
+      text-align: left;
+      font-size: 1rem;
+    }
+
     .quote-content {
       color: $baseStressColor;
     }
 
-    .quote-name {
-      margin-left: 2%;
-    }
   }
+}
+
+.skills li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }

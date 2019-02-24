@@ -19,19 +19,45 @@ class About extends React.PureComponent{
                     <div className='about-info'>
                         <section className='about-info-about'>
                             <h2><span className='title'>Abo</span>ut</h2>
-                            <p>大家好👋️, 我叫梅森, 来自重庆的Java工程师👨🏼‍💻</p>
-                            <p>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</p>
-                            <p>目前正走在成为一个牛逼(Zhuang Bi)程序猿的路上. 前途很艰辛, 但是我会坚持!</p>
-                            <p>最后, 生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</p>
-                            <p><i className='quote-name'>子曰：</i><i className='quote-content'>“生而知之者，上也；学而知之者，次也；困而学之，又其次也；困而不学，民斯为下矣。” </i></p>
+                            <ul>
+                                <li>大家好👋️, 我叫梅森, 来自重庆的Java工程师👨🏼‍💻</li>
+                                <li>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</li>
+                                <li>目前正走在成为一个牛逼(Zhuang Bi)程序猿的路上. 前途很艰辛, 但是我会坚持!</li>
+                                <li>生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</li>
+                                <li><i className='quote-name'>子曰：</i><i className='quote-content'>“生而知之者，上也；学而知之者，次也；困而学之，又其次也；困而不学，民斯为下矣。” </i></li>
+                            </ul>
+                        </section>
+                        <section className='about-info-skills'>
+                            <h2><span className='title'>Ski</span>lls</h2>
+                            <ul className='skills'>
+                                <li>
+                                    <span className='skills-title'>语言</span>
+                                    <span className='skills-detail'>Java, JavaScript, HTML, CSS, React</span>
+                                </li>
+                                <li>
+                                    <span className='skills-title'>数据库</span>
+                                    <span className='skills-detail'>Oracle, MySQL, Redis, MongoDB</span>
+                                </li>
+                                <li>
+                                    <span className='skills-title'>工具</span>
+                                    <span className='skills-detail'>Maven, Tomcat, Nginx, MyBatis, Spring, Guice, Jersey, Shiro, Redux, JQuery</span>
+                                </li>
+                                <li>
+                                    <span className='skills-title'>环境</span>
+                                    <span className='skills-detail'>Mac, Ubuntu, Linux, Git, Intellij IDEA</span>
+                                </li>
+                            </ul>
                         </section>
                         <section className='about-info-blog'>
                             <h2><span className='title'>Blo</span>g</h2>
-                            <p>期望：平时生活和工作一种记录🖋, 希望之后回过头再来看自己的博客也会有所收获或感想</p>
-                            <p>自己一些杂谈📽(不是一个纯粹的技术博客🤫)</p>
-                            <p>对自己生活的记录</p>
-                            <p>希望自己越来越强大，越来越开心🚀🚀</p>
-                            <p>同时, 也是对于自己生活工作的一个记录😋</p>
+                            <ul>
+                                <li>期望：平时生活和工作一种记录🖋, 希望之后回过头再来看自己的博客也会有所收获或感想</li>
+                                <li>自己一些杂谈📽(不是一个纯粹的技术博客🤫)</li>
+                                <li>对生活的一个记录</li>
+                                <li>希望自己越来越强大，越来越开心🚀🚀</li>
+                                <li>也是对于自己生活工作的一个记录😋</li>
+                            </ul>
+
                         </section>
                         <section>
                             <h2><span className='title'>Con</span>tact</h2>
@@ -47,8 +73,11 @@ class About extends React.PureComponent{
 
                         <section className='about-info-statement'>
                             <h2><span className='title'>Sta</span>tement</h2>
-                            <p>本站所有文章均为本人原创，仅代表个人当时意见和想法</p>
-                            <p>内容转载请保留署名以及原文连接，谢谢😀</p>
+                            <ul>
+                                <li>本站所有文章均为本人原创，仅代表个人当时意见和想法</li>
+                                <li>内容转载请保留署名以及原文连接，谢谢😀</li>
+                            </ul>
+
                         </section>
 
                     </div>
