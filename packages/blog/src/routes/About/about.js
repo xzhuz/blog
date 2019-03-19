@@ -1,7 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import { CSSTransition } from 'react-transition-group';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesome from 'react-icons/fa';
 
 import BasicLayout from '../../components/BasicLayout';
 import Info from "../../components/Info";
@@ -11,7 +10,7 @@ class About extends React.PureComponent{
 
     render() {
         const github = <a href='https://github.com/xebcxc' target='_blank'>xebcxc</a>;
-        const weiBo = <a href='https://weibo.com/u/3002849234?refer_flag=1001030101_' target='_blank'>小二不吃香菜</a>;
+        const zhiHu = <a href='https://www.zhihu.com/people/mei-sen-41-34/activities' target='_blank'>梅小森</a>;
         return (
             <BasicLayout>
                 <Helmet title='梅 森 | 关于'/>
@@ -67,7 +66,7 @@ class About extends React.PureComponent{
                             </p>
                             <p>
                                 <Info icon={<FontAwesome.FaGithub/>} info={github}/>
-                                <Info icon={<FontAwesome.FaWeibo/>} info={weiBo}/>
+                                <Info icon={<FontAwesome.FaZhihu/>} info={zhiHu}/>
                             </p>
                         </section>
 

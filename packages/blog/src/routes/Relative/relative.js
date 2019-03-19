@@ -2,7 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {List} from 'immutable';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesome from 'react-icons/fa';
 import NProgress from 'nprogress';
 
 import Bottom from '../../components/Bottom';

@@ -79,6 +79,10 @@
     color: $baseFontColor;
     margin-bottom: 1rem;
     font-size: 1.6rem;
+
+    svg{
+      margin-bottom: -6px;
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import PropTypes from 'prop-types';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesome from 'react-icons/fa';
 
 import {markdown} from '../../utils/markdownUtil';
 import {formatDate} from '../../utils/commentUtils';
@@ -35,7 +35,7 @@ class Article extends React.PureComponent {
                     <section>
                         <h1 className='article-title'>{title ? title.trim() : ''}</h1>
                         <p className='article-info'>
-                            <span><FontAwesome.FaClockO /> {formatDate(date)}</span>
+                            <span><FontAwesome.FaClock /> {formatDate(date)}</span>
                             <span><FontAwesome.FaEye /> {visit}次</span>
                         </p>
                         <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />

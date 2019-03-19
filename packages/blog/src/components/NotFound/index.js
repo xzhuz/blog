@@ -1,5 +1,5 @@
 import React from 'react';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesome from 'react-icons/fa';
 
 import BasicLayout from "../BasicLayout";
 
@@ -24,8 +24,8 @@ class NotFound extends React.PureComponent{
                                         <FontAwesome.FaGithub/></a>
                                 </li>
                                 <li>
-                                    <a className='contract-icon' href='https://weibo.com/u/3002849234?refer_flag=1001030101_'
-                                       target='_blank'><FontAwesome.FaWeibo/></a>
+                                    <a className='contract-icon' href='https://www.zhihu.com/people/mei-sen-41-34/activities'
+                                       target='_blank'><FontAwesome.FaZhihu/></a>
                                 </li>
                             </ul>
 

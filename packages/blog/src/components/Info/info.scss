@@ -20,6 +20,10 @@
   border-right: 1px solid $baseBorderColor;
   text-align: center;
   color: $baseStressColor;
+
+  svg {
+    margin-bottom: -4px;
+  }
 }
 .info .text {
   width: 82%;

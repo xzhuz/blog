@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'react-shimmer';
 import { CSSTransition } from 'react-transition-group';
-import * as FontAwesome from 'react-icons/lib/fa';
+import * as FontAwesome from 'react-icons/fa';
 import {formatDate} from "../../utils/commentUtils";
 import Tag from '../Tag';
 import './card.scss';
