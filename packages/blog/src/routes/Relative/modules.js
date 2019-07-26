@@ -1,5 +1,6 @@
 import {fromJS, List} from "immutable";
 
+import * as Constants from '../../utils/Constants';
 import * as request from '../../utils/axios/api';
 import * as Relative from "./constants";
 
@@ -51,7 +52,8 @@ export default function articleReducer(state = initialState, action) {
 export function relativeArticles({tag, page, size}) {
     return dispatch => {
         request.relativeArticles({tag, page, size}).then(res => {
-            if (res.code === 0) {
+            if (res.code === Constants.SUCCESS_CODE) {
+                console.log(res.data);
                 dispatch(relativeArticleData(res.data));
                 dispatch(articleTag(tag));
             } else if (res.code === 3) {

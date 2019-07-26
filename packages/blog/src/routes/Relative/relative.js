@@ -59,24 +59,45 @@ class Relative extends React.Component {
         }), () => this.props.relativeArticles(Object.assign({}, {tag}, this.state)));
     }
 
+    extracted(items) {
+        if (items.length % 6 !== 0) {
+            const seq = Math.floor(items.length / 6);
+            const supplement = 6 * (seq + 1) + 1;
+            let less = supplement - items.length;
+            const lastItem = items.pop();
+            if (less % 2 === 0) {
+                less --;
+            }
+            for (let i = 0; i < less; i++) {
+                items.push(<div key={`emptyItem${i}`}/>);
+            }
+            items.push(lastItem);
+
+        }
+    }
+
     render() {
         // articles: 点击加载更多时的文章  relatives: 相关文章
         const { relatives, tag } = this.props;
+        console.log(relatives);
         // 判断是否已经加载完所有文章
         const articleOver = relatives.size < this.state.size;
+        const items = relatives.map((v, index) => (
+            <Card key={index} articleId={v.articleId} title={v.title} thumb={v.thumb} visit={v.visit}
+                  compliment={v.compliment}
+                  introduce={v.introduce} tagList={v.tagList} createTime={v.createTime}
+                  clickTag={(v) => this.tagClick(v)}
+                  showPost={(articleId) => this.showPostContent(articleId, v.visit)} showCardInfo={true}/>
+        ));
+        this.extracted(items);
+
         return (
            <BasicLayout>
                <Helmet title='困知记'/>
                <div className='articles-container'>
                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                    <div className='articles'>
-                       {
-                           relatives.map((v, index) => (
-                               <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                                     summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                                     showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
-                           ))
-                       }
+                       { items }
                        {
                            this.renderReadMore(articleOver)
                        }

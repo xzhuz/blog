@@ -2,7 +2,6 @@ import { get } from './http';
 
 
 // Article
-
 export const articleDetail = (id) => {
     return get('/blog/info', {id: id});
 };
@@ -13,9 +12,10 @@ export const countArticle = () => {
 };
 
 export const partArticles = ({page, size}) => {
-    return get('/blog/part', {
-        page: page,
-        size: size,
+    return get('/blog/all', {
+        pageNum: page,
+        pageSize: size,
+        orderBy:'modify_time',
     });
 };
 
@@ -30,7 +30,7 @@ export const increaseVisit = (id) => {
 
 
 export const relativeArticles = ({tag, page, size}) => {
-    return get('/blog/relative', {tag: new Array(tag).join(','), page: page, size: size});
+    return get('/blog/tag', {tagName: new Array(tag).join(','), pageNum: page, pageSize: size});
 };
 
 

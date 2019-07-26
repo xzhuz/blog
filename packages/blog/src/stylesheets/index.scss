@@ -2,7 +2,9 @@
 * {
   margin: 0;
   padding: 0;
+  touch-action: none;
 }
+
 
 html, body{
   height: 100%;
@@ -25,7 +27,7 @@ body {
   display: -webkit-flex;
   display: -moz-flex;
   background-size: cover;
-  margin: 4.5rem auto;
+  margin: 4rem auto;
   width: 100%;
   //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 

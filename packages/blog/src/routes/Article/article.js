@@ -27,28 +27,37 @@ class Article extends React.PureComponent {
     }
 
     render () {
-        const {article: {title, content, date, tags, compliment, id, visit}} = this.props;
+        const {article: {title, content, createTime, tagList, compliment, articleId, visit}} = this.props;
+        const cardImage = 'https://codedream-blog.oss-cn-beijing.aliyuncs.com/asphalt-empty-field-163444_1560960636009.jpg';
         return (
             <article className='article-container'>
                 <Helmet title={title} />
-                <div className='article'>
-                    <section>
-                        <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                        <p className='article-info'>
-                            <span><FontAwesome.FaClock /> {formatDate(date)}</span>
-                            <span><FontAwesome.FaEye /> {visit}次</span>
-                        </p>
-                        <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
-                        <p className='article-tags'>
-                            {
-                                tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
-                                    <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
-                                )) : ''
-                            }
-                        </p>
-                        <Compliment id={id} compliment={compliment} />
-                        <Comment />
-                    </section>
+                <div className='article-outer'>
+                    <div className='article'>
+                        <section>
+                            <div className='article-header'>
+                                <div className='article-header-meta'>
+                                    <time className='article-time'>{formatDate(createTime)}</time>
+
+                                </div>
+                                <h1 className='article-title'>{title} </h1>
+                            </div>
+                            <figure className='article-image' style={{backgroundImage: `url(${cardImage})`}}>
+
+                            </figure>
+                            <div className='article-full-content '>
+                                <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                            </div>
+                            <p className='article-tags'>
+                                {
+                                    tagList.map((v, index) => (
+                                        <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                    ))
+                                }
+                            </p>
+                            <Comment />
+                        </section>
+                    </div>
                 </div>
                 {  /*       <SideBar>
                             <div className={classNames('bar-toc', {

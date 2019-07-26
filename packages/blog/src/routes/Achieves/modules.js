@@ -2,6 +2,7 @@ import {fromJS, Map} from 'immutable';
 
 import * as request from '../../utils/axios/api';
 import * as Achieve from './constants';
+import * as Constants from '../../utils/Constants';
 
 
 export const clearRelatives = () => {
@@ -16,15 +17,12 @@ const initialState = fromJS({
 });
 
 export default function achieveReducer(state = initialState, action) {
-    switch (action.type) {
-        default:
-            return state;
-    }
+    return state;
 };
 
 export function getAchieveData() {
     return request.achieveArticle().then(res => {
-        if (res.code === 0) {
+        if (res.code === Constants.SUCCESS_CODE) {
             return fromJS({ACHIEVE_DATA: res.data});
         } else if (res.code === 3) {
             alert('您刷新过于频繁，系统已拦截，请联系博主');

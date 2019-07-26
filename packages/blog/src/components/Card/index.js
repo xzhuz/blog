@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'react-shimmer';
 import { CSSTransition } from 'react-transition-group';
-import * as FontAwesome from 'react-icons/fa';
-import {formatDate} from "../../utils/commentUtils";
+import {dateFormat} from "../../utils/commentUtils";
 import Tag from '../Tag';
 import './card.scss';
 
@@ -32,7 +30,8 @@ class Card extends React.PureComponent {
     }
 
     render() {
-        const {thumb, title, summary, tags, date, showCardInfo, compliment, visit} = this.props;
+        const {thumb, title, introduce, tagList, createTime, showCardInfo, compliment, visit} = this.props;
+        const cardImage = 'https://codedream-blog.oss-cn-beijing.aliyuncs.com/asphalt-empty-field-163444_1560960636009.jpg';
         return (
             <CSSTransition
                 in={this.state.showCard}
@@ -41,37 +40,37 @@ class Card extends React.PureComponent {
                 timeout={{ enter: 500, exit: 300 }}
                 onExited={() => {this.setState({showCard: false});}}
             >
-                <div className='card'>
-                    <div className='card-container'>
-                        <div className='card-title' onClick={this.showPost} >
-                            <span>{title}</span>
-                            <section className='card-info'>
-                                <i><FontAwesome.FaCalendar/>{formatDate(date)}</i>
-                                <i><FontAwesome.FaEye/>{visit}</i>
-                                <i><FontAwesome.FaThumbsUp/>{compliment}</i>
+                <div className='post-card'>
+                    <div className="post-card-image-link" onClick={this.showPost}>
+                        <div className="post-card-image" style={{backgroundImage: `url(${cardImage})`}}>
+                        </div>
+                    </div>
+
+                    <div className="post-card-content">
+                        <div className="post-card-content-link" onClick={this.showPost}>
+                            <header className="post-card-header">
+                                <h2 className="post-card-title">{title}</h2>
+                            </header>
+                            <section className="post-card-excerpt">
+                                <p>{introduce}</p>
                             </section>
                         </div>
-                        <div className='card-content' onClick={this.showPost} >
-                            <span>{summary}</span>
-                        </div>
-                        <div className='card-tags' style={{display: showCardInfo ? 'flex' : 'none'}}>
-                            {
-                                tags.split(',').sort().map((v, index) => (
-                                    <Tag label={v} key={index} clickTag={(v) => this.handleClickTag(v)} />
-                                ))
-                            }
+                        <div className="post-card-meta">
+
+                            <ul className="tag-list">
+                                {
+                                    tagList.map((v, index) => (
+                                        <li className="author-list-item" key={index} >
+                                            <Tag label={v} clickTag={(v) => this.handleClickTag(v)} />
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+
+                            <span className="reading-time">{dateFormat(createTime)}</span>
                         </div>
                     </div>
-                    <div className='thumb' onClick={this.showPost}>
-                        <Image
-                            src={thumb}
-                            width={160}
-                            height={160}
-                            style={{objectFit: 'cover'}}
-                            delay={25}
-                            duration={0.9}
-                        />
-                    </div>
+
                 </div>
             </CSSTransition>
         );
@@ -84,9 +83,9 @@ Card.propTypes = {
     clickTag: PropTypes.func,
     articleId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
-    date: PropTypes.number.isRequired,
+    introduce: PropTypes.string.isRequired,
+    tagList: PropTypes.array.isRequired,
+    createTime: PropTypes.number.isRequired,
     showCardInfo: PropTypes.bool.isRequired,
     visit: PropTypes.number.isRequired,
     compliment: PropTypes.number,
