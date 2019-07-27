@@ -1,4 +1,4 @@
-import { get } from './http';
+import { get, put } from './http';
 
 
 // Article
@@ -25,7 +25,7 @@ export const achieveArticle = () => {
 
 
 export const increaseVisit = (id) => {
-    return get('/blog/visit', {id: id});
+    return put('/blog/increaseVisit', {articleId: id});
 };
 
 

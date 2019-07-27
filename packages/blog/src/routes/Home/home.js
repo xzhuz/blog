@@ -65,9 +65,9 @@ class Home extends React.Component {
             const supplement = 6 * (seq + 1) + 1;
             let less = supplement - items.length;
             const lastItem = items.pop();
-            if (less % 2 === 0) {
-                less --;
-            }
+            // if (less % 2 === 0) {
+            //     less -= 1;
+            // }
             for (let i = 0; i < less; i++) {
                 items.push(<div key={`emptyItem${i}`}/>);
             }

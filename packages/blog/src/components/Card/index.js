@@ -31,7 +31,6 @@ class Card extends React.PureComponent {
 
     render() {
         const {thumb, title, introduce, tagList, createTime, showCardInfo, compliment, visit} = this.props;
-        const cardImage = 'https://codedream-blog.oss-cn-beijing.aliyuncs.com/asphalt-empty-field-163444_1560960636009.jpg';
         return (
             <CSSTransition
                 in={this.state.showCard}
@@ -42,7 +41,7 @@ class Card extends React.PureComponent {
             >
                 <div className='post-card'>
                     <div className="post-card-image-link" onClick={this.showPost}>
-                        <div className="post-card-image" style={{backgroundImage: `url(${cardImage})`}}>
+                        <div className="post-card-image" style={{backgroundImage: `url(${thumb})`}}>
                         </div>
                     </div>
 
