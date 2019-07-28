@@ -21,10 +21,10 @@ export function formatDate(date) {
     const year = blogDate.getFullYear();
     const month = prefixInteger(blogDate.getMonth() + 1, 2);
     const day = prefixInteger(blogDate.getDate(), 2);
-    const hours = prefixInteger(blogDate.getHours(), 2);
-    const minutes = prefixInteger(blogDate.getMinutes(), 2);
-    const seconds = prefixInteger(blogDate.getSeconds(), 2);
-    return year + '年' + month + '月' + day + '日 ' + hours + ':' + minutes + ':' + seconds;
+    // const hours = prefixInteger(blogDate.getHours(), 2);
+    // const minutes = prefixInteger(blogDate.getMinutes(), 2);
+    // const seconds = prefixInteger(blogDate.getSeconds(), 2);
+    return year + '年' + month + '月' + day + '日';
 }
 
 export function dateFormat(date) {

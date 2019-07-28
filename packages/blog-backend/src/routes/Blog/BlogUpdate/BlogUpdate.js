@@ -31,9 +31,12 @@ export default class BlogUpdate extends PureComponent {
   handleSubmit = e => {
     const {
       dispatch,
+      location,
       article: { articleDetail },
     } = this.props;
     const { date, visit, compliment } = articleDetail;
+    const { search } = location;
+    const { id } = queryString.parse(search);
     const {
       tags,
       thumb: { file },
@@ -52,6 +55,7 @@ export default class BlogUpdate extends PureComponent {
           date,
           visit,
           compliment,
+          articleId: id,
         },
       });
     } else {
@@ -64,6 +68,7 @@ export default class BlogUpdate extends PureComponent {
           date,
           visit,
           compliment,
+          articleId: id,
         },
       });
     }

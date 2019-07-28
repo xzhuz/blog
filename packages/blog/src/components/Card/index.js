@@ -58,7 +58,7 @@ class Card extends React.PureComponent {
 
                             <ul className="tag-list">
                                 {
-                                    tagList.map((v, index) => (
+                                    (tagList ? tagList : []).map((v, index) => (
                                         <li className="author-list-item" key={index} >
                                             <Tag label={v} clickTag={(v) => this.handleClickTag(v)} />
                                         </li>
