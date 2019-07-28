@@ -17,16 +17,31 @@ export default class Workplace extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'article/fetchPopular',
-      payload: { page: 0, size: 9 },
+      payload: { start: 0, end: 9 },
+    });
+    this.userVisit();
+    this.articleCount();
+  }
+
+  userVisit() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/userVisit',
+    });
+  }
+
+  articleCount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/statisticCount',
     });
   }
 
   render() {
     const {
-      article: { popular },
+      article: { popular, userVisit, articleCount },
       articleLoading,
     } = this.props;
-
     const pageHeaderContent = (
       <div className={styles.pageHeaderContent}>
         <div className={styles.avatar}>
@@ -45,10 +60,23 @@ export default class Workplace extends PureComponent {
     return (
       <PageHeaderLayout content={pageHeaderContent}>
         <Row gutter={24}>
+          <Col span={12}>
+            <Card title="用户访问量" bordered={false}>
+              {userVisit}
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card title="文章总数" bordered={false}>
+              {articleCount}
+            </Card>
+          </Col>
+        </Row>
+
+        <Row gutter={24}>
           <Col xl={24} lg={24} md={24} sm={24} xs={24}>
             <Card
               className={styles.projectList}
-              style={{ marginBottom: 24 }}
+              style={{ marginBottom: 24, marginTop: 24 }}
               title="热门文章"
               bordered={false}
               extra={<Link to="/article/blogList">全部文章</Link>}
@@ -61,7 +89,9 @@ export default class Workplace extends PureComponent {
                     <Card.Meta
                       title={
                         <div className={styles.cardTitle}>
-                          <Link to={{ pathname: '/article/blogDetail', search: `id=${item.id}` }}>
+                          <Link
+                            to={{ pathname: '/article/blogDetail', search: `id=${item.articleId}` }}
+                          >
                             {item.title}
                           </Link>
                         </div>

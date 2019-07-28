@@ -36,7 +36,7 @@ function beforeUpload(file) {
 @Form.create()
 export default class UpdateForm extends PureComponent {
   state = {
-    tags: [],
+    tagList: [],
     inputVisible: false,
     inputValue: '',
     loading: false,
@@ -46,12 +46,11 @@ export default class UpdateForm extends PureComponent {
 
   componentDidMount() {
     const {
-      data: { content, tags },
+      data: { content, tagList },
       form,
     } = this.props;
-    const tagArr = tags.split(',');
-    this.setState({ tags: tagArr });
-    form.setFieldsValue({ tags: tagArr });
+    this.setState({ tagList });
+    form.setFieldsValue({ tagList });
     this.smde = new SimpleMDE({
       element: document.getElementById('content').childElementCount,
       autofocus: false,
@@ -71,9 +70,9 @@ export default class UpdateForm extends PureComponent {
   }
 
   handleClose = removedTag => {
-    const { tags } = this.state;
-    const resultTags = tags.filter(tag => tag !== removedTag);
-    this.setState({ tags: resultTags });
+    const { tagList } = this.state;
+    const resultTags = tagList.filter(tag => tag !== removedTag);
+    this.setState({ tagList: resultTags });
   };
 
   showInput = () => {
@@ -85,19 +84,19 @@ export default class UpdateForm extends PureComponent {
   };
 
   handleInputConfirm = () => {
-    const { inputValue, tags } = this.state;
-    let editableTags = tags;
+    const { inputValue, tagList } = this.state;
+    let editableTags = tagList;
     if (inputValue && editableTags.indexOf(inputValue) === -1) {
       editableTags = [...editableTags, inputValue];
     }
     this.setState({
-      tags: editableTags,
+      tagList: editableTags,
       inputVisible: false,
       inputValue: '',
     });
     const { form } = this.props;
     form.setFieldsValue({
-      tags: editableTags.join(','),
+      tagList: editableTags.join(','),
     });
   };
 
@@ -112,7 +111,8 @@ export default class UpdateForm extends PureComponent {
     } = this.props;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        handleSubmit({ ...values, id });
+        const { tagList } = values;
+        handleSubmit({ ...values, tags: tagList, id });
       }
     });
   };
@@ -180,9 +180,9 @@ export default class UpdateForm extends PureComponent {
     const {
       submitting,
       form,
-      data: { title, content, summary, publish, thumb },
+      data: { title, content, introduce, publish, thumb },
     } = this.props;
-    const { tags, inputVisible, inputValue, loading, imageUrl, fileList } = this.state;
+    const { tagList, inputVisible, inputValue, loading, imageUrl, fileList } = this.state;
     const { getFieldDecorator } = form;
 
     const formItemLayout = {
@@ -254,18 +254,18 @@ export default class UpdateForm extends PureComponent {
           })(<Input placeholder="请输入文章标题" />)}
         </FormItem>
         <FormItem {...formItemLayout} label="文章简介">
-          {getFieldDecorator('summary', {
+          {getFieldDecorator('introduce', {
             rules: [
               {
                 required: true,
                 message: '请输入文章简介',
               },
             ],
-            initialValue: summary,
+            initialValue: introduce,
           })(<Input placeholder="请输入文章简介" />)}
         </FormItem>
         <FormItem {...formItemLayout} label="文章标签">
-          {getFieldDecorator('tags', {
+          {getFieldDecorator('tagList', {
             rules: [
               {
                 required: true,
@@ -274,7 +274,7 @@ export default class UpdateForm extends PureComponent {
             ],
           })(
             <div>
-              {tags.map(tag => {
+              {tagList.map(tag => {
                 const isLongTag = tag.length > 20;
                 const tagElem = (
                   <Tag key={tag} closable afterClose={() => this.handleClose(tag)}>

@@ -4,6 +4,7 @@ import { login, logout } from '../services/api';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
 import { getPageQuery } from '../utils/utils';
+import { SUCCESS_CODE } from '../utils/constants';
 
 export default {
   namespace: 'login',
@@ -16,7 +17,8 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
-      if (response.code === 0) {
+      if (response.code === SUCCESS_CODE) {
+        // console.log(response);
         yield put({
           type: 'changeLoginStatus',
           payload: { ...response.data },
@@ -28,7 +30,7 @@ export default {
         });
       }
       // Login successfully
-      if (response.code === 0) {
+      if (response.code === SUCCESS_CODE) {
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -70,7 +72,10 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      console.log(payload);
+
+      setAuthority('admin');
+      // setAuthority(payload.currentAuthority);
       return {
         ...state,
         status: payload.status,
