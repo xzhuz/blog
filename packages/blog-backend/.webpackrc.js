@@ -27,10 +27,10 @@ export default {
   publicPath: '/',
   hash: true,
   es5ImcompatibleVersions: true,
-  proxy: {
-    '/api': {
-      target: 'http://localhost:80/',
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'http://localhost:80/',
+  //     changeOrigin: true,
+  //   },
+  // },
 };

@@ -15,7 +15,6 @@ export const partArticles = ({page, size}) => {
     return get('/blog/all', {
         pageNum: page,
         pageSize: size,
-        orderBy:'modify_time',
     });
 };
 
