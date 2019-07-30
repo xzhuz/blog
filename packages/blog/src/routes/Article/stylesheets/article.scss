@@ -101,7 +101,7 @@
 }
 
 .article-image {
-  margin: 0 -10vw -165px;
+  margin: 0px -10vw -165px;
   height: 400px;
   background: #c5d2d9 50%;
   background-size: cover;
@@ -118,6 +118,11 @@
   @media only screen and (max-width: 768px) {
     height: 300px;
     border-radius: 0;
+    margin: 0px -10% -165px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    margin: 0px -5px -165px;
   }
 
 }
