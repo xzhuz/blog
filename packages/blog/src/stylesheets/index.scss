@@ -2,65 +2,67 @@
 * {
   margin: 0;
   padding: 0;
-  touch-action: none;
+  // 添加了这个属性,在iPad下无法滑动,也是个坑,但是在chrome不加这个属性,会有报错信息,
+  //touch-action: none;
+  -webkit-overflow-scrolling:touch;
 }
 
 
 html, body{
-  height: 100%;
+height: 100%;
 }
 
 body {
-  font-size: 12px;
-  font-family: -apple-system,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;
-  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  flex-direction: column;
-  text-rendering: optimizeLegibility;
+font-size: 12px;
+font-family: -apple-system,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;
+background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+display: flex;
+display: -webkit-flex;
+display: -moz-flex;
+flex-direction: column;
+text-rendering: optimizeLegibility;
 }
 
 .container {
-  flex: 1 0 auto;
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  background-size: cover;
-  margin: 4rem auto;
-  width: 100%;
-  //background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
+flex: 1 0 auto;
+display: flex;
+display: -webkit-flex;
+display: -moz-flex;
+background-size: cover;
+margin: 4rem auto;
+width: 100%;
+//background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) fixed center top;
 
 }
 
 a {
-  text-decoration: none;
+text-decoration: none;
 }
 
 table {
-  border-spacing: 0;
-  border-collapse: collapse;
+border-spacing: 0;
+border-collapse: collapse;
 }
 
 ul>li, ol>li {
-  list-style: none;
+list-style: none;
 }
 
 li {
-  word-wrap: break-word;
+word-wrap: break-word;
 }
 
 #root {
-  height: 100%;
+height: 100%;
 }
 
 .app {
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  height: 100%;
-  flex-direction: column;
-  position: relative;
+display: flex;
+display: -webkit-flex;
+display: -moz-flex;
+height: 100%;
+flex-direction: column;
+position: relative;
 }
 
 
