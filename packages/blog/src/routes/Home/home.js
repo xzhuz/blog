@@ -63,7 +63,7 @@ class Home extends React.Component {
         if (items.length % 6 !== 0) {
             const seq = Math.floor(items.length / 6);
             const supplement = 6 * (seq + 1) + 1;
-            let less = supplement - items.length;
+            const less = supplement - items.length;
             const lastItem = items.pop();
             // if (less % 2 === 0) {
             //     less -= 1;

@@ -36,6 +36,13 @@ export default class BlogList extends Component {
   }
 
   onShowSizeChange = (current, pageSize) => {
+    const { dispatch } = this.props;
+    const { publish } = this.state;
+    dispatch({
+      type: 'article/fetchConditionList',
+      payload: { pageNum: current, pageSize, publish },
+    });
+    console.log(current);
     this.setState({ pageNum: current, pageSize });
   };
 
