@@ -41,6 +41,7 @@ export default class BlogUpdate extends PureComponent {
       tags,
       thumb: { file },
     } = e;
+
     if (file) {
       const {
         response: { data },

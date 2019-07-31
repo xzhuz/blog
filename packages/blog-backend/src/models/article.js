@@ -36,6 +36,8 @@ export default {
         });
       } else if (response.code === USER_UNAUTH) {
         yield put(routerRedux.push('/user/login'));
+      } else if (response.msg) {
+        message.error(response.msg);
       } else {
         message.error('查询文章信息失败');
       }
@@ -55,6 +57,8 @@ export default {
             type: 'saveList',
             payload: Array.isArray(data) ? data : [],
           });
+        } else if (response.msg) {
+          message.error(response.msg);
         } else {
           message.error('查询失败');
         }
@@ -70,8 +74,10 @@ export default {
         yield put(routerRedux.push('/article/blogDetail', { id: articleId }));
       } else if (response.code === USER_UNAUTH) {
         yield put(routerRedux.push('/user/login'));
+      } else if (response.msg) {
+        message.error(response.msg);
       } else {
-        message.error('发布失败!');
+        message.error('发布失败');
       }
     },
     *updateArticle({ payload }, { call, put }) {
@@ -84,6 +90,8 @@ export default {
         }
       } else if (response.code === USER_UNAUTH) {
         yield put(routerRedux.push('/user/login'));
+      } else if (response.msg) {
+        message.error(response.msg);
       } else {
         message.error('更新失败!');
       }
@@ -141,6 +149,8 @@ export default {
           type: 'saveStatisticCount',
           payload: res.data,
         });
+      } else if (res.msg) {
+        message.error(res.msg);
       } else {
         message.error('获取文章数失败');
       }

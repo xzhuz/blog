@@ -33,8 +33,8 @@ export async function deleteArticle(params) {
 }
 
 export async function publishArticle(params) {
-  return customAxios('/articles/publish', {
-    method: 'PUT',
+  return customAxios('/articles/add', {
+    method: 'POST',
     data: params,
   });
 }

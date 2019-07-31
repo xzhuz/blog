@@ -26,7 +26,7 @@ export default class BlogList extends Component {
     const { dispatch } = this.props;
     const { pageNum, pageSize } = this.state;
     dispatch({
-      type: 'article/fetchList',
+      type: 'article/fetchConditionList',
       payload: { pageNum, pageSize },
     });
 
@@ -42,7 +42,6 @@ export default class BlogList extends Component {
       type: 'article/fetchConditionList',
       payload: { pageNum: current, pageSize, publish },
     });
-    console.log(current);
     this.setState({ pageNum: current, pageSize });
   };
 
@@ -74,6 +73,12 @@ export default class BlogList extends Component {
   }
 
   pagination(page) {
+    const { pageSize, publish } = this.state;
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/fetchConditionList',
+      payload: { pageNum: page, pageSize, publish },
+    });
     this.setState({ pageNum: page });
   }
 

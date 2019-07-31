@@ -96,7 +96,7 @@ export default class UpdateForm extends PureComponent {
     });
     const { form } = this.props;
     form.setFieldsValue({
-      tagList: editableTags.join(','),
+      tagList: editableTags,
     });
   };
 
@@ -109,9 +109,11 @@ export default class UpdateForm extends PureComponent {
       handleSubmit,
       data: { id },
     } = this.props;
+
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const { tagList } = values;
+        console.log(tagList);
         handleSubmit({ ...values, tags: tagList, id });
       }
     });
@@ -148,8 +150,8 @@ export default class UpdateForm extends PureComponent {
     const {
       file: { response },
     } = info;
-    if (response.code !== 0) {
-      message.error(`上传文件失败，原因: ${response.msg}`);
+    if (!response || !response.code || response.code !== '10000') {
+      message.error('上传文件失败');
     }
   };
 
@@ -216,7 +218,7 @@ export default class UpdateForm extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '/api/file/upload',
+      action: '/api/static/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -233,7 +235,7 @@ export default class UpdateForm extends PureComponent {
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="/api/file/upload"
+              action="/api/static/file/upload"
               beforeUpload={beforeUpload}
               onChange={this.handleChange}
               {...uploadProps}
