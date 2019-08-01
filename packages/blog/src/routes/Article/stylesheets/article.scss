@@ -33,7 +33,7 @@
     display: -moz-flex;
     flex-direction: column;
     height: 100%;
-    //width: 90%;
+    width: 90%;
     margin: 0 auto;
 
     @media only screen and (max-width: 768px) {
@@ -148,7 +148,7 @@
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-align: center;
-  max-width: 920px;
+  //max-width: 920px;
 }
 
 

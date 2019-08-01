@@ -117,7 +117,7 @@ class Home extends React.Component {
                             <div className='banner-detail'>
                                 <img src={avatar} className='banner-avatar' />
                                 <p className='banner-type'>
-                                     我只是一个程序猿
+                                     申申如也,夭夭如也
                                 </p>
                             </div>
                         </div>
