@@ -64,7 +64,7 @@ export default class BlogDetail extends Component {
       article: { articleDetail },
       location: { search },
     } = this.props;
-    const { content, date, update, tags, visit, compliment, publish } = articleDetail;
+    const { content, date, update, tags, visit, compliment, publish, title } = articleDetail;
     const { id } = queryString.parse(search);
     const action = (
       <Fragment>
@@ -91,7 +91,7 @@ export default class BlogDetail extends Component {
     );
 
     return (
-      <PageHeaderLayout title="Hello World" action={action} content={description}>
+      <PageHeaderLayout title={title} action={action} content={description}>
         <Card style={{ marginBottom: 24 }} bordered={false} loading={articleLoading}>
           <div
             className={styles.markdown}
