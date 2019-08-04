@@ -160,7 +160,7 @@ export default class BlogPublish extends PureComponent {
     // 2. 按照服务器返回信息筛选成功上传的文件
     list = list.filter(file => {
       if (file.response) {
-        return file.response.code === 0;
+        return file.response.code === '10000';
       }
       return true;
     });
