@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { List, Card, Row, Col, Radio, Button } from 'antd';
+import { formatDate } from '../../utils/utils';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -120,7 +120,7 @@ export default class BlogList extends Component {
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>发布时间</span>
-          <p>{moment(date).format('yyyy-MM-dd HH:mm:ss')}</p>
+          <p>{formatDate(date)}</p>
         </div>
       </div>
     );

@@ -180,3 +180,18 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(
 export function isUrl(path) {
   return reg.test(path);
 }
+
+export function prefixInteger(num, n) {
+  return (Array(n).join(0) + num).slice(-n);
+}
+
+export function formatDate(date) {
+  const blogDate = new Date(date);
+  const year = blogDate.getFullYear();
+  const month = prefixInteger(blogDate.getMonth() + 1, 2);
+  const day = prefixInteger(blogDate.getUTCDate(), 2);
+  const hour = prefixInteger(blogDate.getHours(), 2);
+  const minutes = prefixInteger(blogDate.getMinutes(), 2);
+  const seconds = prefixInteger(blogDate.getSeconds(), 2);
+  return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+}
