@@ -71,8 +71,7 @@ export default class UpdateForm extends PureComponent {
 
   handleClose = removedTag => {
     const { tagList } = this.state;
-    const resultTags = tagList.filter(tag => tag !== removedTag);
-    this.setState({ tagList: resultTags });
+    this.setState({ tagList: tagList.filter(tag => tag !== removedTag) });
   };
 
   showInput = () => {
@@ -110,10 +109,10 @@ export default class UpdateForm extends PureComponent {
       data: { id },
     } = this.props;
 
+    const { tagList } = this.state;
+
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const { tagList } = values;
-        console.log(tagList);
         handleSubmit({ ...values, tags: tagList, id });
       }
     });

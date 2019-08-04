@@ -22,7 +22,7 @@ export async function queryStatisticCount(params) {
 }
 
 export async function queryArticleDetail(params) {
-  return customAxios('/blog/info', { params });
+  return customAxios('/articles/info', { params });
 }
 
 export async function deleteArticle(params) {
