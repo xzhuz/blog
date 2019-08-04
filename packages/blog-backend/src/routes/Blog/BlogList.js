@@ -116,11 +116,11 @@ export default class BlogList extends Component {
       total: articleCount,
     };
 
-    const ListContent = ({ data: { createTime: date } }) => (
+    const ListContent = ({ data: { createTime } }) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>发布时间</span>
-          <p>{formatDate(date)}</p>
+          <p>{formatDate(createTime)}</p>
         </div>
       </div>
     );
