@@ -120,7 +120,7 @@ export default class BlogList extends Component {
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>发布时间</span>
-          <p>{moment(date).format('YYYY-MM-DD HH:mm')}</p>
+          <p>{moment(date).format('yyyy-MM-dd HH:mm:ss')}</p>
         </div>
       </div>
     );
