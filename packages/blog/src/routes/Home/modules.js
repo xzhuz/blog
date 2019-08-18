@@ -1,5 +1,6 @@
 import {fromJS, List} from 'immutable';
 
+import * as Constants from '../../utils/Constants';
 import * as request from '../../utils/axios/api';
 import * as Articles from './constants';
 
@@ -39,10 +40,8 @@ export default function homeReducer(state = initialState, action) {
 export function pageableArticles({page, size}) {
     return (dispatch) => {
         request.partArticles({page, size}).then(res => {
-            if (res.code === 0) {
-                dispatch(articleData(res.data));
-            } else if (res.code === 3) {
-                alert('您刷新过于频繁，系统已拦截，请联系博主');
+            if (res.code === Constants.SUCCESS_CODE) {
+                dispatch(articleData(res.data.data));
             } else {
                 return [];
             }
@@ -52,7 +51,7 @@ export function pageableArticles({page, size}) {
 
 export function getArticlesCount() {
     return request.countArticle().then(res => {
-        if (res.code === 0) {
+        if (res.code === Constants.SUCCESS_CODE) {
             return res.data;
         }
         return 0;
@@ -62,10 +61,11 @@ export function getArticlesCount() {
 
 export function getPartArticles({page, size}) {
     return request.partArticles({page, size}).then(res => {
-        if (res.code === 0) {
-            return fromJS({ARTICLES_DATA: List.of(...res.data)});
-        } else if (res.code === 3) {
-            alert('您刷新过于频繁，系统已拦截，请联系博主');
+        if (res.code === Constants.SUCCESS_CODE) {
+            return fromJS({
+                ARTICLES_DATA: List.of(...res.data.data),
+                ARTICLES_COUNT: res.data.count,
+            });
         } else {
             return [];
         }

@@ -45,13 +45,14 @@ class Achieve extends React.Component {
 
     renderAchieveItems(value) {
         return value.map(data => {
-            const id = data.get('id');
-            const date = dateFormat(data.get('date'));
+            const articleId = data.get('articleId');
+            const blogDate = dateFormat(data.get('blogDate'));
             const title = data.get('title');
-            return <p key={`${id}`} className='achieve-items'>
-                <span className='achieve-date'>{date}</span>
+            console.log('articleId:' + articleId + ", date: " + blogDate + ', title' + title);
+            return <p key={`${articleId}`} className='achieve-items'>
+                <span className='achieve-date'>{blogDate}</span>
                 <span className='achieve-title'>
-                    <Link to={`/article/${id}`}>
+                    <Link to={`/article/${articleId}`}>
                         {title}
                     </Link>
                 </span>

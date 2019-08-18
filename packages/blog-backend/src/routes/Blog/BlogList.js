@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { List, Card, Row, Col, Radio, Button } from 'antd';
+import { formatDate } from '../../utils/utils';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -17,15 +17,33 @@ const RadioGroup = Radio.Group;
 }))
 export default class BlogList extends Component {
   state = {
-    group: 0,
+    pageNum: 0,
+    pageSize: 10,
+    publish: null,
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
+    const { pageNum, pageSize } = this.state;
     dispatch({
-      type: 'article/fetchList',
+      type: 'article/fetchConditionList',
+      payload: { pageNum, pageSize },
+    });
+
+    dispatch({
+      type: 'article/statisticCount',
     });
   }
+
+  onShowSizeChange = (current, pageSize) => {
+    const { dispatch } = this.props;
+    const { publish } = this.state;
+    dispatch({
+      type: 'article/fetchConditionList',
+      payload: { pageNum: current, pageSize, publish },
+    });
+    this.setState({ pageNum: current, pageSize });
+  };
 
   addArticle = () => {
     const { dispatch } = this.props;
@@ -38,17 +56,37 @@ export default class BlogList extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'article/deleteArticle',
-      payload: { id },
+      payload: { id, ...this.state },
     });
   };
 
+  handleChangeTab(e) {
+    const { dispatch } = this.props;
+    const { pageNum, pageSize } = this.state;
+    // eslint-disable-next-line radix
+    const publish = e.target.value === '-1' ? null : Number.parseInt(e.target.value);
+    this.setState({ publish });
+    dispatch({
+      type: 'article/fetchConditionList',
+      payload: { pageNum, pageSize, publish },
+    });
+  }
+
+  pagination(page) {
+    const { pageSize, publish } = this.state;
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/fetchConditionList',
+      payload: { pageNum: page, pageSize, publish },
+    });
+    this.setState({ pageNum: page });
+  }
+
   render() {
     const {
-      article: { list },
+      article: { list, nonPublishCount, publishCount, articleCount },
       articleLoading,
     } = this.props;
-
-    const { group } = this.state;
 
     const Info = ({ title, value, bordered }) => (
       <div className={styles.headerInfo}>
@@ -60,41 +98,29 @@ export default class BlogList extends Component {
 
     const extraContent = (
       <div className={styles.extraContent}>
-        <RadioGroup
-          defaultValue="0"
-          onChange={e => this.setState({ group: e.target.value })}
-          buttonStyle="solid"
-        >
-          <RadioButton value="0">全部</RadioButton>
+        <RadioGroup defaultValue="-1" onChange={e => this.handleChangeTab(e)} buttonStyle="solid">
+          <RadioButton value="-1">全部</RadioButton>
           <RadioButton value="1">已发布</RadioButton>
-          <RadioButton value="2">未发布</RadioButton>
+          <RadioButton value="0">未发布</RadioButton>
         </RadioGroup>
       </div>
     );
 
-    const allarticle = list;
-    const publisharticle = list.filter(l => l.publish);
-    const nonPublisharticle = list.filter(l => !l.publish);
-
-    let article = allarticle;
-    if (group === '1') {
-      article = publisharticle;
-    } else if (group === '2') {
-      article = nonPublisharticle;
-    }
-
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
-      pageSize: 5,
-      total: article.length,
+      onChange: page => this.pagination(page),
+      onShowSizeChange: (current, pageSize) => this.onShowSizeChange(current, pageSize),
+      // eslint-disable-next-line react/destructuring-assignment
+      pageSize: this.state.pageSize,
+      total: articleCount,
     };
 
-    const ListContent = ({ data: { date } }) => (
+    const ListContent = ({ data: { createTime } }) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>发布时间</span>
-          <p>{moment(date).format('YYYY-MM-DD HH:mm')}</p>
+          <p>{formatDate(createTime)}</p>
         </div>
       </div>
     );
@@ -105,13 +131,13 @@ export default class BlogList extends Component {
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
-                <Info title="全部文章" value={`${allarticle.length}篇`} bordered />
+                <Info title="全部文章" value={`${articleCount}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="已发布文章" value={`${publisharticle.length}篇`} bordered />
+                <Info title="已发布文章" value={`${publishCount}篇`} bordered />
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="未发布文章" value={`${nonPublisharticle.length}篇`} />
+                <Info title="未发布文章" value={`${nonPublishCount}篇`} />
               </Col>
             </Row>
           </Card>
@@ -137,21 +163,26 @@ export default class BlogList extends Component {
               rowKey="id"
               loading={articleLoading}
               pagination={paginationProps}
-              dataSource={article}
+              dataSource={list}
               renderItem={item => (
                 <List.Item
                   actions={[
-                    <Link to={{ pathname: '/article/blogUpdate', search: `id=${item.id}` }}>
+                    <Link to={{ pathname: '/article/blogUpdate', search: `id=${item.articleId}` }}>
                       编辑
                     </Link>,
-                    <Button className={styles.deleteBtn} onClick={() => this.handleDelete(item.id)}>
+                    <Button
+                      className={styles.deleteBtn}
+                      onClick={() => this.handleDelete(item.articleId)}
+                    >
                       删除
                     </Button>,
                   ]}
                 >
                   <List.Item.Meta
                     title={
-                      <Link to={{ pathname: '/article/blogDetail', search: `id=${item.id}` }}>
+                      <Link
+                        to={{ pathname: '/article/blogDetail', search: `id=${item.articleId}` }}
+                      >
                         {item.title}
                       </Link>
                     }

@@ -20,17 +20,17 @@ export function formatDate(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
     const month = prefixInteger(blogDate.getMonth() + 1, 2);
-    const day = prefixInteger(blogDate.getDate(), 2);
-    const hours = prefixInteger(blogDate.getHours(), 2);
+    const day = prefixInteger(blogDate.getUTCDate(), 2);
+    const hour = prefixInteger(blogDate.getHours(), 2);
     const minutes = prefixInteger(blogDate.getMinutes(), 2);
     const seconds = prefixInteger(blogDate.getSeconds(), 2);
-    return year + '年' + month + '月' + day + '日 ' + hours + ':' + minutes + ':' + seconds;
+    return `${year}年${month}月${day}月 ${hour}:${minutes}:${seconds}`;
 }
 
 export function dateFormat(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
     const month = prefixInteger(blogDate.getMonth() + 1, 2);
-    const day = prefixInteger(blogDate.getDate(), 2);
-    return year + '-' + month + '-' + day;
+    const day = prefixInteger(blogDate.getUTCDate(), 2);
+    return `${year}-${month}-${day}`;
 }

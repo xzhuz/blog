@@ -1,5 +1,7 @@
 import {fromJS, List} from "immutable";
 
+import * as Constants from '../../utils/Constants';
+
 import * as request from '../../utils/axios/api';
 import * as Article from "./constants";
 
@@ -37,10 +39,8 @@ export function increaseVisit(id) {
 export function getArticleDetail(id) {
     return (dispatch) => {
         request.articleDetail(id).then(res => {
-            if (res.code === 0) {
+            if (res.code === Constants.SUCCESS_CODE) {
                 dispatch(articleDetail(res.data));
-            } else if (res.code === 3) {
-                alert('您刷新过于频繁，系统已拦截，请联系博主');
             } else {
                 return dispatch(articleDetail({}));
             }
@@ -50,7 +50,7 @@ export function getArticleDetail(id) {
 
 export function fetchArticle(id) {
     return request.articleDetail(id).then(res => {
-        if (res.code === 0) {
+        if (res.code === Constants.SUCCESS_CODE) {
             return res.data;
         } else {
             return {};

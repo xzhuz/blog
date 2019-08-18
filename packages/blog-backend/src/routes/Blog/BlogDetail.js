@@ -64,7 +64,16 @@ export default class BlogDetail extends Component {
       article: { articleDetail },
       location: { search },
     } = this.props;
-    const { content, date, update, tags, visit, compliment, publish } = articleDetail;
+    const {
+      content,
+      createTime,
+      modifyTime,
+      tags,
+      visit,
+      compliment,
+      publish,
+      title,
+    } = articleDetail;
     const { id } = queryString.parse(search);
     const action = (
       <Fragment>
@@ -78,8 +87,12 @@ export default class BlogDetail extends Component {
 
     const description = (
       <DescriptionList className={styles.headerList} size="small" col="2">
-        <Description term="创建时间">{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Description>
-        <Description term="更新时间">{moment(update).format('YYYY-MM-DD HH:mm:ss')}</Description>
+        <Description term="创建时间">
+          {moment(createTime).format('YYYY-MM-DD HH:mm:ss')}
+        </Description>
+        <Description term="更新时间">
+          {moment(modifyTime).format('YYYY-MM-DD HH:mm:ss')}
+        </Description>
         <Description term="标签">{tags}</Description>
         <Description term="阅读数">{visit}</Description>
         <Description term="点赞数">{compliment}</Description>
@@ -91,7 +104,7 @@ export default class BlogDetail extends Component {
     );
 
     return (
-      <PageHeaderLayout title="Hello World" action={action} content={description}>
+      <PageHeaderLayout title={title} action={action} content={description}>
         <Card style={{ marginBottom: 24 }} bordered={false} loading={articleLoading}>
           <div
             className={styles.markdown}

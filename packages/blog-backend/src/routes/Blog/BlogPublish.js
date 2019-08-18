@@ -140,8 +140,8 @@ export default class BlogPublish extends PureComponent {
     const {
       file: { response },
     } = info;
-    if (response.code !== 0) {
-      message.error(`上传文件失败，原因: ${response.msg}`);
+    if (!response || !response.code || response.code !== '10000') {
+      message.error(`上传文件失败`);
     }
   };
 
@@ -160,7 +160,7 @@ export default class BlogPublish extends PureComponent {
     // 2. 按照服务器返回信息筛选成功上传的文件
     list = list.filter(file => {
       if (file.response) {
-        return file.response.code === 0;
+        return file.response.code === '10000';
       }
       return true;
     });
@@ -204,7 +204,7 @@ export default class BlogPublish extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '/api/file/upload',
+      action: '/api/static/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -220,7 +220,7 @@ export default class BlogPublish extends PureComponent {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="/api/file/upload"
+                  action="/api/static/file/upload"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                   {...uploadProps}
@@ -244,7 +244,7 @@ export default class BlogPublish extends PureComponent {
               })(<Input placeholder="请输入文章标题" />)}
             </FormItem>
             <FormItem {...formItemLayout} label="文章简介">
-              {getFieldDecorator('summary', {
+              {getFieldDecorator('introduce', {
                 rules: [
                   {
                     required: true,

@@ -14,6 +14,16 @@ export function get(url, params) {
     });
 }
 
+export function put(url, data) {
+    return new Promise((resolve, reject) => {
+        axios.put(url, data).then(res => {
+            resolve(res.data);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
 export function post(url, data) {
     return new Promise((resolve, reject) => {
         axios.post(url, data).then(res => {

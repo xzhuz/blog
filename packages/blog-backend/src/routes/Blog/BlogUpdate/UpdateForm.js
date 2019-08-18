@@ -36,7 +36,7 @@ function beforeUpload(file) {
 @Form.create()
 export default class UpdateForm extends PureComponent {
   state = {
-    tags: [],
+    tagList: [],
     inputVisible: false,
     inputValue: '',
     loading: false,
@@ -46,12 +46,11 @@ export default class UpdateForm extends PureComponent {
 
   componentDidMount() {
     const {
-      data: { content, tags },
+      data: { content, tagList },
       form,
     } = this.props;
-    const tagArr = tags.split(',');
-    this.setState({ tags: tagArr });
-    form.setFieldsValue({ tags: tagArr });
+    this.setState({ tagList });
+    form.setFieldsValue({ tagList });
     this.smde = new SimpleMDE({
       element: document.getElementById('content').childElementCount,
       autofocus: false,
@@ -71,9 +70,8 @@ export default class UpdateForm extends PureComponent {
   }
 
   handleClose = removedTag => {
-    const { tags } = this.state;
-    const resultTags = tags.filter(tag => tag !== removedTag);
-    this.setState({ tags: resultTags });
+    const { tagList } = this.state;
+    this.setState({ tagList: tagList.filter(tag => tag !== removedTag) });
   };
 
   showInput = () => {
@@ -85,19 +83,19 @@ export default class UpdateForm extends PureComponent {
   };
 
   handleInputConfirm = () => {
-    const { inputValue, tags } = this.state;
-    let editableTags = tags;
+    const { inputValue, tagList } = this.state;
+    let editableTags = tagList;
     if (inputValue && editableTags.indexOf(inputValue) === -1) {
       editableTags = [...editableTags, inputValue];
     }
     this.setState({
-      tags: editableTags,
+      tagList: editableTags,
       inputVisible: false,
       inputValue: '',
     });
     const { form } = this.props;
     form.setFieldsValue({
-      tags: editableTags.join(','),
+      tagList: editableTags,
     });
   };
 
@@ -110,9 +108,12 @@ export default class UpdateForm extends PureComponent {
       handleSubmit,
       data: { id },
     } = this.props;
+
+    const { tagList } = this.state;
+
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        handleSubmit({ ...values, id });
+        handleSubmit({ ...values, tags: tagList, id });
       }
     });
   };
@@ -148,8 +149,8 @@ export default class UpdateForm extends PureComponent {
     const {
       file: { response },
     } = info;
-    if (response.code !== 0) {
-      message.error(`上传文件失败，原因: ${response.msg}`);
+    if (!response || !response.code || response.code !== '10000') {
+      message.error('上传文件失败');
     }
   };
 
@@ -168,7 +169,7 @@ export default class UpdateForm extends PureComponent {
     // 2. 按照服务器返回信息筛选成功上传的文件
     list = list.filter(file => {
       if (file.response) {
-        return file.response.code === 0;
+        return file.response.code === '10000';
       }
       return true;
     });
@@ -180,9 +181,9 @@ export default class UpdateForm extends PureComponent {
     const {
       submitting,
       form,
-      data: { title, content, summary, publish, thumb },
+      data: { title, content, introduce, publish, thumb },
     } = this.props;
-    const { tags, inputVisible, inputValue, loading, imageUrl, fileList } = this.state;
+    const { tagList, inputVisible, inputValue, loading, imageUrl, fileList } = this.state;
     const { getFieldDecorator } = form;
 
     const formItemLayout = {
@@ -216,7 +217,7 @@ export default class UpdateForm extends PureComponent {
     };
 
     const uploadPictureProps = {
-      action: '/api/file/upload',
+      action: '/api/static/file/upload',
       onChange: this.handleUploadPicture,
       multiple: true,
       normalize: this.normFile,
@@ -233,7 +234,7 @@ export default class UpdateForm extends PureComponent {
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="/api/file/upload"
+              action="/api/static/file/upload"
               beforeUpload={beforeUpload}
               onChange={this.handleChange}
               {...uploadProps}
@@ -254,18 +255,18 @@ export default class UpdateForm extends PureComponent {
           })(<Input placeholder="请输入文章标题" />)}
         </FormItem>
         <FormItem {...formItemLayout} label="文章简介">
-          {getFieldDecorator('summary', {
+          {getFieldDecorator('introduce', {
             rules: [
               {
                 required: true,
                 message: '请输入文章简介',
               },
             ],
-            initialValue: summary,
+            initialValue: introduce,
           })(<Input placeholder="请输入文章简介" />)}
         </FormItem>
         <FormItem {...formItemLayout} label="文章标签">
-          {getFieldDecorator('tags', {
+          {getFieldDecorator('tagList', {
             rules: [
               {
                 required: true,
@@ -274,7 +275,7 @@ export default class UpdateForm extends PureComponent {
             ],
           })(
             <div>
-              {tags.map(tag => {
+              {tagList.map(tag => {
                 const isLongTag = tag.length > 20;
                 const tagElem = (
                   <Tag key={tag} closable afterClose={() => this.handleClose(tag)}>

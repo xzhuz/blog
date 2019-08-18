@@ -17,7 +17,7 @@ class Home extends React.Component {
         super(props);
         this.state = {
             page: 0,
-            size: 3,
+            size: 6,
         };
     }
 
@@ -35,7 +35,7 @@ class Home extends React.Component {
 
     readMore(v) {
         this.setState(state => ({
-            size: state.size + 3,
+            size: state.size + 6,
         }), () => this.props.pageableArticles(this.state));
         NProgress.start();
     }
@@ -56,7 +56,24 @@ class Home extends React.Component {
 
     reduce(arr) {
         const res = new Map();
-        return Array.from(arr).filter(a => !res.has(a.id) && res.set(a.id, 1));
+        return Array.from(arr).filter(a => !res.has(a.articleId) && res.set(a.articleId, 1));
+    }
+
+    extracted(items) {
+        if (items.length % 6 !== 0) {
+            const seq = Math.floor(items.length / 6);
+            const supplement = 6 * (seq + 1) + 1;
+            const less = supplement - items.length;
+            const lastItem = items.pop();
+            // if (less % 2 === 0) {
+            //     less -= 1;
+            // }
+            for (let i = 0; i < less; i++) {
+                items.push(<div key={`emptyItem${i}`}/>);
+            }
+            items.push(lastItem);
+
+        }
     }
 
     loadItems(e) {
@@ -67,21 +84,23 @@ class Home extends React.Component {
         }, 1000);
     }
 
+
     render() {
         // initArticles: 初始文章 articles: 点击加载更多时的文章
         const {initArticles, articles, articleCount} = this.props;
         const resultArticles = this.reduce([...initArticles, ...articles]);
         const banner = require('./assets/images/banner.jpg');
         const avatar = require('./assets/images/avatar.jpeg');
-
         const items = [];
         resultArticles.map((v, index) => {
             items.push(
-                <Card key={index} articleId={v.id} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
-                      summary={v.summary} tags={v.tags} date={v.date} clickTag={(v) => this.tagClick(v)}
-                      showPost={(id) => this.showPostContent(id, v.visit)} showCardInfo={true}/>
+                <Card key={index} articleId={v.articleId} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
+                      introduce={v.introduce} tagList={v.tagList} createTime={v.createTime} clickTag={(v) => this.tagClick(v)}
+                      showPost={(articleId) => this.showPostContent(articleId, v.visit)} showCardInfo={true}/>
             );
         });
+
+        this.extracted(items);
         return (
             <div className='container'>
                 <div className="home-container">
@@ -98,36 +117,35 @@ class Home extends React.Component {
                             <div className='banner-detail'>
                                 <img src={avatar} className='banner-avatar' />
                                 <p className='banner-type'>
-                                     我只是一个程序猿
+                                     申申如也,夭夭如也
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <p className='segment'> 最近文章 </p>
                     <div className='articles-container'>
-                        <div className='articles'>
-                            <InfiniteScroll
-                                pageStart={0}
-                                loadMore={(e) => this.loadItems(e)}
-                                hasMore={articleCount >= this.state.size}
-                                loader={
-                                    <Loader type='ball-beat'
-                                            active={true}
-                                            key={0}
-                                            innerClassName='articles-loading'
-                                            color='#E53A40'
-                                            style={{transform: 'scale(0.5)'}}
-                                    />
-                                }
-                            >
-                               {items}
-                            </InfiniteScroll>
-                        </div>
+                        <InfiniteScroll
+                            pageStart={0}
+                            className='articles-card'
+                            loadMore={(e) => this.loadItems(e)}
+                            hasMore={articleCount >= this.state.size}
+                            loader={
+                                <Loader type='ball-beat'
+                                        active={true}
+                                        key={0}
+                                        innerClassName='articles-loading'
+                                        color='#E53A40'
+                                        style={{transform: 'scale(0.5)'}}
+                                />
+                            }
+                        >
+                            {items}
+                        </InfiniteScroll>
                     </div>
                 </div>
             </div>
         );
     }
+
 }
 
 Home.propTypes = {

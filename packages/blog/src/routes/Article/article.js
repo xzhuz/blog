@@ -1,13 +1,11 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import PropTypes from 'prop-types';
-import * as FontAwesome from 'react-icons/fa';
 
 import {markdown} from '../../utils/markdownUtil';
 import {formatDate} from '../../utils/commentUtils';
 
 import Tag from '../../components/Tag';
-import Compliment from '../../components/Compliment';
 import Comment from '../../components/Comment';
 
 import 'highlight.js/styles/atom-one-dark.css';
@@ -17,38 +15,46 @@ import './stylesheets/toc.scss';
 
 class Article extends React.PureComponent {
 
-    componentDidMount() {
-        const {articleId} = this.props.match.params;
-        this.props.increaseVisit(articleId);
-    }
+    // componentDidMount() {
+    //     const {articleId} = this.props.match.params;
+    //     this.props.increaseVisit(articleId);
+    // }
 
     tagClick(v) {
         this.props.history.push(`/tag/${v}`);
     }
 
     render () {
-        const {article: {title, content, date, tags, compliment, id, visit}} = this.props;
+        const {article: {title, content, createTime, tagList, thumb, compliment, articleId, visit}} = this.props;
         return (
             <article className='article-container'>
                 <Helmet title={title} />
-                <div className='article'>
-                    <section>
-                        <h1 className='article-title'>{title ? title.trim() : ''}</h1>
-                        <p className='article-info'>
-                            <span><FontAwesome.FaClock /> {formatDate(date)}</span>
-                            <span><FontAwesome.FaEye /> {visit}次</span>
-                        </p>
-                        <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
-                        <p className='article-tags'>
-                            {
-                                tags && tags.length > 0 ? [...tags.split(',')].map((v, index) => (
-                                    <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
-                                )) : ''
-                            }
-                        </p>
-                        <Compliment id={id} compliment={compliment} />
-                        <Comment />
-                    </section>
+                <div className='article-outer'>
+                    <div className='article'>
+                        <section>
+                            <div className='article-header'>
+                                <div className='article-header-meta'>
+                                    <time className='article-time'>{formatDate(createTime)}</time>
+
+                                </div>
+                                <h1 className='article-title'>{title} </h1>
+                            </div>
+                            <figure className='article-image' style={{backgroundImage: `url(${thumb})`}}>
+
+                            </figure>
+                            <div className='article-full-content '>
+                                <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                            </div>
+                            <p className='article-tags'>
+                                {
+                                    tagList.map((v, index) => (
+                                        <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                    ))
+                                }
+                            </p>
+                            <Comment />
+                        </section>
+                    </div>
                 </div>
                 {  /*       <SideBar>
                             <div className={classNames('bar-toc', {
@@ -62,7 +68,6 @@ class Article extends React.PureComponent {
 }
 
 Article.propTypes = {
-    increaseVisit: PropTypes.func.isRequired,
     article: PropTypes.object.isRequired,
 };
 

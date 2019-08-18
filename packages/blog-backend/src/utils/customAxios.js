@@ -42,6 +42,10 @@ const createAxios = (customConfig = {}) => {
     withCredentials: true,
     crossDomain: true,
     dataType: 'jsonp',
+    // proxy: {
+    //   host: '127.0.0.1',
+    //   port: 80,
+    // },
   };
 
   return axios.create({ ...defaultConfig, ...customConfig });

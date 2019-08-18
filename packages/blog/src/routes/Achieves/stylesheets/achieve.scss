@@ -4,8 +4,8 @@
   height: auto;
   margin: 0 auto;
   background-color: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
+  border-radius: 5px;
+  //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
   overflow: hidden;
   z-index: 1;
   box-sizing: border-box;
@@ -38,6 +38,7 @@
       max-width: 7rem;
       min-width: 7rem;
     }
+
   }
 
   h1 {
@@ -72,4 +73,8 @@
       padding: 5px 0 0;
     }
   }
+}
+
+.achieve-items:hover {
+  cursor: pointer;
 }

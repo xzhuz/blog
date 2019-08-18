@@ -72,8 +72,13 @@
   }
 }
 
-.articles {
-  width: 100%;
+.articles-card {
+  display: flex;
+  position: relative;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  //margin: 0 -20px;
+  padding: 40px 0 0;
 
   h1.tag-name {
     color: $baseFontColor;
@@ -83,6 +88,12 @@
     svg{
       margin-bottom: -6px;
     }
+  }
+
+  @media only screen and (min-width: 767px) {
+    margin-top: -70px;
+    padding-top: 0;
+    width: 100%;
   }
 }
 
