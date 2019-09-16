@@ -53,6 +53,10 @@
 //.markdown {
 //  max-width: 700px;
 //}
+// markdown 样式
+.markdown {
+  //max-width: 700px;
+}
 .markdown,
 .editor-preview-side {
   p,
@@ -65,24 +69,31 @@
     margin: 1.2rem 0;
   }
 
-  p {
+  p,
+  li {
     font-size: 15px;
-    line-height: 1.8rem;
+    line-height: 1.6rem;
     word-break: break-word;
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+    font-family: -apple-system, PingFang SC, '微软雅黑', 'Microsoft YaHei', Helvetica,
+      'Helvetica Neue', Menlo, Monaco, Consolas, Courier New, monospace;
   }
 
   li > p {
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
+  }
+
+  ul > li {
+    list-style-type: disc;
+    margin-left: 1rem;
   }
 
   blockquote {
     padding: 0 1rem;
     color: #555;
-    border-left: 0.2rem solid #e53a40;
+    border-left: 0.2rem solid $baseStressColor;
 
     &:first-child p {
-      font-weight: bold;
+      font-weight: 400;
     }
   }
 
@@ -112,25 +123,29 @@
   }
 
   tt,
-  code,
   kbd,
   samp {
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+    font-family: -apple-system, PingFang SC, '微软雅黑', 'Microsoft YaHei', Helvetica,
+      'Helvetica Neue', Menlo, Monaco, Consolas, Courier New, monospace;
+  }
+
+  code {
+    font-family: Consolas, -apple-system, PingFang SC, '微软雅黑', 'Microsoft YaHei', Helvetica,
+      'Helvetica Neue', Menlo, Monaco, Courier New, monospace;
   }
 
   pre code {
     display: block;
     overflow-x: auto;
     padding: 1rem;
-    font-size: 0.8rem;
-    color: #abb2bf;
+    font-size: 0.9rem;
     background: #f8f8f8;
   }
 
   p code {
     overflow-x: auto;
-    font-size: 0.8rem;
-    color: #e53a40;
+    font-size: 0.87rem;
+    color: $baseStressColor;
     background-color: #fff5f5;
   }
 
@@ -153,11 +168,7 @@
 
   a {
     text-decoration: none;
-    color: #555;
-
-    &:hover {
-      color: #e53a40;
-    }
+    color: $baseStressColor;
   }
 
   .link {
@@ -170,5 +181,102 @@
 
   input[type='checkbox'] + ol {
     display: inline-block;
+    margin: auto 0;
+  }
+
+  // github css
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #333;
+    background: #f8f8f8;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #998;
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #333;
+    font-weight: bold;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: #008080;
+  }
+
+  .hljs-string,
+  .hljs-doctag {
+    color: #d14;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #900;
+    font-weight: bold;
+  }
+
+  .hljs-subst {
+    font-weight: normal;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: #458;
+    font-weight: bold;
+  }
+
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute {
+    color: #000080;
+    font-weight: normal;
+  }
+
+  .hljs-regexp,
+  .hljs-link {
+    color: #009926;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #990073;
+  }
+
+  .hljs-built_in,
+  .hljs-builtin-name {
+    color: #0086b3;
+  }
+
+  .hljs-meta {
+    color: #999;
+    font-weight: bold;
+  }
+
+  .hljs-deletion {
+    background: #fdd;
+  }
+
+  .hljs-addition {
+    background: #dfd;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
   }
 }

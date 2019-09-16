@@ -38,13 +38,13 @@ function checkStatus(response) {
 
 const createAxios = (customConfig = {}) => {
   const defaultConfig = {
-    baseURL: '/api/',
+    baseURL: 'http://localhost:8080/api/',
     withCredentials: true,
     crossDomain: true,
     dataType: 'jsonp',
     // proxy: {
     //   host: '127.0.0.1',
-    //   port: 80,
+    //   port: 8080,
     // },
   };
 
