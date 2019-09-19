@@ -79,7 +79,6 @@ class Relative extends React.Component {
     render() {
         // articles: 点击加载更多时的文章  relatives: 相关文章
         const { relatives, tag } = this.props;
-        console.log(relatives);
         // 判断是否已经加载完所有文章
         const articleOver = relatives.size < this.state.size;
         const items = relatives.map((v, index) => (

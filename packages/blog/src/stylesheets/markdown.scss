@@ -1,14 +1,23 @@
 // markdown 样式
 .markdown {
-  //max-width: 700px;
+  white-space: normal;
+  word-break: normal;
 }
 .markdown, .editor-preview-side {
-  p, blockquote, ul, ol, dl, table, pre {
-    margin: 1.2rem 0;
+  ul, ol, dl, table, pre {
+    margin: 8px 0;
+  }
+
+  p {
+    font-weight: 400;
+    text-indent: 0;
+    margin-bottom: 12px;
+    // 设置字体间的间距
+    letter-spacing: .9px;
   }
 
   p, li {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.6rem;
     word-break: break-word;
     font-family: -apple-system,"PingFang SC",PingFang SC,"微软雅黑","Microsoft YaHei",Helvetica,"Helvetica Neue",Menlo,Monaco,Consolas,Courier New,monospace;
@@ -29,16 +38,27 @@
 
   blockquote {
     padding: 0 1rem;
-    color: #555555;
-    border-left: 0.2rem solid $baseStressColor;
+    color: #6a737d;
+    border-left: .3em solid #dfe2e5;
+    margin-bottom: 12px;
 
     &:first-child p{
       font-weight: 400;
     }
+
     p {
-      margin: 0;
+      margin: 8px 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
     }
   }
+
+
 
   table {
     display: block;
@@ -125,98 +145,98 @@
 
 
   // github css
-
-  .hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em;
-    color: #333;
-    background: #f8f8f8;
-  }
-
-  .hljs-comment,
-  .hljs-quote {
-    color: #998;
-    font-style: italic;
-  }
-
-  .hljs-keyword,
-  .hljs-selector-tag,
-  .hljs-subst {
-    color: #333;
-    font-weight: bold;
-  }
-
-  .hljs-number,
-  .hljs-literal,
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-tag .hljs-attr {
-    color: #008080;
-  }
-
-  .hljs-string,
-  .hljs-doctag {
-    color: #d14;
-  }
-
-  .hljs-title,
-  .hljs-section,
-  .hljs-selector-id {
-    color: #900;
-    font-weight: bold;
-  }
-
-  .hljs-subst {
-    font-weight: normal;
-  }
-
-  .hljs-type,
-  .hljs-class .hljs-title {
-    color: #458;
-    font-weight: bold;
-  }
-
-  .hljs-tag,
-  .hljs-name,
-  .hljs-attribute {
-    color: #000080;
-    font-weight: normal;
-  }
-
-  .hljs-regexp,
-  .hljs-link {
-    color: #009926;
-  }
-
-  .hljs-symbol,
-  .hljs-bullet {
-    color: #990073;
-  }
-
-  .hljs-built_in,
-  .hljs-builtin-name {
-    color: #0086b3;
-  }
-
-  .hljs-meta {
-    color: #999;
-    font-weight: bold;
-  }
-
-  .hljs-deletion {
-    background: #fdd;
-  }
-
-  .hljs-addition {
-    background: #dfd;
-  }
-
-  .hljs-emphasis {
-    font-style: italic;
-  }
-
-  .hljs-strong {
-    font-weight: bold;
-  }
+  //
+  //.hljs {
+  //  display: block;
+  //  overflow-x: auto;
+  //  padding: 0.5em;
+  //  color: #333;
+  //  background: #f8f8f8;
+  //}
+  //
+  //.hljs-comment,
+  //.hljs-quote {
+  //  color: #998;
+  //  font-style: italic;
+  //}
+  //
+  //.hljs-keyword,
+  //.hljs-selector-tag,
+  //.hljs-subst {
+  //  color: #d73a49;
+  //  font-weight: bold;
+  //}
+  //
+  //.hljs-number,
+  //.hljs-literal,
+  //.hljs-variable,
+  //.hljs-template-variable,
+  //.hljs-tag .hljs-attr {
+  //  color: #008080;
+  //}
+  //
+  //.hljs-string,
+  //.hljs-doctag {
+  //  color: #d14;
+  //}
+  //
+  //.hljs-title,
+  //.hljs-section,
+  //.hljs-selector-id {
+  //  color: #900;
+  //  font-weight: bold;
+  //}
+  //
+  //.hljs-subst {
+  //  font-weight: normal;
+  //}
+  //
+  //.hljs-type,
+  //.hljs-class .hljs-title {
+  //  color: #6f42c1;
+  //  font-weight: bold;
+  //}
+  //
+  //.hljs-tag,
+  //.hljs-name,
+  //.hljs-attribute {
+  //  color: #000080;
+  //  font-weight: normal;
+  //}
+  //
+  //.hljs-regexp,
+  //.hljs-link {
+  //  color: #009926;
+  //}
+  //
+  //.hljs-symbol,
+  //.hljs-bullet {
+  //  color: #990073;
+  //}
+  //
+  //.hljs-built_in,
+  //.hljs-builtin-name {
+  //  color: #0086b3;
+  //}
+  //
+  //.hljs-meta {
+  //  color: #999;
+  //  font-weight: bold;
+  //}
+  //
+  //.hljs-deletion {
+  //  background: #fdd;
+  //}
+  //
+  //.hljs-addition {
+  //  background: #dfd;
+  //}
+  //
+  //.hljs-emphasis {
+  //  font-style: italic;
+  //}
+  //
+  //.hljs-strong {
+  //  font-weight: bold;
+  //}
 }

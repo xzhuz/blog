@@ -1,5 +1,6 @@
 import marked from 'marked';
 import hljs from 'highlight.js/lib/highlight';
+import 'highlight.js/styles/github.css';
 
 const languages = [
     'cpp',
@@ -80,6 +81,17 @@ renderer.image = function (href, title, text) {
     return `<p style="text-align: center;">
             ${isContainUrl ? getImgWithUrlHtml(text.match(reg)) : imgHtml}
           </p>`;
+};
+
+renderer.blockquote = function (text) {
+    text = text.replace('<p>','');
+    text = text.replace('</p>','');
+    const textArr = text.split('<br>');
+    const context = [];
+    for (let i = 0; i < textArr.length; i++) {
+        context.push(`<p>${textArr[i]}</p>`);
+    }
+    return `<blockquote>${context.join('')}</blockquote>`;
 };
 
 marked.setOptions({
