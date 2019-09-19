@@ -108,7 +108,7 @@ marked.setOptions({
             return hljs.highlightAuto(code).value;
         }
         return hljs.highlight(lang, code).value;
-    }
+    },
 });
 
 export function markdown(str) {

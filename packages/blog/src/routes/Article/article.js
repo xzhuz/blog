@@ -24,11 +24,11 @@ class Article extends React.PureComponent {
         this.props.history.push(`/tag/${v}`);
     }
 
-    render () {
+    render() {
         const {article: {title, content, createTime, tagList, thumb, compliment, articleId, visit}} = this.props;
         return (
             <article className='article-container'>
-                <Helmet title={title} />
+                <Helmet title={title}/>
                 <div className='article-outer'>
                     <div className='article'>
                         <section>
@@ -43,7 +43,8 @@ class Article extends React.PureComponent {
 
                             </figure>
                             <div className='article-full-content '>
-                                <div className='article-content markdown' dangerouslySetInnerHTML={{__html: markdown(content)}} />
+                                <div className='article-content markdown'
+                                     dangerouslySetInnerHTML={{__html: markdown(content)}}/>
                             </div>
                             <p className='article-tags'>
                                 {
@@ -52,16 +53,10 @@ class Article extends React.PureComponent {
                                     ))
                                 }
                             </p>
-                            <Comment />
+                            <Comment/>
                         </section>
                     </div>
                 </div>
-                {  /*       <SideBar>
-                            <div className={classNames('bar-toc', {
-                                [`toc-fixed`]: this.state.tocFixed,
-                            })}>
-                            </div>
-                        </SideBar> */ }
             </article>
         );
     }
