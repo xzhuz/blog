@@ -1,4 +1,4 @@
-.articles-container {
+.relative-containers {
   max-width: 1024px;
   margin: 0 auto;
   display: -ms-flexbox;
@@ -18,4 +18,9 @@
   @media only screen and (max-width: 768px) {
     width: 96%;
   }
+
+  .articles-card {
+    margin-top: 0;
+  }
+
 }

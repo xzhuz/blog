@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
     return {
         relatives: state.get(Relative.RELATIVE).get(Relative.RELATIVE_ARTICLE),
         tag: state.get(Relative.RELATIVE).get(Relative.ARTICLE_TAG),
+        count: state.get(Relative.RELATIVE).get(Relative.ARTICLE_COUNT),
     };
 };
 

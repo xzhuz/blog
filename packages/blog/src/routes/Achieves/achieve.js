@@ -48,7 +48,6 @@ class Achieve extends React.Component {
             const articleId = data.get('articleId');
             const blogDate = dateFormat(data.get('blogDate'));
             const title = data.get('title');
-            console.log('articleId:' + articleId + ", date: " + blogDate + ', title' + title);
             return <p key={`${articleId}`} className='achieve-items'>
                 <span className='achieve-date'>{blogDate}</span>
                 <span className='achieve-title'>
