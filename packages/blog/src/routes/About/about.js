@@ -31,19 +31,23 @@ class About extends React.PureComponent{
                             <h2><span className='title'>Ski</span>lls</h2>
                             <ul className='skills'>
                                 <li>
-                                    <span className='skills-title'>语言</span>
+                                    <span className='skills-title'>Language</span>
                                     <span className='skills-detail'>Java, JavaScript, HTML, CSS</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>数据库</span>
-                                    <span className='skills-detail'>Oracle, MySQL, Redis</span>
+                                    <span className='skills-title'>Database</span>
+                                    <span className='skills-detail'>MySQL, Redis</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>工具</span>
-                                    <span className='skills-detail'>Maven, Tomcat, Nginx, MyBatis, Spring, Guice, Jersey, Shiro, Redux, JQuery, React, Spring Boot</span>
+                                    <span className='skills-title'>Framework</span>
+                                    <span className='skills-detail'>Spring，Spring Boot，MyBatis, Guice, Jersey, Shiro, React, JQuery，Bootstrap</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>环境</span>
+                                    <span className='skills-title'>Tools</span>
+                                    <span className='skills-detail'>Maven, Tomcat, Redux</span>
+                                </li>
+                                <li>
+                                    <span className='skills-title'>Environment</span>
                                     <span className='skills-detail'>Mac, Ubuntu, Linux, Git, Intellij IDEA</span>
                                 </li>
                             </ul>
@@ -59,7 +63,7 @@ class About extends React.PureComponent{
                             </ul>
 
                         </section>
-                        <section>
+                        <section className='about-info-contact'>
                             <h2><span className='title'>Con</span>tact</h2>
                             <p>
                                 <Info icon={<FontAwesome.FaQq/>} info={'915818993'}/>

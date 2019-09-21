@@ -77,7 +77,12 @@
 }
 
 .about-container .about-info {
-  .about-info-statement, .about-info-about, .about-info-blog, .about-info-skills {
+  .about-info-statement, .about-info-about, .about-info-blog, .about-info-skills, .about-info-contact {
+
+    h2 + p, h2 + ul {
+      padding-top:1rem;
+    }
+
     li {
       font-size: 1rem;
       color: #555;
@@ -88,19 +93,15 @@
       }
     }
 
-    .skills {
-      padding: 1rem 0;
-    }
-
     .skills-title {
-      text-align: right;
+      text-align: left;
       -webkit-box-flex: 0;
       -ms-flex-positive: 0;
       flex-grow: 0;
       -ms-flex-negative: 0;
       flex-shrink: 0;
       -ms-flex-preferred-size: 25%;
-      flex-basis: 3rem;
+      flex-basis: 6rem;
       padding-right: 20px;
       font-weight: 700;
       font-size: 1rem;
@@ -108,7 +109,7 @@
 
     .skills-detail {
       text-align: left;
-      font-size: 1rem;
+      font-size: 14px;
     }
 
     .quote-content {

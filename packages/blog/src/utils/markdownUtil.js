@@ -84,6 +84,7 @@ renderer.image = function (href, title, text) {
 };
 
 renderer.blockquote = function (text) {
+    text = text.trim();
     text = text.replace('<p>','');
     text = text.replace('</p>','');
     const textArr = text.split('<br>');

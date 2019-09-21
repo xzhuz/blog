@@ -68,10 +68,10 @@ class Home extends React.Component {
             // if (less % 2 === 0) {
             //     less -= 1;
             // }
-            for (let i = 0; i < less; i++) {
-                items.push(<div key={`emptyItem${i}`}/>);
-            }
             items.push(lastItem);
+            for (let i = 0; i < less; i++) {
+                items.push(<div className='post-card no-display' key={`emptyItem${i}`}/>);
+            }
 
         }
     }
@@ -92,6 +92,7 @@ class Home extends React.Component {
         const banner = require('./assets/images/banner.jpg');
         const avatar = require('./assets/images/avatar.jpeg');
         const items = [];
+        console.log(resultArticles.length);
         resultArticles.map((v, index) => {
             items.push(
                 <Card key={index} articleId={v.articleId} title={v.title} thumb={v.thumb} visit={v.visit} compliment={v.compliment}
@@ -101,6 +102,8 @@ class Home extends React.Component {
         });
 
         this.extracted(items);
+
+        console.log(items);
         return (
             <div className='container'>
                 <div className="home-container">

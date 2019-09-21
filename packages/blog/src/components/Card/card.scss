@@ -1,24 +1,3 @@
-//.card {
-//  display: flex;
-//  display: -webkit-flex;
-//  display: -moz-flex;
-//  justify-content: flex-start;
-//  min-height: 160px;
-//  background-color: #ffffff;
-//  padding: .8rem;
-//  margin-bottom: 8px;
-//  border-radius: 5px;
-//
-//  &:hover {
-//    cursor: pointer;
-//    transition-duration: .4s;
-//    -moz-transition-duration: .4s;
-//    -webkit-transition-duration: .4s;
-//    -webkit-box-shadow: 1px 3px 9px $baseFontColor;
-//    -moz-box-shadow: 1px 3px 9px $baseFontColor;
-//    box-shadow: 1px 3px 9px $baseFontColor;
-//  }
-//}
 
 .post-card {
   display: -ms-flexbox;
@@ -28,7 +7,14 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: hidden;
-  margin: 0 20px 40px;
+  @media only screen and (min-width: 625px) {
+    margin: 0 20px 40px;
+  }
+
+  @media only screen and (max-width: 625px) {
+    margin-bottom: 40px;
+  }
+
   min-height: 300px;
   background: #fff 50%;
   background-size: cover;
@@ -77,10 +63,10 @@
 .post-card-content-link {
   position: relative;
   -ms-flex-positive: 1;
-  flex-grow: 1;
   display: block;
   padding: 25px 25px 0;
   color: #15171a;
+  flex: 1 0 auto;
 }
 
 .post-card-excerpt{
@@ -90,6 +76,14 @@
   max-height: 132px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 14px;
+  color: #998;
+
+  p{
+    max-height: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .post-card-meta {
@@ -101,6 +95,7 @@
   align-items: flex-end;
   padding: 0 25px 25px;
   line-height: 33px;
+  flex: 0 0 auto;
 }
 
 .tag-list {
@@ -140,14 +135,14 @@
 
 .post-card:nth-child(6n+1):not(.no-image) h2 {
   @media only screen and (min-width: 795px) {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
 
 
 .post-card:nth-child(6n+1):not(.no-image) p {
   @media only screen and (min-width: 795px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.55em;
   }
 }
@@ -343,4 +338,12 @@
   transition: all 600ms ease-in;
   -webkit-transition: all 600ms ease-in;
   -moz-transition: all 600ms ease-in;
+}
+
+.post-card.no-display {
+  background-color: transparent;
+  height: 0 !important;
+  min-height: 0;
+  margin: 0;
+  opacity: 0;
 }
