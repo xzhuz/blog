@@ -6,7 +6,7 @@ import BasicLayout from '../../components/BasicLayout';
 import Info from "../../components/Info";
 import './stylesheets/about.scss';
 
-class About extends React.PureComponent{
+class About extends React.PureComponent {
 
     render() {
         const github = <a href='https://github.com/xebcxc' target='_blank'>xebcxc</a>;
@@ -23,7 +23,8 @@ class About extends React.PureComponent{
                                 <li>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</li>
                                 <li>目前正走在成为一个厉害(<s>Zhuang Bi</s>)程序猿的路上. 前途很艰辛, 但是我会坚持!</li>
                                 <li>生活不止有撸码和工作, 也有诗和远方😏. 在快乐中生活, 在快乐中工作, 爱家人, 爱自己🤗</li>
-                                <li><i className='quote-name'>子曰：</i><i className='quote-content'>“生而知之者，上也；学而知之者，次也；困而学之，又其次也；困而不学，民斯为下矣。” </i></li>
+                                <li><i className='quote-name'>子曰：</i><i
+                                    className='quote-content'>“生而知之者，上也；学而知之者，次也；困而学之，又其次也；困而不学，民斯为下矣。” </i></li>
                                 <li><i className='quote-name'>子曰：</i><i className='quote-content'>“申申如也,夭夭如也。” </i></li>
                             </ul>
                         </section>
@@ -84,10 +85,15 @@ class About extends React.PureComponent{
                                 <li>本站所有文章仅代表个人当时意见和想法</li>
                                 <li>欢迎指出有问题的地方，我会尽快修正，谢谢！</li>
                                 <li>内容转载请保留署名以及原文连接，谢谢😀</li>
+                                <li>本网站所有作品采用
+                                    <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>
+                                    进行许可。
+                                    <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                                        <img alt="知识共享许可协议" style={{borderWidth:0}} src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"/>
+                                    </a>
+                                </li>
                             </ul>
-
                         </section>
-
                     </div>
                 </div>
             </BasicLayout>
