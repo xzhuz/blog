@@ -1,6 +1,8 @@
+import React from 'react';
 import marked from 'marked';
 import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/github.css';
+import {get} from "./axios/http";
 
 const languages = [
     'cpp',
@@ -61,7 +63,7 @@ function generateId(len) {
 
 renderer.heading = function (text, level) {
     const id = generateId();
-    return `<h${level} id="${id}">${text}</h${level}>`;
+    return `<h${level} id="${text}">${text}</h${level}>`;
 };
 
 renderer.link = function (href, title, text) {
@@ -94,6 +96,34 @@ renderer.blockquote = function (text) {
     }
     return `<blockquote>${context.join('')}</blockquote>`;
 };
+
+renderer.code = function (text, lang) {
+    const len = text.split("\n").length;
+    const lineHeight = (len + 1) * 22;
+    return `<pre class="prettyprint" style="height: ${lineHeight}px">
+        <code class="language-${lang}" style="position: unset;" >${getCode(text, lang)}</code>
+        <ul class="pre-numbering">
+            ${getList(len)}
+        </ul>
+    </pre>`;
+};
+
+
+function getList(len) {
+    let arr = '';
+    for (let i = 1; i <= len; i++) {
+        arr += `<li>${i}</li>`;
+    }
+    return arr;
+}
+
+
+function getCode(code, lang) {
+    if (!~languages.indexOf(lang)) {
+        return hljs.highlightAuto(code).value;
+    }
+    return hljs.highlight(lang, code).value;
+}
 
 marked.setOptions({
     renderer: renderer,

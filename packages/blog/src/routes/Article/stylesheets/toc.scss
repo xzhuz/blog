@@ -1,3 +1,15 @@
+.toc-link-bar{
+  box-sizing: border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  margin-left: 2%;
+  width: 28%;
+  @media only screen and (max-width: 1024px) {
+    width: 0;
+    display: none;
+  }
+}
+
 .bar-toc {
   color: $baseFontColor;
   line-height: 1.8rem;
@@ -33,9 +45,10 @@
   }
 }
 
-.toc-fixed{
+.toc-fixed {
   position: fixed;
-  top: 4.5rem;
+  bottom: 8rem;
+  left: 84%;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -4,6 +4,7 @@
   word-break: normal;
 }
 .markdown, .editor-preview-side {
+
   ul, ol, dl, table, pre {
     margin: 8px 0;
   }
@@ -106,12 +107,16 @@
   }
 
   pre code {
-     display: block;
-     overflow-x: auto;
-     padding: 1rem;
-     font-size: 14px;
-     background: #f6f8fa;
-   }
+    display: block;
+    overflow-x: auto;
+    //padding: 1rem;
+    font-size: 14px;
+    background: #f6f8fa;
+    line-height: 22px;
+    span{
+      line-height: 22px;
+    }
+  }
 
   p code {
     padding: .2em .4em;
@@ -158,6 +163,42 @@
 
   .MJXc-display{
     display: inline-block;
+  }
+
+  .prettyprint {
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  pre.prettyprint {
+    //margin: 0 0 24px;
+    padding: 0 16px 6px 56px;
+    background-color: #f6f8fa;
+    border: none;
+  }
+
+
+  .prettyprint .pre-numbering {
+    position: absolute;
+    width: 48px;
+    background-color: #eef0f4;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    text-align: center;
+    line-height: 3px;
+    height: 100%;
+    li {
+      padding: 0 4px;
+      list-style: none;
+      margin: 0;
+      font-size: 12px;
+      line-height: 22px;
+      color: #6a737d;
+    }
   }
 
 }
