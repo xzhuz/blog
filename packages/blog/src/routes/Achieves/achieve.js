@@ -62,7 +62,7 @@ class Achieve extends React.Component {
     render() {
         return (
             <BasicLayout>
-                <Helmet title='困知记 | 归档'/>
+                <Helmet title='学而录 | 归档'/>
                 <div className='achieves'>
                     {
                         this.renderAchieve()

@@ -105,7 +105,7 @@ class Home extends React.Component {
         return (
             <div className='container'>
                 <div className="home-container">
-                    <Helmet title='困知记'/>
+                    <Helmet title='学而录 | 首页'/>
                     <div className='banner' style={{
                             backgroundImage: `url(${banner})`,
                             backgroundPositionX: '50%',

@@ -13,7 +13,7 @@ class About extends React.PureComponent {
         const zhiHu = <a href='https://www.zhihu.com/people/mei-sen-41-34/activities' target='_blank'>梅小森</a>;
         return (
             <BasicLayout>
-                <Helmet title='梅 森 | 关于'/>
+                <Helmet title='学而录 | 关于'/>
                 <div className='about-container'>
                     <div className='about-info'>
                         <section className='about-info-about'>

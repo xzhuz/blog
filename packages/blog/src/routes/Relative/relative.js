@@ -94,7 +94,7 @@ class Relative extends React.Component {
 
         return (
            <BasicLayout>
-               <Helmet title='困知记'/>
+               <Helmet title='学而录'/>
                <div className='relative-containers'>
                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                    <div className='relative-articles'>
