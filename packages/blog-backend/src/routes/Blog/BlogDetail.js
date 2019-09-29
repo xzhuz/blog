@@ -9,6 +9,7 @@ import DescriptionList from 'components/DescriptionList';
 import { markdown } from '../../utils/markdownUtils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './BlogDetail.less';
+import '../../utils/markdown.css';
 
 const { Description } = DescriptionList;
 const RadioButton = Radio.Button;

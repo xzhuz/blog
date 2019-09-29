@@ -1,6 +1,7 @@
-/* eslint-disable object-shorthand,no-param-reassign,no-plusplus */
+/* eslint-disable react/destructuring-assignment */
 import marked from 'marked';
 import hljs from 'highlight.js/lib/highlight';
+import 'highlight.js/styles/github.css';
 
 const languages = [
   'cpp',
@@ -47,26 +48,24 @@ hljs.configure({
 hljs.initHighlighting();
 const renderer = new marked.Renderer();
 
-function generateId(len) {
+function generateId(size) {
   const chars = `ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz`;
-  len |= 8;
+  const len = size | 8;
   let id = ``;
-  for (let i = 0; i < len; i++) {
+  for (let i = 0; i < len; i += 1) {
     id += chars[Math.floor(Math.random() * chars.length)];
   }
   return id;
 }
 
-renderer.heading = function(text, level) {
+renderer.heading = (text, level) => {
   const id = generateId();
   return `<h${level} id="${id}">${text}</h${level}>`;
 };
 
-renderer.link = function(href, title, text) {
-  return `<a href="${href}" target="_blank">${text}</a>`;
-};
+renderer.link = (href, title, text) => `<a href="${href}" target="_blank">${text}</a>`;
 
-renderer.image = function(href, title, text) {
+renderer.image = (href, title, text) => {
   function getImgWithUrlHtml(textArr) {
     return `<img src=${href} alt=${textArr[2]}><br>
             ${textArr[1]}<a href="${textArr[3]}" target="_blank">${textArr[2]}</a>`;
@@ -81,8 +80,60 @@ renderer.image = function(href, title, text) {
           </p>`;
 };
 
+renderer.blockquote = text => {
+  const textArr = text
+    .trim()
+    .replace('<p>', '')
+    .replace('</p>', '')
+    .split('<br>');
+  const context = [];
+  textArr.map(arr => context.push(`<p>${arr}</p>`));
+
+  return `<blockquote>${context.join('')}</blockquote>`;
+};
+
+renderer.code = (text, lang) => {
+  const len = text.split('\n').length;
+  const lineHeight = (len + 1) * 22;
+  return `<pre class="prettyprint" style="height: ${lineHeight}px; position: relative; overflow-y: hidden;overflow-x: auto;padding: 0 16px 6px 44px;background-color: #f6f8fa;border: none;">
+        <code class="language-${lang}" style="position: unset;" >${getCode(text, lang)}</code>
+        <ul class="pre-numbering" style="position: absolute;width: 36px;background-color: #eef0f4; top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  text-align: center;
+  line-height: 3px;
+  height: 100%;
+  ">
+            ${getList(len)}
+        </ul>
+    </pre>`;
+};
+
+function getList(len) {
+  let arr = '';
+  for (let i = 1; i <= len; i += 1) {
+    arr += `<li style=" padding: 0 4px;
+                list-style: none;
+                margin: 0;
+                font-size: 12px;
+                line-height: 22px;
+                color: #6a737d;"
+            >${i}</li>`;
+  }
+  return arr;
+}
+
+function getCode(code, lang) {
+  if (!~languages.indexOf(lang)) {
+    return hljs.highlightAuto(code).value;
+  }
+  return hljs.highlight(lang, code).value;
+}
+
 marked.setOptions({
-  renderer: renderer,
+  renderer,
   gfm: true,
   pedantic: false,
   sanitize: false,
@@ -90,7 +141,7 @@ marked.setOptions({
   breaks: true,
   smartLists: true,
   smartypants: true,
-  highlight: function(code, lang) {
+  highlight(code, lang) {
     if (!~languages.indexOf(lang)) {
       return hljs.highlightAuto(code).value;
     }

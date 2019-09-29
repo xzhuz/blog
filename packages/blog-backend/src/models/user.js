@@ -1,5 +1,5 @@
 import * as routerRedux from 'react-router-redux';
-import { SUCCESS_CODE } from '../utils/constants';
+import { SUCCESS_CODE } from '../utils/Constants';
 
 import { queryCurrent } from '../services/user';
 

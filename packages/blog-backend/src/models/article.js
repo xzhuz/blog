@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { routerRedux } from 'dva/router';
-import { SUCCESS_CODE, USER_UNAUTH } from '../utils/constants';
+import { SUCCESS_CODE, USER_UNAUTH } from '../utils/Constants';
 import {
   queryArticleDetail,
   deleteArticle,

@@ -4,7 +4,7 @@ import { login, logout } from '../services/api';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
 import { getPageQuery } from '../utils/utils';
-import { SUCCESS_CODE } from '../utils/constants';
+import { SUCCESS_CODE } from '../utils/Constants';
 
 export default {
   namespace: 'login',
@@ -18,7 +18,6 @@ export default {
     *login({ payload }, { call, put }) {
       const response = yield call(login, payload);
       if (response.code === SUCCESS_CODE) {
-        // console.log(response);
         yield put({
           type: 'changeLoginStatus',
           payload: { ...response.data },
