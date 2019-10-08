@@ -128,10 +128,11 @@
     color: $baseStressColor;
   }
 
-  h1, h2, h3 {
-    margin: 1.6rem 0 .8rem;
+  h1, h2, h3, h4, h5, h6 {
     padding-bottom: .7rem;
     border-bottom: 1px solid #ddd;
+    margin: -55px 0 .8rem;
+    padding-top: 55px;
   }
 
   ul {
