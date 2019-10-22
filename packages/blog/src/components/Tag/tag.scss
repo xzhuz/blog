@@ -1,10 +1,11 @@
 .tag {
   display: inline-block;
   padding: 1px 6px;
+  max-width: 77px;
   font-size: 12px;
   color: #ffffff;
-  border: 1px solid $loadingColor;
-  background: $loadingColor;
+  border: 1px solid $tagColor;
+  background: $tagColor;
   border-radius: 10px;
   margin-right: 5px;
   height: 1rem;
@@ -17,13 +18,12 @@
     margin-bottom: -2px;
   }
 
-  &:hover {
-    transition-duration: .6s;
-    -moz-transition-duration: .6s;
-    -webkit-transition-duration: .6s;
-    color: $loadingColor;
-    cursor: pointer;
-    border: 1px solid #f7f7f7;
-    background: #f7f7f7;
-  }
+  //&:hover {
+  //  transition-duration: .6s;
+  //  -moz-transition-duration: .6s;
+  //  -webkit-transition-duration: .6s;
+  //  color: $tagColor;
+  //  background: #ffffff;
+  //  cursor: pointer;
+  //}
 }

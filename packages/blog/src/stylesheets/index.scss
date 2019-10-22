@@ -65,4 +65,8 @@ flex-direction: column;
 position: relative;
 }
 
+.is-active-link::before {
+  background-color: $baseColor;
+}
+
 

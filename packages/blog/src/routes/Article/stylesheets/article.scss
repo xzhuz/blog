@@ -75,19 +75,19 @@
 .article-header-meta {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
+  justify-content: space-between;
   color: #738a94;
   font-size: 1rem;
-  font-weight: 600;
   text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1.6rem;
 }
 
 
 .article-time {
-  color: $baseColor;
+  color: #22202e;
+  font-weight: 400;
+  padding-bottom: 0;
 
   @media only screen and (max-width: 768px) {
     font-size: 12px;
@@ -96,8 +96,9 @@
 
 .article-title {
   margin: 0;
-  color: #090a0b;
-  font-size: 3rem;
+  color: #22202e;
+  font-size: 2.5rem;
+  font-weight: 500;
 
   @media only screen and (max-width: 768px) {
     font-size: 1.4rem;
@@ -105,8 +106,8 @@
 }
 
 .article-image {
-  margin: 0px -10vw -165px;
-  height: 400px;
+  margin: 0px -10vw -245px;
+  height: 300px;
   background: #c5d2d9 50%;
   background-size: cover;
   border-radius: 5px;
@@ -134,7 +135,8 @@
 .article-full-content {
   position: relative;
   padding: 40px 60px 0;
-  min-height: 230px;
+  border-radius: 5px;
+  min-height: 240px;
   //line-height: 1.6em;
   background: #fff;
   @media only screen and (max-width: 768px) {
@@ -157,9 +159,7 @@
 
 
 .article-tags {
-  flex: 0 0 auto;
-  margin: 1.6rem 0 .8rem;
-  padding-top: .7rem;
-  border-top: 1px solid #ddd;
-  width: 100%;
+  //flex: 0 0 auto;
+  padding-bottom: .7rem;
+  display: inline-block;
 }

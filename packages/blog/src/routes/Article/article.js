@@ -62,26 +62,24 @@ class Article extends React.PureComponent {
                     <div className='article'>
                         <section>
                             <div className='article-header'>
-                                <div className='article-header-meta'>
-                                    <time className='article-time'>{formatDate(createTime)}</time>
-
-                                </div>
                                 <h1 className='article-title'>{title} </h1>
-                            </div>
-                            <figure className='article-image' style={{backgroundImage: `url(${thumb})`}}>
 
-                            </figure>
+                            </div>
+                            <figure className='article-image' style={{backgroundImage: `url(${thumb})`}} />
                             <div className='article-full-content '>
+                                <div className='article-header-meta'>
+                                    <p className='article-tags'>
+                                        {
+                                            tagList.map((v, index) => (
+                                                <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
+                                            ))
+                                        }
+                                    </p>
+                                    <time className='article-time'>{formatDate(createTime)}</time>
+                                </div>
                                 <div className='article-content markdown'
                                      dangerouslySetInnerHTML={{__html: markdown(content)}}/>
                             </div>
-                            <p className='article-tags'>
-                                {
-                                    tagList.map((v, index) => (
-                                        <Tag label={v} key={index} clickTag={(v) => this.tagClick(v)}/>
-                                    ))
-                                }
-                            </p>
                             <Comment/>
                         </section>
                     </div>

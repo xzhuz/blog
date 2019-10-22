@@ -90,7 +90,7 @@ class Home extends React.Component {
         const {initArticles, articles, articleCount} = this.props;
         const resultArticles = this.reduce([...initArticles, ...articles]);
         const banner = require('./assets/images/banner.jpg');
-        const avatar = require('./assets/images/avatar.jpeg');
+        const avatar = require('./assets/images/avatar.jpg');
         const items = [];
         resultArticles.map((v, index) => {
             items.push(

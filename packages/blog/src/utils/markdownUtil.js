@@ -87,11 +87,14 @@ renderer.image = function (href, title, text) {
 
 renderer.blockquote = function (text) {
     text = text.trim();
-    text = text.replace('<p>','');
-    text = text.replace('</p>','');
+    text = text.replace(/<p>/g,'');
+    text = text.replace(/<\/p>/g,'<br>');
     const textArr = text.split('<br>');
     const context = [];
     for (let i = 0; i < textArr.length; i++) {
+        if (textArr[i].trim().length === 0) {
+            continue;
+        }
         context.push(`<p>${textArr[i]}</p>`);
     }
     return `<blockquote>${context.join('')}</blockquote>`;
