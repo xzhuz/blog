@@ -63,7 +63,15 @@ export default class BlogList extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'article/topArticle',
-      payload: { id },
+      payload: { articleId: id, sort: 1, ...this.state },
+    });
+  };
+
+  cancelTop = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/topArticle',
+      payload: { articleId: id, sort: 0, ...this.state },
     });
   };
 
@@ -231,9 +239,17 @@ export default class BlogList extends Component {
               删除
             </span>
             <Divider type="vertical" />
-            <span className={styles.deleteBtn} onClick={() => this.handleTop(item.articleId)}>
-              置顶
-            </span>
+            {item.sort === 1 ? (
+              <span className={styles.deleteBtn} onClick={() => this.cancelTop(item.articleId)}>
+                {' '}
+                取消置顶{' '}
+              </span>
+            ) : (
+              <span className={styles.deleteBtn} onClick={() => this.handleTop(item.articleId)}>
+                {' '}
+                置顶{' '}
+              </span>
+            )}
           </span>
         ),
       },

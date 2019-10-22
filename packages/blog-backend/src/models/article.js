@@ -68,15 +68,27 @@ export default {
       }
     },
     *topArticle({ payload }, { call, put }) {
-      const { id } = payload;
-      const response = yield call(topArticle, { articleId: id });
+      const response = yield call(topArticle, { ...payload });
       if (response.code !== SUCCESS_CODE) {
         message.error('置顶失败!');
       } else if (response.code === USER_UNAUTH) {
         yield put(routerRedux.push('/user/login'));
       } else {
+        const { pageNum, pageSize, publish, sort } = payload;
+        const queryResponse = yield call(queryAllArticleCondition, { pageNum, pageSize, publish });
+        if (queryResponse.code === SUCCESS_CODE) {
+          const { data } = queryResponse.data;
+          yield put({
+            type: 'saveList',
+            payload: Array.isArray(data) ? data : [],
+          });
+        } else if (response.msg) {
+          message.error(response.msg);
+        } else {
+          message.error('查询失败');
+        }
         yield put(routerRedux.push('/article/blogList'));
-        message.success('置顶成功!');
+        message.success(sort === 1 ? '置顶成功!' : '取消置顶成功!');
       }
     },
     *publishArticle({ payload }, { call, put }) {
