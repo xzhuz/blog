@@ -59,6 +59,14 @@ export default class BlogList extends Component {
     });
   };
 
+  handleTop = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'article/topArticle',
+      payload: { id },
+    });
+  };
+
   handleChangeTab = e => {
     const { dispatch } = this.props;
     const { pageNum, pageSize } = this.state;
@@ -196,6 +204,11 @@ export default class BlogList extends Component {
         key: 'visit',
       },
       {
+        title: '排序',
+        dataIndex: 'sort',
+        key: 'sort',
+      },
+      {
         title: '发布时间',
         dataIndex: 'createTime',
         key: 'createTime',
@@ -216,6 +229,10 @@ export default class BlogList extends Component {
             <Divider type="vertical" />
             <span className={styles.deleteBtn} onClick={() => this.handleDelete(item.articleId)}>
               删除
+            </span>
+            <Divider type="vertical" />
+            <span className={styles.deleteBtn} onClick={() => this.handleTop(item.articleId)}>
+              置顶
             </span>
           </span>
         ),

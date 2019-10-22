@@ -32,6 +32,13 @@ export async function deleteArticle(params) {
   });
 }
 
+export async function topArticle(params) {
+  return customAxios('/articles/top', {
+    method: 'PUT',
+    params,
+  });
+}
+
 export async function publishArticle(params) {
   return customAxios('/articles/add', {
     method: 'POST',

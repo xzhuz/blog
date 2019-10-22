@@ -11,6 +11,7 @@ import {
   queryUserVisit,
   queryStatisticCount,
   queryAllArticleCondition,
+  topArticle,
 } from '../services/api';
 
 export default {
@@ -64,6 +65,18 @@ export default {
         }
         yield put(routerRedux.push('/article/blogList'));
         message.success('删除成功!');
+      }
+    },
+    *topArticle({ payload }, { call, put }) {
+      const { id } = payload;
+      const response = yield call(topArticle, { articleId: id });
+      if (response.code !== SUCCESS_CODE) {
+        message.error('置顶失败!');
+      } else if (response.code === USER_UNAUTH) {
+        yield put(routerRedux.push('/user/login'));
+      } else {
+        yield put(routerRedux.push('/article/blogList'));
+        message.success('置顶成功!');
       }
     },
     *publishArticle({ payload }, { call, put }) {
