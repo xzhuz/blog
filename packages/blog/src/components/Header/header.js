@@ -15,6 +15,14 @@ const menu = [
         path: '/achieve',
 
     },
+    // {
+    //     name: '分类',
+    //     path: '/category',
+    // },
+    {
+        name: '标签',
+        path: '/tags',
+    },
     {
         name: '关于',
         path: '/about',
@@ -75,7 +83,7 @@ class Header extends React.Component{
                 classNames('header', {
                     [`header-scroll`]: this.state.scroll,
                     [`header-hidden`]: pathname.includes('/dashboard'),
-                    [`header-diff`]: pathname === '/',
+                    [`header-diff`]: pathname === '/' || pathname === '/tags',
                 })}>
                 <nav className='header-nav'>
                     <div className='signature'>

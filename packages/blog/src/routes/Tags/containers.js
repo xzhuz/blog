@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+};
 
 const mapStateToProps = (state) => {
     return { state };

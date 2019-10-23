@@ -37,3 +37,7 @@ export const doConfirmCompliment = (id, compliment) => {
     return get('/blog/compliment', {id, compliment});
 };
 
+export const doFetchAllTags = () => {
+    return get('/tag/all');
+};
+

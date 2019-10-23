@@ -3,30 +3,30 @@ import {fromJS, List} from "immutable";
 import * as Constants from '../../utils/Constants';
 
 import * as request from '../../utils/axios/api';
-import * as Article from "./constants";
+import * as Tags from "./constants";
 
-export const articleDetail = (article) => {
+export const allTags = (tagList) => {
     return {
-        type: Article.ARTICLE_DETAIL,
-        article,
+        type: Tags.ALL_TAGS,
+        tagList,
     };
 };
 
 const initialState = fromJS({
-    ARTICLE_DETAIL: {},
+    ALL_TAGS: [{}],
 });
 
 export default function articleReducer(state = initialState, action) {
     switch (action.type) {
-        case Article.ARTICLE_DETAIL:
-            return state.set(Article.ARTICLE_DETAIL, action.article);
+        case Tags.ALL_TAGS:
+            return state.set(Tags.ALL_TAGS, action.tagList);
         default:
             return state;
     }
 };
 
-export function fetchArticle(id) {
-    return request.articleDetail(id).then(res => {
+export function fetchAllTags() {
+    return request.doFetchAllTags().then(res => {
         if (res.code === Constants.SUCCESS_CODE) {
             return res.data;
         } else {
@@ -34,3 +34,4 @@ export function fetchArticle(id) {
         }
     });
 }
+
