@@ -14,12 +14,13 @@
     text-indent: 0;
     margin-bottom: 12px;
     // 设置字体间的间距
-    letter-spacing: .4px;
+    letter-spacing: .1px;
     z-index:999;
   }
 
   p, li {
     font-size: 16px;
+    color: $baseFontColor;
     line-height: 1.6rem;
     word-break: break-word;
     font-family: -apple-system,"PingFang SC",PingFang SC,"微软雅黑","Microsoft YaHei",Helvetica,"Helvetica Neue",Menlo,Monaco,Consolas,Courier New,monospace;
@@ -72,7 +73,7 @@
     font-size: 1.3rem;
     margin: 1.6rem 0 .8rem;
     padding-bottom: .7rem;
-    border-bottom: 1px solid #ddd;
+    //border-bottom: 1px solid #ddd;
   }
 
   table {
@@ -131,9 +132,9 @@
 
   h1, h2, h3, h4, h5, h6 {
     padding-bottom: .7rem;
-    border-bottom: 1px solid #ddd;
+    //border-bottom: 1px solid #ddd;
     margin: -55px 0 .8rem;
-    padding-top: 55px;
+    padding-top: 70px;
   }
 
   ul {

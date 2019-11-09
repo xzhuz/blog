@@ -29,6 +29,6 @@ export function dateFormat(date) {
     const blogDate = new Date(date);
     const year = blogDate.getFullYear();
     const month = prefixInteger(blogDate.getMonth() + 1, 2);
-    const day = prefixInteger(blogDate.getUTCDate(), 2);
+    const day = prefixInteger(blogDate.getDate(), 2);
     return `${year}-${month}-${day}`;
 }
