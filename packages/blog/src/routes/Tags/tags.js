@@ -31,7 +31,7 @@ class Tags extends React.PureComponent {
                     <div className='tags-banner-content'>
                         <div className='tags-banner-detail'>
                             <p className='tags-banner-type'>
-                                苟日新，日日新
+                                苟日新，日日新，又日新
                             </p>
                         </div>
                     </div>
