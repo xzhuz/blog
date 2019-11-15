@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
-import NProgress from 'nprogress';
-import InfiniteScroll from 'react-infinite-scroller';
 import Loader from 'react-loaders';
 
 import Bottom from '../../components/Bottom';
@@ -15,29 +13,36 @@ import './assets/stylesheets/home.scss';
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
             page: 0,
             size: 6,
         };
     }
 
-    componentWillUnmount() {
-        NProgress.done();
-    }
-
-    componentDidUpdate() {
-        NProgress.done();
-    }
-
     componentDidMount() {
         this.props.clearRelatives();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        const container = document.getElementById('container');
+        const bottom = document.getElementById('bottom');
+        const top = container.scrollTop + container.offsetHeight + container.offsetTop;
+        if (this.oldScrollTop < scrollTop) {
+            // 向下滚
+            if (bottom.offsetTop + bottom.offsetHeight <= top) {
+                this.loadItems(3);
+            }
+        }
+        this.oldScrollTop = scrollTop;
     }
 
     readMore(v) {
         this.setState(state => ({
             size: state.size + 6,
         }), () => this.props.pageableArticles(this.state));
-        NProgress.start();
     }
 
     renderReadMore(filled) {
@@ -72,16 +77,14 @@ class Home extends React.Component {
             for (let i = 0; i < less; i++) {
                 items.push(<div className='post-card no-display' key={`emptyItem${i}`}/>);
             }
-
         }
     }
 
     loadItems(e) {
-        setTimeout(() => {
-            this.setState(state => ({
-                size: state.size + e,
-            }), () => this.props.pageableArticles(this.state));
-        }, 1000);
+        console.log(e);
+        this.setState(state => ({
+            size: state.size + e,
+        }), () => this.props.pageableArticles(this.state));
     }
 
 
@@ -103,7 +106,7 @@ class Home extends React.Component {
         this.extracted(items);
 
         return (
-            <div className='container'>
+            <div className='container' id='container'>
                 <div className="home-container">
                     <Helmet title='学而录 | 首页'/>
                     <div className='banner' style={{
@@ -124,23 +127,10 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className='articles-container'>
-                        <InfiniteScroll
-                            pageStart={0}
-                            className='articles-card'
-                            loadMore={(e) => this.loadItems(e)}
-                            hasMore={articleCount >= this.state.size}
-                            loader={
-                                <Loader type='ball-beat'
-                                        active={true}
-                                        key={0}
-                                        innerClassName='articles-loading'
-                                        color='#E53A40'
-                                        style={{transform: 'scale(0.5)'}}
-                                />
-                            }
-                        >
+                        <div className='articles-card'>
                             {items}
-                        </InfiniteScroll>
+                        </div>
+                        <div id='bottom'/>
                     </div>
                 </div>
             </div>

@@ -32,6 +32,9 @@ export const relativeArticles = ({tag, page, size}) => {
     return get('/blog/tag', {tagName: new Array(tag).join(','), pageNum: page, pageSize: size});
 };
 
+export const search = ({text, page, size}) => {
+    return get('/blog/search', {tagName: new Array(tag).join(','), pageNum: page, pageSize: size});
+};
 
 export const doConfirmCompliment = (id, compliment) => {
     return get('/blog/compliment', {id, compliment});

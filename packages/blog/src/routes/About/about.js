@@ -17,7 +17,7 @@ class About extends React.PureComponent {
                 <div className='about-container'>
                     <div className='about-info'>
                         <section className='about-info-about'>
-                            <h2><span className='title'>Abo</span>ut</h2>
+                            <h2><span className='title'>自</span>言</h2>
                             <ul>
                                 <li>大家好，我是来自重庆的一枚会后端Java工程师👨🏼‍💻，目前在杭州.</li>
                                 <li>我希望用代码改变世界🤭😬,我也在改变世界,自豪脸😏</li>
@@ -29,32 +29,32 @@ class About extends React.PureComponent {
                             </ul>
                         </section>
                         <section className='about-info-skills'>
-                            <h2><span className='title'>Ski</span>lls</h2>
+                            <h2><span className='title'>屠</span>龙技</h2>
                             <ul className='skills'>
                                 <li>
-                                    <span className='skills-title'>Language</span>
+                                    <span className='skills-title'>语言</span>
                                     <span className='skills-detail'>Java, JavaScript, HTML, CSS</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>Database</span>
+                                    <span className='skills-title'>数据库</span>
                                     <span className='skills-detail'>MySQL, Redis</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>Framework</span>
+                                    <span className='skills-title'>框架</span>
                                     <span className='skills-detail'>Spring，Spring Boot，MyBatis, Guice, Jersey, Shiro, React, JQuery，Bootstrap</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>Tools</span>
+                                    <span className='skills-title'>工具</span>
                                     <span className='skills-detail'>Maven, Tomcat, Redux</span>
                                 </li>
                                 <li>
-                                    <span className='skills-title'>Environment</span>
+                                    <span className='skills-title'>环境</span>
                                     <span className='skills-detail'>Mac, Ubuntu, Linux, Git, Intellij IDEA</span>
                                 </li>
                             </ul>
                         </section>
                         <section className='about-info-blog'>
-                            <h2><span className='title'>Blo</span>g</h2>
+                            <h2><span className='title'>博</span>客</h2>
                             <ul>
                                 <li>期望：平时生活和工作一种记录🖋, 希望之后回过头再来看自己的博客也会有所收获或感想</li>
                                 <li>自己一些杂谈📽(不是一个纯粹的技术博客🤫)</li>
@@ -65,7 +65,7 @@ class About extends React.PureComponent {
 
                         </section>
                         <section className='about-info-contact'>
-                            <h2><span className='title'>Con</span>tact</h2>
+                            <h2><span className='title'>联</span>系我</h2>
                             <p>
                                 <Info icon={<FontAwesome.FaQq/>} info={'915818993'}/>
                                 <Info icon={<FontAwesome.FaEnvelopeSquare/>} info={'ms915818993@163.com'}/>
@@ -77,7 +77,7 @@ class About extends React.PureComponent {
                         </section>
 
                         <section className='about-info-statement'>
-                            <h2><span className='title'>Sta</span>tement</h2>
+                            <h2><span className='title'>免</span>责</h2>
                             <ul>
                                 <li>本站所有文章为了记录工作、学习中遇到的问题，可能由于本人技术有限，有些不正确的地方，仅供参考</li>
                                 <li>本站文章引用或转载写明来源，感谢原作者的辛苦写作，如果有异议或侵权，及时联系我处理，谢谢！</li>

@@ -62,10 +62,8 @@ class Article extends React.PureComponent {
                     <div className='article'>
                         <section>
                             <div className='article-header'>
-                                <h1 className='article-title'>{title} </h1>
-
+                                <h1 className='article-title'>{title}</h1>
                             </div>
-                            <figure className='article-image' style={{backgroundImage: `url(${thumb})`}} />
                             <div className='article-full-content '>
                                 <div className='article-header-meta'>
                                     <p className='article-tags'>

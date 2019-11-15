@@ -29,7 +29,7 @@
   }
 
   ul>li, ol>li {
-    list-style: disc;
+    //list-style: disc;
   }
 
   .is-active-li > a {
@@ -37,7 +37,7 @@
   }
 
   .toc-list {
-    padding-left: 2rem;
+    padding-left: 1rem;
   }
 
   .is-active-link {
@@ -45,10 +45,14 @@
   }
 }
 
+.toc-link::before{
+  width: 1px !important;
+}
 .toc-fixed {
   position: fixed;
   bottom: 20rem;
   left: 84%;
+  font-size: 12px;
 }
 
 h1, h2, h3, h4, h5, h6 {

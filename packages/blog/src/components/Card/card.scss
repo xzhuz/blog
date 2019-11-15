@@ -93,7 +93,7 @@
   justify-content: space-between;
   -ms-flex-align: end;
   align-items: flex-end;
-  padding: 0 25px 25px;
+  padding: 0 25px 10px;
   line-height: 33px;
   flex: 0 0 auto;
 }
@@ -138,7 +138,6 @@
     font-size: 1.5rem;
   }
 }
-
 
 .post-card:nth-child(6n+1):not(.no-image) p {
   @media only screen and (min-width: 795px) {
@@ -189,7 +188,7 @@
 
 .post-card:nth-child(6n+1):not(.no-image) .post-card-meta {
   @media only screen and (min-width: 795px) {
-    padding: 0 40px 30px;
+    padding: 0 40px 10px;
   }
 }
 

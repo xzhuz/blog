@@ -67,7 +67,7 @@
 
 .article-header {
   margin: 0 auto;
-  padding: 1vw 3vw 3vw;
+  padding: 1vw 3vw 1vw;
   max-width: 1040px;
   text-align: center;
 }
@@ -106,8 +106,8 @@
 }
 
 .article-image {
-  margin: 0px -10vw -245px;
-  height: 400px;
+  margin: 0px -10vw -145px;
+  height: 300px;
   background: #c5d2d9 50%;
   background-size: cover;
   border-radius: 5px;
@@ -134,7 +134,7 @@
 
 .article-full-content {
   position: relative;
-  padding: 40px 60px 0;
+  padding: 10px 60px 0;
   border-radius: 5px;
   min-height: 240px;
   //line-height: 1.6em;

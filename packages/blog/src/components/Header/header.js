@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
-
+import * as FontAwesome from 'react-icons/fa';
 import './assests/stylesheets/header.scss';
 
 const menu = [
@@ -15,10 +15,6 @@ const menu = [
         path: '/achieve',
 
     },
-    // {
-    //     name: '分类',
-    //     path: '/category',
-    // },
     {
         name: '标签',
         path: '/tags',
@@ -26,8 +22,7 @@ const menu = [
     {
         name: '关于',
         path: '/about',
-
-    }
+    },
 ];
 
 class Header extends React.Component{
@@ -75,6 +70,10 @@ class Header extends React.Component{
         }));
     }
 
+    search(e) {
+        console.log(e);
+    }
+
     render () {
         const {pathname} = this.props.location;
         const logo = require('./assests/images/logo.png');
@@ -97,6 +96,7 @@ class Header extends React.Component{
                             menu.map(v =>  <Link className={classNames('header-path-link', {[`active`]: pathname === `${v.path}`})}
                                                  to={{ pathname: `${v.path}`}} key={v.path}>{v.name}</Link>)
                         }
+                        { /* <a onClick={(e) => this.search(e)}><FontAwesome.FaSearch/></a> */ }
                     </div>
                     <div className={classNames('header-nav-menu', {[`header-nav-menu-show`]: this.state.menuShown})}
                          onClick={(e) => this.mobileMenu(e)}>
@@ -112,6 +112,7 @@ class Header extends React.Component{
                                         </Link>
                                     </li>)
                                 }
+                                <li><a><FontAwesome.FaSearch/></a></li>
                             </ul>
                         </div>
                     </div>
