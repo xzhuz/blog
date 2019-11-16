@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {List} from 'immutable';
 import Loader from 'react-loaders';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import Bottom from '../../components/Bottom';
 import Card from '../../components/Card';
@@ -13,7 +14,6 @@ import './assets/stylesheets/home.scss';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
             page: 0,
             size: 6,
@@ -22,21 +22,6 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.clearRelatives();
-        window.addEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll() {
-        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        const container = document.getElementById('container');
-        const bottom = document.getElementById('bottom');
-        const top = container.scrollTop + container.offsetHeight + container.offsetTop;
-        if (this.oldScrollTop < scrollTop) {
-            // 向下滚
-            if (bottom.offsetTop + bottom.offsetHeight <= top) {
-                this.loadItems(3);
-            }
-        }
-        this.oldScrollTop = scrollTop;
     }
 
     readMore(v) {
@@ -81,10 +66,11 @@ class Home extends React.Component {
     }
 
     loadItems(e) {
-        console.log(e);
-        this.setState(state => ({
-            size: state.size + e,
-        }), () => this.props.pageableArticles(this.state));
+        setTimeout(() => {
+            this.setState(state => ({
+                size: state.size + e,
+            }), () => this.props.pageableArticles(this.state));
+        }, 1000);
     }
 
 
@@ -106,7 +92,7 @@ class Home extends React.Component {
         this.extracted(items);
 
         return (
-            <div className='container' id='container'>
+            <div className='container'>
                 <div className="home-container">
                     <Helmet title='学而录 | 首页'/>
                     <div className='banner' style={{
@@ -127,10 +113,23 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className='articles-container'>
-                        <div className='articles-card'>
-                            {items}
-                        </div>
-                        <div id='bottom'/>
+                    <InfiniteScroll
+                            pageStart={0}
+                            className='articles-card'
+                            loadMore={(e) => this.loadItems(e)}
+                            hasMore={articleCount >= this.state.size}
+                            loader={
+                                <Loader type='ball-beat'
+                                        active={true}
+                                        key={0}
+                                        innerClassName='articles-loading'
+                                        color='#E53A40'
+                                        style={{transform: 'scale(0.5)'}}
+                                />
+                            }
+                        >
+                             {items}
+                        </InfiniteScroll>
                     </div>
                 </div>
             </div>

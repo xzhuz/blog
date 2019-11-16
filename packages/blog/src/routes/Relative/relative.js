@@ -17,7 +17,6 @@ import './stylesheets/relative.scss';
 class Relative extends React.Component {
     constructor(props) {
         super(props);
-        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
             page: 0,
             size: 6,
@@ -34,20 +33,6 @@ class Relative extends React.Component {
         this.setState(state => ({
             size: state.size + 3,
         }), () => this.props.relativeArticles(Object.assign({}, {tag: tagName}, this.state)));
-    }
-
-    handleScroll() {
-        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        const container = document.getElementById('container');
-        const bottom = document.getElementById('bottom');
-        const top = container.scrollTop + container.offsetHeight + container.offsetTop;
-        if (this.oldScrollTop < scrollTop) {
-            // 向下滚
-            if (bottom.offsetTop + bottom.offsetHeight <= top) {
-                this.loadItems(3);
-            }
-        }
-        this.oldScrollTop = scrollTop;
     }
 
     renderReadMore(filled) {
@@ -112,10 +97,23 @@ class Relative extends React.Component {
                <div className='relative-containers'>
                    <h1 className='tag-name'><FontAwesome.FaTags/> {tag}</h1>
                    <div className='relative-articles'>
-                       <div className='articles-card'>
-                           {items}
-                       </div>
-                       <div id='bottom'/>
+                   <InfiniteScroll
+                           pageStart={0}
+                           className='articles-card'
+                           loadMore={(e) => this.loadItems(e)}
+                           hasMore={count >= this.state.size}
+                           loader={
+                               <Loader type='ball-beat'
+                                       active={true}
+                                       key={0}
+                                       innerClassName='articles-loading'
+                                       color='#E53A40'
+                                       style={{transform: 'scale(0.5)'}}
+                               />
+                           }
+                       >
+                            {items}
+                     </InfiniteScroll>
                    </div>
                </div>
             </BasicLayout>

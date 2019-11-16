@@ -17,7 +17,6 @@ export default WrappedComponent =>
         hideLoader = () => {
             const proc = fetchAllTags();
             proc.then((value) => {
-                console.log(value);
                 if (!value || Object.keys(value).length === 0) {
                     this.props.history.push('/404');
                 } else {
